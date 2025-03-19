@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/base-build-logic" name="base-build-logic">
+                <projects>
+                  <project path="$PROJECT_DIR$/base-build-logic" />
+                  <project path="$PROJECT_DIR$/base-build-logic/base-convention" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/base-build-logic" />
+            <option value="$PROJECT_DIR$/base-build-logic/base-convention" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/common/base" />
+            <option value="$PROJECT_DIR$/common/base/app" />
+            <option value="$PROJECT_DIR$/common/base/converter" />
+            <option value="$PROJECT_DIR$/common/base/data" />
+            <option value="$PROJECT_DIR$/common/base/database" />
+            <option value="$PROJECT_DIR$/common/base/datastore" />
+            <option value="$PROJECT_DIR$/common/base/feature" />
+            <option value="$PROJECT_DIR$/common/base/model" />
+            <option value="$PROJECT_DIR$/common/base/network" />
+            <option value="$PROJECT_DIR$/common/base/test" />
+            <option value="$PROJECT_DIR$/common/base/work" />
+            <option value="$PROJECT_DIR$/common/business" />
+            <option value="$PROJECT_DIR$/common/business/converter" />
+            <option value="$PROJECT_DIR$/common/core" />
+            <option value="$PROJECT_DIR$/common/core/architecture" />
+            <option value="$PROJECT_DIR$/common/core/design" />
+            <option value="$PROJECT_DIR$/common/core/design/compound" />
+            <option value="$PROJECT_DIR$/common/core/design/foundation" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

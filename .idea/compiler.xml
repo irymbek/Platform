@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="build-logic.convention" target="17" />
+      <module name="build-logic.convention.main" target="17" />
+      <module name="build-logic.convention.test" target="17" />
+      <module name="kz.uso.krl.common.convention.buildlogic.build-logic.convention" target="17" />
+      <module name="kz.uso.krl.common.convention.buildlogic.build-logic.convention.main" target="17" />
+      <module name="kz.uso.krl.common.convention.buildlogic.build-logic.convention.test" target="17" />
+      <module name="Platform.app" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
