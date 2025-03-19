@@ -72,110 +72,35 @@ gradlePlugin {
         /**======================================================================================**/
         register("moduleBaseDatabase") {
             id = libs.plugins.module.base.database.get().pluginId
-            implementationClass = "plugin.module.base.ModuleDatabaseBasePlugin"
+            implementationClass = "plugin.module.ModuleDatabaseBasePlugin"
         }
         register("moduleBaseData") {
             id = libs.plugins.module.base.data.get().pluginId
-            implementationClass = "plugin.module.base.ModuleDataBasePlugin"
+            implementationClass = "plugin.module.ModuleDataBasePlugin"
         }
         register("moduleBaseDatastore") {
             id = libs.plugins.module.base.datastore.get().pluginId
-            implementationClass = "plugin.module.base.ModuleDataStoreBasePlugin"
+            implementationClass = "plugin.module.ModuleDataStoreBasePlugin"
         }
         register("moduleBaseDomain") {
             id = libs.plugins.module.base.domain.get().pluginId
-            implementationClass = "plugin.module.base.ModuleDomainBasePlugin"
+            implementationClass = "plugin.module.ModuleDomainBasePlugin"
         }
         register("moduleBaseFeature") {
             id = libs.plugins.module.base.feature.get().pluginId
-            implementationClass = "plugin.module.base.ModuleFeatureBasePlugin"
+            implementationClass = "plugin.module.ModuleFeatureBasePlugin"
         }
         register("moduleBaseModel") {
             id = libs.plugins.module.base.model.get().pluginId
-            implementationClass = "plugin.module.base.ModuleModelBasePlugin"
+            implementationClass = "plugin.module.ModuleModelBasePlugin"
         }
         register("moduleBaseNetwork") {
             id = libs.plugins.module.base.network.get().pluginId
-            implementationClass = "plugin.module.base.ModuleNetworkBasePlugin"
+            implementationClass = "plugin.module.ModuleNetworkBasePlugin"
         }
         register("moduleBaseWork") {
             id = libs.plugins.module.base.work.get().pluginId
-            implementationClass = "plugin.module.base.ModuleWorkBasePlugin"
-        }
-        /**======================================================================================**/
-        register("moduleDataCommon") {
-            id = libs.plugins.module.project.common.data.get().pluginId
-            implementationClass = "plugin.module.project.common.ModuleDataCommonPlugin"
-        }
-        register("moduleDatabaseCommon") {
-            id = libs.plugins.module.project.common.database.get().pluginId
-            implementationClass = "plugin.module.project.common.ModuleDatabaseCommonPlugin"
-        }
-        register("moduleDataStoreCommon") {
-            id = libs.plugins.module.project.common.datastore.get().pluginId
-            implementationClass = "plugin.module.project.common.ModuleDataStoreCommonPlugin"
-        }
-        register("moduleDomainCommon") {
-            id = libs.plugins.module.project.common.domain.get().pluginId
-            implementationClass = "plugin.module.project.common.ModuleDomainCommonPlugin"
-        }
-        register("moduleFeatureCommon") {
-            id = libs.plugins.module.project.common.feature.get().pluginId
-            implementationClass = "plugin.module.project.common.ModuleFeatureCommonPlugin"
-        }
-        register("moduleNetworkCommon") {
-            id = libs.plugins.module.project.common.network.get().pluginId
-            implementationClass = "plugin.module.project.common.ModuleNetworkCommonPlugin"
-        }
-        /**======================================================================================**/
-        register("moduleDataEngineer") {
-            id = libs.plugins.module.project.engineer.data.get().pluginId
-            implementationClass = "plugin.module.project.engineer.ModuleDataEngineerPlugin"
-        }
-        register("moduleDatabaseEngineer") {
-            id = libs.plugins.module.project.engineer.database.get().pluginId
-            implementationClass = "plugin.module.project.engineer.ModuleDatabaseEngineerPlugin"
-        }
-        register("moduleDataStoreEngineer") {
-            id = libs.plugins.module.project.engineer.datastore.get().pluginId
-            implementationClass = "plugin.module.project.engineer.ModuleDataStoreEngineerPlugin"
-        }
-        register("moduleDomainEngineer") {
-            id = libs.plugins.module.project.engineer.domain.get().pluginId
-            implementationClass = "plugin.module.project.engineer.ModuleDomainEngineerPlugin"
-        }
-        register("moduleFeatureEngineer") {
-            id = libs.plugins.module.project.engineer.feature.get().pluginId
-            implementationClass = "plugin.module.project.engineer.ModuleFeatureEngineerPlugin"
-        }
-        register("moduleNetworkEngineer") {
-            id = libs.plugins.module.project.engineer.network.get().pluginId
-            implementationClass = "plugin.module.project.engineer.ModuleNetworkEngineerPlugin"
-        }
-        /**======================================================================================**/
-        register("moduleDataLaboratory") {
-            id = libs.plugins.module.project.laboratory.data.get().pluginId
-            implementationClass = "plugin.module.project.laboratory.ModuleDataLaboratoryPlugin"
-        }
-        register("moduleDatabaseLaboratory") {
-            id = libs.plugins.module.project.laboratory.database.get().pluginId
-            implementationClass = "plugin.module.project.laboratory.ModuleDatabaseLaboratoryPlugin"
-        }
-        register("moduleDataStoreLaboratory") {
-            id = libs.plugins.module.project.laboratory.datastore.get().pluginId
-            implementationClass = "plugin.module.project.laboratory.ModuleDataStoreLaboratoryPlugin"
-        }
-        register("moduleDomainLaboratory") {
-            id = libs.plugins.module.project.laboratory.domain.get().pluginId
-            implementationClass = "plugin.module.project.laboratory.ModuleDomainLaboratoryPlugin"
-        }
-        register("moduleFeatureLaboratory") {
-            id = libs.plugins.module.project.laboratory.feature.get().pluginId
-            implementationClass = "plugin.module.project.laboratory.ModuleFeatureLaboratoryPlugin"
-        }
-        register("moduleNetworkLaboratory") {
-            id = libs.plugins.module.project.laboratory.network.get().pluginId
-            implementationClass = "plugin.module.project.laboratory.ModuleNetworkLaboratoryPlugin"
+            implementationClass = "plugin.module.ModuleWorkBasePlugin"
         }
     }
 }

@@ -1,4 +1,4 @@
-package plugin.module.base
+package plugin.module
 
 import kz.rymbek.platform.convention.libs
 import org.gradle.api.Plugin
@@ -6,20 +6,19 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.dependencies
 
-class ModuleDataBasePlugin : Plugin<Project> {
-    override fun apply(target: Project) {
-        with(target) {
+class ModuleDatabaseBasePlugin : Plugin<Project> {
+    override fun apply(project: Project) {
+        with(project) {
             apply(plugin = "convention.library")
+            apply(plugin = "dependency.room")
             apply(plugin = "dependency.koin")
 
             dependencies {
-                "implementation"(project(":common:base:data"))
+                "implementation"(project(":common:base:database"))
                 "implementation"(project(":common:core:architecture"))
-                "implementation"(project(":common:core:date"))
-                "implementation"(project(":common:core:file"))
-                "implementation"(project(":common:business:model:global"))
+                "implementation"(project(":common:business:converter"))
                 /**==============================================================================**/
-                "implementation"(libs.findLibrary("androidx-paging-common").get())
+                "implementation"(libs.findLibrary("kotlinx-datetime").get())
             }
         }
     }

@@ -1,4 +1,4 @@
-package plugin.module.base
+package plugin.module
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project

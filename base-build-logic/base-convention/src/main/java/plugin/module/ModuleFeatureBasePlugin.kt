@@ -1,4 +1,4 @@
-package plugin.module.base
+package plugin.module
 
 import kz.rymbek.platform.convention.libs
 import org.gradle.api.Plugin
