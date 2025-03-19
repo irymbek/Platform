@@ -4,7 +4,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "kz.uso.krl.common.convention.buildlogic"
+group = "kz.rymbek.platform.common.convention.buildlogic"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
