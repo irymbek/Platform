@@ -6,7 +6,7 @@ plugins {
     `maven-publish`
 }
 
-group = "kz.rymbek.platform.common.base"
+group = "kz.rymbek.platform.common.base.convention"
 version = "1.0.0"
 
 publishing {
