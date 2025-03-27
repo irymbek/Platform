@@ -2,6 +2,9 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="base-build-logic.base-convention" target="17" />
+      <module name="base-build-logic.base-convention.main" target="17" />
+      <module name="base-build-logic.base-convention.test" target="17" />
       <module name="build-logic.convention" target="17" />
       <module name="build-logic.convention.main" target="17" />
       <module name="build-logic.convention.test" target="17" />
@@ -10,6 +13,9 @@
       <module name="kz.uso.krl.common.convention.buildlogic.build-logic.convention.test" target="17" />
       <module name="Platform.app" target="21" />
       <module name="Platform.common.base.convention" target="17" />
+      <module name="Platform.common.base.convention-base" target="17" />
+      <module name="Platform.common.base.convention-base.main" target="17" />
+      <module name="Platform.common.base.convention-base.test" target="17" />
       <module name="Platform.common.base.convention.main" target="17" />
       <module name="Platform.common.base.convention.test" target="17" />
     </bytecodeTargetLevel>
