@@ -7,12 +7,11 @@ plugins {
 }
 
 group = "kz.rymbek.platform.common.base.convention"
-version = "1.0.0"
 
 publishing {
     repositories {
         maven {
-            url = uri(layout.buildDirectory.dir("repo"))
+            url = uri("${rootDir}/repo")
         }
     }
 }
