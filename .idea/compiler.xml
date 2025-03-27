@@ -9,6 +9,9 @@
       <module name="kz.uso.krl.common.convention.buildlogic.build-logic.convention.main" target="17" />
       <module name="kz.uso.krl.common.convention.buildlogic.build-logic.convention.test" target="17" />
       <module name="Platform.app" target="21" />
+      <module name="Platform.common.base.convention" target="17" />
+      <module name="Platform.common.base.convention.main" target="17" />
+      <module name="Platform.common.base.convention.test" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

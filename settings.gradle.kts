@@ -1,5 +1,5 @@
 pluginManagement {
-    includeBuild("base-build-logic")
+    includeBuild("common/base/convention-base")
     repositories {
         google {
             content {
@@ -39,4 +39,3 @@ include(":common:business:converter")
 include(":common:core:architecture")
 include(":common:core:design:compound")
 include(":common:core:design:foundation")
-include(":common:base:convention")
