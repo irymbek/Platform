@@ -3,6 +3,7 @@ package kz.rymbek.platform.common.base.convention
 import libs
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.JavaVersion
+import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.provider.Provider
@@ -16,6 +17,14 @@ fun Project.applyPlugin(plugin: Provider<PluginDependency>) {
 
 fun Project.applyPlugin(plugin: LibrariesForLibs.KotlinPluginAccessors) {
     pluginManager.apply(plugin.asProvider().get().pluginId)
+}
+
+fun Project.applyPlugin(plugin: LibrariesForLibs. ConventionLibraryPluginAccessors) {
+    pluginManager.apply(plugin.asProvider().get().pluginId)
+}
+
+inline fun <reified T : Plugin<Project>> Project.applyPlugin() {
+    pluginManager.apply(T::class.java)
 }
 
 fun DependencyHandlerScope.implementation(

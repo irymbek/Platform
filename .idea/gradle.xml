@@ -32,7 +32,6 @@
             <option value="$PROJECT_DIR$/common/base/feature" />
             <option value="$PROJECT_DIR$/common/base/model" />
             <option value="$PROJECT_DIR$/common/base/network" />
-            <option value="$PROJECT_DIR$/common/base/test" />
             <option value="$PROJECT_DIR$/common/base/work" />
             <option value="$PROJECT_DIR$/common/business" />
             <option value="$PROJECT_DIR$/common/business/converter" />

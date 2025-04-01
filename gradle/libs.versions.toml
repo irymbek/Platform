@@ -147,6 +147,7 @@ dependency-koin = { id = "dependency.koin" }
 dependency-room = { id = "dependency.room" }
 dependency-serialization = { id = "dependency.serialization" }
 
+module-base-converter = { id = "module.base.converter" }
 module-base-database = { id = "module.base.database" }
 module-base-data = { id = "module.base.data" }
 module-base-datastore = { id = "module.base.datastore" }

@@ -12,6 +12,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -32,7 +33,6 @@ include(":common:base:feature")
 include(":common:base:model")
 include(":common:base:network")
 include(":common:base:work")
-include(":common:base:test")
 /**==============================================================================================**/
 include(":common:business:converter")
 /**==============================================================================================**/

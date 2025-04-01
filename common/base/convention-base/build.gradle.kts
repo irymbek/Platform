@@ -4,16 +4,19 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "kz.rymbek.platform.common.base"
+group = "kz.rymbek.platform.common.base.convention"
+
+private val projectJavaVersion: JavaVersion = JavaVersion.toVersion(libs.versions.java.get())
+private val projectJvmTarget: JvmTarget = JvmTarget.fromTarget(libs.versions.java.get())
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = projectJavaVersion
+    targetCompatibility = projectJavaVersion
 }
 
 kotlin {
     compilerOptions {
-        jvmTarget = JvmTarget.JVM_17
+        jvmTarget = projectJvmTarget
     }
 }
 
@@ -34,73 +37,77 @@ tasks {
 
 gradlePlugin {
     plugins {
-        register("conventionJvm") {
+        register("JvmPlugin") {
             id = libs.plugins.convention.jvm.get().pluginId
             implementationClass = "plugin.convention.jvm.JvmPlugin"
         }
         /*========================================================================================*/
-        register("conventionApplication") {
+        register("ApplicationPlugin") {
             id = libs.plugins.convention.application.asProvider().get().pluginId
             implementationClass = "plugin.convention.application.ApplicationPlugin"
         }
-        register("conventionApplicationCompose") {
+        register("ApplicationComposePlugin") {
             id = libs.plugins.convention.application.compose.get().pluginId
             implementationClass = "plugin.convention.application.ApplicationComposePlugin"
         }
         /*========================================================================================*/
-        register("conventionLibrary") {
+        register("LibraryPlugin") {
             id = libs.plugins.convention.library.asProvider().get().pluginId
             implementationClass = "plugin.convention.library.LibraryPlugin"
         }
-        register("conventionLibraryCompose") {
+        register("LibraryComposePlugin") {
             id = libs.plugins.convention.library.compose.get().pluginId
             implementationClass = "plugin.convention.library.LibraryComposePlugin"
         }
         /**======================================================================================**/
-        register("dependencyKoin") {
+        register("DependencyKoinPlugin") {
             id = libs.plugins.dependency.koin.get().pluginId
             implementationClass = "plugin.dependency.DependencyKoinPlugin"
         }
-        register("dependencyRoom") {
+        register("DependencyRoomPlugin") {
             id = libs.plugins.dependency.room.get().pluginId
             implementationClass = "plugin.dependency.DependencyRoomPlugin"
         }
-        register("dependencySerialization") {
+        register("DependencySerialization") {
             id = libs.plugins.dependency.serialization.get().pluginId
             implementationClass = "plugin.dependency.DependencySerialization"
         }
         /**======================================================================================**/
-        register("moduleBaseDatabase") {
+        register("BaseConverterPlugin") {
+            id = libs.plugins.module.base.converter.get().pluginId
+            implementationClass = "plugin.base.BaseConverterPlugin"
+        }
+        register("BaseDatabasePlugin") {
             id = libs.plugins.module.base.database.get().pluginId
-            implementationClass = "plugin.module.ModuleDatabaseBasePlugin"
+            implementationClass = "plugin.base.BaseDatabasePlugin"
         }
-        register("moduleBaseData") {
+        register("BaseDataPlugin") {
             id = libs.plugins.module.base.data.get().pluginId
-            implementationClass = "plugin.module.ModuleDataBasePlugin"
+            implementationClass = "plugin.base.BaseDataPlugin"
         }
-        register("moduleBaseDatastore") {
+        register("BaseDataStorePlugin") {
             id = libs.plugins.module.base.datastore.get().pluginId
-            implementationClass = "plugin.module.ModuleDataStoreBasePlugin"
+            implementationClass = "plugin.base.BaseDataStorePlugin"
         }
-        register("moduleBaseDomain") {
+        register("BaseDomainPlugin") {
             id = libs.plugins.module.base.domain.get().pluginId
-            implementationClass = "plugin.module.ModuleDomainBasePlugin"
+            implementationClass = "plugin.base.BaseDomainPlugin"
         }
-        register("moduleBaseFeature") {
+        register("BaseFeaturePlugin") {
             id = libs.plugins.module.base.feature.get().pluginId
-            implementationClass = "plugin.module.ModuleFeatureBasePlugin"
+            implementationClass = "plugin.base.BaseFeaturePlugin"
         }
-        register("moduleBaseModel") {
+        register("BaseModelPlugin") {
             id = libs.plugins.module.base.model.get().pluginId
-            implementationClass = "plugin.module.ModuleModelBasePlugin"
+            implementationClass = "plugin.base.BaseModelPlugin"
         }
-        register("moduleBaseNetwork") {
+        register("BaseNetworkPlugin") {
             id = libs.plugins.module.base.network.get().pluginId
-            implementationClass = "plugin.module.ModuleNetworkBasePlugin"
+            implementationClass = "plugin.base.BaseNetworkPlugin"
         }
-        register("moduleBaseWork") {
+        register("BaseWorkPlugin") {
             id = libs.plugins.module.base.work.get().pluginId
-            implementationClass = "plugin.module.ModuleWorkBasePlugin"
+            implementationClass = "plugin.base.BaseWorkPlugin"
         }
     }
 }
