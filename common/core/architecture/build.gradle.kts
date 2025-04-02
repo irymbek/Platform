@@ -5,3 +5,7 @@ plugins {
 android {
     namespace = "kz.rymbek.platform.common.core.architecture"
 }
+
+dependencies {
+    implementation(libs.kotlinx.coroutines.core)
+}
