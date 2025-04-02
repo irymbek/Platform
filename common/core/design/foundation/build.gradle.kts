@@ -15,7 +15,7 @@ dependencies {
     implementation(projects.common.base.model)
     implementation(projects.common.core.date)
 
-    //implementation(projects.common.business.model.global)
+    implementation(projects.common.business.model)
 
     //Coil
     implementation(platform(libs.coil.bom))

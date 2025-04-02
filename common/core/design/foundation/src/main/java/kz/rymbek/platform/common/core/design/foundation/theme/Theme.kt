@@ -10,8 +10,8 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import kz.uso.krl.common.business.model.global.enums.design.AppThemeBrand
-import kz.uso.krl.common.business.model.global.enums.design.ModeConfig
+import kz.rymbek.platform.common.business.model.enums.design.AppThemeBrand
+import kz.rymbek.platform.common.business.model.enums.design.ModeConfig
 import kz.rymbek.platform.common.core.design.foundation.theme.background.BackgroundTheme
 import kz.rymbek.platform.common.core.design.foundation.theme.background.GradientColors
 import kz.rymbek.platform.common.core.design.foundation.theme.background.LocalBackgroundTheme
