@@ -10,6 +10,7 @@ import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.project
 import org.gradle.plugin.use.PluginDependency
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 fun Project.applyPlugin(plugin: Provider<PluginDependency>) {
     pluginManager.apply(plugin.get().pluginId)
@@ -51,5 +52,14 @@ fun DependencyHandlerScope.debugImplementation(
     add("debugImplementation", dependency)
 }
 
+fun DependencyHandlerScope.debugImplementation(
+    dependency: LibrariesForLibs.AndroidxComposeUiToolingLibraryAccessors
+) {
+    add("debugImplementation", dependency)
+}
+
 val Project.projectJavaVersion: JavaVersion
     get() = JavaVersion.toVersion(libs.versions.java.get().toInt())
+
+val Project.projectJvmTarget: JvmTarget
+    get() = JvmTarget.fromTarget(libs.versions.java.get())

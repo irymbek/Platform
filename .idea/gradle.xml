@@ -37,6 +37,7 @@
             <option value="$PROJECT_DIR$/common/business/converter" />
             <option value="$PROJECT_DIR$/common/core" />
             <option value="$PROJECT_DIR$/common/core/architecture" />
+            <option value="$PROJECT_DIR$/common/core/date" />
             <option value="$PROJECT_DIR$/common/core/design" />
             <option value="$PROJECT_DIR$/common/core/design/compound" />
             <option value="$PROJECT_DIR$/common/core/design/foundation" />
