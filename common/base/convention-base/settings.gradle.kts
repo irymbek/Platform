@@ -19,7 +19,7 @@ dependencyResolutionManagement {
 }
 
 plugins {
-    id("dev.panuszewski.typesafe-conventions") version "0.6.0-RC1"
+    id("dev.panuszewski.typesafe-conventions") version "0.6.0"
 }
 
 rootProject.name = "convention"
