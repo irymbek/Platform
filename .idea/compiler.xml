@@ -8,6 +8,9 @@
       <module name="build-logic.convention" target="17" />
       <module name="build-logic.convention.main" target="17" />
       <module name="build-logic.convention.test" target="17" />
+      <module name="convention" target="17" />
+      <module name="convention.main" target="17" />
+      <module name="convention.test" target="17" />
       <module name="kz.uso.krl.common.convention.buildlogic.build-logic.convention" target="17" />
       <module name="kz.uso.krl.common.convention.buildlogic.build-logic.convention.main" target="17" />
       <module name="kz.uso.krl.common.convention.buildlogic.build-logic.convention.test" target="17" />
