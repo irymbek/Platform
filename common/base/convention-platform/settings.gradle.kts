@@ -16,10 +16,14 @@ dependencyResolutionManagement {
         }
         mavenCentral()
     }
-}
-
-plugins {
-    id("dev.panuszewski.typesafe-conventions") version "0.6.0"
+    versionCatalogs {
+        create(defaultLibrariesExtensionName.get()) {
+            println("rootProject: $rootProject")
+            println("rootDir: ${rootDir}")
+            println("rootDir.parent: ${rootDir.parent}")
+            from(files("../../../gradle/libs.versions.toml"))
+        }
+    }
 }
 
 rootProject.name = "convention-base"
