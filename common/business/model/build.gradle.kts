@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.module.base.model)
+    alias(libs.plugins.module.platform.model)
 }
 
 android {

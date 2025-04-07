@@ -1,4 +1,4 @@
-package plugin.base
+package plugin.platform
 
 import kz.rymbek.platform.common.base.convention.applyPlugin
 import kz.rymbek.platform.common.base.convention.implementation
@@ -7,17 +7,14 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class BaseDatabasePlugin : Plugin<Project> {
+class PlatformConverterPlugin : Plugin<Project> {
     override fun apply(project: Project) {
         with(project) {
             applyPlugin(libs.plugins.convention.library)
-            applyPlugin(libs.plugins.dependency.room)
-            applyPlugin(libs.plugins.dependency.koin)
+            applyPlugin(libs.plugins.dependency.serialization)
 
             dependencies {
-                implementation(":common:base:database")
-                implementation(":common:core:architecture")
-                implementation(":common:business:converter")
+                implementation(":common:base:converter")
                 /**==============================================================================**/
                 implementation(libs.kotlinx.datetime)
             }

@@ -77,40 +77,40 @@ gradlePlugin {
         }
         /**======================================================================================**/
         register("BaseConverterPlugin") {
-            id = libs.plugins.module.base.converter.get().pluginId
-            implementationClass = "plugin.base.BaseConverterPlugin"
+            id = libs.plugins.module.platform.converter.get().pluginId
+            implementationClass = "plugin.platform.PlatformConverterPlugin"
         }
         register("BaseDatabasePlugin") {
-            id = libs.plugins.module.base.database.get().pluginId
-            implementationClass = "plugin.base.BaseDatabasePlugin"
+            id = libs.plugins.module.platform.database.get().pluginId
+            implementationClass = "plugin.platform.PlatformDatabasePlugin"
         }
         register("BaseDataPlugin") {
-            id = libs.plugins.module.base.data.get().pluginId
-            implementationClass = "plugin.base.BaseDataPlugin"
+            id = libs.plugins.module.platform.data.get().pluginId
+            implementationClass = "plugin.platform.PlatformDataPlugin"
         }
         register("BaseDataStorePlugin") {
-            id = libs.plugins.module.base.datastore.get().pluginId
-            implementationClass = "plugin.base.BaseDataStorePlugin"
+            id = libs.plugins.module.platform.datastore.get().pluginId
+            implementationClass = "plugin.platform.PlatformDataStorePlugin"
         }
         register("BaseDomainPlugin") {
-            id = libs.plugins.module.base.domain.get().pluginId
-            implementationClass = "plugin.base.BaseDomainPlugin"
+            id = libs.plugins.module.platform.domain.get().pluginId
+            implementationClass = "plugin.platform.PlatformDomainPlugin"
         }
         register("BaseFeaturePlugin") {
-            id = libs.plugins.module.base.feature.get().pluginId
-            implementationClass = "plugin.base.BaseFeaturePlugin"
+            id = libs.plugins.module.platform.feature.get().pluginId
+            implementationClass = "plugin.platform.PlatformFeaturePlugin"
         }
         register("BaseModelPlugin") {
-            id = libs.plugins.module.base.model.get().pluginId
-            implementationClass = "plugin.base.BaseModelPlugin"
+            id = libs.plugins.module.platform.model.get().pluginId
+            implementationClass = "plugin.platform.PlatformModelPlugin"
         }
         register("BaseNetworkPlugin") {
-            id = libs.plugins.module.base.network.get().pluginId
-            implementationClass = "plugin.base.BaseNetworkPlugin"
+            id = libs.plugins.module.platform.network.get().pluginId
+            implementationClass = "plugin.platform.PlatformNetworkPlugin"
         }
         register("BaseWorkPlugin") {
-            id = libs.plugins.module.base.work.get().pluginId
-            implementationClass = "plugin.base.BaseWorkPlugin"
+            id = libs.plugins.module.platform.work.get().pluginId
+            implementationClass = "plugin.platform.BaseWorkPlugin"
         }
     }
 }

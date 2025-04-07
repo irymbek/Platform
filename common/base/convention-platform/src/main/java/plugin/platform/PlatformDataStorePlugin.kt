@@ -1,4 +1,4 @@
-package plugin.base
+package plugin.platform
 
 import kz.rymbek.platform.common.base.convention.applyPlugin
 import kz.rymbek.platform.common.base.convention.implementation
@@ -7,16 +7,18 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class BaseConverterPlugin : Plugin<Project> {
+class PlatformDataStorePlugin : Plugin<Project> {
     override fun apply(project: Project) {
         with(project) {
             applyPlugin(libs.plugins.convention.library)
-            applyPlugin(libs.plugins.dependency.serialization)
+            applyPlugin(libs.plugins.dependency.koin)
 
             dependencies {
-                implementation(":common:base:converter")
+                implementation(":common:base:datastore")
+                implementation(":common:core:architecture")
+                implementation(":common:business:model:global")
                 /**==============================================================================**/
-                implementation(libs.kotlinx.datetime)
+                implementation(libs.androidx.dataStore.preferences)
             }
         }
     }

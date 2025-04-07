@@ -138,43 +138,25 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "androidxRoom" }
 
 # Plugins defined by this project
+# Application
 convention-application = { id = "convention.application" }
 convention-application-compose = { id = "convention.application.compose" }
 convention-library = { id = "convention.library" }
 convention-library-compose = { id = "convention.library.compose" }
 convention-jvm = { id = "convention.jvm" }
 
+# Dependency
 dependency-koin = { id = "dependency.koin" }
 dependency-room = { id = "dependency.room" }
 dependency-serialization = { id = "dependency.serialization" }
 
-module-base-converter = { id = "module.base.converter" }
-module-base-database = { id = "module.base.database" }
-module-base-data = { id = "module.base.data" }
-module-base-datastore = { id = "module.base.datastore" }
-module-base-domain = { id = "module.base.domain" }
-module-base-feature = { id = "module.base.feature" }
-module-base-model = { id = "module.base.model" }
-module-base-network = { id = "module.base.network" }
-module-base-work = { id = "module.base.work" }
-
-module-project-common-database = { id = "module.project.common.database" }
-module-project-common-data = { id = "module.project.common.data" }
-module-project-common-datastore = { id = "module.project.common.datastore" }
-module-project-common-domain = { id = "module.project.common.domain" }
-module-project-common-feature = { id = "module.project.common.feature" }
-module-project-common-network = { id = "module.project.common.network" }
-
-module-project-engineer-database = { id = "module.project.engineer.database" }
-module-project-engineer-data = { id = "module.project.engineer.data" }
-module-project-engineer-datastore = { id = "module.project.engineer.datastore" }
-module-project-engineer-domain = { id = "module.project.engineer.domain" }
-module-project-engineer-feature = { id = "module.project.engineer.feature" }
-module-project-engineer-network = { id = "module.project.engineer.network" }
-
-module-project-laboratory-database = { id = "module.project.laboratory.database" }
-module-project-laboratory-data = { id = "module.project.laboratory.data" }
-module-project-laboratory-datastore = { id = "module.project.laboratory.datastore" }
-module-project-laboratory-domain = { id = "module.project.laboratory.domain" }
-module-project-laboratory-feature = { id = "module.project.laboratory.feature" }
-module-project-laboratory-network = { id = "module.project.laboratory.network" }
+# Module Platform
+module-platform-converter = { id = "module.platform.converter" }
+module-platform-database = { id = "module.platform.database" }
+module-platform-data = { id = "module.platform.data" }
+module-platform-datastore = { id = "module.platform.datastore" }
+module-platform-domain = { id = "module.platform.domain" }
+module-platform-feature = { id = "module.platform.feature" }
+module-platform-model = { id = "module.platform.model" }
+module-platform-network = { id = "module.platform.network" }
+module-platform-work = { id = "module.platform.work" }

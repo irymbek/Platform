@@ -1,4 +1,4 @@
-package plugin.base
+package plugin.platform
 
 import kz.rymbek.platform.common.base.convention.applyPlugin
 import kz.rymbek.platform.common.base.convention.implementation
@@ -7,7 +7,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class BaseNetworkPlugin: Plugin<Project> {
+class PlatformNetworkPlugin: Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             applyPlugin(libs.plugins.convention.library)
