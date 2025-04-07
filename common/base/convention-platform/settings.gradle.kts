@@ -17,13 +17,12 @@ dependencyResolutionManagement {
         mavenCentral()
     }
     versionCatalogs {
-        create(defaultLibrariesExtensionName.get()) {
-            println("rootProject: $rootProject")
-            println("rootDir: ${rootDir}")
-            println("rootDir.parent: ${rootDir.parent}")
+        create("libs") {
+            print("rootDir convention-platform: ")
+            println(files("../../../gradle/libs.versions.toml").asPath)
             from(files("../../../gradle/libs.versions.toml"))
         }
     }
 }
 
-rootProject.name = "convention-base"
+rootProject.name = "convention-platform"
