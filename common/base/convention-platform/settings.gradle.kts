@@ -17,9 +17,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
     versionCatalogs {
-        create("libs") {
-            print("rootDir convention-platform: ")
-            println(files("../../../gradle/libs.versions.toml").asPath)
+        create(defaultLibrariesExtensionName.get()) {
             from(files("../../../gradle/libs.versions.toml"))
         }
     }
