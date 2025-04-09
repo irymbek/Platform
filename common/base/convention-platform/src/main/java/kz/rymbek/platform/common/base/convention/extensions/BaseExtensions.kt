@@ -1,27 +1,15 @@
-package kz.rymbek.platform.common.base.convention
+package kz.rymbek.platform.common.base.convention.extensions
 
-import org.gradle.accessors.dm.LibrariesForLibs
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.DependencyHandlerScope
-import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.project
 import org.gradle.plugin.use.PluginDependency
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 fun Project.applyPlugin(plugin: Provider<PluginDependency>) {
     pluginManager.apply(plugin.get().pluginId)
-}
-
-fun Project.applyPlugin(plugin: LibrariesForLibs.KotlinPluginAccessors) {
-    pluginManager.apply(plugin.asProvider().get().pluginId)
-}
-
-fun Project.applyPlugin(plugin: LibrariesForLibs. ConventionLibraryPluginAccessors) {
-    pluginManager.apply(plugin.asProvider().get().pluginId)
 }
 
 inline fun <reified T : Plugin<Project>> Project.applyPlugin() {
@@ -51,18 +39,3 @@ fun DependencyHandlerScope.debugImplementation(
 ) {
     add("debugImplementation", dependency)
 }
-
-fun DependencyHandlerScope.debugImplementation(
-    dependency: LibrariesForLibs.AndroidxComposeUiToolingLibraryAccessors
-) {
-    add("debugImplementation", dependency)
-}
-
-val Project.libs: LibrariesForLibs
-    get() = extensions.getByType()
-
-val Project.projectJavaVersion: JavaVersion
-    get() = JavaVersion.toVersion(libs.versions.java.get().toInt())
-
-val Project.projectJvmTarget: JvmTarget
-    get() = JvmTarget.fromTarget(libs.versions.java.get())

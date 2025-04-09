@@ -1,6 +1,9 @@
 package kz.rymbek.platform.common.base.convention
 
 import com.android.build.api.dsl.CommonExtension
+import kz.rymbek.platform.common.base.convention.extensions.debugImplementation
+import kz.rymbek.platform.common.base.convention.extensions.implementation
+import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Project
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.configure
@@ -16,9 +19,9 @@ fun Project.configureAndroidCompose(
         }
 
         dependencies {
-            implementation(platform(libs.androidx.compose.bom))
-            implementation(libs.androidx.compose.ui.tooling.preview)
-            debugImplementation(libs.androidx.compose.ui.tooling)
+            implementation(platform(platformLibs.androidx.compose.bom))
+            implementation(platformLibs.androidx.compose.ui.tooling.preview)
+            debugImplementation(platformLibs.androidx.compose.ui.tooling)
         }
     }
 

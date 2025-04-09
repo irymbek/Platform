@@ -1,6 +1,9 @@
 package kz.rymbek.platform.common.base.convention
 
 import com.android.build.api.dsl.CommonExtension
+import kz.rymbek.platform.common.base.convention.extensions.platformLibs
+import kz.rymbek.platform.common.base.convention.extensions.projectJavaVersion
+import kz.rymbek.platform.common.base.convention.extensions.projectJvmTarget
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.configure
@@ -13,10 +16,10 @@ internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
     commonExtension.apply {
-        compileSdk = libs.versions.compileSdk.get().toInt()
+        compileSdk = platformLibs.versions.compileSdk.get().toInt()
 
         defaultConfig {
-            minSdk = libs.versions.minSdk.get().toInt()
+            minSdk = platformLibs.versions.minSdk.get().toInt()
         }
 
         compileOptions {

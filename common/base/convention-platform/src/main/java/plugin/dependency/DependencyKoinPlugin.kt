@@ -1,9 +1,9 @@
 package plugin.dependency
 
-import kz.rymbek.platform.common.base.convention.applyPlugin
-import kz.rymbek.platform.common.base.convention.implementation
-import kz.rymbek.platform.common.base.convention.ksp
-import kz.rymbek.platform.common.base.convention.libs
+import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
+import kz.rymbek.platform.common.base.convention.extensions.implementation
+import kz.rymbek.platform.common.base.convention.extensions.ksp
+import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -11,12 +11,12 @@ import org.gradle.kotlin.dsl.dependencies
 class DependencyKoinPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            applyPlugin(libs.plugins.ksp)
+            applyPlugin(platformLibs.plugins.ksp)
 
             dependencies {
-                ksp(libs.koin.ksp.compiler)
-                implementation(libs.koin.annotations)
-                implementation(libs.koin.core)
+                ksp(platformLibs.koin.ksp.compiler)
+                implementation(platformLibs.koin.annotations)
+                implementation(platformLibs.koin.core)
             }
         }
     }
