@@ -1,8 +1,8 @@
 package plugin.platform
 
-import kz.rymbek.platform.common.base.convention.applyPlugin
-import kz.rymbek.platform.common.base.convention.implementation
-import kz.rymbek.platform.common.base.convention.libs
+import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
+import kz.rymbek.platform.common.base.convention.extensions.implementation
+import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.dependencies
 class PlatformModelPlugin: Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            applyPlugin(libs.plugins.convention.library)
+            applyPlugin(platformLibs.plugins.convention.library)
 
             dependencies {
                 implementation(":common:base:model")

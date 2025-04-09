@@ -1,8 +1,8 @@
 package plugin.platform
 
-import kz.rymbek.platform.common.base.convention.applyPlugin
-import kz.rymbek.platform.common.base.convention.implementation
-import kz.rymbek.platform.common.base.convention.libs
+import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
+import kz.rymbek.platform.common.base.convention.extensions.implementation
+import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -10,9 +10,9 @@ import org.gradle.kotlin.dsl.dependencies
 class PlatformFeaturePlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            applyPlugin(libs.plugins.convention.library)
-            applyPlugin(libs.plugins.convention.library.compose)
-            applyPlugin(libs.plugins.dependency.koin)
+            applyPlugin(platformLibs.plugins.convention.library)
+            applyPlugin(platformLibs.plugins.convention.library.compose)
+            applyPlugin(platformLibs.plugins.dependency.koin)
 
             dependencies {
                 implementation(":common:base:feature")
@@ -29,10 +29,10 @@ class PlatformFeaturePlugin : Plugin<Project> {
                 implementation(":common:business:model:global")
                 /**==============================================================================**/
                 // koinViewModel
-                implementation(libs.koin.androidx.compose)
+                implementation(platformLibs.koin.androidx.compose)
 
                 //coil
-                implementation(libs.coil.compose.core)
+                implementation(platformLibs.coil.compose.core)
             }
         }
     }

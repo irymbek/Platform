@@ -17,8 +17,15 @@ dependencyResolutionManagement {
         mavenCentral()
     }
     versionCatalogs {
-        create(defaultLibrariesExtensionName.get()) {
+        println("Convention platform, platform ${files("../../../gradle/libs.versions.toml").asPath}")
+        println("Convention platform, project ${files("../../../../gradle/libs.versions.toml").asPath}")
+
+        create("platformLibs") {
             from(files("../../../gradle/libs.versions.toml"))
+        }
+
+        create("projectLibs") {
+            from(files("../../../../gradle/libs.versions.toml"))
         }
     }
 }
