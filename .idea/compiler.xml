@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="convention-platform" target="17" />
+      <module name="convention-platform.main" target="17" />
+      <module name="convention-platform.test" target="17" />
+      <module name="Platform.common.base.app" target="21" />
+      <module name="Platform.common.base.converter" target="21" />
+      <module name="Platform.common.base.data" target="21" />
+      <module name="Platform.common.base.database" target="21" />
+      <module name="Platform.common.base.datastore" target="21" />
+      <module name="Platform.common.base.feature" target="21" />
+      <module name="Platform.common.base.model" target="21" />
+      <module name="Platform.common.base.network" target="21" />
+      <module name="Platform.common.base.work" target="21" />
+      <module name="Platform.common.business.converter" target="21" />
+      <module name="Platform.common.business.model" target="21" />
+      <module name="Platform.common.core.architecture" target="21" />
+      <module name="Platform.common.core.date" target="21" />
+      <module name="Platform.common.core.design.compound" target="21" />
+      <module name="Platform.common.core.design.foundation" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
