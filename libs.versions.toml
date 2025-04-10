@@ -1,0 +1,2 @@
+[libraries]
+convention-plarform = { module = "kz.rymbek.platform.common.base.convention:convention-platform" }
