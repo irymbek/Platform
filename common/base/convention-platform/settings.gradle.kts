@@ -17,22 +17,15 @@ dependencyResolutionManagement {
         mavenCentral()
     }
     versionCatalogs {
-        val platform = files("../../../gradle/libs.versions.toml")
-
-        val project = if (rootDir.toString().contains("Platform")) {
-            files("../../../libs.versions.toml")
-        } else {
-            files("../../../../gradle/libs.versions.toml")
-        }
-
-        println("Convention project, project ${project.asPath}")
+        println("Convention platform, platform ${files("../../../gradle/libs.versions.toml").asPath}")
+        println("Convention platform, project ${files("../../../../gradle/libs.versions.toml").asPath}")
 
         create("platformLibs") {
-            from(platform)
+            from(files("../../../gradle/libs.versions.toml"))
         }
 
         create("projectLibs") {
-            from(project)
+            from(files("../../../../gradle/libs.versions.toml"))
         }
     }
 }

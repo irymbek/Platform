@@ -7,7 +7,7 @@
         <compositeConfiguration>
           <compositeBuild compositeDefinitionSource="SCRIPT">
             <builds>
-              <build path="$PROJECT_DIR$/common/base/convention-platform" name="convention-platform">
+              <build path="$PROJECT_DIR$/common/base/convention-platform" name="convention-base">
                 <projects>
                   <project path="$PROJECT_DIR$/common/base/convention-platform" />
                 </projects>
