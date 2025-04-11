@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.convention.library)
+    alias(platformLibs.plugins.convention.library)
 }
 
 
@@ -8,5 +8,5 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.work.runtime)
+    implementation(platformLibs.androidx.work.runtime)
 }

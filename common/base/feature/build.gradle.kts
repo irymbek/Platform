@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.convention.library)
+    alias(platformLibs.plugins.convention.library)
 }
 
 android {
@@ -8,11 +8,11 @@ android {
 
 dependencies {
     //viewModel support
-    implementation(libs.androidx.lifecycle.viewmodelKtx)
+    implementation(platformLibs.androidx.lifecycle.viewmodelKtx)
 
     //PagingData
-    implementation(libs.androidx.paging.common)
+    implementation(platformLibs.androidx.paging.common)
 
     //rememberLauncherForActivityResult
-    implementation(libs.androidx.activity.compose)
+    implementation(platformLibs.androidx.activity.compose)
 }

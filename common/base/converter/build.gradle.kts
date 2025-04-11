@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.convention.library)
-    alias(libs.plugins.dependency.serialization)
+    alias(platformLibs.plugins.convention.library)
+    alias(platformLibs.plugins.dependency.serialization)
 }
 
 android {
@@ -8,5 +8,5 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.room.runtime)
+    implementation(platformLibs.androidx.room.runtime)
 }

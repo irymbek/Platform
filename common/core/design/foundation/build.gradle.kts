@@ -1,9 +1,9 @@
 plugins {
-    alias(libs.plugins.convention.library)
-    alias(libs.plugins.convention.library.compose)
+    alias(platformLibs.plugins.convention.library)
+    alias(platformLibs.plugins.convention.library.compose)
 
     //DI for snackbar
-    alias(libs.plugins.dependency.koin)
+    alias(platformLibs.plugins.dependency.koin)
 }
 
 android {
@@ -18,16 +18,16 @@ dependencies {
     implementation(projects.common.business.model)
 
     //Coil
-    implementation(platform(libs.coil.bom))
-    implementation(libs.coil.compose)
+    implementation(platform(platformLibs.coil.bom))
+    implementation(platformLibs.coil.compose)
     //Load images from network
-    implementation(libs.coil.network.ktor3)
+    implementation(platformLibs.coil.network.ktor3)
     //Preview for video
-    implementation(libs.coil.video)
+    implementation(platformLibs.coil.video)
 
-    implementation(libs.androidx.paging.compose)
+    implementation(platformLibs.androidx.paging.compose)
 
-    api(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.material3.navigation.suite)
-    implementation(libs.androidx.compose.material.iconsExtended)
+    api(platformLibs.androidx.compose.material3)
+    implementation(platformLibs.androidx.compose.material3.navigation.suite)
+    implementation(platformLibs.androidx.compose.material.iconsExtended)
 }

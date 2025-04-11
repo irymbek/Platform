@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.convention.library)
+    alias(platformLibs.plugins.convention.library)
 }
 
 android {
@@ -8,5 +8,5 @@ android {
 
 dependencies {
     api(projects.common.base.database)
-    implementation(libs.androidx.paging.common)
+    implementation(platformLibs.androidx.paging.common)
 }

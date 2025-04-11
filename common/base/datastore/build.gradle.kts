@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.convention.library)
+    alias(platformLibs.plugins.convention.library)
 }
 
 android {
@@ -9,8 +9,8 @@ android {
 dependencies {
     dependencies {
         //shared preference extension
-        implementation(libs.androidx.core.ktx)
+        implementation(platformLibs.androidx.core.ktx)
 
-        implementation(libs.androidx.dataStore.preferences)
+        implementation(platformLibs.androidx.dataStore.preferences)
     }
 }

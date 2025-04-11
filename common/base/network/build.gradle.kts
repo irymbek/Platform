@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.convention.library)
+    alias(platformLibs.plugins.convention.library)
 }
 
 android {
@@ -9,10 +9,10 @@ android {
 dependencies {
     implementation(projects.common.core.architecture)
 
-    implementation(libs.ktor.client.resources)
+    implementation(platformLibs.ktor.client.resources)
 
-    implementation(libs.ktor.client.okhttp)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.client.logging)
-    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(platformLibs.ktor.client.okhttp)
+    implementation(platformLibs.ktor.client.content.negotiation)
+    implementation(platformLibs.ktor.client.logging)
+    implementation(platformLibs.ktor.serialization.kotlinx.json)
 }

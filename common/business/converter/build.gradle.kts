@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.module.platform.converter)
+    alias(platformLibs.plugins.module.platform.converter)
 }
 
 android {
@@ -8,5 +8,5 @@ android {
 
 dependencies {
     //Use the KTX extension function String.toUri
-    implementation(libs.androidx.core.ktx)
+    implementation(platformLibs.androidx.core.ktx)
 }

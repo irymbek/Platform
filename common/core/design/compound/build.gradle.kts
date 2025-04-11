@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.convention.library)
-    alias(libs.plugins.convention.library.compose)
+    alias(platformLibs.plugins.convention.library)
+    alias(platformLibs.plugins.convention.library.compose)
 }
 
 
@@ -15,14 +15,14 @@ dependencies {
 
     api(projects.common.core.design.foundation)
 
-    implementation(libs.androidx.media3.exoplayer)
-    implementation(libs.androidx.media3.ui)
+    implementation(platformLibs.androidx.media3.exoplayer)
+    implementation(platformLibs.androidx.media3.ui)
 
     //Preview for video
     implementation(platform(libs.coil.bom))
-    implementation(libs.coil.compose)
-    implementation(libs.coil.video)
+    implementation(platformLibs.coil.compose)
+    implementation(platformLibs.coil.video)
 
     //paging3 support
-    implementation(libs.androidx.paging.compose)
+    implementation(platformLibs.androidx.paging.compose)
 }

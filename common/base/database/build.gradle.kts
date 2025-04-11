@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.convention.library)
+    alias(platformLibs.plugins.convention.library)
 }
 
 android {
@@ -7,6 +7,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.paging.common)
-    implementation(libs.androidx.room.ktx)
+    implementation(platformLibs.androidx.paging.common)
+    implementation(platformLibs.androidx.room.ktx)
 }

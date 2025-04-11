@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.convention.library)
+    alias(platformLibs.plugins.convention.library)
 }
 
 android {
@@ -7,5 +7,5 @@ android {
 }
 
 dependencies {
-    api(libs.kotlinx.datetime)
+    api(platformLibs.kotlinx.datetime)
 }

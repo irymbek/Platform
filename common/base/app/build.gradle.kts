@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.convention.library)
+    alias(platformLibs.plugins.convention.library)
     //image vector
-    alias(libs.plugins.convention.library.compose)
+    alias(platformLibs.plugins.convention.library.compose)
 }
 
 android {
@@ -9,5 +9,5 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.compose.material3)
+    implementation(platformLibs.androidx.compose.material3)
 }
