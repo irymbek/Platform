@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.onStart
 import kz.rymbek.platform.common.core.architecture.ResultFlow.Loading
 import kz.rymbek.platform.common.core.architecture.ResultFlow.Success
 import kz.rymbek.platform.common.core.architecture.ResultFlow.Error
+import kz.rymbek.platform.common.core.architecture.ResultFlow.Initial
 import kotlin.toString
 
 sealed interface ResultFlow<out Model> {
@@ -15,51 +16,6 @@ sealed interface ResultFlow<out Model> {
     data class Error(val exception: Throwable) : ResultFlow<Nothing>
     data object Loading : ResultFlow<Nothing>
     data object Initial : ResultFlow<Nothing>
-
-    suspend fun <Model> Flow<ResultFlow<Model>>.onSuccessFlowEmpty(
-        action: suspend (Model) -> Unit
-    ): Flow<ResultFlow<Unit>> {
-        return this.map { result ->
-            when (result) {
-                is Success -> {
-                    action(result.data)
-                    Success(Unit)
-                }
-                is Error -> result
-                Loading -> Loading
-                Initial -> Initial
-            }
-        }
-    }
-
-    suspend fun <Model> Flow<ResultFlow<Model>>.onSuccessFlow(
-        action: suspend (Model) -> Unit
-    ): Flow<ResultFlow<Model>> {
-        return this.map { result ->
-            when (result) {
-                is Success -> {
-                    action(result.data)
-                    result
-                }
-                is Error -> result
-                Loading -> Loading
-                Initial -> Initial
-            }
-        }
-    }
-
-    suspend fun <T, R> Flow<ResultFlow<T>>.mapFlow(
-        transform: suspend (T) -> R
-    ): Flow<ResultFlow<R>> {
-        return this.map { result ->
-            when (result) {
-                is Success -> Success(transform(result.data))
-                is Error -> result
-                Loading -> Loading
-                Initial -> Initial
-            }
-        }
-    }
 
 
     suspend fun onSuccessFlow(
@@ -81,6 +37,51 @@ sealed interface ResultFlow<out Model> {
         is Error -> this
         Loading -> Loading
         Initial -> Initial
+    }
+}
+
+suspend fun <Model> Flow<ResultFlow<Model>>.onSuccessFlow(
+    action: suspend (Model) -> Unit
+): Flow<ResultFlow<Model>> {
+    return this.map { result ->
+        when (result) {
+            is Success -> {
+                action(result.data)
+                result
+            }
+            is Error -> result
+            Loading -> Loading
+            Initial -> Initial
+        }
+    }
+}
+
+suspend fun <T, R> Flow<ResultFlow<T>>.mapFlow(
+    transform: suspend (T) -> R
+): Flow<ResultFlow<R>> {
+    return this.map { result ->
+        when (result) {
+            is Success -> Success(transform(result.data))
+            is Error -> result
+            Loading -> Loading
+            Initial -> Initial
+        }
+    }
+}
+
+suspend fun <Model> Flow<ResultFlow<Model>>.onSuccessFlowEmpty(
+    action: suspend (Model) -> Unit
+): Flow<ResultFlow<Unit>> {
+    return this.map { result ->
+        when (result) {
+            is Success -> {
+                action(result.data)
+                Success(Unit)
+            }
+            is Error -> result
+            Loading -> Loading
+            Initial -> Initial
+        }
     }
 }
 

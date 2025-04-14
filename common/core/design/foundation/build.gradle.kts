@@ -11,11 +11,11 @@ android {
 }
 
 dependencies {
-    implementation(projects.common.core.architecture)
-    implementation(projects.common.base.model)
-    implementation(projects.common.core.date)
+    implementation(projects.platform.common.core.architecture)
+    implementation(projects.platform.common.base.model)
+    implementation(projects.platform.common.core.date)
 
-    implementation(projects.common.business.model)
+    implementation(projects.platform.common.business.model)
 
     //Coil
     implementation(platform(platformLibs.coil.bom))

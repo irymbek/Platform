@@ -13,7 +13,7 @@ dependencies {
     implementation(projects.common.base.model)
     implementation(projects.common.base.feature)
 
-    api(projects.common.core.design.foundation)
+    api(projects.platform.common.core.design.foundation)
 
     implementation(platformLibs.androidx.media3.exoplayer)
     implementation(platformLibs.androidx.media3.ui)
