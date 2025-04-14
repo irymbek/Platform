@@ -14,9 +14,9 @@ class PlatformDataStorePlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.koin)
 
             dependencies {
-                implementation(":common:base:datastore")
-                implementation(":common:core:architecture")
-                implementation(":common:business:model:global")
+                implementation(":platform:common:base:datastore")
+                implementation(":platform:common:core:architecture")
+                implementation(":platform:common:business:model")
                 /**==============================================================================**/
                 implementation(platformLibs.androidx.dataStore.preferences)
             }

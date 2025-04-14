@@ -14,11 +14,10 @@ class PlatformDataPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.koin)
 
             dependencies {
-                implementation(":common:base:data")
-                implementation(":common:core:architecture")
-                implementation(":common:core:date")
-                implementation(":common:core:file")
-                implementation(":common:business:model:global")
+                implementation(":platform:common:base:data")
+                implementation(":platform:common:core:architecture")
+                implementation(":platform:common:core:date")
+                implementation(":platform:common:business:model")
                 /**==============================================================================**/
                 implementation(platformLibs.androidx.paging.common)
             }

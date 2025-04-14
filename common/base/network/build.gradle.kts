@@ -7,7 +7,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.common.core.architecture)
+    implementation(projects.platform.common.core.architecture)
 
     implementation(platformLibs.ktor.client.resources)
 

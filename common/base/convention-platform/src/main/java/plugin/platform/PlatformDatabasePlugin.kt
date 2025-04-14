@@ -15,9 +15,9 @@ class PlatformDatabasePlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.koin)
 
             dependencies {
-                implementation(":common:base:database")
-                implementation(":common:core:architecture")
-                implementation(":common:business:converter")
+                implementation(":platform:common:base:database")
+                implementation(":platform:common:core:architecture")
+                implementation(":platform:common:business:converter")
                 /**==============================================================================**/
                 implementation(platformLibs.kotlinx.datetime)
             }

@@ -21,12 +21,12 @@ class PlatformFeaturePlugin : Plugin<Project> {
                 implementation(":common:core:validation")
                 implementation(":common:core:navigation")
                 implementation(":common:core:toast")
-                implementation(":common:core:architecture")
-                implementation(":common:core:date")
                 implementation(":common:core:file")
-                implementation(":common:core:design:compound")
 
-                implementation(":common:business:model:global")
+                implementation(":platform:common:core:architecture")
+                implementation(":platform:common:core:date")
+                implementation(":platform:common:core:design:compound")
+                implementation(":platform:common:business:model")
                 /**==============================================================================**/
                 // koinViewModel
                 implementation(platformLibs.koin.androidx.compose)

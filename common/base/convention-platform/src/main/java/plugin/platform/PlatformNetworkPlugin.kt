@@ -15,10 +15,9 @@ class PlatformNetworkPlugin: Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.serialization)
 
             dependencies {
-                implementation(":common:base:network")
-                implementation(":common:core:architecture")
-                implementation(":common:core:file")
-                implementation(":common:business:model:global")
+                implementation(":platform:common:base:network")
+                implementation(":platform:common:core:architecture")
+                implementation(":platform:common:business:model")
                 /**==============================================================================**/
                 implementation(platformLibs.kotlinx.datetime)
 

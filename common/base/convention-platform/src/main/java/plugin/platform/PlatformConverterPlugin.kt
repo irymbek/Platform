@@ -14,7 +14,7 @@ class PlatformConverterPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.serialization)
 
             dependencies {
-                implementation(":common:base:converter")
+                implementation(":platform:common:base:converter")
                 /**==============================================================================**/
                 implementation(platformLibs.kotlinx.datetime)
             }

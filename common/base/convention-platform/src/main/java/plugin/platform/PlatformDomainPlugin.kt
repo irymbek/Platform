@@ -14,7 +14,7 @@ class PlatformDomainPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.koin)
 
             dependencies {
-                implementation(":common:core:architecture")
+                implementation(":platform:common:core:architecture")
                 /**==============================================================================**/
                 implementation(platformLibs.kotlinx.datetime)
                 implementation(platformLibs.androidx.paging.common)
