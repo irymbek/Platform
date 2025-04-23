@@ -13,8 +13,8 @@ class PlatformWorkPlugin: Plugin<Project> {
             applyPlugin(platformLibs.plugins.convention.library)
 
             dependencies {
-                implementation(":common:core:architecture")
-                implementation(":common:core:date")
+                implementation(":platform:common:core:architecture")
+                implementation(":platform:common:core:date")
             }
         }
     }

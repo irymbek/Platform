@@ -16,6 +16,7 @@ class PlatformDatabasePlugin : Plugin<Project> {
 
             dependencies {
                 implementation(":platform:common:base:database")
+                implementation(":platform:common:base:converter")
                 implementation(":platform:common:core:architecture")
                 implementation(":platform:common:business:converter")
                 /**==============================================================================**/

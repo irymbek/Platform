@@ -15,14 +15,6 @@ class PlatformFeaturePlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.koin)
 
             dependencies {
-                implementation(":common:base:feature")
-                implementation(":common:base:model")
-
-                implementation(":common:core:validation")
-                implementation(":common:core:navigation")
-                implementation(":common:core:toast")
-                implementation(":common:core:file")
-
                 implementation(":platform:common:core:architecture")
                 implementation(":platform:common:core:date")
                 implementation(":platform:common:core:design:compound")

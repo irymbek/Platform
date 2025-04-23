@@ -79,7 +79,7 @@ class ApplicationPlugin: Plugin<Project> {
             }
 
             dependencies {
-                implementation(":common:base:app")
+                implementation(":platform:common:base:app")
                 implementation(":common:base:feature")
                 implementation(":platform:common:core:architecture")
                 implementation(":platform:common:core:design:foundation")
