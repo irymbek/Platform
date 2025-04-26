@@ -40,10 +40,6 @@ tasks {
 
 gradlePlugin {
     plugins {
-        conventionPlugin(
-            pluginIdProvider = projectLibs.plugins.module.project.engineer.data,
-            implementationClass = "plugin.ModuleDataEngineerPlugin"
-        )
         register("JvmPlugin") {
             id = platformLibs.plugins.convention.jvm.get().pluginId
             implementationClass = "plugin.convention.jvm.JvmPlugin"
