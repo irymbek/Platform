@@ -1,0 +1,1 @@
+package kz.rymbek.platform.common.base.convention

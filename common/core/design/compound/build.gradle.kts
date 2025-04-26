@@ -19,7 +19,7 @@ dependencies {
     implementation(platformLibs.androidx.media3.ui)
 
     //Preview for video
-    implementation(platform(libs.coil.bom))
+    implementation(platform(platformLibs.coil.bom))
     implementation(platformLibs.coil.compose)
     implementation(platformLibs.coil.video)
 

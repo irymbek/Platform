@@ -19,7 +19,6 @@ kotlin {
         jvmTarget = projectJvmTarget
     }
 }
-
 dependencies {
     compileOnly(platformLibs.android.gradlePlugin)
     compileOnly(platformLibs.compose.gradlePlugin)
@@ -41,6 +40,10 @@ tasks {
 
 gradlePlugin {
     plugins {
+        conventionPlugin(
+            pluginIdProvider = projectLibs.plugins.module.project.engineer.data,
+            implementationClass = "plugin.ModuleDataEngineerPlugin"
+        )
         register("JvmPlugin") {
             id = platformLibs.plugins.convention.jvm.get().pluginId
             implementationClass = "plugin.convention.jvm.JvmPlugin"
