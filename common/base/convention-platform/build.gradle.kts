@@ -1,3 +1,4 @@
+//import kz.rymbek.platform.common.base.convention.extensions.conventionPlugin
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -19,6 +20,7 @@ kotlin {
         jvmTarget = projectJvmTarget
     }
 }
+
 dependencies {
     compileOnly(platformLibs.android.gradlePlugin)
     compileOnly(platformLibs.compose.gradlePlugin)
@@ -40,6 +42,9 @@ tasks {
 
 gradlePlugin {
     plugins {
+        /*conventionPlugin(
+
+        )*/
         register("JvmPlugin") {
             id = platformLibs.plugins.convention.jvm.get().pluginId
             implementationClass = "plugin.convention.jvm.JvmPlugin"
