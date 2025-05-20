@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.Dp
 fun AppVerticalDivider(
     modifier: Modifier = Modifier,
     thickness: Dp = DividerDefaults.Thickness,
-    color: Color = DividerDefaults.color
+    color: Color = DividerDefaults.color,
 ) {
     VerticalDivider(
         modifier = modifier,
