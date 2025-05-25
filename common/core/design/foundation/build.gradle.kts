@@ -13,6 +13,7 @@ android {
 dependencies {
     implementation(projects.platform.common.core.architecture)
     implementation(projects.platform.common.base.model)
+    implementation(projects.platform.common.base.feature)
     implementation(projects.platform.common.core.date)
 
     implementation(projects.platform.common.business.model)

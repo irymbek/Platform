@@ -13,14 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import kz.rymbek.platform.common.base.feature.architecture.ITabItem
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
 import kz.rymbek.platform.common.core.design.foundation.components.divider.AppHorizontalDivider
 import kz.rymbek.platform.common.core.design.foundation.components.pager.AppHorizontalPager
 
 @Composable
-fun AppScrollableTabRow(
+fun <T: ITabItem> AppScrollableTabRow(
     modifier: Modifier = Modifier,
-    tabItems: List<String>,
+    tabItems: List<T>,
     containerColor: Color = TabRowDefaults.primaryContainerColor,
     contentColor: Color = TabRowDefaults.primaryContentColor,
     edgePadding: Dp = 0.dp,
@@ -28,7 +29,6 @@ fun AppScrollableTabRow(
     content: @Composable (Int) -> Unit,
     onSelectedTabChanged: (index: Int) -> Unit = {},
 ) {
-
     val pagerState = rememberPagerState {
         tabItems.size
     }
@@ -40,8 +40,6 @@ fun AppScrollableTabRow(
             onSelectedTabChanged(page)
         }
     }
-
-
 
     AppColumn(
         modifier = Modifier
@@ -55,12 +53,12 @@ fun AppScrollableTabRow(
                 selectedTabIndex = pagerState.currentPage,
                 divider = divider,
                 tabs = {
-                    tabItems.forEachIndexed { index, title ->
+                    tabItems.forEachIndexed { index, item ->
                         AppTab(
                             coroutineScope = coroutineScope,
                             pagerState = pagerState,
                             index = index,
-                            title = title,
+                            title = item.title,
                         )
                     }
                 }
