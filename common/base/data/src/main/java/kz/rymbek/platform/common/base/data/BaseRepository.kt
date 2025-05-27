@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 abstract class BaseRepository {
+
+
     protected fun <Entity: Any , Ui: Any> getPagedData(
         pageSize: Int = 10,
         prefetchDistance: Int = 5,

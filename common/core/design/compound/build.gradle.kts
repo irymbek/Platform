@@ -9,7 +9,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.common.core.architecture)
     implementation(projects.common.base.model)
     implementation(projects.common.base.feature)
 
