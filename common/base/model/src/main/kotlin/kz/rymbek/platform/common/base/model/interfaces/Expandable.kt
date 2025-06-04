@@ -1,4 +1,4 @@
-package kz.rymbek.platform.common.core.architecture.interfaces
+package kz.rymbek.platform.common.base.model.interfaces
 
 interface Expandable<Model> {
     val title: String
