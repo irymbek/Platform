@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kz.rymbek.platform.common.core.architecture.interfaces.Identifiable
+import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 import kz.rymbek.platform.common.core.design.foundation.components.card.AppFilledCard
 import kz.rymbek.platform.common.core.design.foundation.components.dialog.AppDialog
 import kz.rymbek.platform.common.core.design.foundation.components.divider.AppHorizontalDivider
