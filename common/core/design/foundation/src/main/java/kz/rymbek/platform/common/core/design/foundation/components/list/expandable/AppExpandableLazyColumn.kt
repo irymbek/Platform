@@ -9,8 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import kz.rymbek.platform.common.core.architecture.interfaces.Expandable
-import kz.rymbek.platform.common.core.architecture.interfaces.Identifiable
+import kz.rymbek.platform.common.base.model.interfaces.Expandable
+import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.column.AppLazyColumn
 
 @Composable

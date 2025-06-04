@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemKey
-import kz.rymbek.platform.common.core.architecture.interfaces.Identifiable
+import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 
 @Composable
 fun <T : Identifiable> AppLazyColumnPaging(

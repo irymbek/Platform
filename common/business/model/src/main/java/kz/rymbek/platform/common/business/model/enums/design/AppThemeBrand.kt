@@ -1,6 +1,6 @@
 package kz.rymbek.platform.common.business.model.enums.design
 
-import kz.rymbek.platform.common.core.architecture.interfaces.Identifiable
+import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 
 enum class AppThemeBrand(
     override val id: Long,

@@ -1,6 +1,6 @@
 package kz.rymbek.platform.common.business.model.enums.design
 
-import kz.rymbek.platform.common.core.architecture.interfaces.Filterable
+import kz.rymbek.platform.common.base.model.interfaces.Filterable
 
 enum class ModeConfig(
     override val label: String,

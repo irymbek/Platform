@@ -7,7 +7,7 @@ import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
-import kz.rymbek.platform.common.core.architecture.interfaces.Filterable
+import kz.rymbek.platform.common.base.model.interfaces.Filterable
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 
 @Composable

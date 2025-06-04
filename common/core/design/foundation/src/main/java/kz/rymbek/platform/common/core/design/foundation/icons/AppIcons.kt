@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Cloud
+import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.History
@@ -45,15 +46,25 @@ import androidx.compose.material.icons.outlined.Task
 import androidx.compose.material.icons.outlined.VideoCall
 import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material.icons.outlined.VisibilityOff
+import androidx.compose.ui.graphics.vector.ImageVector
 
 object AppIcons {
+    val OutlinedSecurity = Icons.Outlined.Security
+
+    val OutlinedPalette = Icons.Outlined.Palette
+
+    private val iconMap = mapOf(
+        OutlinedSecurity.name to OutlinedSecurity,
+        OutlinedPalette.name to OutlinedPalette,
+    )
+
     val OutlinedErrorOutline = Icons.Outlined.ErrorOutline
     val FilledArrowBackIosNew = Icons.Filled.ArrowBackIosNew
 
     val FilledTask = Icons.Filled.Task
     val OutlinedTask = Icons.Outlined.Task
 
-    val FilledHistory = Icons.Filled.History
+    val FilledHistory =Icons.Filled.History
     val OutlinedHistory = Icons.Outlined.History
 
     val FilledSettings = Icons.Filled.Settings
@@ -109,10 +120,6 @@ object AppIcons {
 
     val OutlinedSearch = Icons.Outlined.Search
 
-    val OutlinedSecurity = Icons.Outlined.Security
-
-    val OutlinedPalette = Icons.Outlined.Palette
-
     val OutlinedFormatListNumbered = Icons.Outlined.FormatListNumbered
 
     val FilledExpandLess = Icons.Filled.ExpandLess
@@ -128,4 +135,8 @@ object AppIcons {
     val OutlinedFilterAlt = Icons.Outlined.FilterAlt
 
     val OutlinedAccountCircle = Icons.Outlined.AccountCircle
+
+    fun getIcon(key: String): ImageVector {
+        return iconMap[key] ?: Icons.Default.Error
+    }
 }
