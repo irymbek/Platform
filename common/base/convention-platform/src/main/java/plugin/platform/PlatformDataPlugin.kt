@@ -15,8 +15,11 @@ class PlatformDataPlugin : Plugin<Project> {
 
             dependencies {
                 implementation(":platform:common:base:data")
+                implementation(":platform:common:base:model")
+
                 implementation(":platform:common:core:architecture")
                 implementation(":platform:common:core:date")
+
                 implementation(":platform:common:business:model")
                 /**==============================================================================**/
                 implementation(platformLibs.androidx.paging.common)

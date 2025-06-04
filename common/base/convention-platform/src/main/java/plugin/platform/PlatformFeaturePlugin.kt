@@ -16,9 +16,12 @@ class PlatformFeaturePlugin : Plugin<Project> {
 
             dependencies {
                 implementation(":platform:common:base:feature")
+                implementation(":platform:common:base:model")
+
                 implementation(":platform:common:core:architecture")
                 implementation(":platform:common:core:date")
                 implementation(":platform:common:core:design:compound")
+
                 implementation(":platform:common:business:model")
                 /**==============================================================================**/
                 // koinViewModel

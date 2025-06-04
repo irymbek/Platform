@@ -15,7 +15,8 @@ class PlatformDataStorePlugin : Plugin<Project> {
 
             dependencies {
                 implementation(":platform:common:base:datastore")
-                implementation(":platform:common:core:architecture")
+                implementation(":platform:common:base:model")
+
                 implementation(":platform:common:business:model")
                 /**==============================================================================**/
                 implementation(platformLibs.androidx.dataStore.preferences)

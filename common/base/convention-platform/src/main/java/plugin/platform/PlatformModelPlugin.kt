@@ -14,6 +14,7 @@ class PlatformModelPlugin: Plugin<Project> {
 
             dependencies {
                 implementation(":platform:common:base:model")
+
                 implementation(":platform:common:core:architecture")
                 implementation(":platform:common:core:date")
             }
