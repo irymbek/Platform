@@ -16,7 +16,10 @@ import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 @Composable
 fun AppAlertDialog(
     isDialogOpen : MutableState<Boolean>,
-    onConfirmButtonClick: () -> Unit,
+    onConfirmationClick: () -> Unit,
+    onDismissClick: () -> Unit = {
+        isDialogOpen.value = false
+    },
     modifier: Modifier = Modifier,
     title: String = "",
     confirmButtonText: String = "Подтвердить",
@@ -41,7 +44,7 @@ fun AppAlertDialog(
                     text = confirmButtonText,
                     onClick = {
                         isDialogOpen.value = false
-                        onConfirmButtonClick()
+                        onConfirmationClick()
                     }
                 )
             },
@@ -49,9 +52,7 @@ fun AppAlertDialog(
             dismissButton = {
                 AppOutlinedButton(
                     text = dismissButtonText,
-                    onClick = {
-                        isDialogOpen.value = false
-                    }
+                    onClick = onDismissClick,
                 )
             },
             icon = icon,
