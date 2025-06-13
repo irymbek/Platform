@@ -10,10 +10,14 @@ fun String.toSafeFloat(default: Float = 0f): Float {
         .toFloatOrNull() ?: default
 }
 
-fun Any?.toSafeString(): String = this?.toString() ?: ""
+fun Any?.toSafeString(
+    default: String = "",
+): String = this?.toString() ?: default
 
 //Int
-fun String.toSafeInt(default: Int = 0): Int {
-    return this.toIntOrNull() ?: 0
+fun String.toSafeInt(
+    default: Int = 0,
+): Int {
+    return this.toIntOrNull() ?: default
 }
 
