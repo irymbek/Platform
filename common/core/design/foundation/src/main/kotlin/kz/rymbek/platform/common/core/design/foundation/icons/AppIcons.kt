@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Tag
 import androidx.compose.material.icons.filled.Task
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.AddAPhoto
@@ -42,6 +43,7 @@ import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Security
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Signpost
+import androidx.compose.material.icons.outlined.Tag
 import androidx.compose.material.icons.outlined.Task
 import androidx.compose.material.icons.outlined.VideoCall
 import androidx.compose.material.icons.outlined.Visibility
@@ -135,6 +137,8 @@ object AppIcons {
     val OutlinedFilterAlt = Icons.Outlined.FilterAlt
 
     val OutlinedAccountCircle = Icons.Outlined.AccountCircle
+
+    val FilledTag = Icons.Filled.Tag
 
     fun getIcon(key: String): ImageVector {
         return iconMap[key] ?: Icons.Default.Error

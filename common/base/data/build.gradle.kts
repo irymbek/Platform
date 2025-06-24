@@ -7,6 +7,5 @@ android {
 }
 
 dependencies {
-    api(projects.common.base.database)
     implementation(platformLibs.androidx.paging.common)
 }
