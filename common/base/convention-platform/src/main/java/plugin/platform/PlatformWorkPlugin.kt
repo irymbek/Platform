@@ -11,10 +11,20 @@ class PlatformWorkPlugin: Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             applyPlugin(platformLibs.plugins.convention.library)
+            applyPlugin(platformLibs.plugins.dependency.koin)
 
             dependencies {
+                implementation(":platform:common:base:database")
+                implementation(":platform:common:base:model") //Identifiable
+                implementation(":platform:common:base:work")
+
                 implementation(":platform:common:core:architecture")
-                implementation(":platform:common:core:date")
+
+                /**==============================================================================**/
+                //WorkManager
+                implementation(platformLibs.androidx.work.runtime)
+                //DI
+                implementation(platformLibs.koin.androidx.workmanager)
             }
         }
     }
