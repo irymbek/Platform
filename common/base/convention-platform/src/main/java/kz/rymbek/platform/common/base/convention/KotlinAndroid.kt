@@ -56,6 +56,7 @@ private inline fun <reified T : KotlinBaseExtension> Project.configureKotlin() =
             "-opt-in=com.google.accompanist.permissions.ExperimentalPermissionsApi",
             "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
             "-opt-in=kotlin.uuid.ExperimentalUuidApi",
+            "-opt-in=kotlin.time.ExperimentalTime",
         )
     }
 }

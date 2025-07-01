@@ -18,7 +18,7 @@ abstract class BaseConverter<T>(
     fun fromString(data: String): T? {
         return Json.decodeFromString(serializer, data)
     }
-    
+
     @TypeConverter
     fun toList(data: String): List<T> {
         return Json.decodeFromString(ListSerializer(serializer), data)
