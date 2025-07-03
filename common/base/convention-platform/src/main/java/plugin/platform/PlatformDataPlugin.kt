@@ -14,6 +14,7 @@ class PlatformDataPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.koin)
 
             dependencies {
+                implementation(":platform:common:base:database")
                 implementation(":platform:common:base:data")
                 implementation(":platform:common:base:model")
 
