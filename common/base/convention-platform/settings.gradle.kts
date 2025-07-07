@@ -20,9 +20,9 @@ dependencyResolutionManagement {
         val platform = files("../../../gradle/platformLibs.versions.toml")
 
         val project = if (settingsDir.absolutePath.contains("\\platform\\")) {
-            files("../../../../gradle/libs.versions.toml")
+            files("../../../../gradle/projectLibs.versions.toml")
         } else {
-            files("../../../libs.versions.toml")
+            files("../../../projectLibs.versions.toml")
         }
 
         println("Convention platform, platform ${platform.asPath}")
