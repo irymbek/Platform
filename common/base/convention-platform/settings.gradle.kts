@@ -17,7 +17,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
     versionCatalogs {
-        val platform = files("../../../gradle/libs.versions.toml")
+        val platform = files("../../../gradle/platformLibs.versions.toml")
 
         val project = if (settingsDir.absolutePath.contains("\\platform\\")) {
             files("../../../../gradle/libs.versions.toml")

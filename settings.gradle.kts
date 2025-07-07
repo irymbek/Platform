@@ -16,7 +16,7 @@ pluginManagement {
 dependencyResolutionManagement {
     versionCatalogs {
         create("platformLibs") {
-            from(files("gradle/libs.versions.toml"))
+            from(files("gradle/platformLibs.versions.toml"))
         }
     }
 
