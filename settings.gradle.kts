@@ -41,9 +41,10 @@ include(":common:base:network")
 include(":common:base:work")
 /**==============================================================================================**/
 include(":common:business:converter")
+include(":common:business:model")
 /**==============================================================================================**/
 include(":common:core:architecture")
 include(":common:core:design:compound")
 include(":common:core:design:foundation")
 include(":common:core:date")
-include(":common:business:model")
+/**==============================================================================================**/
