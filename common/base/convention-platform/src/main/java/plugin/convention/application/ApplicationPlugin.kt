@@ -81,11 +81,13 @@ class ApplicationPlugin: Plugin<Project> {
             dependencies {
                 implementation(":platform:common:base:app")
                 implementation(":platform:common:base:feature")
+                implementation(":platform:common:business:data:app")
+                implementation(":platform:common:business:datastore")
+                implementation(":platform:common:business:model")
                 implementation(":platform:common:core:architecture")
                 implementation(":platform:common:core:design:foundation")
+
                 implementation(":common:core:navigation")
-                implementation(":common:business:datastore")
-                implementation(":platform:common:business:model")
                 /**==============================================================================**/
                 implementation(platform(platformLibs.coil.bom))
                 implementation(platformLibs.coil.asProvider())
