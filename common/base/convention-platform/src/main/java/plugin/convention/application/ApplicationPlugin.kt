@@ -87,8 +87,6 @@ class ApplicationPlugin: Plugin<Project> {
                 implementation(":platform:common:business:model")
                 implementation(":platform:common:core:architecture")
                 implementation(":platform:common:core:design:foundation")
-
-                implementation(":common:core:navigation")
                 /**==============================================================================**/
                 implementation(platform(platformLibs.coil.bom))
                 implementation(platformLibs.coil.asProvider())
