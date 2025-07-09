@@ -81,6 +81,7 @@ class ApplicationPlugin: Plugin<Project> {
             dependencies {
                 implementation(":platform:common:base:app")
                 implementation(":platform:common:base:feature")
+                implementation(":platform:common:base:navigation")
                 implementation(":platform:common:business:data:app")
                 implementation(":platform:common:business:datastore")
                 implementation(":platform:common:business:model")

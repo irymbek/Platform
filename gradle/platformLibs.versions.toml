@@ -145,6 +145,7 @@ module-platform-data = { id = "module.platform.data" }
 module-platform-datastore = { id = "module.platform.datastore" }
 module-platform-domain = { id = "module.platform.domain" }
 module-platform-feature = { id = "module.platform.feature" }
+module-platform-navigation = { id = "module.platform.navigation" }
 module-platform-model = { id = "module.platform.model" }
 module-platform-network = { id = "module.platform.network" }
 module-platform-work = { id = "module.platform.work" }

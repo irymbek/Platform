@@ -17,6 +17,7 @@ class PlatformFeaturePlugin : Plugin<Project> {
             dependencies {
                 implementation(":platform:common:base:feature")
                 implementation(":platform:common:base:model")
+                implementation(":platform:common:base:navigation")
 
                 implementation(":platform:common:core:architecture")
                 implementation(":platform:common:core:date")
