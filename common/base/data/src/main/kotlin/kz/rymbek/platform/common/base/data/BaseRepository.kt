@@ -9,16 +9,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 abstract class BaseRepository {
-    /*protected suspend fun <T> runInTransaction(
-        db: RoomDatabase,
-        block: suspend () -> T
-    ): T {
-        return db.withTransaction {
-            block()
-        }
-    }*/
-
-
     protected fun <Entity: Any , Ui: Any> getPagedData(
         pageSize: Int = 10,
         prefetchDistance: Int = 5,

@@ -24,6 +24,7 @@ class PlatformDataPlugin : Plugin<Project> {
                 implementation(":platform:common:business:model")
                 /**==============================================================================**/
                 implementation(platformLibs.androidx.paging.common)
+                implementation(platformLibs.androidx.room.ktx)
             }
         }
     }
