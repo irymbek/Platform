@@ -1,14 +1,15 @@
 package kz.rymbek.platform.common.core.date
 
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.format
+import kotlinx.datetime.format.Padding
 import kotlinx.datetime.format.char
 import kotlinx.datetime.toLocalDateTime
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 object DateUtils {
     private val timeZone = TimeZone.currentSystemDefault()
@@ -47,7 +48,7 @@ object DateUtils {
             char('-')
             monthNumber()
             char('-')
-            dayOfMonth()
+            day(padding = Padding.ZERO)
 
             char('/')
 
