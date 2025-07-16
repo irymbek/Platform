@@ -112,8 +112,7 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "androidxRoom" }
 
-convention-plarform = { module = "kz.rymbek.platform.common.base.convention:convention-platform" }
-convention-base = { module = "kz.rymbek.platform.common.base.convention:convention-base" }
+convention-platform = { module = "kz.rymbek.platform.common.base.convention:convention-platform" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
