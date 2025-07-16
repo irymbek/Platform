@@ -1,6 +1,7 @@
 package plugin.platform
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
+import kz.rymbek.platform.common.base.convention.extensions.converterNotation
 import kz.rymbek.platform.common.base.convention.extensions.implementation
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
@@ -14,7 +15,8 @@ class PlatformConverterPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.serialization)
 
             dependencies {
-                implementation(":platform:common:base:converter")
+                implementation(converterNotation(":common:base:converter"))
+                //implementation(":platform:common:base:converter")
                 /**==============================================================================**/
                 implementation(platformLibs.kotlinx.datetime)
             }

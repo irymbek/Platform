@@ -29,3 +29,8 @@ fun DependencyHandlerScope.debugImplementation(
 ) {
     add("debugImplementation", dependency)
 }
+
+fun Project.converterNotation(module: String): String {
+    val needsPrefix = project.path.startsWith(":platform:")
+    return if (needsPrefix) ":platform:$module" else module
+}
