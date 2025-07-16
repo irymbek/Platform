@@ -30,7 +30,22 @@ fun DependencyHandlerScope.debugImplementation(
     add("debugImplementation", dependency)
 }
 
-fun Project.converterNotation(module: String): String {
-    val needsPrefix = project.path.startsWith(":platform:")
-    return if (needsPrefix) ":platform:$module" else module
+fun Project.needPrefix(): Boolean = project.path.startsWith(":platform:")
+
+fun Project.prefix(): String = if(isInsidePlatform()) "" else ":platform:"
+
+fun Project.contextPrefix(modules: Iterable<String>): List<String> {
+    val prefix = prefix()
+    return modules.map { module ->
+        "$prefix$module"
+    }
+}
+
+fun Project.contextPrefix(module: String): String {
+    val prefix = prefix()
+    return "$prefix$module"
+}
+
+fun Project.isInsidePlatform(): Boolean {
+    return rootProject.name.lowercase() == "platform"
 }

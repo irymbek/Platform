@@ -1,7 +1,9 @@
 package plugin.platform
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
+import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
 import kz.rymbek.platform.common.base.convention.extensions.implementation
+import kz.rymbek.platform.common.base.convention.extensions.implementations
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -13,11 +15,21 @@ class PlatformDataStorePlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.convention.library)
             applyPlugin(platformLibs.plugins.dependency.koin)
 
-            dependencies {
-                implementation(":platform:common:base:datastore")
-                implementation(":platform:common:base:model")
+            val modules = setOf(
+                "common:base:datastore",
+                "common:base:model",
+                "common:business:model",
+            )
+            val paths = contextPrefix(
+                modules
+            )
 
-                implementation(":platform:common:business:model")
+            println("SUKA paths $paths")
+
+            dependencies {
+                implementations(
+                    paths
+                )
                 /**==============================================================================**/
                 implementation(platformLibs.androidx.dataStore.preferences)
             }

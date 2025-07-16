@@ -1,7 +1,9 @@
 package plugin.platform
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
+import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
 import kz.rymbek.platform.common.base.convention.extensions.implementation
+import kz.rymbek.platform.common.base.convention.extensions.implementations
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -13,15 +15,22 @@ class PlatformDataPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.convention.library)
             applyPlugin(platformLibs.plugins.dependency.koin)
 
+            val modules = setOf(
+                "common:base:database",
+                "common:base:data",
+                "common:base:model",
+                "common:core:architecture",
+                "common:core:date",
+                "common:business:model",
+            )
+            val paths = contextPrefix(
+                modules
+            )
+
             dependencies {
-                implementation(":platform:common:base:database")
-                implementation(":platform:common:base:data")
-                implementation(":platform:common:base:model")
-
-                implementation(":platform:common:core:architecture")
-                implementation(":platform:common:core:date")
-
-                implementation(":platform:common:business:model")
+                implementations(
+                    paths
+                )
                 /**==============================================================================**/
                 implementation(platformLibs.androidx.paging.common)
                 implementation(platformLibs.androidx.room.ktx)
