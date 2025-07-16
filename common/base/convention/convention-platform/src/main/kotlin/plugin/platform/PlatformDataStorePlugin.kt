@@ -24,8 +24,6 @@ class PlatformDataStorePlugin : Plugin<Project> {
                 modules
             )
 
-            println("SUKA paths $paths")
-
             dependencies {
                 implementations(
                     paths
