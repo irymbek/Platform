@@ -1,5 +1,6 @@
 plugins {
-    alias(platformLibs.plugins.module.platform.model)
+    alias(platformLibs.plugins.convention.library)
+    //alias(platformLibs.plugins.module.platform.model)
 }
 
 android {
@@ -8,4 +9,5 @@ android {
 
 dependencies {
     implementation(projects.platform.common.base.feature)
+    implementation(projects.platform.common.base.model)
 }

@@ -1,5 +1,7 @@
 pluginManagement {
-    includeBuild("common/base/convention/convention-platform")
+    includeBuild("common/base/convention/convention-platform") {
+        name = "platform"
+    }
     repositories {
         google {
             content {
