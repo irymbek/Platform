@@ -87,6 +87,7 @@ class ApplicationPlugin: Plugin<Project> {
                 implementation(":platform:common:business:model")
                 implementation(":platform:common:core:architecture")
                 implementation(":platform:common:core:design:foundation")
+                implementation(":platform:common:feature:settings:theme")
                 /**==============================================================================**/
                 implementation(platform(platformLibs.coil.bom))
                 implementation(platformLibs.coil.asProvider())
