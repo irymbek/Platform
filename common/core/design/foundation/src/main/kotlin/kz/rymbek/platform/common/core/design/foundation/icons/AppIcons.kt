@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Cloud
+import androidx.compose.material.icons.filled.Construction
 import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
@@ -22,6 +23,7 @@ import androidx.compose.material.icons.outlined.AddRoad
 import androidx.compose.material.icons.outlined.AddTask
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Checklist
+import androidx.compose.material.icons.outlined.Construction
 import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Edit
@@ -43,7 +45,6 @@ import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Security
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Signpost
-import androidx.compose.material.icons.outlined.Tag
 import androidx.compose.material.icons.outlined.Task
 import androidx.compose.material.icons.outlined.VideoCall
 import androidx.compose.material.icons.outlined.Visibility
@@ -139,6 +140,10 @@ object AppIcons {
     val OutlinedAccountCircle = Icons.Outlined.AccountCircle
 
     val FilledTag = Icons.Filled.Tag
+
+    //Supervisor
+    val FilledConstruction= Icons.Filled.Construction
+    val OutlinedConstruction = Icons.Outlined.Construction
 
     fun getIcon(key: String): ImageVector {
         return iconMap[key] ?: Icons.Default.Error
