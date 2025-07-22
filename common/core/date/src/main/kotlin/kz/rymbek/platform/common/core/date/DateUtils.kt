@@ -21,7 +21,7 @@ object DateUtils {
         get() = currentInstant.toEpochMilliseconds()
 
     val localDateTime: LocalDateTime
-        get() = Clock.System.now().toLocalDateTime(timeZone)
+        get() = currentInstant.toLocalDateTime(timeZone)
 
     val localDate: LocalDate
         get() = localDateTime.date
