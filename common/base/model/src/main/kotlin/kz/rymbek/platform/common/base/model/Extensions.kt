@@ -1,5 +1,7 @@
 package kz.rymbek.platform.common.base.model
 
+import java.math.BigDecimal
+
 //Float
 fun String.toNullableFloat(): Float? {
     return this.replace(',', '.').toFloatOrNull()
@@ -14,10 +16,17 @@ fun Any?.toSafeString(
     default: String = "",
 ): String = this?.toString() ?: default
 
-//Int
+/** Safe Int **/
 fun String.toSafeInt(
     default: Int = 0,
 ): Int {
     return this.toIntOrNull() ?: default
+}
+
+/** Safe BigDecimal **/
+fun String.toSafeBigDecimal(
+    default: BigDecimal = BigDecimal.ZERO,
+): BigDecimal {
+    return this.toBigDecimalOrNull() ?: default
 }
 
