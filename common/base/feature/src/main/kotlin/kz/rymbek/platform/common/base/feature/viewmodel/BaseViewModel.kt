@@ -64,19 +64,7 @@ abstract class BaseViewModel<State : Any>(
         key: String,
         defaultValue: T,
     ) : T {
-        return getValueOrNull(key = key) ?: defaultValue
-    }
-
-    protected fun <T> SavedStateHandle.getValue(
-        key: String,
-    ) : T {
-        return requireNotNull(getValueOrNull(key = key))
-    }
-
-    protected fun <T> SavedStateHandle.getValueOrNull(
-        key: String,
-    ) : T? {
-        return this[key]
+        return this[key] ?: defaultValue
     }
 
     open fun onEvent(event: IEvent) {}

@@ -30,6 +30,9 @@ class PlatformFeaturePlugin : Plugin<Project> {
 
                 //coil
                 implementation(platformLibs.coil.compose.core)
+
+                //toRoute()
+                implementation(platformLibs.androidx.navigation.runtime.ktx)
             }
         }
     }
