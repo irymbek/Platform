@@ -11,7 +11,6 @@ import org.gradle.kotlin.dsl.dependencies
 class PlatformModelPlugin: Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            println("SUPER_TAG ${rootProject.name.lowercase()}")
             val modules = setOf(
                 "common:base:model",
                 "common:core:architecture",

@@ -15,7 +15,6 @@ class PlatformConverterPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.serialization)
 
             dependencies {
-                println("suka_suka: ${contextPrefix(":common:base:converter")}")
                 implementation(contextPrefix(":common:base:converter"))
                 /**==============================================================================**/
                 implementation(platformLibs.kotlinx.datetime)
