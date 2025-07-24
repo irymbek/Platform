@@ -1,6 +1,5 @@
 package kz.rymbek.platform.common.base.feature.viewmodel
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -17,16 +16,15 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
 
 abstract class BaseViewModel<State : Any>(
     initialState: State,
 ) : ViewModel() {
-
     private val _uiState = MutableStateFlow(initialState)
     val uiState: StateFlow<State> = _uiState
-        .asStateFlow()
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
@@ -34,7 +32,7 @@ abstract class BaseViewModel<State : Any>(
         )
 
     protected fun updateState(reducer: State.() -> State) {
-        _uiState.value = _uiState.value.reducer()
+        _uiState.update { it.reducer() }
     }
 
     protected fun viewModelScopeCustom(
@@ -58,13 +56,6 @@ abstract class BaseViewModel<State : Any>(
             .let { data ->
                 updateStateAction(data)
             }
-    }
-
-    protected fun <T> SavedStateHandle.getValueOrDefault(
-        key: String,
-        defaultValue: T,
-    ) : T {
-        return this[key] ?: defaultValue
     }
 
     open fun onEvent(event: IEvent) {}
