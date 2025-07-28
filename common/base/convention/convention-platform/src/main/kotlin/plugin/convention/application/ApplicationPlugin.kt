@@ -58,11 +58,6 @@ class ApplicationPlugin: Plugin<Project> {
                     }
                 }
 
-                extensions.extraProperties.set("ksp.args", mapOf(
-                    "KOIN_CONFIG_CHECK" to "true",
-                    "KOIN_USE_COMPOSE_VIEWMODEL" to "true"
-                ))
-
                 extensions.configure<ApplicationAndroidComponentsExtension> {
                     disableAllTests()
                     onVariants { variant ->
@@ -105,6 +100,7 @@ class ApplicationPlugin: Plugin<Project> {
                 // DI
                 implementation(platformLibs.koin.android)
                 implementation(platformLibs.koin.androidx.compose)
+                implementation(platformLibs.koin.androidx.startup)
             }
         }
     }

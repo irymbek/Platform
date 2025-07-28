@@ -30,8 +30,6 @@ fun DependencyHandlerScope.debugImplementation(
     add("debugImplementation", dependency)
 }
 
-fun Project.needPrefix(): Boolean = project.path.startsWith(":platform:")
-
 fun Project.prefix(): String = if(isInsidePlatform()) "" else ":platform:"
 
 fun Project.contextPrefix(modules: Iterable<String>): List<String> {
