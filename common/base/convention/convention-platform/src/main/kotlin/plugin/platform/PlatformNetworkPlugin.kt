@@ -14,6 +14,10 @@ class PlatformNetworkPlugin: Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.koin)
             applyPlugin(platformLibs.plugins.dependency.serialization)
 
+            /*extensions.configure<KspExtension> {
+                arg("KOIN_DEFAULT_MODULE", "false")
+            }*/
+
             dependencies {
                 implementation(":platform:common:base:network")
 

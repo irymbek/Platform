@@ -5,4 +5,4 @@ import org.koin.core.annotation.Module
 
 @ComponentScan
 @Module
-class NavigationModule
+class BaseNavigationModule
