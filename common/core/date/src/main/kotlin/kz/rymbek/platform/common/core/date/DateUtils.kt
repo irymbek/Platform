@@ -14,14 +14,14 @@ import kotlin.time.Instant
 object DateUtils {
     private val timeZone = TimeZone.currentSystemDefault()
 
-    val currentInstant: Instant
+    val instant: Instant
         get() = Clock.System.now()
 
     val milliseconds: Long
-        get() = currentInstant.toEpochMilliseconds()
+        get() = instant.toEpochMilliseconds()
 
     val localDateTime: LocalDateTime
-        get() = currentInstant.toLocalDateTime(timeZone)
+        get() = instant.toLocalDateTime(timeZone)
 
     val localDate: LocalDate
         get() = localDateTime.date
