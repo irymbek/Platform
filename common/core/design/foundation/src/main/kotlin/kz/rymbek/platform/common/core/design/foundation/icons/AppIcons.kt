@@ -1,6 +1,8 @@
 package kz.rymbek.platform.common.core.design.foundation.icons
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Assignment
+import androidx.compose.material.icons.automirrored.outlined.Assignment
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material.icons.filled.Check
@@ -14,6 +16,7 @@ import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Remove
+import androidx.compose.material.icons.filled.Science
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Tag
 import androidx.compose.material.icons.filled.Task
@@ -41,6 +44,7 @@ import androidx.compose.material.icons.outlined.PersonAdd
 import androidx.compose.material.icons.outlined.PostAdd
 import androidx.compose.material.icons.outlined.QrCode
 import androidx.compose.material.icons.outlined.QrCodeScanner
+import androidx.compose.material.icons.outlined.Science
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Security
 import androidx.compose.material.icons.outlined.Settings
@@ -139,6 +143,12 @@ object AppIcons {
     //Laboratory
     val OutlinedInfo = Icons.Outlined.Info
     val OutlinedFilterAlt = Icons.Outlined.FilterAlt
+
+    val OutlinedScience = Icons.Outlined.Science
+    val FilledScience = Icons.Filled.Science
+
+    val OutlinedAssignment = Icons.AutoMirrored.Outlined.Assignment
+    val FilledAssignment = Icons.AutoMirrored.Filled.Assignment
 
     val FilledTag = Icons.Filled.Tag
 
