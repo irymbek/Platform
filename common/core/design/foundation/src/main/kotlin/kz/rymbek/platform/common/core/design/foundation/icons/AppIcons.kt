@@ -56,9 +56,12 @@ object AppIcons {
 
     val OutlinedPalette = Icons.Outlined.Palette
 
+    val OutlinedAccountCircle = Icons.Outlined.AccountCircle
+
     private val iconMap = mapOf(
         OutlinedSecurity.name to OutlinedSecurity,
         OutlinedPalette.name to OutlinedPalette,
+        OutlinedAccountCircle.name to OutlinedAccountCircle,
     )
 
     val OutlinedErrorOutline = Icons.Outlined.ErrorOutline
@@ -136,8 +139,6 @@ object AppIcons {
     //Laboratory
     val OutlinedInfo = Icons.Outlined.Info
     val OutlinedFilterAlt = Icons.Outlined.FilterAlt
-
-    val OutlinedAccountCircle = Icons.Outlined.AccountCircle
 
     val FilledTag = Icons.Filled.Tag
 
