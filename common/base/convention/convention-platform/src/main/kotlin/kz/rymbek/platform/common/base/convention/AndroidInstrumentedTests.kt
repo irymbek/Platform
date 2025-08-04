@@ -12,7 +12,7 @@ internal fun LibraryAndroidComponentsExtension.disableAllTests() {
 
 internal fun ApplicationAndroidComponentsExtension.disableAllTests() {
     return beforeVariants {
-            it.androidTest.enable = false
-            it.unitTestEnabled = false
-        }
+        it.androidTest.enable = false
+        it.unitTestEnabled = false
+    }
 }
