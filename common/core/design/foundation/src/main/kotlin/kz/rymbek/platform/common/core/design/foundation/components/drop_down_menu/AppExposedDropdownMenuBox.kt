@@ -46,14 +46,14 @@ fun <T: Identifiable> AppExposedDropdownMenuBox(
 }
 
 @Composable
-fun <T: Identifiable, K: Any> AppExposedDropdownMenuBox(
+fun <T: Identifiable, KEY: Any> AppExposedDropdownMenuBox(
     label: String,
     items: List<T>,
     itemLabel: (T) -> String,
-    itemKeySelector: (T) -> K,
-    selectedKey: K?,
+    itemKeySelector: (T) -> KEY,
+    selectedKey: KEY?,
     onItemSelected: (
-        text: T,
+        item: T,
     ) -> Unit,
     modifier: Modifier = Modifier,
     itemImage: (T) -> Any? = { null },
