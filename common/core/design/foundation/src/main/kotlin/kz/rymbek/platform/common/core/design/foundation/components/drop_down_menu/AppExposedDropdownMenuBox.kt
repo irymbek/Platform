@@ -19,26 +19,52 @@ import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.components.text_field.regular.AppTextField
 
 @Composable
-fun <T: Identifiable, K> AppExposedDropdownMenuBox(
-    modifier: Modifier = Modifier,
-    label: String = "",
+fun <T: Identifiable> AppExposedDropdownMenuBox(
+    label: String,
     items: List<T>,
-    itemKey: (T) -> K,
-    selectedKey: K? = null,
     onItemSelected: (
         index: Int,
         text: T,
     ) -> Unit,
+    modifier: Modifier = Modifier,
+    itemLabel: (T) -> String = { it.toString() },
+    itemImage: (T) -> Any? = { null },
     errorMessage: String? = null,
-    selectedItemToString: (T) -> String = { it.toString() },
-    selectedItemToImage: (T) -> Any? = { null },
-    dialogThreshold: Int = 10,
+) {
+    AppExposedDropdownMenuBox(
+        label = label,
+        items = items,
+        itemKeySelector = { it.id },
+        itemLabel = itemLabel,
+        selectedKey = null,
+        onItemSelected = onItemSelected,
+        modifier = modifier,
+        itemImage = itemImage,
+        errorMessage = errorMessage,
+    )
+}
+
+
+@Composable
+fun <T: Identifiable, K: Any> AppExposedDropdownMenuBox(
+    label: String,
+    items: List<T>,
+    itemKeySelector: (T) -> K,
+    itemLabel: (T) -> String,
+    selectedKey: K?,
+    onItemSelected: (
+        index: Int,
+        text: T,
+    ) -> Unit,
+    modifier: Modifier = Modifier,
+    itemImage: (T) -> Any? = { null },
+    errorMessage: String? = null,
 ) {
     val expanded: MutableState<Boolean> = rememberSaveable {
         mutableStateOf(false)
     }
     val selectedItem = remember(selectedKey, items) {
-        mutableStateOf(items.firstOrNull { itemKey(it) == selectedKey })
+        mutableStateOf(items.firstOrNull { itemKeySelector(it) == selectedKey })
     }
 
     val onSelectItem: (Int, T) -> Unit = { index: Int, item: T ->
@@ -69,7 +95,7 @@ fun <T: Identifiable, K> AppExposedDropdownMenuBox(
                         AppText(text = errorMessage, color = MaterialTheme.colorScheme.error)
                     }
                 },
-                value = selectedItem.value?.let { selectedItemToString(it) } ?: label,
+                value = selectedItem.value?.let { itemLabel(it) } ?: label,
                 onValueChange = {},
                 trailingIcon = {
                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value)
@@ -80,20 +106,20 @@ fun <T: Identifiable, K> AppExposedDropdownMenuBox(
                 ),
             )
 
-            if (items.size < dialogThreshold) {
+            if (items.size < 10) {
                 SmallDropDownMenu(
                     expanded = expanded,
                     items = items,
-                    selectedItemToString = selectedItemToString,
-                    selectedItemToImage = selectedItemToImage,
+                    selectedItemToString = itemLabel,
+                    selectedItemToImage = itemImage,
                     onItemSelected = onSelectItem,
                 )
             } else {
                 LargeDropDownMenuDialog(
                     items = items,
                     expanded = expanded,
-                    selectedItemToString = selectedItemToString,
-                    selectedItemToImage = selectedItemToImage,
+                    selectedItemToString = itemLabel,
+                    selectedItemToImage = itemImage,
                     onItemSelected = onSelectItem,
                 )
             }
