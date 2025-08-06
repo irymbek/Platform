@@ -6,7 +6,6 @@ import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MenuAnchorType
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,7 +34,7 @@ fun <T: Identifiable> AppExposedDropdownMenuBox(
     AppExposedDropdownMenuBox(
         label = label,
         items = items,
-        itemKeySelector = { it.id },
+        itemKey = { it.id },
         itemLabel = itemLabel,
         selectedKey = null,
         onItemSelected = onItemSelected,
@@ -50,7 +49,7 @@ fun <T: Identifiable, KEY: Any> AppExposedDropdownMenuBox(
     label: String,
     items: List<T>,
     itemLabel: (T) -> String,
-    itemKeySelector: (T) -> KEY,
+    itemKey: (T) -> KEY,
     selectedKey: KEY?,
     onItemSelected: (
         item: T,
@@ -59,18 +58,10 @@ fun <T: Identifiable, KEY: Any> AppExposedDropdownMenuBox(
     itemImage: (T) -> Any? = { null },
     errorMessage: String? = null,
 ) {
-    val expanded: MutableState<Boolean> = rememberSaveable {
-        mutableStateOf(false)
-    }
+    val expanded = rememberSaveable { mutableStateOf(false) }
 
     var selectedItem by remember(selectedKey, items) {
-        mutableStateOf(items.firstOrNull { itemKeySelector(it) == selectedKey })
-    }
-
-    val onSelectItem: (T) -> Unit = { item: T ->
-        selectedItem = item
-        expanded.value = false
-        onItemSelected(item)
+        mutableStateOf(items.firstOrNull { itemKey(it) == selectedKey })
     }
 
     ExposedDropdownMenuBox(
@@ -112,7 +103,10 @@ fun <T: Identifiable, KEY: Any> AppExposedDropdownMenuBox(
                     items = items,
                     selectedItemToString = itemLabel,
                     selectedItemToImage = itemImage,
-                    onSelectItem = onSelectItem,
+                    onSelectItem = {
+                        expanded.value = false
+                        onItemSelected(it)
+                    },
                 )
             } else {
                 LargeDropDownMenuDialog(
@@ -120,7 +114,10 @@ fun <T: Identifiable, KEY: Any> AppExposedDropdownMenuBox(
                     expanded = expanded,
                     selectedItemToString = itemLabel,
                     selectedItemToImage = itemImage,
-                    onSelectItem = onSelectItem,
+                    onSelectItem = {
+                        expanded.value = false
+                        onItemSelected(it)
+                    },
                 )
             }
         }
