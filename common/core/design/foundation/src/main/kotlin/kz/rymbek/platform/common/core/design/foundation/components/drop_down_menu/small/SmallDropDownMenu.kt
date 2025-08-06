@@ -17,9 +17,8 @@ fun <T: Identifiable> ExposedDropdownMenuBoxScope.SmallDropDownMenu(
     modifier: Modifier = Modifier,
     items: List<T>,
     expanded: MutableState<Boolean>,
-    onItemSelected: (
-        index: Int,
-        text: T,
+    onSelectItem: (
+        item: T,
     ) -> Unit,
     selectedItemToString: (T) -> String,
     selectedItemToImage: (T) -> Any?,
@@ -36,7 +35,7 @@ fun <T: Identifiable> ExposedDropdownMenuBoxScope.SmallDropDownMenu(
                     text = selectedItemToString(item),
                     trailingIconUri = selectedItemToImage(item),
                     onClick = {
-                        onItemSelected(index, item)
+                        onSelectItem(item)
                     },
                 )
 

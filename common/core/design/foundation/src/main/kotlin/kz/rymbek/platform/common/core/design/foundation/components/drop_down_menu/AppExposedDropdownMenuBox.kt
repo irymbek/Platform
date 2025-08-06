@@ -25,8 +25,7 @@ fun <T: Identifiable> AppExposedDropdownMenuBox(
     label: String,
     items: List<T>,
     onItemSelected: (
-        index: Int,
-        text: T,
+        item: T,
     ) -> Unit,
     modifier: Modifier = Modifier,
     itemLabel: (T) -> String = { it.toString() },
@@ -50,11 +49,10 @@ fun <T: Identifiable> AppExposedDropdownMenuBox(
 fun <T: Identifiable, K: Any> AppExposedDropdownMenuBox(
     label: String,
     items: List<T>,
-    itemKeySelector: (T) -> K,
     itemLabel: (T) -> String,
+    itemKeySelector: (T) -> K,
     selectedKey: K?,
     onItemSelected: (
-        index: Int,
         text: T,
     ) -> Unit,
     modifier: Modifier = Modifier,
@@ -69,10 +67,10 @@ fun <T: Identifiable, K: Any> AppExposedDropdownMenuBox(
         mutableStateOf(items.firstOrNull { itemKeySelector(it) == selectedKey })
     }
 
-    val onSelectItem: (Int, T) -> Unit = { index: Int, item: T ->
+    val onSelectItem: (T) -> Unit = { item: T ->
         selectedItem = item
         expanded.value = false
-        onItemSelected(index, item)
+        onItemSelected(item)
     }
 
     ExposedDropdownMenuBox(
@@ -114,7 +112,7 @@ fun <T: Identifiable, K: Any> AppExposedDropdownMenuBox(
                     items = items,
                     selectedItemToString = itemLabel,
                     selectedItemToImage = itemImage,
-                    onItemSelected = onSelectItem,
+                    onSelectItem = onSelectItem,
                 )
             } else {
                 LargeDropDownMenuDialog(
@@ -122,7 +120,7 @@ fun <T: Identifiable, K: Any> AppExposedDropdownMenuBox(
                     expanded = expanded,
                     selectedItemToString = itemLabel,
                     selectedItemToImage = itemImage,
-                    onItemSelected = onSelectItem,
+                    onSelectItem = onSelectItem,
                 )
             }
         }

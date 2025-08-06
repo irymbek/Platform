@@ -32,7 +32,7 @@ fun <T: Identifiable> LargeDropDownMenuDialog(
     items: List<T>,
     selectedItemToString: (T) -> String,
     selectedItemToImage: (T) -> Any? = { null },
-    onItemSelected: (index: Int, item: T) -> Unit,
+    onSelectItem: (item: T) -> Unit,
 ) {
     var searchQuery by rememberSaveable { mutableStateOf("") }
 
@@ -75,7 +75,7 @@ fun <T: Identifiable> LargeDropDownMenuDialog(
                                 text = selectedItemToString(item),
                                 trailingIconUri = selectedItemToImage(item),
                                 onClick = {
-                                    onItemSelected(index, item)
+                                    onSelectItem(item)
                                 },
                             )
 
