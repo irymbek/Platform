@@ -19,16 +19,17 @@ import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.components.text_field.regular.AppTextField
 
 @Composable
-fun <T: Identifiable> AppExposedDropdownMenuBox(
+fun <T: Identifiable, K> AppExposedDropdownMenuBox(
     modifier: Modifier = Modifier,
     label: String = "",
     items: List<T>,
+    itemKey: (T) -> K,
+    selectedKey: K? = null,
     onItemSelected: (
         index: Int,
         text: T,
     ) -> Unit,
     errorMessage: String? = null,
-    initialItem: T? = null,
     selectedItemToString: (T) -> String = { it.toString() },
     selectedItemToImage: (T) -> Any? = { null },
     dialogThreshold: Int = 10,
@@ -36,8 +37,9 @@ fun <T: Identifiable> AppExposedDropdownMenuBox(
     val expanded: MutableState<Boolean> = rememberSaveable {
         mutableStateOf(false)
     }
-    //Don't use rememberSaveable, on intent you may get percelable error
-    val selectedItem = remember(initialItem) { mutableStateOf(initialItem) }
+    val selectedItem = remember(selectedKey, items) {
+        mutableStateOf(items.firstOrNull { itemKey(it) == selectedKey })
+    }
 
     val onSelectItem: (Int, T) -> Unit = { index: Int, item: T ->
         selectedItem.value = item
