@@ -60,7 +60,7 @@ fun <T: Identifiable, KEY: Any> AppExposedDropdownMenuBox(
 ) {
     val expanded = rememberSaveable { mutableStateOf(false) }
 
-    var selectedItem by remember(selectedKey, items) {
+    var selectedItem by remember(items, selectedKey) {
         mutableStateOf(items.firstOrNull { itemKey(it) == selectedKey })
     }
 
