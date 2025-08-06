@@ -31,15 +31,12 @@ fun <T: Identifiable> ExposedDropdownMenuBoxScope.SmallDropDownMenu(
             expanded.value = false
         },
         content = {
-            items.forEachIndexed { index, selectionOption ->
+            items.forEachIndexed { index, item ->
                 AppDropdownMenuItem(
-                    text = selectedItemToString(selectionOption),
-                    trailingIconUri = selectedItemToImage(selectionOption),
+                    text = selectedItemToString(item),
+                    trailingIconUri = selectedItemToImage(item),
                     onClick = {
-                        onItemSelected(
-                            index,
-                            selectionOption
-                        )
+                        onItemSelected(index, item)
                     },
                 )
 

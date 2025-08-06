@@ -37,7 +37,7 @@ fun <T: Identifiable> AppExposedDropdownMenuBox(
         mutableStateOf(false)
     }
     //Don't use rememberSaveable, on intent you may get percelable error
-    val selectedItem = remember(initialItem) { mutableStateOf<T?>(initialItem) }
+    val selectedItem = remember(initialItem) { mutableStateOf(initialItem) }
 
     val onSelectItem: (Int, T) -> Unit = { index: Int, item: T ->
         selectedItem.value = item
