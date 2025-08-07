@@ -4,17 +4,16 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import org.koin.core.annotation.Single
 
-@Single
+@Stable
 class AppSnackbarState(
-    val snackbarHostState: SnackbarHostState = SnackbarHostState(),
-    private val coroutineScope: CoroutineScope = MainScope(),
+    val snackbarHostState: SnackbarHostState,
+    private val coroutineScope: CoroutineScope,
 ) {
     fun showSnackbar(
         message: String,
@@ -45,17 +44,20 @@ class AppSnackbarState(
 }
 
 @Composable
-fun rememberSnackbarHostState(
-    snackbarHostState: SnackbarHostState = SnackbarHostState(),
-) = remember { snackbarHostState }
+fun rememberSnackbarHostState() = remember { SnackbarHostState() }
 
 @Composable
 fun rememberAppSnackbarState(
     snackbarHostState: SnackbarHostState = rememberSnackbarHostState(),
-    coroutineScope: CoroutineScope = rememberCoroutineScope(),
-) = remember {
-    AppSnackbarState(
-        snackbarHostState = snackbarHostState,
-        coroutineScope = coroutineScope,
-    )
+): AppSnackbarState {
+    val coroutineScope = rememberCoroutineScope()
+    return remember(
+        snackbarHostState,
+        coroutineScope,
+    ) {
+        AppSnackbarState(
+            snackbarHostState = snackbarHostState,
+            coroutineScope = coroutineScope,
+        )
+    }
 }

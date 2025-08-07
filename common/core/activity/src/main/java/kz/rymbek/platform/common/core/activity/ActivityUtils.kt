@@ -6,6 +6,9 @@ import android.content.ContextWrapper
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import org.koin.core.annotation.Single
 
 @Single
@@ -20,7 +23,7 @@ class ActivityUtils(
         var context = this
         while (context is ContextWrapper) {
             if (context is Activity) return context
-            context = context.baseContext
+            context = context.baseContext ?: break
         }
         throw IllegalStateException("findActivity should be called in the context of an Activity")
     }
@@ -31,5 +34,13 @@ class ActivityUtils(
             Uri.fromParts("package", activity.packageName, null)
         )
         activity.startActivity(intent)
+    }
+}
+
+@Composable
+fun rememberActivityUtils(): ActivityUtils {
+    val context = LocalContext.current
+    return remember(context) {
+        ActivityUtils(context)
     }
 }

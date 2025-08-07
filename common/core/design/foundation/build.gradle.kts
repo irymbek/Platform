@@ -1,9 +1,6 @@
 plugins {
     alias(platformLibs.plugins.convention.library)
     alias(platformLibs.plugins.convention.library.compose)
-
-    //DI for snackbar
-    alias(platformLibs.plugins.dependency.koin)
 }
 
 android {
