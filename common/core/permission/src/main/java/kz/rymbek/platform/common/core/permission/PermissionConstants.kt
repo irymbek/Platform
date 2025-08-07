@@ -2,7 +2,6 @@ package kz.rymbek.platform.common.core.permission
 
 import android.Manifest
 import android.os.Build
-import androidx.annotation.RequiresApi
 
 object PermissionConstants {
     val STORAGE =
@@ -15,13 +14,17 @@ object PermissionConstants {
             emptyList()
         }
 
-    const val CAMERA = Manifest.permission.CAMERA
+    val CAMERA = listOf(Manifest.permission.CAMERA)
 
     val LOCATION = listOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.ACCESS_COARSE_LOCATION,
     )
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-    const val NOTIFICATIONS = Manifest.permission.POST_NOTIFICATIONS
+    val NOTIFICATIONS =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            listOf(Manifest.permission.POST_NOTIFICATIONS)
+        } else {
+            emptyList()
+        }
 }
