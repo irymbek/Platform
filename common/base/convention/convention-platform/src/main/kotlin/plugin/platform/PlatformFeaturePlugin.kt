@@ -19,7 +19,6 @@ class PlatformFeaturePlugin : Plugin<Project> {
                 implementation(":platform:common:base:model")
                 implementation(":platform:common:base:navigation")
 
-                implementation(":platform:common:core:activity")
                 implementation(":platform:common:core:architecture")
                 implementation(":platform:common:core:date")
                 implementation(":platform:common:core:design:compound")
