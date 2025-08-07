@@ -97,8 +97,9 @@ fun <T: Identifiable, KEY: Any> AppExposedDropdownMenuBox(
                 ),
             )
 
-            if (items.size < 10) {
-                SmallDropDownMenu(
+            when {
+                items.isEmpty() -> Unit
+                items.size < 10 -> SmallDropDownMenu(
                     expanded = expanded,
                     items = items,
                     selectedItemToString = itemLabel,
@@ -108,8 +109,7 @@ fun <T: Identifiable, KEY: Any> AppExposedDropdownMenuBox(
                         onItemSelected(it)
                     },
                 )
-            } else {
-                LargeDropDownMenuDialog(
+                else -> LargeDropDownMenuDialog(
                     items = items,
                     expanded = expanded,
                     selectedItemToString = itemLabel,
