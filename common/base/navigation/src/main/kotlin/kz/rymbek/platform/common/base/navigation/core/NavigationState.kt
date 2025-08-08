@@ -1,4 +1,4 @@
-package kz.rymbek.platform.common.base.navigation
+package kz.rymbek.platform.common.base.navigation.core
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember

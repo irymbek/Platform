@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.Newspaper
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.filled.Science
@@ -38,6 +39,7 @@ import androidx.compose.material.icons.outlined.History
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.LibraryAdd
 import androidx.compose.material.icons.outlined.LocationOn
+import androidx.compose.material.icons.outlined.Newspaper
 import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.PersonAdd
@@ -56,6 +58,9 @@ import androidx.compose.material.icons.outlined.VisibilityOff
 import androidx.compose.ui.graphics.vector.ImageVector
 
 object AppIcons {
+    val FilledNewspaper = Icons.Filled.Newspaper
+    val OutlinedNewspaper = Icons.Outlined.Newspaper
+
     val OutlinedSecurity = Icons.Outlined.Security
 
     val OutlinedPalette = Icons.Outlined.Palette
