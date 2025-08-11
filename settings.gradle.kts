@@ -32,6 +32,7 @@ dependencyResolutionManagement {
 rootProject.name = "Platform"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+/** BASE ========================================================================================**/
 include(":common:base:app")
 include(":common:base:converter")
 include(":common:base:data")
@@ -41,10 +42,10 @@ include(":common:base:feature")
 include(":common:base:model")
 include(":common:base:network")
 include(":common:base:work")
-/**==============================================================================================**/
+/** BUSINESS ====================================================================================**/
 include(":common:business:converter")
 include(":common:business:model")
-/**==============================================================================================**/
+/** CORE ========================================================================================**/
 include(":common:core:architecture")
 include(":common:core:design:compound")
 include(":common:core:design:foundation")
