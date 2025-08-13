@@ -12,6 +12,7 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.resources.Resources
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
+import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
@@ -74,11 +75,13 @@ object KtorHttpClientHelper {
     fun HttpClientConfig<*>.installDefaultRequest(
         hostNetwork: String,
         urlProtocol: URLProtocol = URLProtocol.HTTPS,
+        block: URLBuilder.() -> Unit = {}
     ) {
         install(DefaultRequest) {
             host = hostNetwork
             url {
                 protocol = urlProtocol
+                block()
             }
             contentType(ContentType.Application.Json)
         }

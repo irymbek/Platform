@@ -18,6 +18,7 @@ googleMlkit = "17.3.0"
 googleServicesLocation = "21.3.0"
 koin = "4.1.0"
 koinAnnotations = "2.1.0"
+komm = "0.25.0"
 kotlin = "2.2.0"
 kotlinxDatetime = "0.7.1"
 kotlinxSerialization = "1.9.0"
@@ -79,7 +80,7 @@ coil-network-ktor3 = { group = "io.coil-kt.coil3", name = "coil-network-ktor3" }
 coil-video = { group = "io.coil-kt.coil3", name = "coil-video" }
 
 com-google-accompanist-permissions = { group = "com.google.accompanist", name ="accompanist-permissions", version.ref = "googleAccompanist" }
-com-google-mlkit-barcode-scanning = { module = "com.google.mlkit:barcode-scanning", version.ref = "googleMlkit" }
+com-google-mlkit-barcode-scanning = { group = "com.google.mlkit", name = "barcode-scanning", version.ref = "googleMlkit" }
 com-google-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "googleServicesLocation" }
 
 koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
@@ -90,6 +91,9 @@ koin-androidx-workmanager = { group = "io.insert-koin", name = "koin-androidx-wo
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 koin-annotations = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koinAnnotations" }
 koin-ksp-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koinAnnotations" }
+
+komm-annotations = { module = "com.ucasoft.komm:komm-annotations", version.ref = "komm" }
+komm-processor   = { module = "com.ucasoft.komm:komm-processor", version.ref = "komm" }
 
 ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
