@@ -15,8 +15,8 @@ class SettingsThemeViewModel(
     private val baseNavigatorInterface: BaseNavigatorInterface,
     private val appRepositoryInterface: AppRepositoryInterface,
 ) : BaseViewModel<SettingsThemeUiState>(SettingsThemeUiState()) {
-    private fun handleNavigation(
-        event: SettingsThemeEvent.Navigation,
+    override fun handleNavigation(
+        event: IEvent.Navigation,
     ) {
         when (event) {
             is SettingsThemeEvent.Navigation.Back -> {
@@ -25,8 +25,8 @@ class SettingsThemeViewModel(
         }
     }
 
-    private fun handleAction(
-        event: SettingsThemeEvent.Action,
+    override fun handleAction(
+        event: IEvent.Action,
     ) {
         when (event) {
             is SettingsThemeEvent.Action.UpdateThemeBrand -> {
@@ -35,13 +35,6 @@ class SettingsThemeViewModel(
             is SettingsThemeEvent.Action.UpdateModeConfig -> {
                 updateModeConfig(modeConfig = event.modeConfig)
             }
-        }
-    }
-
-    override fun onEvent(event: IEvent) {
-        when (event) {
-            is SettingsThemeEvent.Navigation -> handleNavigation(event = event)
-            is SettingsThemeEvent.Action -> handleAction(event = event)
         }
     }
 

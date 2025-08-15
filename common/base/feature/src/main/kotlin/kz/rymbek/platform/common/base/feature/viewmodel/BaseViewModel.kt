@@ -63,9 +63,9 @@ abstract class BaseViewModel<State : Any>(
         }
     }
 
-    protected abstract fun handleUpdate(event: IEvent.Update)
+    protected open fun handleUpdate(event: IEvent.Update) {}
 
-    protected abstract fun handleAction(event: IEvent.Action)
+    protected open fun handleAction(event: IEvent.Action) {}
 
     protected open fun handleNavigation(event: IEvent.Navigation) {
         viewModelScope.launch {
