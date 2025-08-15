@@ -43,17 +43,11 @@ class SettingsThemeViewModel(
     }
 
     private fun getSettings() {
-        viewModelScopeCustom {
-            appRepositoryInterface
-                .getSettings()
-                .collect {
-                    updateState {
-                        copy(
-                            appData = it
-                        )
-                    }
-                }
-        }
+        appRepositoryInterface
+            .getSettings()
+            .collectIntoState {
+                copy(appData = it)
+            }
     }
 
     private fun updateThemeBrand(appThemeBrand: AppThemeBrand) {

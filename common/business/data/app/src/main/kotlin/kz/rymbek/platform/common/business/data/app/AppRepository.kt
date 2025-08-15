@@ -12,8 +12,16 @@ import org.koin.core.annotation.Single
 internal class AppRepository(
     private val appDataStoreInterface: AppDataStoreInterface,
 ) : AppRepositoryInterface {
-    override suspend fun getSettings(): Flow<AppData> {
+    override fun getSettings(): Flow<AppData> {
         return appDataStoreInterface.getSettings()
+    }
+
+    override fun getThemeBrand(): Flow<AppThemeBrand> {
+        return appDataStoreInterface.getThemeBrand()
+    }
+
+    override fun getModeConfig(): Flow<ModeConfig> {
+        return appDataStoreInterface.getModeConfig()
     }
 
     override suspend fun setThemeBrand(appThemeBrand: AppThemeBrand) {
@@ -22,13 +30,5 @@ internal class AppRepository(
 
     override suspend fun setModeConfig(modeConfig: ModeConfig) {
         appDataStoreInterface.setModeConfig(modeConfig = modeConfig)
-    }
-
-    override suspend fun getThemeBrand(): Flow<AppThemeBrand> {
-        return appDataStoreInterface.getThemeBrand()
-    }
-
-    override suspend fun getModeConfig(): Flow<ModeConfig> {
-        return appDataStoreInterface.getModeConfig()
     }
 }

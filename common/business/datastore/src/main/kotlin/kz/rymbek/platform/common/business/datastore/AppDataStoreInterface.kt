@@ -6,7 +6,7 @@ import kz.rymbek.platform.common.business.model.enums.design.ModeConfig
 import kz.rymbek.platform.common.business.model.models.AppData
 
 interface AppDataStoreInterface {
-    suspend fun getSettings(): Flow<AppData>
+    fun getSettings(): Flow<AppData>
 
     fun getThemeBrand(): Flow<AppThemeBrand>
     suspend fun setThemeBrand(appThemeBrand: AppThemeBrand)

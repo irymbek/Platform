@@ -6,13 +6,13 @@ import kz.rymbek.platform.common.business.model.enums.design.ModeConfig
 import kz.rymbek.platform.common.business.model.models.AppData
 
 interface AppRepositoryInterface {
-    suspend fun getSettings(): Flow<AppData>
+    fun getSettings(): Flow<AppData>
+
+    fun getThemeBrand(): Flow<AppThemeBrand>
+
+    fun getModeConfig(): Flow<ModeConfig>
 
     suspend fun setThemeBrand(appThemeBrand: AppThemeBrand)
 
     suspend fun setModeConfig(modeConfig: ModeConfig)
-
-    suspend fun getThemeBrand(): Flow<AppThemeBrand>
-
-    suspend fun getModeConfig(): Flow<ModeConfig>
 }

@@ -14,7 +14,7 @@ internal class AppDataStore(
     context: Context,
 ) : BaseDataStore(context, DataStoreConstants.APP_DATA_STORE_NAME),
     AppDataStoreInterface {
-    override suspend fun getSettings(): Flow<AppData> {
+    override fun getSettings(): Flow<AppData> {
         return combine(
             getModeConfig(),
             getThemeBrand(),

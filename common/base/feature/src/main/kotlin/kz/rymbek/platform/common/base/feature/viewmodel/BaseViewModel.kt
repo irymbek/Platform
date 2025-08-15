@@ -14,6 +14,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -53,6 +55,14 @@ abstract class BaseViewModel<State : Any>(
             .let { data ->
                 updateStateAction(data)
             }
+    }
+
+    protected fun <T> Flow<T>.collectIntoState(
+        reducer: State.(T) -> State
+    ) {
+        onEach { value ->
+            updateState { reducer(value) }
+        }.launchIn(viewModelScope)
     }
 
     open fun onEvent(event: IEvent) {
