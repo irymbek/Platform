@@ -18,6 +18,14 @@ abstract class BaseDataStore(
 
     val dataStore = context.dataStore
 
+    inline fun <reified T : Any> getValueOrNull(
+        key: Preferences.Key<T>,
+    ): Flow<T?> {
+        return dataStore.data.map { preferences ->
+            preferences[key]
+        }
+    }
+
     suspend fun <T : Enum<T>> saveValue(key: Preferences.Key<String>, value: T) {
         dataStore.edit { preferences -> preferences[key] = value.name }
     }
