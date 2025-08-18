@@ -94,6 +94,7 @@ koin-ksp-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", vers
 
 komm-annotations = { module = "com.ucasoft.komm:komm-annotations", version.ref = "komm" }
 komm-processor   = { module = "com.ucasoft.komm:komm-processor", version.ref = "komm" }
+komm-plugins-enum   = { module = "com.ucasoft.komm:komm-plugins-enum", version.ref = "komm" }
 
 ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }

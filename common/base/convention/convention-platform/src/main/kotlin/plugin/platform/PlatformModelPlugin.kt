@@ -30,6 +30,7 @@ class PlatformModelPlugin: Plugin<Project> {
 
                 implementation(platformLibs.komm.annotations)
                 ksp(platformLibs.komm.processor)
+                ksp(platformLibs.komm.plugins.enum)
             }
         }
     }
