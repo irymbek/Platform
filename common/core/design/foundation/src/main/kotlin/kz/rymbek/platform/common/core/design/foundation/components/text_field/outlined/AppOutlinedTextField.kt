@@ -35,7 +35,10 @@ fun AppOutlinedTextField(
     isError: Boolean = false,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardType: KeyboardType = KeyboardType.Text,
-    //keyboardController: SoftwareKeyboardController? = LocalSoftwareKeyboardController.current,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+        .copy(
+            keyboardType = keyboardType,
+        ),
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     singleLine: Boolean = true,
     maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
@@ -67,9 +70,7 @@ fun AppOutlinedTextField(
         supportingText = supportingText,
         isError = isError,
         visualTransformation = visualTransformation,
-        keyboardOptions = KeyboardOptions.Default.copy(
-            keyboardType = keyboardType
-        ),
+        keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,
         singleLine = singleLine,
         maxLines = maxLines,
