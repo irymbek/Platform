@@ -7,6 +7,9 @@ import androidx.paging.PagingSource
 import androidx.paging.map
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kz.rymbek.platform.common.base.pagination.BaseRemoteMediator
+import kz.rymbek.platform.common.base.pagination.PaginationKeyStorage
+import kz.rymbek.platform.common.base.pagination.PagingUtils
 
 abstract class BaseRepository {
     protected fun <Entity: Any , Ui: Any> getPagedData(
@@ -31,5 +34,27 @@ abstract class BaseRepository {
                 item -> mapToUi(item)
             }
         }
+    }
+
+    protected fun <Local : Any, Remote : Any, Ui: Any> getPagedDataCombined(
+        paginationType: String,
+        fetchFromNetwork: suspend (Int, Int) -> List<Remote>,
+        pagingSourceFactory: () -> PagingSource<Int, Local>,
+        keyStorage: PaginationKeyStorage,
+        mapToUi: (Local) -> Ui,
+        saveData: suspend (List<Remote>) -> Unit,
+        deleteData: suspend () -> Unit,
+    ): Flow<PagingData<Ui>> {
+        return Pager(
+            config = PagingUtils.createPagingConfig(),
+            remoteMediator = BaseRemoteMediator(
+                paginationType = paginationType,
+                keyStorage = keyStorage,
+                fetchFromNetwork = fetchFromNetwork,
+                saveData = saveData,
+                deleteData = deleteData,
+            ),
+            pagingSourceFactory = pagingSourceFactory
+        ).flow.map { it.map(mapToUi) }
     }
 }

@@ -8,16 +8,11 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 class BaseRemoteMediator<Response : Any, Local : Any>(
+    private val paginationType: String,
+    private val keyStorage: PaginationKeyStorage,
     private val fetchFromNetwork: suspend (Int, Int) -> List<Response>,
     private val saveData: suspend (List<Response>) -> Unit,
     private val deleteData: suspend () -> Unit = {},
-    private val keyStorage: PaginationKeyStorage,
-    private val paginationType: String,
-    private val nextKeyExtractor: (
-        response: List<Response>,
-        page: Int,
-        pageSize: Int,
-    ) -> Int?,
 ) : RemoteMediator<Int, Local>() {
     override suspend fun load(
         loadType: LoadType,
@@ -28,11 +23,7 @@ class BaseRemoteMediator<Response : Any, Local : Any>(
 
             val response = fetchFromNetwork(page, state.config.pageSize)
 
-            val key = nextKeyExtractor(
-                response,
-                page,
-                state.config.pageSize
-            )
+            val key = if (response.isNotEmpty()) page else null
 
             keyStorage.upsert(paginationType, currentKey = key)
 

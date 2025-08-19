@@ -7,5 +7,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.platform.common.base.pagination)
+
     implementation(platformLibs.androidx.paging.common)
 }
