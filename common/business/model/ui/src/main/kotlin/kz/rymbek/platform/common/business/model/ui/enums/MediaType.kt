@@ -1,4 +1,4 @@
-package kz.rymbek.platform.common.business.model.enums
+package kz.rymbek.platform.common.business.model.ui.enums
 
 enum class MediaType(
     val prefix: String,

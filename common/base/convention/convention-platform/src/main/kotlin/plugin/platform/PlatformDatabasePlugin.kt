@@ -22,6 +22,7 @@ class PlatformDatabasePlugin : Plugin<Project> {
                 implementation(":platform:common:core:architecture")
 
                 implementation(":platform:common:business:converter")
+                implementation(":platform:common:business:model:cache")
                 /**==============================================================================**/
                 implementation(platformLibs.kotlinx.datetime)
             }

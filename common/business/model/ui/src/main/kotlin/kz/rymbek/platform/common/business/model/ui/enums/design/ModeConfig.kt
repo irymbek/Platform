@@ -1,4 +1,4 @@
-package kz.rymbek.platform.common.business.model.enums.design
+package kz.rymbek.platform.common.business.model.ui.enums.design
 
 import kz.rymbek.platform.common.base.model.interfaces.Filterable
 

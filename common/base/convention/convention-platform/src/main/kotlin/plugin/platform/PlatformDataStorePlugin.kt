@@ -18,7 +18,7 @@ class PlatformDataStorePlugin : Plugin<Project> {
             val modules = setOf(
                 "common:base:datastore",
                 "common:base:model",
-                "common:business:model",
+                "common:business:model:ui",
             )
             val paths = contextPrefix(
                 modules

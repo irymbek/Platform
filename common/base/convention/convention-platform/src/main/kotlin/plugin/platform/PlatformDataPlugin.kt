@@ -21,7 +21,7 @@ class PlatformDataPlugin : Plugin<Project> {
                 "common:base:model",
                 "common:core:architecture",
                 "common:core:date",
-                "common:business:model",
+                "common:business:model:ui",
             )
             val paths = contextPrefix(
                 modules

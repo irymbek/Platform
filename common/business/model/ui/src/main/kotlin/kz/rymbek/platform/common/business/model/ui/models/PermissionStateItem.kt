@@ -1,4 +1,4 @@
-package kz.rymbek.platform.common.business.model.models
+package kz.rymbek.platform.common.business.model.ui.models
 
 import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 

@@ -23,7 +23,7 @@ class PlatformFeaturePlugin : Plugin<Project> {
                 implementation(":platform:common:core:date")
                 implementation(":platform:common:core:design:compound")
 
-                implementation(":platform:common:business:model")
+                implementation(":platform:common:business:model:ui")
                 /**==============================================================================**/
                 // koinViewModel
                 implementation(platformLibs.koin.androidx.compose)

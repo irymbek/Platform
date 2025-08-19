@@ -23,7 +23,7 @@ class PlatformNetworkPlugin: Plugin<Project> {
 
                 implementation(":platform:common:core:architecture")
 
-                implementation(":platform:common:business:model")
+                implementation(":platform:common:business:model:ui")
                 /**==============================================================================**/
                 implementation(platformLibs.kotlinx.datetime)
 
