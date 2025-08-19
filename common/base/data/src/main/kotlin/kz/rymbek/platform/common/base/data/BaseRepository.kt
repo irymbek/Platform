@@ -36,7 +36,7 @@ abstract class BaseRepository {
         }
     }
 
-    protected fun <Local : Any, Remote : Any, Ui: Any> getPagedDataCombined(
+    protected fun <Local : Any, Remote : Any, Ui: Any> getPagedCombined(
         paginationType: String,
         fetchFromNetwork: suspend (Int, Int) -> List<Remote>,
         pagingSourceFactory: () -> PagingSource<Int, Local>,
