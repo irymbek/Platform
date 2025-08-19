@@ -30,9 +30,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
-import kz.rymbek.platform.common.business.model.enums.design.AppThemeBrand
-import kz.rymbek.platform.common.business.model.enums.design.ModeConfig
-import kz.rymbek.platform.common.business.model.models.AppData
+import kz.rymbek.platform.common.business.model.ui.enums.design.AppThemeBrand
+import kz.rymbek.platform.common.business.model.ui.enums.design.ModeConfig
+import kz.rymbek.platform.common.business.model.ui.models.AppData
 import kz.rymbek.platform.common.core.design.foundation.components.button.segmented.AppSingleChoiceSegmentedButtonRow
 import kz.rymbek.platform.common.core.design.foundation.components.card.AppFilledCard
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn

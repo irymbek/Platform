@@ -4,9 +4,9 @@ import android.content.Context
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kz.rymbek.platform.common.base.datastore.BaseDataStore
-import kz.rymbek.platform.common.business.model.enums.design.AppThemeBrand
-import kz.rymbek.platform.common.business.model.enums.design.ModeConfig
-import kz.rymbek.platform.common.business.model.models.AppData
+import kz.rymbek.platform.common.business.model.ui.enums.design.AppThemeBrand
+import kz.rymbek.platform.common.business.model.ui.enums.design.ModeConfig
+import kz.rymbek.platform.common.business.model.ui.models.AppData
 import org.koin.core.annotation.Single
 
 @Single

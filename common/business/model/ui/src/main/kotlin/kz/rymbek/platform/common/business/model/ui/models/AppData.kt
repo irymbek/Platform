@@ -1,7 +1,7 @@
 package kz.rymbek.platform.common.business.model.ui.models
 
-import kz.rymbek.platform.common.business.model.enums.design.AppThemeBrand
-import kz.rymbek.platform.common.business.model.enums.design.ModeConfig
+import kz.rymbek.platform.common.business.model.ui.enums.design.AppThemeBrand
+import kz.rymbek.platform.common.business.model.ui.enums.design.ModeConfig
 
 data class AppData(
     val appThemeBrand: AppThemeBrand = AppThemeBrand.DEFAULT,

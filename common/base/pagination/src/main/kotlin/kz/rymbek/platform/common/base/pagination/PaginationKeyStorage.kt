@@ -1,4 +1,4 @@
-package kz.aniliberty.project.platform.common.base.pagination
+package kz.rymbek.platform.common.base.pagination
 
 interface PaginationKeyStorage {
     suspend fun getKey(type: String): Int?

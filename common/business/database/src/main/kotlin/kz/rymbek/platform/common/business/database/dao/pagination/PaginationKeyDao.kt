@@ -1,5 +1,10 @@
 package kz.rymbek.platform.common.business.database.dao.pagination
 
+import androidx.room.Dao
+import androidx.room.Query
+import kz.rymbek.platform.common.base.database.BaseDao
+import kz.rymbek.platform.common.business.model.cache.pagination.PaginationKeyEntity
+
 @Dao
 interface PaginationKeyDao: BaseDao<PaginationKeyEntity> {
     @Query("SELECT currentKey FROM pagination_keys WHERE type = :type")

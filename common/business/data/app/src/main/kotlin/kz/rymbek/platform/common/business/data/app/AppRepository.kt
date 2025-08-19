@@ -3,9 +3,9 @@ package kz.rymbek.platform.common.business.data.app
 import kotlinx.coroutines.flow.Flow
 import kz.rymbek.platform.common.business.data.app.interfaces.AppRepositoryInterface
 import kz.rymbek.platform.common.business.datastore.AppDataStoreInterface
-import kz.rymbek.platform.common.business.model.enums.design.AppThemeBrand
-import kz.rymbek.platform.common.business.model.enums.design.ModeConfig
-import kz.rymbek.platform.common.business.model.models.AppData
+import kz.rymbek.platform.common.business.model.ui.enums.design.AppThemeBrand
+import kz.rymbek.platform.common.business.model.ui.enums.design.ModeConfig
+import kz.rymbek.platform.common.business.model.ui.models.AppData
 import org.koin.core.annotation.Single
 
 @Single

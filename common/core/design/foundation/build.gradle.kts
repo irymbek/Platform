@@ -13,7 +13,7 @@ dependencies {
     implementation(projects.platform.common.base.feature)
     implementation(projects.platform.common.core.date)
 
-    implementation(projects.platform.common.business.model)
+    implementation(projects.platform.common.business.model.ui)
 
     //Coil
     implementation(platform(platformLibs.coil.bom))

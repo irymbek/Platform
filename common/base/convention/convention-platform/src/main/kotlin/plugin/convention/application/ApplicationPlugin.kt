@@ -79,7 +79,7 @@ class ApplicationPlugin: Plugin<Project> {
                 implementation(":platform:common:base:navigation")
                 implementation(":platform:common:business:data:app")
                 implementation(":platform:common:business:datastore")
-                implementation(":platform:common:business:model")
+                implementation(":platform:common:business:model:ui")
                 implementation(":platform:common:core:architecture")
                 implementation(":platform:common:core:design:foundation")
                 implementation(":platform:common:feature:settings:theme")

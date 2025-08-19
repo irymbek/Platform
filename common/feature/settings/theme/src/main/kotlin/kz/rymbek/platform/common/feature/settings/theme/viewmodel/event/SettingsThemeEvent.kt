@@ -1,8 +1,8 @@
 package kz.rymbek.platform.common.feature.settings.theme.viewmodel.event
 
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
-import kz.rymbek.platform.common.business.model.enums.design.AppThemeBrand
-import kz.rymbek.platform.common.business.model.enums.design.ModeConfig
+import kz.rymbek.platform.common.business.model.ui.enums.design.AppThemeBrand
+import kz.rymbek.platform.common.business.model.ui.enums.design.ModeConfig
 
 sealed interface SettingsThemeEvent : IEvent {
     sealed interface Navigation : SettingsThemeEvent, IEvent.Navigation {

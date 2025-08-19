@@ -1,4 +1,4 @@
-package kz.aniliberty.project.platform.common.base.pagination
+package kz.rymbek.platform.common.base.pagination
 
 import android.util.Log
 import androidx.paging.LoadType
