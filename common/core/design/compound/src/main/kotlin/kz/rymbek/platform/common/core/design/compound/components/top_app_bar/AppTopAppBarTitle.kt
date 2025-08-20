@@ -1,9 +1,8 @@
-package kz.rymbek.platform.common.core.design.foundation.components.top_app_bar
+package kz.rymbek.platform.common.core.design.compound.components.top_app_bar
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
@@ -12,16 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import kz.rymbek.platform.common.core.design.foundation.components.button.icon.AppIconButton
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppMarqueeText
-import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
+import kz.rymbek.platform.common.core.design.foundation.components.top_app_bar.AppTopAppBar
 
 @Composable
-fun AppTopAppBarNavigation(
+fun AppTopAppBarTitle(
     modifier: Modifier = Modifier,
     title: String = "",
     backgroundColor: Color = Color.Unspecified,
-    onNavigationClick: () -> Unit = {},
+    navigationIcon: @Composable (() -> Unit) = {},
     actions: @Composable() (RowScope.() -> Unit) = {},
     expandedHeight: Dp = TopAppBarDefaults.TopAppBarExpandedHeight,
     windowInsets: WindowInsets = WindowInsets(0.dp),
@@ -30,7 +28,7 @@ fun AppTopAppBarNavigation(
     ),
     scrollBehavior: TopAppBarScrollBehavior? = null,
 ) {
-    TopAppBar(
+    AppTopAppBar(
         modifier = modifier,
         title = {
             AppMarqueeText(
@@ -38,14 +36,7 @@ fun AppTopAppBarNavigation(
                 style = MaterialTheme.typography.titleMedium,
             )
         },
-        navigationIcon = {
-            AppIconButton(
-                icon = AppIcons.FilledArrowBackIosNew,
-                onClick = {
-                    onNavigationClick()
-                },
-            )
-        },
+        navigationIcon = navigationIcon,
         actions = actions,
         expandedHeight = expandedHeight,
         windowInsets = windowInsets,
