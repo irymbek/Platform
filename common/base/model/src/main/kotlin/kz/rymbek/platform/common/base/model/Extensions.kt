@@ -2,6 +2,14 @@ package kz.rymbek.platform.common.base.model
 
 import java.math.BigDecimal
 
+const val HTTPS_PREFIX = "https://"
+
+fun String.asImageUrl(
+    host: String
+): String {
+    return "$HTTPS_PREFIX$host$this"
+}
+
 //Float
 fun String.toNullableFloat(): Float? {
     return this.replace(',', '.').toFloatOrNull()
