@@ -113,7 +113,6 @@ kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", vers
 okio = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
 
 orbit-core = { module = "org.orbit-mvi:orbit-core", version.ref = "orbit" }
-orbit-viewmodel = { module = "org.orbit-mvi:orbit-viewmodel", version.ref = "orbit" }
 orbit-compose = { module = "org.orbit-mvi:orbit-compose", version.ref = "orbit" }
 orbit-test = { module = "org.orbit-mvi:orbit-test", version.ref = "orbit" }
 

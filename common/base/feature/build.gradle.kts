@@ -9,6 +9,7 @@ android {
 dependencies {
     //viewModel support
     implementation(platformLibs.androidx.lifecycle.viewmodelKtx)
+    implementation(platformLibs.orbit.core)
 
     //PagingData
     implementation(platformLibs.androidx.paging.common)

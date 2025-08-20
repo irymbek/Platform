@@ -1,27 +1,6 @@
 package kz.rymbek.platform.common.base.feature.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.CoroutineStart
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
-import kz.rymbek.platform.common.base.feature.architecture.IEvent
-
-abstract class BaseViewModel<State : Any>(
+/*abstract class BaseViewModel<State : Any>(
     initialState: State,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(initialState)
@@ -82,4 +61,4 @@ abstract class BaseViewModel<State : Any>(
             _navigation.send(event)
         }
     }
-}
+}*/
