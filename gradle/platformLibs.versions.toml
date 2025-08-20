@@ -26,6 +26,7 @@ kotlinxCoroutines = "1.10.2"
 ksp = "2.2.10-2.0.2"
 ktor = "3.2.3"
 okio = "3.16.0"
+orbit = "10.0.0"
 
 compileSdk = "36"
 targetSdk = "36"
@@ -110,6 +111,11 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
 
 okio = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
+
+orbit-core = { module = "org.orbit-mvi:orbit-core", version.ref = "orbit" }
+orbit-viewmodel = { module = "org.orbit-mvi:orbit-viewmodel", version.ref = "orbit" }
+orbit-compose = { module = "org.orbit-mvi:orbit-compose", version.ref = "orbit" }
+orbit-test = { module = "org.orbit-mvi:orbit-test", version.ref = "orbit" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
