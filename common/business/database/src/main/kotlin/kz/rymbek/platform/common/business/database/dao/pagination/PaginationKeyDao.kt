@@ -7,7 +7,7 @@ import kz.rymbek.platform.common.business.model.cache.pagination.PaginationKeyEn
 
 @Dao
 interface PaginationKeyDao: BaseDao<PaginationKeyEntity> {
-    @Query("SELECT currentKey FROM pagination_keys WHERE type = :type")
+    @Query("SELECT nextKey FROM pagination_keys WHERE type = :type")
     suspend fun getKey(type: String): Int?
 
     @Query("SELECT created FROM pagination_keys WHERE type = :type ORDER BY created DESC LIMIT 1")

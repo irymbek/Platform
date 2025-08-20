@@ -8,6 +8,6 @@ import androidx.room.Entity
 )
 data class PaginationKeyEntity(
     val type: String,
-    val currentKey: Int?,
+    val nextKey: Int?,
     val created: Long = System.currentTimeMillis(),
 )

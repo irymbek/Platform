@@ -23,9 +23,11 @@ class BaseRemoteMediator<Response : Any, Local : Any>(
 
             val response = fetchFromNetwork(page, state.config.pageSize)
 
-            val key = if (response.isNotEmpty()) page else null
+            val nextKey = if (response.isNotEmpty()) page + 1 else null
 
-            keyStorage.upsert(paginationType, currentKey = key)
+            if (response.isNotEmpty()) page + 1 else null
+
+            keyStorage.upsert(paginationType, nextKey = nextKey)
 
             saveData(response)
 
