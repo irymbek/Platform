@@ -9,4 +9,8 @@ sealed interface SettingsThemeEvent : IEvent {
         data class UpdateThemeBrand(val appThemeBrand: AppThemeBrand) : Action
         data class UpdateModeConfig(val modeConfig: ModeConfig) : Action
     }
+
+    sealed interface Navigation : SettingsThemeEvent, IEvent.Navigation {
+        data object Back: Navigation
+    }
 }

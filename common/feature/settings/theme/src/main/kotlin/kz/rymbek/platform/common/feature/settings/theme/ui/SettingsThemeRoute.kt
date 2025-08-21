@@ -3,7 +3,7 @@ package kz.rymbek.platform.common.feature.settings.theme.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.SettingsThemeViewModel
-import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeSideEffect
+import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeEvent
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
@@ -13,9 +13,9 @@ fun SettingsThemeRoute(
     onBackNavigate: () -> Unit,
     viewModel: SettingsThemeViewModel = koinViewModel(),
 ) {
-    viewModel.collectSideEffect { sideEffect ->
-        when (sideEffect) {
-            SettingsThemeSideEffect.Navigation.Back -> onBackNavigate()
+    viewModel.collectSideEffect {
+        when (it) {
+            SettingsThemeEvent.Navigation.Back -> onBackNavigate()
         }
     }
 

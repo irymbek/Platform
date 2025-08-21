@@ -6,14 +6,13 @@ import kz.rymbek.platform.common.business.data.app.interfaces.AppRepositoryInter
 import kz.rymbek.platform.common.business.model.ui.enums.design.AppThemeBrand
 import kz.rymbek.platform.common.business.model.ui.enums.design.ModeConfig
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeEvent
-import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeSideEffect
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeUiState
 import org.koin.android.annotation.KoinViewModel
 
 @KoinViewModel
 class SettingsThemeViewModel(
     private val appRepositoryInterface: AppRepositoryInterface,
-) : OrbitViewModel<SettingsThemeUiState, SettingsThemeSideEffect>(SettingsThemeUiState()) {
+) : OrbitViewModel<SettingsThemeUiState, SettingsThemeEvent.Navigation>(SettingsThemeUiState()) {
     override fun handleAction(
         event: IEvent.Action,
     ) {
