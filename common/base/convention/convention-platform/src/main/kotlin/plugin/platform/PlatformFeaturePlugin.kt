@@ -13,6 +13,7 @@ class PlatformFeaturePlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.convention.library)
             applyPlugin(platformLibs.plugins.convention.library.compose)
             applyPlugin(platformLibs.plugins.dependency.koin)
+            applyPlugin(platformLibs.plugins.dependency.serialization)
 
             dependencies {
                 implementation(":platform:common:base:feature")
