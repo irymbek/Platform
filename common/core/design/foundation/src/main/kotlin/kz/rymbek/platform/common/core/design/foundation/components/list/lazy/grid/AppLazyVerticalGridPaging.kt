@@ -4,10 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemKey
-import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 
 @Composable
-fun <T : Identifiable<*>> AppLazyVerticalGridPaging(
+fun <T : Any> AppLazyVerticalGridPaging(
     modifier: Modifier = Modifier,
     items: LazyPagingItems<T>,
     content: @Composable (index: Int, item: T) -> Unit,
