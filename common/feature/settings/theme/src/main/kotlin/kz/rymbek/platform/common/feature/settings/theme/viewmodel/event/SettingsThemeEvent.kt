@@ -1,4 +1,4 @@
-package kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract
+package kz.rymbek.platform.common.feature.settings.theme.viewmodel.event
 
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
 import kz.rymbek.platform.common.business.model.ui.enums.design.AppThemeBrand

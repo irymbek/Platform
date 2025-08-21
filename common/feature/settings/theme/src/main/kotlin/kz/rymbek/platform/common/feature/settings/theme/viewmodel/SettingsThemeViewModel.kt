@@ -5,8 +5,8 @@ import kz.rymbek.platform.common.base.feature.viewmodel.OrbitViewModel
 import kz.rymbek.platform.common.business.data.app.interfaces.AppRepositoryInterface
 import kz.rymbek.platform.common.business.model.ui.enums.design.AppThemeBrand
 import kz.rymbek.platform.common.business.model.ui.enums.design.ModeConfig
-import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeEvent
-import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeUiState
+import kz.rymbek.platform.common.feature.settings.theme.viewmodel.event.SettingsThemeEvent
+import kz.rymbek.platform.common.feature.settings.theme.viewmodel.state.SettingsThemeUiState
 import org.koin.android.annotation.KoinViewModel
 
 @KoinViewModel
