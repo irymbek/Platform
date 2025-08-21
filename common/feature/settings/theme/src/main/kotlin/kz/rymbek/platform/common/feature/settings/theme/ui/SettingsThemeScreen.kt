@@ -10,8 +10,8 @@ import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.cen
 import kz.rymbek.platform.common.core.design.foundation.components.button.icon.AppIconButton
 import kz.rymbek.platform.common.core.design.foundation.components.scaffold.AppScaffold
 import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
-import kz.rymbek.platform.common.feature.settings.theme.viewmodel.event.SettingsThemeEvent
-import kz.rymbek.platform.common.feature.settings.theme.viewmodel.state.SettingsThemeUiState
+import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeSideEffect
+import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeUiState
 
 @Composable
 internal fun SettingsThemeScreen(
@@ -26,7 +26,7 @@ internal fun SettingsThemeScreen(
                     AppIconButton(
                         icon = AppIcons.FilledArrowBackIosNew,
                         onClick = {
-                            onEvent(SettingsThemeEvent.Navigation.Back)
+                            onEvent(SettingsThemeSideEffect.Navigation.Back)
                         },
                     )
                 },

@@ -1,30 +1,19 @@
 package kz.rymbek.platform.common.feature.settings.theme.viewmodel
 
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
-import kz.rymbek.platform.common.base.feature.viewmodel.BaseViewModel
-import kz.rymbek.platform.common.base.navigation.core.BaseNavigatorInterface
+import kz.rymbek.platform.common.base.feature.viewmodel.OrbitViewModel
 import kz.rymbek.platform.common.business.data.app.interfaces.AppRepositoryInterface
 import kz.rymbek.platform.common.business.model.ui.enums.design.AppThemeBrand
 import kz.rymbek.platform.common.business.model.ui.enums.design.ModeConfig
-import kz.rymbek.platform.common.feature.settings.theme.viewmodel.event.SettingsThemeEvent
-import kz.rymbek.platform.common.feature.settings.theme.viewmodel.state.SettingsThemeUiState
+import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeEvent
+import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeSideEffect
+import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeUiState
 import org.koin.android.annotation.KoinViewModel
 
 @KoinViewModel
 class SettingsThemeViewModel(
-    private val baseNavigatorInterface: BaseNavigatorInterface,
     private val appRepositoryInterface: AppRepositoryInterface,
-) : BaseViewModel<SettingsThemeUiState>(SettingsThemeUiState()) {
-    override fun handleNavigation(
-        event: IEvent.Navigation,
-    ) {
-        when (event) {
-            is SettingsThemeEvent.Navigation.Back -> {
-                baseNavigatorInterface.navigateBack()
-            }
-        }
-    }
-
+) : OrbitViewModel<SettingsThemeUiState, SettingsThemeSideEffect>(SettingsThemeUiState()) {
     override fun handleAction(
         event: IEvent.Action,
     ) {
@@ -42,23 +31,19 @@ class SettingsThemeViewModel(
         getSettings()
     }
 
-    private fun getSettings() {
+    private fun getSettings() = intent {
         appRepositoryInterface
             .getSettings()
-            .collectIntoState {
-                copy(appData = it)
+            .collect { settings ->
+                reduce { state.copy(appData = settings) }
             }
     }
 
-    private fun updateThemeBrand(appThemeBrand: AppThemeBrand) {
-        viewModelScopeCustom {
-            appRepositoryInterface.setThemeBrand(appThemeBrand)
-        }
+    private fun updateThemeBrand(appThemeBrand: AppThemeBrand) = intent {
+        appRepositoryInterface.setThemeBrand(appThemeBrand)
     }
 
-    private fun updateModeConfig(modeConfig: ModeConfig) {
-        viewModelScopeCustom {
-            appRepositoryInterface.setModeConfig(modeConfig)
-        }
+    private fun updateModeConfig(modeConfig: ModeConfig) = intent {
+        appRepositoryInterface.setModeConfig(modeConfig)
     }
 }

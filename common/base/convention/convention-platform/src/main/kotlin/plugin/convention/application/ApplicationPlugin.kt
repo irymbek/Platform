@@ -97,6 +97,8 @@ class ApplicationPlugin: Plugin<Project> {
                 // Navigation
                 implementation(platformLibs.androidx.navigation.compose)
 
+                implementation(platformLibs.orbit.compose)
+
                 // DI
                 implementation(platformLibs.koin.android)
                 implementation(platformLibs.koin.androidx.compose)

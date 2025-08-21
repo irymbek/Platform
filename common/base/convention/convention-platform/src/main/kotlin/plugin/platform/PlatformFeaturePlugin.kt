@@ -33,6 +33,8 @@ class PlatformFeaturePlugin : Plugin<Project> {
 
                 //toRoute()
                 implementation(platformLibs.androidx.navigation.compose)
+
+                implementation(platformLibs.orbit.compose)
             }
         }
     }

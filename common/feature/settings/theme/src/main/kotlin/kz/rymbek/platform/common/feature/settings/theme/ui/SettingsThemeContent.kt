@@ -42,8 +42,8 @@ import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
 import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
 import kz.rymbek.platform.common.core.design.foundation.theme.AppTheme
-import kz.rymbek.platform.common.feature.settings.theme.viewmodel.event.SettingsThemeEvent
-import kz.rymbek.platform.common.feature.settings.theme.viewmodel.state.SettingsThemeUiState
+import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeEvent
+import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeUiState
 
 @Composable
 internal fun SettingsThemeContent(

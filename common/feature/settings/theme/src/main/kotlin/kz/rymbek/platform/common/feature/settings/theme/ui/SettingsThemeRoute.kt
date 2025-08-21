@@ -2,17 +2,26 @@ package kz.rymbek.platform.common.feature.settings.theme.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.SettingsThemeViewModel
+import kz.rymbek.platform.common.feature.settings.theme.viewmodel.contract.SettingsThemeSideEffect
 import org.koin.androidx.compose.koinViewModel
+import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Composable
 fun SettingsThemeRoute(
-    settingsThemeViewModel: SettingsThemeViewModel = koinViewModel(),
+    onBackNavigate: () -> Unit,
+    viewModel: SettingsThemeViewModel = koinViewModel(),
 ) {
-    val uiState by settingsThemeViewModel.uiState.collectAsStateWithLifecycle()
+    viewModel.collectSideEffect { sideEffect ->
+        when (sideEffect) {
+            SettingsThemeSideEffect.Navigation.Back -> onBackNavigate()
+        }
+    }
+
+    val uiState by viewModel.collectAsState()
     SettingsThemeScreen(
         uiState = uiState,
-        onEvent = settingsThemeViewModel::onEvent
+        onEvent = viewModel::onEvent
     )
 }
