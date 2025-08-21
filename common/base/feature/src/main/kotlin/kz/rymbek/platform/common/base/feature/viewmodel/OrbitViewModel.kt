@@ -7,6 +7,7 @@ import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.Flow
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
 import org.orbitmvi.orbit.ContainerHost
+import org.orbitmvi.orbit.annotation.OrbitInternal
 import org.orbitmvi.orbit.container
 
 abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : Any>(
@@ -18,12 +19,20 @@ abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : Any>(
         when (event) {
             is IEvent.Action -> handleAction(event)
             is IEvent.Update -> handleUpdate(event)
+            is IEvent.Navigation -> handleNavigation(event)
         }
     }
 
     protected open fun handleUpdate(event: IEvent.Update) {}
 
     protected open fun handleAction(event: IEvent.Action) {}
+
+    @OptIn(OrbitInternal::class)
+    protected open fun handleNavigation(event: IEvent.Navigation) {
+        container.orbit {
+            postSideEffect(event as SIDE_EFFECT)
+        }
+    }
 
     protected inline fun <T : Any, R> Flow<PagingData<T>>.cachedInVmLet(
         action: (Flow<PagingData<T>>) -> R
