@@ -6,14 +6,14 @@ import androidx.compose.material3.ExposedDropdownMenuBoxScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
-import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 import kz.rymbek.platform.common.core.design.foundation.components.divider.AppHorizontalDivider
 import kz.rymbek.platform.common.core.design.foundation.components.drop_down_menu.exposed.AppDropdownMenuItem
 import kz.rymbek.platform.common.core.design.foundation.components.drop_down_menu.exposed.AppExposedDropDownMenu
+import kz.rymbek.platform.common.core.design.foundation.components.list.statical.AppStaticColumn
 import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
 
 @Composable
-fun <T: Identifiable> ExposedDropdownMenuBoxScope.SmallDropDownMenu(
+fun <T: Any> ExposedDropdownMenuBoxScope.SmallDropDownMenu(
     modifier: Modifier = Modifier,
     items: List<T>,
     expanded: MutableState<Boolean>,
@@ -30,23 +30,26 @@ fun <T: Identifiable> ExposedDropdownMenuBoxScope.SmallDropDownMenu(
             expanded.value = false
         },
         content = {
-            items.forEachIndexed { index, item ->
-                AppDropdownMenuItem(
-                    text = selectedItemToString(item),
-                    trailingIconUri = selectedItemToImage(item),
-                    onClick = {
-                        onSelectItem(item)
-                    },
-                )
-
-                if(index != items.lastIndex) {
-                    AppHorizontalDivider(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = Dimensions.defaultPaddingDp)
+            AppStaticColumn(
+                items = items,
+                content = { index, item ->
+                    AppDropdownMenuItem(
+                        text = selectedItemToString(item),
+                        trailingIconUri = selectedItemToImage(item),
+                        onClick = {
+                            onSelectItem(item)
+                        },
                     )
+
+                    if(index != items.lastIndex) {
+                        AppHorizontalDivider(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = Dimensions.defaultPaddingDp)
+                        )
+                    }
                 }
-            }
+            )
         }
     )
 }

@@ -11,14 +11,12 @@ import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
 
 @Composable
-fun <T: Identifiable> AppLazyVerticalGridItem(
+fun <T: Any> AppLazyVerticalGridItem(
     modifier: Modifier = Modifier,
     columns: GridCells = GridCells.Fixed(3),
-    items: List<T>,
     state: LazyGridState = rememberLazyGridState(),
     contentPadding: PaddingValues = PaddingValues(Dimensions.elementPaddingDp),
     reverseLayout: Boolean = false,
@@ -26,6 +24,8 @@ fun <T: Identifiable> AppLazyVerticalGridItem(
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(Dimensions.elementPaddingDp),
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,
+    keySelector: ((Int, T) -> Any)?,
+    items: List<T>,
     content: @Composable (LazyGridItemScope.(index: Int, item: T) -> Unit),
 ) {
     AppLazyVerticalGrid(
@@ -41,9 +41,7 @@ fun <T: Identifiable> AppLazyVerticalGridItem(
         content = {
             itemsIndexed(
                 items = items,
-                key = { _, item ->
-                    item.id
-                }
+                key = keySelector,
             ) { index, item ->
                 content(index, item)
             }

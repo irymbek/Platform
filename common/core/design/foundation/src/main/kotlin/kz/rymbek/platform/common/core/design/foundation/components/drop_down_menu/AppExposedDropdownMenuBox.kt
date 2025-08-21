@@ -13,16 +13,16 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 import kz.rymbek.platform.common.core.design.foundation.components.drop_down_menu.large.LargeDropDownMenuDialog
 import kz.rymbek.platform.common.core.design.foundation.components.drop_down_menu.small.SmallDropDownMenu
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.components.text_field.regular.AppTextField
 
 @Composable
-fun <T: Identifiable> AppExposedDropdownMenuBox(
+fun <T: Any> AppExposedDropdownMenuBox(
     label: String,
     items: List<T>,
+    keySelector: ((Int, T) -> Any)?,
     onItemSelected: (
         item: T,
     ) -> Unit,
@@ -34,9 +34,9 @@ fun <T: Identifiable> AppExposedDropdownMenuBox(
     AppExposedDropdownMenuBox(
         label = label,
         items = items,
-        itemKey = { it.id },
         itemLabel = itemLabel,
         selectedKey = null,
+        keySelector = keySelector,
         onItemSelected = onItemSelected,
         modifier = modifier,
         itemImage = itemImage,
@@ -45,12 +45,12 @@ fun <T: Identifiable> AppExposedDropdownMenuBox(
 }
 
 @Composable
-fun <T: Identifiable, KEY: Any> AppExposedDropdownMenuBox(
+fun <T: Any, KEY: Any> AppExposedDropdownMenuBox(
     label: String,
     items: List<T>,
     itemLabel: (T) -> String,
-    itemKey: (T) -> KEY,
     selectedKey: KEY?,
+    keySelector: ((Int, T) -> Any)?,
     onItemSelected: (
         item: T,
     ) -> Unit,
@@ -61,7 +61,11 @@ fun <T: Identifiable, KEY: Any> AppExposedDropdownMenuBox(
     val expanded = rememberSaveable { mutableStateOf(false) }
 
     var selectedItem by remember(items, selectedKey) {
-        mutableStateOf(items.firstOrNull { itemKey(it) == selectedKey })
+        mutableStateOf(
+            items.withIndex()
+                .firstOrNull { (i, item) -> keySelector?.invoke(i, item) == selectedKey }
+                ?.value
+        )
     }
 
     ExposedDropdownMenuBox(
@@ -114,6 +118,7 @@ fun <T: Identifiable, KEY: Any> AppExposedDropdownMenuBox(
                     expanded = expanded,
                     selectedItemToString = itemLabel,
                     selectedItemToImage = itemImage,
+                    keySelector = keySelector,
                     onSelectItem = {
                         expanded.value = false
                         onItemSelected(it)

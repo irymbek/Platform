@@ -12,10 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 
 @Composable
-fun <T: Identifiable> AppLazyRowItem(
+fun <T: Any> AppLazyRowItem(
+    keySelector: ((Int, T) -> Any)?,
     items: List<T>,
     content: @Composable (LazyItemScope.(index: Int, item: T) -> Unit),
     modifier: Modifier = Modifier,
@@ -39,9 +39,7 @@ fun <T: Identifiable> AppLazyRowItem(
         content = {
             itemsIndexed(
                 items = items,
-                key = { _, item ->
-                    item.id
-                },
+                key = keySelector,
                 itemContent = { index, item ->
                     content(index, item)
                 }

@@ -10,20 +10,19 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import kz.rymbek.platform.common.base.model.interfaces.Expandable
-import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.column.AppLazyColumn
 
 @Composable
-fun <CHILD : Identifiable, PARENT> AppExpandableLazyColumn(
+fun <PARENT, CHILD> AppExpandableLazyColumn(
     items: List<PARENT>,
     modifier: Modifier = Modifier,
-    content: @Composable (index: Int, item: CHILD) -> Unit,
-) where PARENT : Expandable<CHILD>, PARENT : Identifiable {
+    parentKey: (PARENT) -> Any,
+    childKey: (CHILD) -> Any,
+    content: @Composable (parentIndex: Int, child: CHILD) -> Unit,
+    header: @Composable (parent: PARENT, isExpanded: Boolean, onClick: () -> Unit) -> Unit
+) where PARENT : Expandable<CHILD> {
 
-    // Сохраняем состояние свёрнутости по ID
-    val expandedState = remember {
-        mutableStateMapOf<Any, Boolean>()
-    }
+    val expandedState = remember { mutableStateMapOf<Any, Boolean>() }
 
     AppLazyColumn(
         modifier = modifier
@@ -36,30 +35,26 @@ fun <CHILD : Identifiable, PARENT> AppExpandableLazyColumn(
             ),
         verticalArrangement = Arrangement.Top,
         content = {
-            items.forEachIndexed { index, item ->
-                val isExpanded = expandedState[item.id] == true
+            items.forEachIndexed { index, parent ->
+                val parentId = parentKey(parent)
+                val isExpanded = expandedState[parentId] == true
 
                 item(
-                    key = "parent_${item.id}",
-                    content = {
-                        ExpandableHeader(
-                            title = item.title,
-                            collapsed = isExpanded,
-                            onClick = {
-                                expandedState[item.id] = !isExpanded
-                            }
-                        )
-                    }
-                )
+                    key = "parent_$parentId"
+                ) {
+                    header(
+                        parent,
+                        isExpanded
+                    ) { expandedState[parentId] = !isExpanded }
+                }
 
                 if (isExpanded) {
                     items(
-                        count = item.items.size,
-                        key = { childIndex -> "child_${item.items[childIndex].id}" },
-                        itemContent = { childIndex ->
-                            content(index, item.items[childIndex])
-                        }
-                    )
+                        count = parent.items.size,
+                        key = { childIndex -> "child_${childKey(parent.items[childIndex])}" }
+                    ) { childIndex ->
+                        content(index, parent.items[childIndex])
+                    }
                 }
             }
         }

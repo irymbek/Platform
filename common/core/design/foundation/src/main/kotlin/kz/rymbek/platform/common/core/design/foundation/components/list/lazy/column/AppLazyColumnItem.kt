@@ -12,12 +12,12 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
 
 @Composable
-fun <T: Identifiable> AppLazyColumnItem(
+fun <T> AppLazyColumnItem(
     items: List<T>,
+    keySelector: ((Int, T) -> Any)?,
     content: @Composable (LazyItemScope.(index: Int, item: T) -> Unit),
     modifier: Modifier = Modifier,
     headerContent: LazyListScope.() -> Unit = {},
@@ -43,9 +43,7 @@ fun <T: Identifiable> AppLazyColumnItem(
             headerContent()
             itemsIndexed(
                 items = items,
-                key = { _, item ->
-                    item.id
-                },
+                key = keySelector,
                 itemContent = { index, item ->
                     content(index, item)
                 }

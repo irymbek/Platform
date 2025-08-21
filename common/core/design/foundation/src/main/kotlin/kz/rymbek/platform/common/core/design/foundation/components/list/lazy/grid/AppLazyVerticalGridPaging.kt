@@ -7,24 +7,21 @@ import androidx.paging.compose.itemKey
 import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 
 @Composable
-fun <T : Identifiable> AppLazyVerticalGridPaging(
+fun <T : Identifiable<*>> AppLazyVerticalGridPaging(
     modifier: Modifier = Modifier,
     items: LazyPagingItems<T>,
     content: @Composable (index: Int, item: T) -> Unit,
+    keySelector: ((T) -> Any)?,
 ) {
     AppLazyVerticalGrid(
         modifier = modifier,
         content = {
             items(
                 count = items.itemCount,
-                key = items.itemKey { it.id },
+                key = items.itemKey(keySelector),
                 itemContent = { index ->
-                    items[index]?.let {
-                        content(
-                            index,
-                            it
-                        )
-                    }
+                    val item = items[index] ?: return@items
+                    content(index, item)
                 }
             )
         }

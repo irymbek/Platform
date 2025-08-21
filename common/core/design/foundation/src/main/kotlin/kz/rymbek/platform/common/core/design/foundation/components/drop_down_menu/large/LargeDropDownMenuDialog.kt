@@ -15,7 +15,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
-import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 import kz.rymbek.platform.common.core.design.foundation.components.card.AppFilledCard
 import kz.rymbek.platform.common.core.design.foundation.components.dialog.AppDialog
 import kz.rymbek.platform.common.core.design.foundation.components.divider.AppHorizontalDivider
@@ -27,11 +26,12 @@ import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
 import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
 
 @Composable
-fun <T: Identifiable> LargeDropDownMenuDialog(
+fun <T: Any> LargeDropDownMenuDialog(
     expanded: MutableState<Boolean>,
     items: List<T>,
     selectedItemToString: (T) -> String,
-    selectedItemToImage: (T) -> Any? = { null },
+    selectedItemToImage: (T) -> Any?,
+    keySelector: ((Int, T) -> Any)?,
     onSelectItem: (item: T) -> Unit,
 ) {
     var searchQuery by rememberSaveable { mutableStateOf("") }
@@ -70,6 +70,7 @@ fun <T: Identifiable> LargeDropDownMenuDialog(
                         items = filteredItems,
                         contentPadding = PaddingValues(0.dp),
                         verticalArrangement = Arrangement.Center,
+                        keySelector = keySelector,
                         content = { index, item ->
                             AppDropdownMenuItem(
                                 text = selectedItemToString(item),

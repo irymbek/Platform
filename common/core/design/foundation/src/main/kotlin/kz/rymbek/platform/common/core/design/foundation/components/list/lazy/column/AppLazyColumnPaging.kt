@@ -5,12 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemKey
-import kz.rymbek.platform.common.base.model.interfaces.Identifiable
 
 @Composable
-fun <T : Identifiable> AppLazyColumnPaging(
+fun <T : Any> AppLazyColumnPaging(
     modifier: Modifier = Modifier,
     items: LazyPagingItems<T>,
+    keySelector: ((T) -> Any)?,
     content: @Composable (
         index: Int,
         item: T,
@@ -28,14 +28,10 @@ fun <T : Identifiable> AppLazyColumnPaging(
 
             items(
                 count = items.itemCount,
-                key = items.itemKey { it.id },
+                key = items.itemKey(keySelector),
                 itemContent = { index ->
-                    items[index]?.let {
-                        content(
-                            index,
-                            it
-                        )
-                    }
+                    val item = items[index] ?: return@items
+                    content(index, item)
                 }
             )
         }
