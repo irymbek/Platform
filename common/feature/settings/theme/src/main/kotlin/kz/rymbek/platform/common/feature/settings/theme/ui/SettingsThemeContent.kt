@@ -80,6 +80,12 @@ internal fun SettingsThemeContent(
                 selectedIndex = uiState.appData.modeConfig.ordinal,
                 onItemSelected = { item ->
                     onEvent(SettingsThemeEvent.Action.UpdateModeConfig(modeConfig = item))
+                },
+                label = {
+                    AppText(
+                        text = it.label,
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
                 }
             )
 
