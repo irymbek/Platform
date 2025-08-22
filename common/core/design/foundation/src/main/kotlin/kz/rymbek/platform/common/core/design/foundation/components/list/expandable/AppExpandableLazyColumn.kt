@@ -5,24 +5,24 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateMapOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import kz.rymbek.platform.common.base.model.interfaces.Expandable
 import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.column.AppLazyColumn
 
 @Composable
 fun <PARENT, CHILD> AppExpandableLazyColumn(
-    items: List<PARENT>,
+    parentList: List<PARENT>,
+    childList: (PARENT) -> List<CHILD>,
     modifier: Modifier = Modifier,
     parentKey: (PARENT) -> Any,
     childKey: (CHILD) -> Any,
     content: @Composable (parentIndex: Int, child: CHILD) -> Unit,
     header: @Composable (parent: PARENT, isExpanded: Boolean, onClick: () -> Unit) -> Unit
-) where PARENT : Expandable<CHILD> {
-
-    val expandedState = remember { mutableStateMapOf<Any, Boolean>() }
+) {
+    val expandedState = rememberSaveable { mutableStateMapOf<Any, Boolean>() }
 
     AppLazyColumn(
         modifier = modifier
@@ -35,7 +35,7 @@ fun <PARENT, CHILD> AppExpandableLazyColumn(
             ),
         verticalArrangement = Arrangement.Top,
         content = {
-            items.forEachIndexed { index, parent ->
+            parentList.forEachIndexed { index, parent ->
                 val parentId = parentKey(parent)
                 val isExpanded = expandedState[parentId] == true
 
@@ -49,12 +49,16 @@ fun <PARENT, CHILD> AppExpandableLazyColumn(
                 }
 
                 if (isExpanded) {
+                    val children = childList(parent)
                     items(
-                        count = parent.items.size,
-                        key = { childIndex -> "child_${childKey(parent.items[childIndex])}" }
-                    ) { childIndex ->
-                        content(index, parent.items[childIndex])
-                    }
+                        items = children,
+                        key = {
+                            "child_${childKey(it)}"
+                        },
+                        itemContent = {
+                            content(index, it)
+                        }
+                    )
                 }
             }
         }
