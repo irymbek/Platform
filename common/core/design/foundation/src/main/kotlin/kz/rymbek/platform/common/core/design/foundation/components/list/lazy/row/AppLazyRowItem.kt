@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun <T: Any> AppLazyRowItem(
-    keySelector: ((Int, T) -> Any)?,
+    key: ((Int, T) -> Any)?,
     items: List<T>,
     content: @Composable (LazyItemScope.(index: Int, item: T) -> Unit),
     modifier: Modifier = Modifier,
@@ -39,7 +39,7 @@ fun <T: Any> AppLazyRowItem(
         content = {
             itemsIndexed(
                 items = items,
-                key = keySelector,
+                key = key,
                 itemContent = { index, item ->
                     content(index, item)
                 }

@@ -70,7 +70,7 @@ fun <T: Any> LargeDropDownMenuDialog(
                         items = filteredItems,
                         contentPadding = PaddingValues(0.dp),
                         verticalArrangement = Arrangement.Center,
-                        keySelector = keySelector,
+                        key = keySelector,
                         content = { index, item ->
                             AppDropdownMenuItem(
                                 text = selectedItemToString(item),

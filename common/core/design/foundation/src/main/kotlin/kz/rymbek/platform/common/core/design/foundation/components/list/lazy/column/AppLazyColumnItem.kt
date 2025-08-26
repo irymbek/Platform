@@ -17,7 +17,7 @@ import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
 @Composable
 fun <T> AppLazyColumnItem(
     items: List<T>,
-    keySelector: ((Int, T) -> Any)?,
+    key: ((Int, T) -> Any)?,
     content: @Composable (LazyItemScope.(index: Int, item: T) -> Unit),
     modifier: Modifier = Modifier,
     headerContent: LazyListScope.() -> Unit = {},
@@ -43,7 +43,7 @@ fun <T> AppLazyColumnItem(
             headerContent()
             itemsIndexed(
                 items = items,
-                key = keySelector,
+                key = key,
                 itemContent = { index, item ->
                     content(index, item)
                 }

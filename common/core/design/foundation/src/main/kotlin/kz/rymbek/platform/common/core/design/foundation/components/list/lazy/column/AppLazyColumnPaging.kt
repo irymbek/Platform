@@ -10,7 +10,7 @@ import androidx.paging.compose.itemKey
 fun <T : Any> AppLazyColumnPaging(
     modifier: Modifier = Modifier,
     items: LazyPagingItems<T>,
-    keySelector: ((T) -> Any)?,
+    key: ((T) -> Any)?,
     content: @Composable (
         index: Int,
         item: T,
@@ -28,7 +28,7 @@ fun <T : Any> AppLazyColumnPaging(
 
             items(
                 count = items.itemCount,
-                key = items.itemKey(keySelector),
+                key = items.itemKey(key),
                 itemContent = { index ->
                     val item = items[index] ?: return@items
                     content(index, item)

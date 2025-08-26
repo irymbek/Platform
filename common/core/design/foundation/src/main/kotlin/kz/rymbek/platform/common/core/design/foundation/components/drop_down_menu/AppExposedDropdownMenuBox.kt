@@ -22,7 +22,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.text_field.re
 fun <T: Any> AppExposedDropdownMenuBox(
     label: String,
     items: List<T>,
-    keySelector: ((Int, T) -> Any)?,
+    itemKey: ((Int, T) -> Any)?,
     onItemSelected: (
         item: T,
     ) -> Unit,
@@ -36,7 +36,7 @@ fun <T: Any> AppExposedDropdownMenuBox(
         items = items,
         itemLabel = itemLabel,
         selectedKey = null,
-        keySelector = keySelector,
+        itemKey = itemKey,
         onItemSelected = onItemSelected,
         modifier = modifier,
         itemImage = itemImage,
@@ -48,9 +48,9 @@ fun <T: Any> AppExposedDropdownMenuBox(
 fun <T: Any, KEY: Any> AppExposedDropdownMenuBox(
     label: String,
     items: List<T>,
-    itemLabel: (T) -> String,
     selectedKey: KEY?,
-    keySelector: ((Int, T) -> Any)?,
+    itemLabel: (T) -> String,
+    itemKey: ((Int, T) -> Any)?,
     onItemSelected: (
         item: T,
     ) -> Unit,
@@ -63,7 +63,7 @@ fun <T: Any, KEY: Any> AppExposedDropdownMenuBox(
     var selectedItem by remember(items, selectedKey) {
         mutableStateOf(
             items.withIndex()
-                .firstOrNull { (i, item) -> keySelector?.invoke(i, item) == selectedKey }
+                .firstOrNull { (i, item) -> itemKey?.invoke(i, item) == selectedKey }
                 ?.value
         )
     }
@@ -118,7 +118,7 @@ fun <T: Any, KEY: Any> AppExposedDropdownMenuBox(
                     expanded = expanded,
                     selectedItemToString = itemLabel,
                     selectedItemToImage = itemImage,
-                    keySelector = keySelector,
+                    keySelector = itemKey,
                     onSelectItem = {
                         expanded.value = false
                         onItemSelected(it)

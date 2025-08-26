@@ -24,7 +24,7 @@ fun <T: Any> AppLazyVerticalGridItem(
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(Dimensions.elementPaddingDp),
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,
-    keySelector: ((Int, T) -> Any)?,
+    key: ((Int, T) -> Any)?,
     items: List<T>,
     content: @Composable (LazyGridItemScope.(index: Int, item: T) -> Unit),
 ) {
@@ -41,7 +41,7 @@ fun <T: Any> AppLazyVerticalGridItem(
         content = {
             itemsIndexed(
                 items = items,
-                key = keySelector,
+                key = key,
             ) { index, item ->
                 content(index, item)
             }

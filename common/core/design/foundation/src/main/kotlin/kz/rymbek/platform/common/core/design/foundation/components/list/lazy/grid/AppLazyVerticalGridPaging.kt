@@ -10,14 +10,14 @@ fun <T : Any> AppLazyVerticalGridPaging(
     modifier: Modifier = Modifier,
     items: LazyPagingItems<T>,
     content: @Composable (index: Int, item: T) -> Unit,
-    keySelector: ((T) -> Any)?,
+    key: ((T) -> Any)?,
 ) {
     AppLazyVerticalGrid(
         modifier = modifier,
         content = {
             items(
                 count = items.itemCount,
-                key = items.itemKey(keySelector),
+                key = items.itemKey(key = key),
                 itemContent = { index ->
                     val item = items[index] ?: return@items
                     content(index, item)

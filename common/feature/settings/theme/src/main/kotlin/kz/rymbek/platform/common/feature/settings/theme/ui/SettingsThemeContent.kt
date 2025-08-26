@@ -94,7 +94,7 @@ internal fun SettingsThemeContent(
                 horizontalArrangement = Arrangement.spacedBy(Dimensions.defaultPaddingDp),
                 items = uiState.appThemeBrand,
                 contentPadding = PaddingValues(horizontal = Dimensions.defaultPaddingDp),
-                keySelector = { _, item ->
+                key = { _, item ->
                     item.title
                 },
                 content = { index, appThemeBrand ->
