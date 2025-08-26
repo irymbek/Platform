@@ -20,11 +20,11 @@ fun NavController.navigateToSettingsTheme(
 }
 
 fun NavGraphBuilder.settingsThemeScreen(
-    onBackNavigate: () -> Unit,
+    onNavigateBack: () -> Unit,
 ) {
     composable<SettingsThemeRoute> {
         SettingsThemeRoute(
-            onBackNavigate = onBackNavigate,
+            onNavigateBack = onNavigateBack,
         )
     }
 }

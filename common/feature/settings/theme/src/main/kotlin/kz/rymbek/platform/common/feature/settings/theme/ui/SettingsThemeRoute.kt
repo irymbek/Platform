@@ -10,12 +10,12 @@ import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Composable
 fun SettingsThemeRoute(
-    onBackNavigate: () -> Unit,
+    onNavigateBack: () -> Unit,
     viewModel: SettingsThemeViewModel = koinViewModel(),
 ) {
     viewModel.collectSideEffect {
         when (it) {
-            SettingsThemeEvent.Navigation.Back -> onBackNavigate()
+            SettingsThemeEvent.Navigation.Back -> onNavigateBack()
         }
     }
 
