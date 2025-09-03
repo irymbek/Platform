@@ -1,6 +1,6 @@
 [versions]
 activityCompose = "1.10.1"
-androidGradlePlugin = "8.12.2"
+androidGradlePlugin = "8.13.0"
 androidxCamera = "1.4.2"
 androidxCoreKtx = "1.17.0"
 androidxCoreSplashscreen = "1.0.1"
