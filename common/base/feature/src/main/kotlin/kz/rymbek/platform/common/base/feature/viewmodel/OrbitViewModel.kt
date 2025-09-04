@@ -27,7 +27,11 @@ abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : IEvent.Navigation>(
 
     protected open fun handleAction(event: IEvent.Action) = Unit
 
-    protected open fun handleNavigation(event: IEvent.Navigation) = Unit
+    protected open fun handleNavigation(event: IEvent.Navigation) {
+        intent {
+            postSideEffect(event as SIDE_EFFECT)
+        }
+    }
 
     protected inline fun <T : Any, R> Flow<PagingData<T>>.cachedInVm(
         action: (Flow<PagingData<T>>) -> R
