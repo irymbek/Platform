@@ -14,7 +14,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.button.regula
 
 @Composable
 internal fun AppDatePickerDialogCommon(
-    isShow: MutableState<Boolean>,
+    isVisible: MutableState<Boolean>,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = DatePickerDefaults.shape,
@@ -23,18 +23,18 @@ internal fun AppDatePickerDialogCommon(
     properties: DialogProperties = DialogProperties(usePlatformDefaultWidth = false),
     content: @Composable ColumnScope.() -> Unit
 ) {
-    if (isShow.value) {
+    if (isVisible.value) {
         DatePickerDialog(
             modifier = modifier,
             onDismissRequest = {
-                isShow.value = false
+                isVisible.value = false
             },
             confirmButton = {
                 AppTextButton(
                     text = "ОК",
                     onClick = {
                         onClick()
-                        isShow.value = false
+                        isVisible.value = false
                     },
                 )
             },
@@ -42,7 +42,7 @@ internal fun AppDatePickerDialogCommon(
                 AppTextButton(
                     text = "Отмена",
                     onClick = {
-                        isShow.value = false
+                        isVisible.value = false
                     },
                 )
             },

@@ -23,7 +23,7 @@ fun AppDateRangePickerDialog(
     properties: DialogProperties = DialogProperties(usePlatformDefaultWidth = false),
 ) {
     AppDatePickerDialogCommon(
-        isShow = isShow,
+        isVisible = isShow,
         modifier = modifier,
         shape = shape,
         tonalElevation = tonalElevation,

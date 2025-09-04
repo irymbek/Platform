@@ -39,7 +39,17 @@ abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : Any>(
         action: (Flow<PagingData<T>>) -> R
     ): R = action(this.cachedIn(viewModelScope))
 
-    protected fun updateState(update: (STATE) -> STATE) = blockingIntent {
-        reduce { update(state) }
+    protected inline fun updateState(crossinline update: STATE.() -> STATE) = intent {
+        reduce { state.update() }
+    }
+
+    protected inline fun updateStateBlocking(crossinline update: STATE.() -> STATE) = blockingIntent {
+        reduce { state.update() }
+    }
+
+    protected inline fun STATE.update(
+        crossinline block: STATE.() -> STATE
+    ) = blockingIntent {
+        reduce { block(this@update) }
     }
 }

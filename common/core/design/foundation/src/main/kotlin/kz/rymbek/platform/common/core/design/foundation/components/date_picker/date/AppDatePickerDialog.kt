@@ -13,7 +13,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.date_picker.c
 
 @Composable
 fun AppDatePickerDialog(
-    isShow: MutableState<Boolean>,
+    isVisible: MutableState<Boolean>,
     onDateSelected: (Long?) -> Unit,
     modifier: Modifier = Modifier,
     datePickerState: DatePickerState = rememberDatePickerStateCustom(),
@@ -23,7 +23,7 @@ fun AppDatePickerDialog(
     properties: DialogProperties = DialogProperties(usePlatformDefaultWidth = false),
 ) {
     AppDatePickerDialogCommon(
-        isShow = isShow,
+        isVisible = isVisible,
         modifier = modifier,
         shape = shape,
         tonalElevation = tonalElevation,
