@@ -7,11 +7,10 @@ import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.Flow
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
 import org.orbitmvi.orbit.ContainerHost
-import org.orbitmvi.orbit.annotation.OrbitInternal
 import org.orbitmvi.orbit.blockingIntent
 import org.orbitmvi.orbit.container
 
-abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : Any>(
+abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : IEvent.Navigation>(
     initialState: STATE
 ) : ContainerHost<STATE, SIDE_EFFECT>, ViewModel() {
     override val container = viewModelScope.container<STATE, SIDE_EFFECT>(initialState)
@@ -24,18 +23,13 @@ abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : Any>(
         }
     }
 
-    protected open fun handleUpdate(event: IEvent.Update) {}
+    protected open fun handleUpdate(event: IEvent.Update) = Unit
 
-    protected open fun handleAction(event: IEvent.Action) {}
+    protected open fun handleAction(event: IEvent.Action) = Unit
 
-    @OptIn(OrbitInternal::class)
-    protected open fun handleNavigation(event: IEvent.Navigation) {
-        container.orbit {
-            postSideEffect(event as SIDE_EFFECT)
-        }
-    }
+    protected open fun handleNavigation(event: IEvent.Navigation) = Unit
 
-    protected inline fun <T : Any, R> Flow<PagingData<T>>.cachedInVmLet(
+    protected inline fun <T : Any, R> Flow<PagingData<T>>.cachedInVm(
         action: (Flow<PagingData<T>>) -> R
     ): R = action(this.cachedIn(viewModelScope))
 
@@ -45,11 +39,5 @@ abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : Any>(
 
     protected inline fun updateStateBlocking(crossinline update: STATE.() -> STATE) = blockingIntent {
         reduce { state.update() }
-    }
-
-    protected inline fun STATE.update(
-        crossinline block: STATE.() -> STATE
-    ) = blockingIntent {
-        reduce { block(this@update) }
     }
 }
