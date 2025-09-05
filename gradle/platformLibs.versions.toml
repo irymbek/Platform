@@ -25,6 +25,7 @@ kotlinxSerialization = "1.9.0"
 kotlinxCoroutines = "1.10.2"
 ksp = "2.2.10-2.0.2"
 ktor = "3.2.3"
+konform = "0.11.1"
 okio = "3.16.0"
 orbit = "10.0.0"
 
@@ -109,6 +110,8 @@ kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime",
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 
 kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
+
+konform-jvm = { group = "io.konform", name = "konform-jvm", version.ref = "konform" }
 
 okio = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
 

@@ -7,13 +7,12 @@ android {
 }
 
 dependencies {
+    implementation(projects.platform.common.core.validation)
+
     //viewModel support
     implementation(platformLibs.androidx.lifecycle.viewmodelKtx)
     implementation(platformLibs.orbit.core)
 
     //PagingData
     implementation(platformLibs.androidx.paging.common)
-
-    //rememberLauncherForActivityResult
-    implementation(platformLibs.androidx.activity.compose)
 }
