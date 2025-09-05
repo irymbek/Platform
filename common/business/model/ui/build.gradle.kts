@@ -1,5 +1,5 @@
 plugins {
-    alias(platformLibs.plugins.module.platform.model)
+    alias(platformLibs.plugins.module.platform.model.ui)
 }
 
 android {

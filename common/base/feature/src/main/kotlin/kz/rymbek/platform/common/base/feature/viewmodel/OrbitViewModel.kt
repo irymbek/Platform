@@ -44,4 +44,14 @@ abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : IEvent.Navigation>(
     protected inline fun updateStateBlocking(crossinline update: STATE.() -> STATE) = blockingIntent {
         reduce { state.update() }
     }
+
+    /*protected suspend fun <STATE : Any, SIDE_EFFECT : IEvent.Navigation> Syntax<STATE, SIDE_EFFECT>.validation(
+        validator: Validator<STATE>,
+        onSuccess: suspend Syntax<STATE, SIDE_EFFECT>.() -> Unit
+    ) {
+        validator.validate(state) {
+            onSuccess { onSuccess() }
+            onError { reduce { state.copy(errors = it) } }
+        }
+    }*/
 }

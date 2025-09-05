@@ -109,10 +109,25 @@ gradlePlugin {
             id = platformLibs.plugins.module.platform.navigation.get().pluginId
             implementationClass = "plugin.platform.PlatformNavigationPlugin"
         }
-        register("PlatformModelPlugin") {
-            id = platformLibs.plugins.module.platform.model.get().pluginId
-            implementationClass = "plugin.platform.PlatformModelPlugin"
+
+        /** Model **/
+        register("PlatformModelBasePlugin") {
+            id = platformLibs.plugins.module.platform.model.base.get().pluginId
+            implementationClass = "plugin.platform.model.PlatformModelBasePlugin"
         }
+        register("PlatformModelCachePlugin") {
+            id = platformLibs.plugins.module.platform.model.cache.get().pluginId
+            implementationClass = "plugin.platform.model.PlatformModelCachePlugin"
+        }
+        register("PlatformModelRemotePlugin") {
+            id = platformLibs.plugins.module.platform.model.remote.get().pluginId
+            implementationClass = "plugin.platform.model.PlatformModelRemotePlugin"
+        }
+        register("PlatformModelUiPlugin") {
+            id = platformLibs.plugins.module.platform.model.ui.get().pluginId
+            implementationClass = "plugin.platform.model.PlatformModelUiPlugin"
+        }
+
         register("PlatformNetworkPlugin") {
             id = platformLibs.plugins.module.platform.network.get().pluginId
             implementationClass = "plugin.platform.PlatformNetworkPlugin"
