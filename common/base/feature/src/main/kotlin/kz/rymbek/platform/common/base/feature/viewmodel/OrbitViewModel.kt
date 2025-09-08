@@ -48,17 +48,20 @@ abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : IEvent.Navigation>(
         reduce { state.update() }
     }
 
-    protected fun <T : Validatable<T>> validation(
-        modelProvider: STATE.() -> T,
+    protected open fun validation(
+        onValid: suspend Syntax<STATE, SIDE_EFFECT>.() -> Unit
+    ) = Unit
+
+    protected suspend fun <T : Validatable<T>> Syntax<STATE, SIDE_EFFECT>.validation(
+        model: T,
         copyErrors: STATE.(List<ValidationError>) -> STATE,
         onValid: suspend Syntax<STATE, SIDE_EFFECT>.() -> Unit
-    ) = intent {
-        val model = state.modelProvider()
+    )  {
         val result = model.validator(model)
         if (result.errors.isNotEmpty()) {
             reduce { state.copyErrors(result.errors) }
-            return@intent
+        } else {
+            onValid()
         }
-        onValid()
     }
 }

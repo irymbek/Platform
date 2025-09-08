@@ -1,4 +1,4 @@
-package kz.rymbek.platform.common.base.model
+package kz.rymbek.platform.common.base.model.utils
 
 import java.math.BigDecimal
 
