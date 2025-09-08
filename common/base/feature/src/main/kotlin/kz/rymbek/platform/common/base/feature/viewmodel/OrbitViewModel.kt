@@ -4,15 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import io.konform.validation.ValidationError
 import kotlinx.coroutines.flow.Flow
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
-import kz.rymbek.platform.common.core.validation.ValidateState
-import kz.rymbek.platform.common.core.validation.util.ValidationResult
+import kz.rymbek.platform.common.base.model.interfaces.Validatable
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.blockingIntent
 import org.orbitmvi.orbit.container
 import org.orbitmvi.orbit.syntax.Syntax
-import kotlin.reflect.KProperty1
 
 abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : IEvent.Navigation>(
     initialState: STATE
@@ -49,29 +48,17 @@ abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : IEvent.Navigation>(
         reduce { state.update() }
     }
 
-    /**
-     * Удобная обёртка: вызывать из VM без ручного создания intent каждый раз.
-     * Возвращает Job (результат intent).
-     */
-    protected fun <T : Any> validationIntent(
-        validatorSelector: STATE.() -> ValidateState<T>,
-        targetSelector: STATE.() -> T,
-        onError: suspend Syntax<STATE, SIDE_EFFECT>.(Map<KProperty1<T, *>, String>) -> Unit = { /* no-op */ },
-        onSuccess: suspend Syntax<STATE, SIDE_EFFECT>.( ) -> Unit
+    protected fun <T : Validatable<T>> validation(
+        modelProvider: STATE.() -> T,
+        copyErrors: STATE.(List<ValidationError>) -> STATE,
+        onValid: suspend Syntax<STATE, SIDE_EFFECT>.() -> Unit
     ) = intent {
-        val validator = state.validatorSelector()
-        validation(validator, targetSelector, onError, onSuccess)
-    }
-
-    protected suspend fun <T : Any> Syntax<STATE, SIDE_EFFECT>.validation(
-        validator: ValidateState<T>,
-        targetSelector: STATE.() -> T,
-        onError: suspend Syntax<STATE, SIDE_EFFECT>.(Map<KProperty1<T, *>, String>) -> Unit = { /* no-op by default */ },
-        onSuccess: suspend Syntax<STATE, SIDE_EFFECT>.() -> Unit
-    ) {
-        when (val result = validator.validate(state.targetSelector())) {
-            is ValidationResult.Success -> onSuccess()
-            is ValidationResult.Error -> onError(result.errors)
+        val model = state.modelProvider()
+        val result = model.validator(model)
+        if (result.errors.isNotEmpty()) {
+            reduce { state.copyErrors(result.errors) }
+            return@intent
         }
+        onValid()
     }
 }

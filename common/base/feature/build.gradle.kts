@@ -7,7 +7,11 @@ android {
 }
 
 dependencies {
-    implementation(projects.platform.common.core.validation)
+    implementation(projects.platform.common.base.model)
+
+
+    implementation(platformLibs.konform.jvm)
+    //implementation(projects.platform.common.core.validation)
 
     //viewModel support
     implementation(platformLibs.androidx.lifecycle.viewmodelKtx)

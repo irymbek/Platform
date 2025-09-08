@@ -36,6 +36,9 @@ class PlatformFeaturePlugin : Plugin<Project> {
                 implementation(platformLibs.androidx.navigation.compose)
 
                 implementation(platformLibs.orbit.compose)
+
+                //validation
+                implementation(platformLibs.konform.jvm)
             }
         }
     }

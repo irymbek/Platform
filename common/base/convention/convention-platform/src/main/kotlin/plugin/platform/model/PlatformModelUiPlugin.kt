@@ -13,7 +13,7 @@ class PlatformModelUiPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.module.platform.model.base)
 
             dependencies {
-                implementation(":platform:common:core:validation")
+                implementation(platformLibs.konform.jvm)
             }
         }
     }

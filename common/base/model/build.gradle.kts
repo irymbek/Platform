@@ -5,3 +5,7 @@ plugins {
 android {
     namespace = "kz.rymbek.platform.common.base.model"
 }
+
+dependencies {
+    implementation(platformLibs.konform.jvm)
+}
