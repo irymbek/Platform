@@ -9,9 +9,9 @@ import androidx.compose.material3.SelectableChipElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
-import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
+import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
 
 @Composable
 fun AppElevatedFilterChip(

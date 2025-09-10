@@ -10,10 +10,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppBox
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
+import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
 import kz.rymbek.platform.common.core.design.foundation.theme.color.custom.colorSchemeCustom
 
 enum class CheckboxState {
