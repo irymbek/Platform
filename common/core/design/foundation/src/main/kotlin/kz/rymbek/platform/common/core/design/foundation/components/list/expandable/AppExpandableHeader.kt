@@ -17,7 +17,7 @@ import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
 @Composable
 fun ExpandableHeader(
     title: String,
-    collapsed: Boolean,
+    isExpanded: Boolean,
     onClick: () -> Unit,
 ) {
     AppRow(
@@ -30,7 +30,7 @@ fun ExpandableHeader(
             AppIcon(
                 modifier = Modifier
                     .size(Dimensions.iconMedium),
-                imageVector = if (collapsed) {
+                imageVector = if (isExpanded) {
                     AppIcons.FilledExpandLess
                 } else {
                     AppIcons.FilledExpandMore
