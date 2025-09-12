@@ -9,6 +9,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.platform.common.core.architecture)
     api(projects.platform.common.core.design.foundation)
 
     implementation(platformLibs.androidx.media3.exoplayer)
