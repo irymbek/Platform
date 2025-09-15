@@ -105,10 +105,6 @@ gradlePlugin {
             id = platformLibs.plugins.module.platform.feature.get().pluginId
             implementationClass = "plugin.platform.PlatformFeaturePlugin"
         }
-        register("PlatformNavigationPlugin") {
-            id = platformLibs.plugins.module.platform.navigation.get().pluginId
-            implementationClass = "plugin.platform.PlatformNavigationPlugin"
-        }
 
         /** Model **/
         register("PlatformModelBasePlugin") {

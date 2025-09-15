@@ -158,7 +158,6 @@ module-platform-data = { id = "module.platform.data" }
 module-platform-datastore = { id = "module.platform.datastore" }
 module-platform-domain = { id = "module.platform.domain" }
 module-platform-feature = { id = "module.platform.feature" }
-module-platform-navigation = { id = "module.platform.navigation" }
 module-platform-model-base = { id = "module.platform.model.base" }
 module-platform-model-cache = { id = "module.platform.model.cache" }
 module-platform-model-remote = { id = "module.platform.model.remote" }
