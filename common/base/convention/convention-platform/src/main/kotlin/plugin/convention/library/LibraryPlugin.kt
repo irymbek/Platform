@@ -22,11 +22,6 @@ class LibraryPlugin: Plugin<Project> {
                 testOptions.animationsDisabled = true
             }
 
-            /*extensions.configure<KspExtension> {
-                arg("KOIN_CONFIG_CHECK", "true")
-                arg("KOIN_DEFAULT_MODULE", "true")
-            }*/
-
             extensions.configure<LibraryAndroidComponentsExtension> {
                 disableAllTests()
             }
