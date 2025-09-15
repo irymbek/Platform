@@ -9,7 +9,7 @@ import org.koin.core.annotation.Single
 @Single(
     binds = [BaseNavigatorInterface::class]
 )
-class BaseNavigator(): BaseNavigatorInterface {
+internal class BaseNavigator(): BaseNavigatorInterface {
     private lateinit var navHostController: NavHostController
 
     override fun setNavController(navHostController: NavHostController) {
