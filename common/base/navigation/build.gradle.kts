@@ -1,7 +1,6 @@
 plugins {
     alias(platformLibs.plugins.convention.library)
     alias(platformLibs.plugins.convention.library.compose)
-    alias(platformLibs.plugins.dependency.koin)
 }
 
 android {
