@@ -2,7 +2,6 @@ package plugin.convention.application
 
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
-import com.google.devtools.ksp.gradle.KspExtension
 import kz.rymbek.platform.common.base.convention.AppBuildType
 import kz.rymbek.platform.common.base.convention.configureKotlinAndroid
 import kz.rymbek.platform.common.base.convention.disableAllTests
@@ -33,10 +32,6 @@ class ApplicationPlugin: Plugin<Project> {
                     vectorDrawables {
                         useSupportLibrary = true
                     }
-                }
-
-                extensions.configure<KspExtension> {
-                    arg("KOIN_CONFIG_CHECK","true")
                 }
 
                 androidResources {
