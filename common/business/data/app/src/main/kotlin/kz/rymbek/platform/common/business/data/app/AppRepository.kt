@@ -8,7 +8,9 @@ import kz.rymbek.platform.common.business.model.ui.enums.design.ModeConfig
 import kz.rymbek.platform.common.business.model.ui.models.AppData
 import org.koin.core.annotation.Single
 
-@Single
+@Single(
+    binds = [AppRepositoryInterface::class]
+)
 internal class AppRepository(
     private val appDataStoreInterface: AppDataStoreInterface,
 ) : AppRepositoryInterface {

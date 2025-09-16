@@ -17,7 +17,6 @@ class DependencyKoinPlugin : Plugin<Project> {
 
             extensions.configure<KspExtension> {
                 //arg("KOIN_CONFIG_CHECK","true")
-                arg("KOIN_DEFAULT_MODULE", "false")
             }
 
             dependencies {
