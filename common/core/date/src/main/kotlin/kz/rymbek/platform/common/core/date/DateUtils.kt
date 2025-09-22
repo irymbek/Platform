@@ -12,7 +12,8 @@ import kotlin.time.Clock
 import kotlin.time.Instant
 
 object DateUtils {
-    private val timeZone = TimeZone.currentSystemDefault()
+    private val currentTimeZone: TimeZone
+        get() = TimeZone.currentSystemDefault()
 
     val instant: Instant
         get() = Clock.System.now()
@@ -21,7 +22,7 @@ object DateUtils {
         get() = instant.toEpochMilliseconds()
 
     val localDateTime: LocalDateTime
-        get() = instant.toLocalDateTime(timeZone)
+        get() = instant.toLocalDateTime(currentTimeZone)
 
     val localDate: LocalDate
         get() = localDateTime.date
@@ -30,20 +31,20 @@ object DateUtils {
         get() = localDate.year
 
     val dayStartMilliseconds: Long
-        get() = localDate.atStartOfDayIn(timeZone).toEpochMilliseconds()
+        get() = localDate.atStartOfDayIn(currentTimeZone).toEpochMilliseconds()
 
     val defaultInstant = Instant.DISTANT_PAST
+    val defaultLocalDate = defaultInstant.toLocalDateTime(currentTimeZone).date
 
-    fun Long?.toInstant(): Instant {
-        return Instant.fromEpochMilliseconds(this ?: 0L)
-    }
+    fun Long?.toInstantOrDefault(def: Instant = defaultInstant): Instant =
+        if (this == null) def else Instant.fromEpochMilliseconds(this)
 
-    fun Long?.toLocalDate(): LocalDate {
-        return this.toInstant().toLocalDateTime(timeZone).date
+    fun Long?.toLocalDateOrDefault(): LocalDate {
+        return this.toInstantOrDefault().toLocalDateTime(currentTimeZone).date
     }
 
     fun Instant?.toFormattedString(): String {
-        return this?.toLocalDateTime(timeZone)?.format(LocalDateTime.Format {
+        return this?.toLocalDateTime(currentTimeZone)?.format(LocalDateTime.Format {
             year()
             char('-')
             monthNumber()
@@ -61,6 +62,6 @@ object DateUtils {
     }
 
     fun Long?.toFormattedString(): String {
-        return this.toInstant().toFormattedString()
+        return this.toInstantOrDefault().toFormattedString()
     }
 }
