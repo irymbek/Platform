@@ -1,5 +1,6 @@
 package kz.rymbek.platform.common.core.design.compound.components.top_app_bar.center_aligned
 
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -11,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import kz.rymbek.platform.common.core.design.foundation.components.text.AppMarqueeText
+import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 
 @Composable
 fun AppCenterAlignedTopAppBarTitle(
@@ -26,7 +27,9 @@ fun AppCenterAlignedTopAppBarTitle(
 ) {
     CenterAlignedTopAppBar(
         title = {
-            AppMarqueeText(
+            AppText(
+                modifier = Modifier
+                    .basicMarquee(),
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
             )

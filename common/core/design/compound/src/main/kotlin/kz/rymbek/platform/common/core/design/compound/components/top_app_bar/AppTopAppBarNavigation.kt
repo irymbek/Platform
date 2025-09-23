@@ -1,5 +1,6 @@
 package kz.rymbek.platform.common.core.design.compound.components.top_app_bar
 
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.MaterialTheme
@@ -12,7 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kz.rymbek.platform.common.core.design.foundation.components.button.icon.AppIconButton
-import kz.rymbek.platform.common.core.design.foundation.components.text.AppMarqueeText
+import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.components.top_app_bar.AppTopAppBar
 import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
 
@@ -33,7 +34,9 @@ fun AppTopAppBarNavigation(
     AppTopAppBar(
         modifier = modifier,
         title = {
-            AppMarqueeText(
+            AppText(
+                modifier = Modifier
+                    .basicMarquee(),
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
             )
