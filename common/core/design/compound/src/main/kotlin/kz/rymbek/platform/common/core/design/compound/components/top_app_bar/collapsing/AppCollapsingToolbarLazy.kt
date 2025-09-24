@@ -57,7 +57,7 @@ private fun rememberHeaderSize(
 
 @Composable
 private fun CollapsingHeader(
-    imageUrl: String,
+    imageUrl: Any?,
     headerHeightDp: Dp,
     headerHeightPx: Float,
     scrollOffset: Float,
@@ -100,10 +100,11 @@ private fun CollapsingToolbar(
         actions = actions
     )
 }
+
 @Composable
 fun AppCollapsingToolbarLazy(
     modifier: Modifier = Modifier,
-    imageUrl: String,
+    imageUrl: Any?,
     titleText: String = "",
     onBackClick: () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},

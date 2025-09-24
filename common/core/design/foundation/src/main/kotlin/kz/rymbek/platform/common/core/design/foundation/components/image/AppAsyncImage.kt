@@ -20,9 +20,9 @@ import coil3.video.videoFramePercent
 
 @Composable
 fun AppAsyncImage(
-    model: Any? = null,
     uri: Any?,
     modifier: Modifier = Modifier,
+    model: Any? = null,
     context: Context = LocalContext.current,
     contentDescription: String = "Image",
     placeholder: Painter? = null,
