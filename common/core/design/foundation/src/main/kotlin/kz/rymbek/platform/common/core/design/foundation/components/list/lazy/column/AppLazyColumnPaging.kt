@@ -28,7 +28,7 @@ fun <T : Any> AppLazyColumnPaging(
 
             items(
                 count = items.itemCount,
-                key = items.itemKey(key),
+                key = items.itemKey(key = key),
                 itemContent = { index ->
                     val item = items[index] ?: return@items
                     content(index, item)

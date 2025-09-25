@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
-import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
+import kz.rymbek.platform.common.core.design.foundation.icons.BaseIcons
 
 @Composable
 fun AppFilterChip(
@@ -38,7 +38,7 @@ fun AppFilterChip(
         leadingIcon = if (selected) {
             {
                 AppIcon(
-                    imageVector = AppIcons.FilledCheck,
+                    imageVector = BaseIcons.FilledCheck,
                 )
             }
         } else {

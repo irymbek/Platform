@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppBox
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
-import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
+import kz.rymbek.platform.common.core.design.foundation.icons.BaseIcons
 import kz.rymbek.platform.common.core.design.foundation.theme.color.custom.colorSchemeCustom
 
 enum class CheckboxState {
@@ -32,9 +32,9 @@ fun AppTriStateCheckboxCustom(
     }
 
     val imageVector = when (state) {
-        CheckboxState.ERROR -> AppIcons.FilledClose
-        CheckboxState.SUCCESS -> AppIcons.FilledCheck
-        CheckboxState.NEUTRAL -> AppIcons.FilledRemove
+        CheckboxState.ERROR -> BaseIcons.FilledClose
+        CheckboxState.SUCCESS -> BaseIcons.FilledCheck
+        CheckboxState.NEUTRAL -> BaseIcons.FilledRemove
     }
 
     AppBox(

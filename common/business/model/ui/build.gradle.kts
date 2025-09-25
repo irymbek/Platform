@@ -1,5 +1,6 @@
 plugins {
     alias(platformLibs.plugins.module.platform.model.ui)
+    alias(platformLibs.plugins.convention.library.compose)
 }
 
 android {

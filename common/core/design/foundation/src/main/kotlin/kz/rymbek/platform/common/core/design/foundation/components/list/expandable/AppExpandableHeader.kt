@@ -12,7 +12,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.container.App
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
-import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
+import kz.rymbek.platform.common.core.design.foundation.icons.BaseIcons
 
 @Composable
 fun ExpandableHeader(
@@ -31,9 +31,9 @@ fun ExpandableHeader(
                 modifier = Modifier
                     .size(Dimensions.iconMedium),
                 imageVector = if (isExpanded) {
-                    AppIcons.FilledExpandLess
+                    BaseIcons.FilledExpandLess
                 } else {
-                    AppIcons.FilledExpandMore
+                    BaseIcons.FilledExpandMore
                 },
             )
             AppText(

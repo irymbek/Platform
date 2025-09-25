@@ -40,7 +40,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.row.AppLazyRowItem
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
-import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
+import kz.rymbek.platform.common.core.design.foundation.icons.BaseIcons
 import kz.rymbek.platform.common.core.design.foundation.theme.AppTheme
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.event.SettingsThemeEvent
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.state.SettingsThemeUiState
@@ -243,7 +243,7 @@ fun ThemePreviewCard(
                                         modifier = Modifier
                                             .align(Alignment.TopEnd)
                                             .padding(6.dp),
-                                        imageVector = AppIcons.FilledCheckCircle,
+                                        imageVector = BaseIcons.FilledCheckCircle,
                                         tint = MaterialTheme.colorScheme.primary,
                                     )
                                 }

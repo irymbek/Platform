@@ -9,7 +9,7 @@ import kz.rymbek.platform.common.base.feature.architecture.IEvent
 import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.center_aligned.AppCenterAlignedTopAppBarTitle
 import kz.rymbek.platform.common.core.design.foundation.components.button.icon.AppIconButton
 import kz.rymbek.platform.common.core.design.foundation.components.scaffold.AppScaffold
-import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
+import kz.rymbek.platform.common.core.design.foundation.icons.BaseIcons
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.event.SettingsThemeEvent
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.state.SettingsThemeUiState
 
@@ -24,7 +24,7 @@ internal fun SettingsThemeScreen(
                 title = "Внешний вид",
                 navigationIcon = {
                     AppIconButton(
-                        icon = AppIcons.FilledArrowBackIosNew,
+                        icon = BaseIcons.FilledArrowBackIosNew,
                         onClick = {
                             onEvent(SettingsThemeEvent.Navigation.Back)
                         },

@@ -23,7 +23,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.column.AppLazyColumnItem
 import kz.rymbek.platform.common.core.design.foundation.components.text_field.regular.AppTextField
 import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
-import kz.rymbek.platform.common.core.design.foundation.icons.AppIcons
+import kz.rymbek.platform.common.core.design.foundation.icons.BaseIcons
 
 @Composable
 fun <T: Any> LargeDropDownMenuDialog(
@@ -59,7 +59,7 @@ fun <T: Any> LargeDropDownMenuDialog(
                             searchQuery = it
                         },
                         leadingIcon = {
-                            AppIcon(imageVector = AppIcons.OutlinedSearch)
+                            AppIcon(imageVector = BaseIcons.OutlinedSearch)
                         },
                         placeholder = "Поиск",
                     )
