@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -20,7 +21,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.dialog.AppDia
 import kz.rymbek.platform.common.core.design.foundation.components.divider.AppHorizontalDivider
 import kz.rymbek.platform.common.core.design.foundation.components.drop_down_menu.exposed.AppDropdownMenuItem
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
-import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.column.AppLazyColumnItem
+import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.column.AppLazyColumn
 import kz.rymbek.platform.common.core.design.foundation.components.text_field.regular.AppTextField
 import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
 import kz.rymbek.platform.common.core.design.foundation.icons.BaseIcons
@@ -64,31 +65,31 @@ fun <T: Any> LargeDropDownMenuDialog(
                         placeholder = "Поиск",
                     )
 
-                    AppLazyColumnItem(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        items = filteredItems,
+                    AppLazyColumn(
+                        modifier = Modifier.fillMaxWidth(),
                         contentPadding = PaddingValues(0.dp),
                         verticalArrangement = Arrangement.Center,
-                        key = keySelector,
-                        content = { index, item ->
-                            AppDropdownMenuItem(
-                                text = selectedItemToString(item),
-                                trailingIconUri = selectedItemToImage(item),
-                                onClick = {
-                                    onSelectItem(item)
-                                },
-                            )
-
-                            if (index != filteredItems.lastIndex) {
-                                AppHorizontalDivider(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(horizontal = Dimensions.defaultPaddingDp)
+                    ) {
+                        itemsIndexed(
+                            items = filteredItems,
+                            key = keySelector,
+                            itemContent = { index, item ->
+                                AppDropdownMenuItem(
+                                    text = selectedItemToString(item),
+                                    trailingIconUri = selectedItemToImage(item),
+                                    onClick = { onSelectItem(item) },
                                 )
+
+                                if (index != filteredItems.lastIndex) {
+                                    AppHorizontalDivider(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(horizontal = Dimensions.defaultPaddingDp)
+                                    )
+                                }
                             }
-                        }
-                    )
+                        )
+                    }
                 }
             )
         }

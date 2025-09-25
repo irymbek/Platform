@@ -5,5 +5,5 @@ import kz.rymbek.platform.common.business.model.ui.models.AppData
 
 data class SettingsThemeUiState(
     val appData: AppData = AppData(),
-    val appThemeBrand: List<AppThemeBrand> = AppThemeBrand.entries,
+    val themes: List<AppThemeBrand> = AppThemeBrand.entries,
 )

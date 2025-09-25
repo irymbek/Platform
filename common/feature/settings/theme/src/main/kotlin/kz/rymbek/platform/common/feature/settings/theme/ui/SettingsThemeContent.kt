@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
@@ -37,7 +38,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.button.segmen
 import kz.rymbek.platform.common.core.design.foundation.components.card.AppFilledCard
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
-import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.row.AppLazyRowItem
+import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.row.AppLazyRow
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
 import kz.rymbek.platform.common.core.design.foundation.icons.BaseIcons
@@ -89,25 +90,27 @@ internal fun SettingsThemeContent(
                 }
             )
 
-            AppLazyRowItem(
+            AppLazyRow(
                 state = listState,
                 horizontalArrangement = Arrangement.spacedBy(Dimensions.defaultPaddingDp),
-                items = uiState.appThemeBrand,
                 contentPadding = PaddingValues(horizontal = Dimensions.defaultPaddingDp),
-                key = { _, item ->
-                    item.title
-                },
-                content = { index, appThemeBrand ->
-                    ThemePreviewCard(
-                        appThemeBrand = appThemeBrand,
-                        modeConfig = uiState.appData.modeConfig,
-                        isSelected = uiState.appData.appThemeBrand == appThemeBrand,
-                        onClick = {
-                            onEvent(SettingsThemeEvent.Action.UpdateThemeBrand(appThemeBrand = appThemeBrand))
+                content = {
+                    itemsIndexed(
+                        items = uiState.themes,
+                        key = { index, item -> item.title },
+                        itemContent = { index, item ->
+                            ThemePreviewCard(
+                                appThemeBrand = item,
+                                modeConfig = uiState.appData.modeConfig,
+                                isSelected = uiState.appData.appThemeBrand == item,
+                                onClick = {
+                                    onEvent(SettingsThemeEvent.Action.UpdateThemeBrand(appThemeBrand = item))
 
-                            coroutineScope.launch {
-                                listState.animateScrollToItem(index)
-                            }
+                                    coroutineScope.launch {
+                                        listState.animateScrollToItem(index)
+                                    }
+                                }
+                            )
                         }
                     )
                 }
@@ -275,7 +278,7 @@ fun PreviewSettingsThemeContent() {
                     modeConfig = ModeConfig.FOLLOW_SYSTEM,
                     appThemeBrand = AppThemeBrand.DEFAULT,
                 ),
-                appThemeBrand = AppThemeBrand.entries
+                themes = AppThemeBrand.entries
             ),
             onEvent = {}
         )
