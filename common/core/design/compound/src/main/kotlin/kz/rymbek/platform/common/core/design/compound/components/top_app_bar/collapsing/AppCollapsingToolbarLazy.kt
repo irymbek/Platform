@@ -152,17 +152,18 @@ fun AppCollapsingToolbarLazy(
                 state = lazyState,
                 contentPadding = PaddingValues(0.dp),
                 verticalArrangement = Arrangement.spacedBy(0.dp),
-            ) {
-                item { AppSpacer(headerHeightDp) }
+                content = {
+                    item { AppSpacer(headerHeightDp) }
 
-                if (loading.isLoading) {
-                    item {
-                        AppLinearProgressIndicator(Modifier.fillMaxWidth())
+                    if (loading.isLoading) {
+                        item {
+                            AppLinearProgressIndicator(Modifier.fillMaxWidth())
+                        }
                     }
-                }
 
-                content()
-            }
+                    content()
+                }
+            )
 
             CollapsingToolbar(
                 titleText = titleText,

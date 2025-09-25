@@ -1,5 +1,6 @@
 package kz.rymbek.platform.common.core.design.foundation.components.list.lazy.grid
 
+import androidx.compose.foundation.OverscrollEffect
 import androidx.compose.foundation.gestures.FlingBehavior
 import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.Arrangement
@@ -9,6 +10,7 @@ import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.rememberOverscrollEffect
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
@@ -24,6 +26,7 @@ fun AppLazyVerticalGrid(
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(Dimensions.elementPaddingDp),
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,
+    overscrollEffect: OverscrollEffect? = rememberOverscrollEffect(),
     content: LazyGridScope.() -> Unit
 ) {
     LazyVerticalGrid(
@@ -36,6 +39,7 @@ fun AppLazyVerticalGrid(
         horizontalArrangement = horizontalArrangement,
         flingBehavior = flingBehavior,
         userScrollEnabled = userScrollEnabled,
+        overscrollEffect = overscrollEffect,
         content = content,
     )
 }
