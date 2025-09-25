@@ -148,6 +148,21 @@ fun <T, R> Flow<ResultFlow<T>>.mapFlow(
     }
 }
 
+inline fun <T> ResultFlow<T>.onSuccess(block: (T) -> Unit): ResultFlow<T> {
+    if (this is Success) block(data)
+    return this
+}
+
+inline fun <T> ResultFlow<T>.onError(block: (Throwable) -> Unit): ResultFlow<T> {
+    if (this is Error) block(exception)
+    return this
+}
+
+inline fun <T> ResultFlow<T>.onLoading(block: () -> Unit): ResultFlow<T> {
+    if (this is Loading) block()
+    return this
+}
+
 /* ---- Convenience: map Flow<T?> -> ResultFlow<T> ---- */
 /**
  * Преобразует Flow<T?> в Flow<ResultFlow<T>>:

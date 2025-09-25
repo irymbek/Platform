@@ -15,8 +15,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun <T: Any> AppLazyRowItem(
-    key: ((Int, T) -> Any)?,
     items: List<T>,
+    key: ((Int, T) -> Any)?,
     content: @Composable (LazyItemScope.(index: Int, item: T) -> Unit),
     modifier: Modifier = Modifier,
     state: LazyListState = rememberLazyListState(),
