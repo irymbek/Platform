@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun AppLazyHorizontalGrid(
-    rows: GridCells,
     modifier: Modifier = Modifier,
+    rows: GridCells = GridCells.Fixed(1),
     state: LazyGridState = rememberLazyGridState(),
     contentPadding: PaddingValues = PaddingValues(0.dp),
     reverseLayout: Boolean = false,
