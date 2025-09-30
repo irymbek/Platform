@@ -12,8 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppBox
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
-import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
-import kz.rymbek.platform.common.core.design.foundation.icons.BaseIcons
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
+import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 import kz.rymbek.platform.common.core.design.foundation.theme.color.custom.colorSchemeCustom
 
 enum class CheckboxState {
@@ -32,14 +32,14 @@ fun AppTriStateCheckboxCustom(
     }
 
     val imageVector = when (state) {
-        CheckboxState.ERROR -> BaseIcons.FilledClose
-        CheckboxState.SUCCESS -> BaseIcons.FilledCheck
-        CheckboxState.NEUTRAL -> BaseIcons.FilledRemove
+        CheckboxState.ERROR -> PlatformIcons.FilledClose
+        CheckboxState.SUCCESS -> PlatformIcons.FilledCheck
+        CheckboxState.NEUTRAL -> PlatformIcons.FilledRemove
     }
 
     AppBox(
         modifier = Modifier
-            .size(Dimensions.iconBig)
+            .size(PlatformDimensions.iconBig)
             .border(2.dp, color, shape = RoundedCornerShape(4.dp))
             .combinedClickable(
                 onClick = {},

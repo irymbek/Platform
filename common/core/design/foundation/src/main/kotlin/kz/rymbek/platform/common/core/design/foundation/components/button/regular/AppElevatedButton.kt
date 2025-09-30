@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
-import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
 
 @Composable
 fun AppElevatedButton(
@@ -20,7 +20,7 @@ fun AppElevatedButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    cornerRadius: Dp = Dimensions.buttonCornerRadius,
+    cornerRadius: Dp = PlatformDimensions.buttonCornerRadius,
     colors: ButtonColors = ButtonDefaults.elevatedButtonColors(),
     elevation: ButtonElevation? = ButtonDefaults.elevatedButtonElevation(),
     border: BorderStroke? = null,

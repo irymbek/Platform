@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import kz.rymbek.platform.common.core.design.foundation.components.button.icon.AppIconButton
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.components.top_app_bar.AppTopAppBar
-import kz.rymbek.platform.common.core.design.foundation.icons.BaseIcons
+import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 
 @Composable
 fun AppTopAppBarNavigation(
@@ -43,7 +43,7 @@ fun AppTopAppBarNavigation(
         },
         navigationIcon = {
             AppIconButton(
-                icon = BaseIcons.FilledArrowBackIosNew,
+                icon = PlatformIcons.FilledArrowBackIosNew,
                 onClick = {
                     onNavigationClick()
                 },

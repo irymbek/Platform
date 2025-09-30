@@ -18,7 +18,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.text_field.outlined.AppOutlinedTextField
-import kz.rymbek.platform.common.core.design.foundation.icons.BaseIcons
+import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 
 @Composable
 fun AppOutlinedTextFieldPassword(
@@ -55,9 +55,9 @@ fun AppOutlinedTextFieldPassword(
             onClick = { passwordVisible = !passwordVisible },
         ) {
             val image = if (passwordVisible) {
-                BaseIcons.OutlinedVisibility
+                PlatformIcons.OutlinedVisibility
             } else {
-                BaseIcons.OutlinedVisibilityOff
+                PlatformIcons.OutlinedVisibilityOff
             }
             AppIcon(
                 imageVector = image,

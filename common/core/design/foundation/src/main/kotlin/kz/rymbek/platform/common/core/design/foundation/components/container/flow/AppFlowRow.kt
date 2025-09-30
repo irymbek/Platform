@@ -6,12 +6,12 @@ import androidx.compose.foundation.layout.FlowRowScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
 
 @Composable
 fun AppFlowRow(
     modifier: Modifier = Modifier,
-    horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(Dimensions.defaultPaddingDp),
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(PlatformDimensions.defaultPaddingDp),
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     itemVerticalAlignment: Alignment.Vertical = Alignment.Top,
     maxItemsInEachRow: Int = Int.MAX_VALUE,

@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
-import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
 
 @Composable
 fun AppListItem(
@@ -42,7 +42,7 @@ fun AppListItem(
             {
                 AppText(
                     modifier = Modifier
-                        .padding(top = Dimensions.elementPaddingDp),
+                        .padding(top = PlatformDimensions.elementPaddingDp),
                     text = text,
                     color = supportingTextColor,
                     style = MaterialTheme.typography.labelMedium,

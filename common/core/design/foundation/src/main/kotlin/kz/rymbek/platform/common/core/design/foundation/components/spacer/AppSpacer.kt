@@ -5,11 +5,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
-import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
 
 @Composable
 fun AppSpacer(
-    size: Dp = Dimensions.defaultPaddingDp,
+    size: Dp = PlatformDimensions.defaultPaddingDp,
 ) {
     Spacer(
         modifier = Modifier

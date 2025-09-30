@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
-import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
 
 @Composable
 fun AppTab(
@@ -42,7 +42,7 @@ fun AppTab(
         content = {
             AppText(
                 modifier = Modifier
-                    .padding(Dimensions.contentPaddingDp),
+                    .padding(PlatformDimensions.contentPaddingDp),
                 text = title,
                 style = MaterialTheme.typography.bodyLarge,
             )

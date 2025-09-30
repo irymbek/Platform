@@ -1,4 +1,4 @@
-package kz.uso.project.common.core.design.foundation.theme
+package kz.rymbek.platform.common.core.design.foundation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

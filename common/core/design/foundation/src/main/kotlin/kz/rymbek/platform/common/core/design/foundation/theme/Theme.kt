@@ -32,7 +32,6 @@ import kz.rymbek.platform.common.core.design.foundation.theme.color.custom.Custo
 import kz.rymbek.platform.common.core.design.foundation.theme.color.custom.LocalColorsPaletteCustom
 import kz.rymbek.platform.common.core.design.foundation.theme.tint.LocalTintTheme
 import kz.rymbek.platform.common.core.design.foundation.theme.tint.TintTheme
-import kz.uso.project.common.core.design.foundation.theme.Typography
 
 @Composable
 fun AppTheme(

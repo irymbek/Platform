@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
-import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
 
 @Composable
 fun AppScaffold(
@@ -40,7 +40,7 @@ fun AppScaffold(
         floatingActionButton = {
             AppColumn(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(Dimensions.defaultPaddingDp),
+                verticalArrangement = Arrangement.spacedBy(PlatformDimensions.defaultPaddingDp),
                 content = {
                     floatingActionButton()
                 }

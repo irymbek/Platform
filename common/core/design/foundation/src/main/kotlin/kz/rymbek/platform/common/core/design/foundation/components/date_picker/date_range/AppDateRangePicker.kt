@@ -11,7 +11,7 @@ import androidx.compose.material3.DateRangePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
 
 @Composable
 fun AppDateRangePicker(
@@ -22,8 +22,8 @@ fun AppDateRangePicker(
         DateRangePickerDefaults.DateRangePickerTitle(
             displayMode = dateRangePickerState.displayMode,
             modifier = Modifier.padding(
-                top = Dimensions.defaultPaddingDp,
-                start = Dimensions.contentPaddingDp,
+                top = PlatformDimensions.defaultPaddingDp,
+                start = PlatformDimensions.contentPaddingDp,
             )
         )
     },
@@ -35,9 +35,9 @@ fun AppDateRangePicker(
             dateFormatter,
             modifier = Modifier.padding(
                 PaddingValues(
-                    top = Dimensions.defaultPaddingDp,
-                    start = Dimensions.defaultPaddingDp,
-                    bottom = Dimensions.defaultPaddingDp,
+                    top = PlatformDimensions.defaultPaddingDp,
+                    start = PlatformDimensions.defaultPaddingDp,
+                    bottom = PlatformDimensions.defaultPaddingDp,
                 )
             )
         )

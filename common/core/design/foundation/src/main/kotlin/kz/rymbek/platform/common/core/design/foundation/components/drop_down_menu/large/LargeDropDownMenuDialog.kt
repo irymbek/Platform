@@ -23,8 +23,8 @@ import kz.rymbek.platform.common.core.design.foundation.components.drop_down_men
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.column.AppLazyColumn
 import kz.rymbek.platform.common.core.design.foundation.components.text_field.regular.AppTextField
-import kz.rymbek.platform.common.core.design.foundation.constants.Dimensions
-import kz.rymbek.platform.common.core.design.foundation.icons.BaseIcons
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
+import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 
 @Composable
 fun <T: Any> LargeDropDownMenuDialog(
@@ -60,7 +60,7 @@ fun <T: Any> LargeDropDownMenuDialog(
                             searchQuery = it
                         },
                         leadingIcon = {
-                            AppIcon(imageVector = BaseIcons.OutlinedSearch)
+                            AppIcon(imageVector = PlatformIcons.OutlinedSearch)
                         },
                         placeholder = "Поиск",
                     )
@@ -84,7 +84,7 @@ fun <T: Any> LargeDropDownMenuDialog(
                                     AppHorizontalDivider(
                                         modifier = Modifier
                                             .fillMaxWidth()
-                                            .padding(horizontal = Dimensions.defaultPaddingDp)
+                                            .padding(horizontal = PlatformDimensions.defaultPaddingDp)
                                     )
                                 }
                             }

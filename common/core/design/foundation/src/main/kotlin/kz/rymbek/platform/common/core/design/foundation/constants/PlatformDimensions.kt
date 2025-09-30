@@ -4,7 +4,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-object Dimensions {
+object PlatformDimensions {
     val elementPaddingDp: Dp = 5.dp
     val defaultPaddingDp: Dp = 8.dp
     val contentPaddingDp: Dp = 16.dp
