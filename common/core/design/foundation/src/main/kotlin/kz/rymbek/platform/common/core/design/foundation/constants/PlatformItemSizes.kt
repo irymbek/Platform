@@ -1,6 +1,6 @@
 package kz.rymbek.platform.common.core.design.foundation.constants
 
-internal object PlatformItemSizes {
+object PlatformItemSizes {
     val min = PlatformSpacing.space_32x
-    val max = PlatformSpacing.space_80x
+    val max = PlatformSpacing.space_40x
 }
