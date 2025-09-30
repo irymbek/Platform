@@ -4,8 +4,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 object PlatformElevations {
-    val none: Dp = 0.dp
-    val low: Dp = 2.dp
-    val default: Dp = 4.dp
-    val high: Dp = 8.dp
+    val none: Dp = PlatformSpacing.space_0
+    val low: Dp = PlatformSpacing.space_0_5x
+    val default: Dp = PlatformSpacing.space_1x
+    val high: Dp = PlatformSpacing.space_2x
 }
