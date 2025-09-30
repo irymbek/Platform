@@ -13,15 +13,15 @@ import androidx.compose.foundation.rememberOverscrollEffect
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 
 @Composable
 fun AppLazyRow(
     modifier: Modifier = Modifier,
     state: LazyListState = rememberLazyListState(),
-    contentPadding: PaddingValues = PaddingValues(PlatformDimensions.elementPaddingDp),
+    contentPadding: PaddingValues = PaddingValues(PlatformPaddings.element),
     reverseLayout: Boolean = false,
-    horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(PlatformDimensions.elementPaddingDp),
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(PlatformPaddings.element),
     verticalAlignment: Alignment.Vertical = Alignment.Top,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,

@@ -9,4 +9,6 @@ internal object PlatformSpacing {
     val lg = 24.dp
     val xl = 32.dp
     val xxl = 48.dp
+    val threeXl = 64.dp
+    val fourXl = 80.dp
 }

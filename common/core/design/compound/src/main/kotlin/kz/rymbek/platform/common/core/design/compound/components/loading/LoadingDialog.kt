@@ -10,7 +10,7 @@ import androidx.compose.ui.window.DialogProperties
 import kz.rymbek.platform.common.core.design.foundation.components.card.AppFilledCard
 import kz.rymbek.platform.common.core.design.foundation.components.dialog.AppDialog
 import kz.rymbek.platform.common.core.design.foundation.components.progress_indicator.AppCircularProgressIndicator
-import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 
 @Preview(showBackground = true)
 @Composable
@@ -31,7 +31,7 @@ fun LoadingDialog() {
                 content = {
                     AppCircularProgressIndicator(
                         modifier = Modifier
-                            .padding(PlatformDimensions.contentPaddingDp),
+                            .padding(PlatformPaddings.content),
                     )
                 }
             )

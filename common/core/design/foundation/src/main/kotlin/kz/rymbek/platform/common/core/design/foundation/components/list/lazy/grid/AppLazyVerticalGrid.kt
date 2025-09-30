@@ -13,17 +13,17 @@ import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.rememberOverscrollEffect
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 
 @Composable
 fun AppLazyVerticalGrid(
     modifier: Modifier = Modifier,
     columns: GridCells = GridCells.Fixed(3),
     state: LazyGridState = rememberLazyGridState(),
-    contentPadding: PaddingValues = PaddingValues(PlatformDimensions.elementPaddingDp),
+    contentPadding: PaddingValues = PaddingValues(PlatformPaddings.element),
     reverseLayout: Boolean = false,
-    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(PlatformDimensions.elementPaddingDp),
-    horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(PlatformDimensions.elementPaddingDp),
+    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(PlatformPaddings.element),
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(PlatformPaddings.element),
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,
     overscrollEffect: OverscrollEffect? = rememberOverscrollEffect(),

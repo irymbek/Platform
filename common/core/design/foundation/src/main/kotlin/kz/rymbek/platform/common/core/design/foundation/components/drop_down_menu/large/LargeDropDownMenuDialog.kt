@@ -23,7 +23,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.drop_down_men
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.column.AppLazyColumn
 import kz.rymbek.platform.common.core.design.foundation.components.text_field.regular.AppTextField
-import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 
 @Composable
@@ -84,7 +84,7 @@ fun <T: Any> LargeDropDownMenuDialog(
                                     AppHorizontalDivider(
                                         modifier = Modifier
                                             .fillMaxWidth()
-                                            .padding(horizontal = PlatformDimensions.defaultPaddingDp)
+                                            .padding(horizontal = PlatformPaddings.default)
                                     )
                                 }
                             }

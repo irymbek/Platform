@@ -3,7 +3,6 @@ package kz.rymbek.platform.common.core.design.foundation.components.button.regul
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
@@ -11,9 +10,9 @@ import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.graphics.Shape
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
-import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.corner.PlatformShapes
 
 @Composable
 fun AppFilledButton(
@@ -21,7 +20,7 @@ fun AppFilledButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    cornerRadius: Dp = PlatformDimensions.buttonCornerRadius,
+    shape: Shape = PlatformShapes.medium,
     colors: ButtonColors = ButtonDefaults.buttonColors(),
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
     border: BorderStroke? = null,
@@ -32,7 +31,7 @@ fun AppFilledButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
-        shape = RoundedCornerShape(cornerRadius),
+        shape = shape,
         colors = colors,
         elevation = elevation,
         border = border,

@@ -10,7 +10,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.container.App
 import kz.rymbek.platform.common.core.design.foundation.components.divider.AppHorizontalDivider
 import kz.rymbek.platform.common.core.design.foundation.components.drop_down_menu.exposed.AppDropdownMenuItem
 import kz.rymbek.platform.common.core.design.foundation.components.drop_down_menu.exposed.AppExposedDropDownMenu
-import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 
 @Composable
 fun <T: Any> ExposedDropdownMenuBoxScope.SmallDropDownMenu(
@@ -45,7 +45,7 @@ fun <T: Any> ExposedDropdownMenuBoxScope.SmallDropDownMenu(
                             AppHorizontalDivider(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(horizontal = PlatformDimensions.defaultPaddingDp)
+                                    .padding(horizontal = PlatformPaddings.default)
                             )
                         }
                     }

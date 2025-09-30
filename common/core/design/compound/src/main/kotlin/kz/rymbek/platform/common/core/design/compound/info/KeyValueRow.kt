@@ -5,7 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppRow
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
-import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 
 @Composable
 fun KeyValueRow(
@@ -13,7 +13,7 @@ fun KeyValueRow(
     value: String,
 ) {
     AppRow(
-        horizontalArrangement = Arrangement.spacedBy(PlatformDimensions.elementPaddingDp),
+        horizontalArrangement = Arrangement.spacedBy(PlatformPaddings.element),
         content = {
             AppText(
                 text = "$key:",

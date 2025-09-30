@@ -40,7 +40,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.container.App
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.row.AppLazyRow
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
-import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 import kz.rymbek.platform.common.core.design.foundation.theme.AppTheme
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.event.SettingsThemeEvent
@@ -58,14 +58,14 @@ internal fun SettingsThemeContent(
     AppColumn(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = PlatformDimensions.defaultPaddingDp),
+            .padding(vertical = PlatformPaddings.default),
             //.verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(PlatformDimensions.defaultPaddingDp),
+        verticalArrangement = Arrangement.spacedBy(PlatformPaddings.default),
         content = {
             AppText(
                 modifier = Modifier
                     .padding(
-                        horizontal = PlatformDimensions.defaultPaddingDp,
+                        horizontal = PlatformPaddings.default,
                     ),
                 text = "Тема",
                 style = MaterialTheme.typography.titleMedium,
@@ -75,7 +75,7 @@ internal fun SettingsThemeContent(
             AppSingleChoiceSegmentedButtonRow(
                 modifier = Modifier
                     .padding(
-                        horizontal = PlatformDimensions.defaultPaddingDp,
+                        horizontal = PlatformPaddings.default,
                     ),
                 items = ModeConfig.entries,
                 selectedIndex = uiState.appData.modeConfig.ordinal,
@@ -92,8 +92,8 @@ internal fun SettingsThemeContent(
 
             AppLazyRow(
                 state = listState,
-                horizontalArrangement = Arrangement.spacedBy(PlatformDimensions.defaultPaddingDp),
-                contentPadding = PaddingValues(horizontal = PlatformDimensions.defaultPaddingDp),
+                horizontalArrangement = Arrangement.spacedBy(PlatformPaddings.default),
+                contentPadding = PaddingValues(horizontal = PlatformPaddings.default),
                 content = {
                     itemsIndexed(
                         items = uiState.themes,

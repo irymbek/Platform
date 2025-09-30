@@ -1,28 +1,28 @@
 package kz.rymbek.platform.common.core.design.foundation.components.card
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardElevation
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import kz.rymbek.platform.common.core.design.foundation.constants.corner.PlatformShape
+import kz.rymbek.platform.common.core.design.foundation.constants.corner.PlatformShapes
 
 object AppCardDefaults {
     val filledShape: Shape
-        @Composable get() = PlatformShape.small
+        @Composable get() = PlatformShapes.small
 
     val elevatedShape: Shape
-        @Composable get() = PlatformShape.small
+        @Composable get() = PlatformShapes.small
 
     val outlinedShape: Shape
-        @Composable get() = PlatformShape.small
+        @Composable get() = PlatformShapes.small
 
     @Composable
     fun cardColors(
-        containerColor: Color = Color.Unspecified,
+        containerColor: Color = MaterialTheme.colorScheme.surface,
         contentColor: Color = contentColorFor(containerColor),
         disabledContainerColor: Color = Color.Unspecified,
     ): CardColors = CardDefaults.cardColors(
@@ -39,7 +39,4 @@ object AppCardDefaults {
 
     @Composable
     fun elevatedCardElevation(): CardElevation = CardDefaults.elevatedCardElevation()
-
-    val outlinedBorder: BorderStroke
-        @Composable get() = CardDefaults.outlinedCardBorder()
 }

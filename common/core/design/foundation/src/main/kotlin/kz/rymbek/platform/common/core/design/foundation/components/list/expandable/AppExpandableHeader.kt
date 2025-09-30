@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppRow
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
-import kz.rymbek.platform.common.core.design.foundation.constants.PlatformDimensions
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformIconSize
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 
 @Composable
@@ -29,7 +29,7 @@ fun ExpandableHeader(
         content = {
             AppIcon(
                 modifier = Modifier
-                    .size(PlatformDimensions.iconMedium),
+                    .size(PlatformIconSize.md),
                 imageVector = if (isExpanded) {
                     PlatformIcons.FilledExpandLess
                 } else {
