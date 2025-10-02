@@ -21,7 +21,7 @@ fun AppLazyRow(
     state: LazyListState = rememberLazyListState(),
     contentPadding: PaddingValues = PaddingValues(PlatformPaddings.element),
     reverseLayout: Boolean = false,
-    horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(PlatformPaddings.element),
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(PlatformPaddings.default),
     verticalAlignment: Alignment.Vertical = Alignment.Top,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,

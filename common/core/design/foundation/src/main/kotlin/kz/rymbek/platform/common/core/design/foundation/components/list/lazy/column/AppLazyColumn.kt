@@ -21,7 +21,7 @@ fun AppLazyColumn(
     state: LazyListState = rememberLazyListState(),
     contentPadding: PaddingValues = PaddingValues(PlatformPaddings.element),
     reverseLayout: Boolean = false,
-    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(PlatformPaddings.element),
+    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(PlatformPaddings.default),
     horizontalAlignment: Alignment.Horizontal = Alignment.Start,
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,
