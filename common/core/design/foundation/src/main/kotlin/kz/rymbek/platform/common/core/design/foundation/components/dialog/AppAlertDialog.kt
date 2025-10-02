@@ -17,10 +17,10 @@ import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 fun AppAlertDialog(
     isDialogOpen : MutableState<Boolean>,
     onConfirmationClick: () -> Unit,
+    modifier: Modifier = Modifier,
     onDismissClick: () -> Unit = {
         isDialogOpen.value = false
     },
-    modifier: Modifier = Modifier,
     title: String = "",
     confirmButtonText: String = "Подтвердить",
     dismissButtonText: String = "Отменить",

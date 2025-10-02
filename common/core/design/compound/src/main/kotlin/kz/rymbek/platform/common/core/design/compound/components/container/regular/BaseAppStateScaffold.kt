@@ -82,7 +82,7 @@ internal fun <T> BaseAppStateScaffold(
         },
         snackbarHost = {
             AppSnackbarHost(
-                snackbarHostState = appSnackbarState.snackbarHostState,
+                hostState = appSnackbarState.snackbarHostState,
             )
         }
     )

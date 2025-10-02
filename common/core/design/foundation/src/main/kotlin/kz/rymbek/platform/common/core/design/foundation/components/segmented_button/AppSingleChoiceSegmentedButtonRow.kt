@@ -1,4 +1,4 @@
-package kz.rymbek.platform.common.core.design.foundation.components.button.segmented
+package kz.rymbek.platform.common.core.design.foundation.components.segmented_button
 
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow

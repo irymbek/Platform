@@ -9,11 +9,11 @@ import androidx.compose.ui.Modifier
 @Composable
 fun AppSnackbarHost(
     modifier: Modifier = Modifier,
-    snackbarHostState: SnackbarHostState,
+    hostState: SnackbarHostState,
 ) {
     SnackbarHost(
         modifier = modifier,
-        hostState = snackbarHostState,
+        hostState = hostState,
         snackbar = { snackbarData: SnackbarData ->
             AppSnackbar(
                 snackbarData = snackbarData,

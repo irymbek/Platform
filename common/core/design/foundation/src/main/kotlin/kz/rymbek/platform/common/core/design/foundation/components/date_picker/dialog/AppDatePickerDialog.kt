@@ -1,4 +1,4 @@
-package kz.rymbek.platform.common.core.design.foundation.components.date_picker.common
+package kz.rymbek.platform.common.core.design.foundation.components.date_picker.dialog
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material3.DatePickerColors
@@ -13,7 +13,7 @@ import androidx.compose.ui.window.DialogProperties
 import kz.rymbek.platform.common.core.design.foundation.components.button.AppTextButton
 
 @Composable
-internal fun AppDatePickerDialogCommon(
+internal fun AppDatePickerDialog(
     isVisible: MutableState<Boolean>,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,

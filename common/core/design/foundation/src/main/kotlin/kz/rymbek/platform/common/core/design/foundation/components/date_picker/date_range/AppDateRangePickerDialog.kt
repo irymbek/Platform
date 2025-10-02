@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.window.DialogProperties
-import kz.rymbek.platform.common.core.design.foundation.components.date_picker.common.AppDatePickerDialogCommon
+import kz.rymbek.platform.common.core.design.foundation.components.date_picker.dialog.AppDatePickerDialog
 
 @Composable
 fun AppDateRangePickerDialog(
@@ -22,7 +22,7 @@ fun AppDateRangePickerDialog(
     colors: DatePickerColors = DatePickerDefaults.colors(),
     properties: DialogProperties = DialogProperties(usePlatformDefaultWidth = false),
 ) {
-    AppDatePickerDialogCommon(
+    AppDatePickerDialog(
         isVisible = isShow,
         modifier = modifier,
         shape = shape,

@@ -34,7 +34,7 @@ import kz.rymbek.platform.common.base.feature.architecture.IEvent
 import kz.rymbek.platform.common.business.model.ui.enums.design.AppThemeBrand
 import kz.rymbek.platform.common.business.model.ui.enums.design.ModeConfig
 import kz.rymbek.platform.common.business.model.ui.models.AppData
-import kz.rymbek.platform.common.core.design.foundation.components.button.segmented.AppSingleChoiceSegmentedButtonRow
+import kz.rymbek.platform.common.core.design.foundation.components.segmented_button.AppSingleChoiceSegmentedButtonRow
 import kz.rymbek.platform.common.core.design.foundation.components.card.AppFilledCard
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon

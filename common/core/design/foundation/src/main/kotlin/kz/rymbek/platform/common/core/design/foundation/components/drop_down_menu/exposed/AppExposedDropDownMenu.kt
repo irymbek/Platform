@@ -14,11 +14,11 @@ import androidx.compose.ui.unit.Dp
 
 @Composable
 fun ExposedDropdownMenuBoxScope.AppExposedDropDownMenu(
-    modifier: Modifier = Modifier,
     expanded: Boolean,
     onDismissRequest: () -> Unit,
+    modifier: Modifier = Modifier,
     scrollState: ScrollState = rememberScrollState(),
-    matchTextFieldWidth: Boolean = true,
+    matchAnchorWidth: Boolean = true,
     shape: Shape = MenuDefaults.shape,
     containerColor: Color = MenuDefaults.containerColor,
     tonalElevation: Dp = MenuDefaults.TonalElevation,
@@ -31,7 +31,7 @@ fun ExposedDropdownMenuBoxScope.AppExposedDropDownMenu(
         expanded = expanded,
         onDismissRequest = onDismissRequest,
         scrollState = scrollState,
-        matchTextFieldWidth = matchTextFieldWidth,
+        matchAnchorWidth = matchAnchorWidth,
         shape = shape,
         containerColor = containerColor,
         tonalElevation = tonalElevation,
