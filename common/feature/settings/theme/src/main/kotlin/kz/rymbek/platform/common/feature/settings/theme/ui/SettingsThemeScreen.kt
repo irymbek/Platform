@@ -6,10 +6,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
-import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.center_aligned.AppCenterAlignedTopAppBarTitle
-import kz.rymbek.platform.common.core.design.foundation.components.button.icon.AppIconButton
+import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.AppTopAppBarNavigationIcon
+import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.AppTopAppBarTitle
 import kz.rymbek.platform.common.core.design.foundation.components.scaffold.AppScaffold
-import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
+import kz.rymbek.platform.common.core.design.foundation.components.top_app_bar.AppCenterAlignedTopAppBar
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.event.SettingsThemeEvent
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.state.SettingsThemeUiState
 
@@ -20,16 +20,11 @@ internal fun SettingsThemeScreen(
 ) {
     AppScaffold(
         topBar = {
-            AppCenterAlignedTopAppBarTitle(
-                title = "Внешний вид",
+            AppCenterAlignedTopAppBar(
+                title = { AppTopAppBarTitle("Внешний вид") },
                 navigationIcon = {
-                    AppIconButton(
-                        icon = PlatformIcons.FilledArrowBackIosNew,
-                        onClick = {
-                            onEvent(SettingsThemeEvent.Navigation.Back)
-                        },
-                    )
-                },
+                    AppTopAppBarNavigationIcon { onEvent(SettingsThemeEvent.Navigation.Back) }
+                }
             )
         },
         containerColor = MaterialTheme.colorScheme.surface,

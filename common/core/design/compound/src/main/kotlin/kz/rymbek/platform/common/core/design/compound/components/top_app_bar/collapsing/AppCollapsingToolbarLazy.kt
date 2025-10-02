@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -25,12 +26,14 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kz.rymbek.platform.common.core.architecture.ResultFlow
 import kz.rymbek.platform.common.core.architecture.isLoading
-import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.AppTopAppBarNavigation
+import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.AppTopAppBarNavigationIcon
+import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.AppTopAppBarTitle
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppBox
 import kz.rymbek.platform.common.core.design.foundation.components.image.AppAsyncImage
 import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.column.AppLazyColumn
 import kz.rymbek.platform.common.core.design.foundation.components.progress_indicator.AppLinearProgressIndicator
 import kz.rymbek.platform.common.core.design.foundation.components.spacer.AppSpacer
+import kz.rymbek.platform.common.core.design.foundation.components.top_app_bar.AppTopAppBar
 
 @Composable
 private fun rememberHeaderSize(
@@ -93,11 +96,13 @@ private fun CollapsingToolbar(
 
     val title by rememberUpdatedState(if (isScrolled) titleText else "")
 
-    AppTopAppBarNavigation(
-        title = title,
-        onNavigationClick = onBackClick,
-        backgroundColor = background,
-        actions = actions
+    AppTopAppBar(
+        title = { AppTopAppBarTitle(title) },
+        navigationIcon = { AppTopAppBarNavigationIcon(onBackClick) },
+        actions = actions,
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = background
+        )
     )
 }
 
@@ -106,7 +111,7 @@ fun AppCollapsingToolbarLazy(
     modifier: Modifier = Modifier,
     imageUrl: Any?,
     titleText: String = "",
-    onBackClick: () -> Unit = {},
+    onNavigateBack: () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
     content: LazyListScope.() -> Unit,
     loading: ResultFlow<Unit> = ResultFlow.Initial,
@@ -167,7 +172,7 @@ fun AppCollapsingToolbarLazy(
 
             CollapsingToolbar(
                 titleText = titleText,
-                onBackClick = onBackClick,
+                onBackClick = onNavigateBack,
                 actions = actions,
                 isScrolled = isScrolled,
                 animateToolbar = animateToolbar
