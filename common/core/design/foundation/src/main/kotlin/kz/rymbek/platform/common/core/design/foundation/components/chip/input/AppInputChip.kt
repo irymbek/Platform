@@ -9,7 +9,7 @@ import androidx.compose.material3.SelectableChipElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
-import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
+import kz.rymbek.platform.common.core.design.foundation.components.chip.base.ChipLabel
 
 @Composable
 fun AppInputChip(
@@ -30,9 +30,7 @@ fun AppInputChip(
     InputChip(
         selected = selected,
         onClick = onClick,
-        label = {
-            AppText(text = label)
-        },
+        label = { ChipLabel(label) },
         modifier = modifier,
         enabled = enabled,
         leadingIcon = leadingIcon,

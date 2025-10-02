@@ -9,9 +9,7 @@ import androidx.compose.material3.ChipElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.vector.ImageVector
-import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
-import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
+import kz.rymbek.platform.common.core.design.foundation.components.chip.base.ChipLabel
 
 @Composable
 fun AppAssistChip(
@@ -19,8 +17,8 @@ fun AppAssistChip(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    leadingIcon: ImageVector? = null,
-    trailingIcon: ImageVector? = null,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
     shape: Shape = AssistChipDefaults.shape,
     colors: ChipColors = AssistChipDefaults.assistChipColors(),
     elevation: ChipElevation? = AssistChipDefaults.assistChipElevation(),
@@ -29,20 +27,10 @@ fun AppAssistChip(
 ) {
     AssistChip(
         onClick = onClick,
-        label = {
-            AppText(text = label)
-        },
+        label = { ChipLabel(label) },
         modifier = modifier,
-        leadingIcon = {
-            leadingIcon?.let {
-                AppIcon(imageVector = leadingIcon)
-            }
-        },
-        trailingIcon = {
-            trailingIcon?.let {
-                AppIcon(imageVector = trailingIcon)
-            }
-        },
+        leadingIcon = leadingIcon,
+        trailingIcon = trailingIcon,
         shape = shape,
         colors = colors,
         elevation = elevation,

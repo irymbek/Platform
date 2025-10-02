@@ -1,39 +1,37 @@
-package kz.rymbek.platform.common.core.design.foundation.components.button.icon
+package kz.rymbek.platform.common.core.design.foundation.components.icon_button
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.IconButtonDefaults
-import androidx.compose.material3.OutlinedIconButton
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 
 @Composable
-fun AppOutlinedIconButton(
+fun AppIconButton(
     icon: ImageVector,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    shape: Shape = IconButtonDefaults.outlinedShape,
-    colors: IconButtonColors = IconButtonDefaults.outlinedIconButtonColors(),
-    border: BorderStroke? = IconButtonDefaults.outlinedIconButtonBorder(enabled),
+    tintIcon: Color = LocalContentColor.current,
+    colors: IconButtonColors = IconButtonDefaults.iconButtonColors(),
     interactionSource: MutableInteractionSource? = null,
 ) {
-    OutlinedIconButton(
+    IconButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
-        shape = shape,
         colors = colors,
-        border = border,
         interactionSource = interactionSource,
         content = {
             AppIcon(
                 imageVector = icon,
+                tint = tintIcon,
             )
-        },
+        }
     )
 }

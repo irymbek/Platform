@@ -1,4 +1,4 @@
-package kz.rymbek.platform.common.core.design.foundation.components.button.regular
+package kz.rymbek.platform.common.core.design.foundation.components.button
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -10,7 +10,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
-import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
+import kz.rymbek.platform.common.core.design.foundation.components.button.base.ButtonContent
 
 @Composable
 fun AppTextButton(
@@ -36,7 +36,7 @@ fun AppTextButton(
         contentPadding = contentPadding,
         interactionSource = interactionSource,
         content = {
-            AppText(text = text)
+            ButtonContent(text = text)
         }
     )
 }

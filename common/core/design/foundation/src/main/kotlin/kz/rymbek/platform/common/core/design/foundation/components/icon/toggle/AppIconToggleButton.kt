@@ -1,4 +1,4 @@
-package kz.rymbek.platform.common.core.design.foundation.components.button.icon.toggle
+package kz.rymbek.platform.common.core.design.foundation.components.icon.toggle
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material3.IconButtonDefaults

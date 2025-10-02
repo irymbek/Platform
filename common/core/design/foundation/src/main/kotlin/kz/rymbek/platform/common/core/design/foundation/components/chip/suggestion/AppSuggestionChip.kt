@@ -9,7 +9,7 @@ import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
-import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
+import kz.rymbek.platform.common.core.design.foundation.components.chip.base.ChipLabel
 
 @Composable
 fun AppSuggestionChip(
@@ -26,9 +26,7 @@ fun AppSuggestionChip(
 ) {
     SuggestionChip(
         onClick = onClick,
-        label = {
-            AppText(text = label)
-        },
+        label = { ChipLabel(label) },
         modifier = modifier,
         enabled = enabled,
         icon = icon,

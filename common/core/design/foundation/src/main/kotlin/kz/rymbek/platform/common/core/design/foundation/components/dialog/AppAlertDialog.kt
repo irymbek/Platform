@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.window.DialogProperties
-import kz.rymbek.platform.common.core.design.foundation.components.button.regular.AppOutlinedButton
+import kz.rymbek.platform.common.core.design.foundation.components.button.AppOutlinedButton
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 
 @Composable

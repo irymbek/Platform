@@ -9,9 +9,7 @@ import androidx.compose.material3.SelectableChipElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
-import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
-import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
-import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
+import kz.rymbek.platform.common.core.design.foundation.components.chip.base.ChipLabel
 
 @Composable
 fun AppElevatedFilterChip(
@@ -20,6 +18,7 @@ fun AppElevatedFilterChip(
     label: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
     shape: Shape = FilterChipDefaults.shape,
     colors: SelectableChipColors = FilterChipDefaults.elevatedFilterChipColors(),
@@ -30,20 +29,10 @@ fun AppElevatedFilterChip(
     ElevatedFilterChip(
         selected = selected,
         onClick = onClick,
-        label = {
-            AppText(text = label)
-        },
+        label = { ChipLabel(label) },
         modifier = modifier,
         enabled = enabled,
-        leadingIcon = if (selected) {
-            {
-                AppIcon(
-                    imageVector = PlatformIcons.FilledCheck,
-                )
-            }
-        } else {
-            null
-        },
+        leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
         shape = shape,
         colors = colors,

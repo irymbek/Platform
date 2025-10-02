@@ -12,7 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import kz.rymbek.platform.common.core.design.foundation.components.button.regular.AppOutlinedButton
+import kz.rymbek.platform.common.core.design.foundation.components.button.AppOutlinedButton
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 
 @Composable

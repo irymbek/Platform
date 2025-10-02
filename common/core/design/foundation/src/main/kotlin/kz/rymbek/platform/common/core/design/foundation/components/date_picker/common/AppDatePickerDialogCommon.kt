@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.window.DialogProperties
-import kz.rymbek.platform.common.core.design.foundation.components.button.regular.AppTextButton
+import kz.rymbek.platform.common.core.design.foundation.components.button.AppTextButton
 
 @Composable
 internal fun AppDatePickerDialogCommon(
