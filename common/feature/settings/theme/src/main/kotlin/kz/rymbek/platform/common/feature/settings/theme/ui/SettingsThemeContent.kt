@@ -34,11 +34,11 @@ import kz.rymbek.platform.common.base.feature.architecture.IEvent
 import kz.rymbek.platform.common.business.model.ui.enums.design.AppThemeBrand
 import kz.rymbek.platform.common.business.model.ui.enums.design.ModeConfig
 import kz.rymbek.platform.common.business.model.ui.models.AppData
-import kz.rymbek.platform.common.core.design.foundation.components.segmented_button.AppSingleChoiceSegmentedButtonRow
 import kz.rymbek.platform.common.core.design.foundation.components.card.AppFilledCard
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.row.AppLazyRow
+import kz.rymbek.platform.common.core.design.foundation.components.segmented_button.AppSingleChoiceSegmentedButtonRow
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
@@ -48,7 +48,7 @@ import kz.rymbek.platform.common.feature.settings.theme.viewmodel.state.Settings
 
 @Composable
 internal fun SettingsThemeContent(
-    modifier: Modifier,
+    scaffoldPadding: PaddingValues,
     uiState: SettingsThemeUiState,
     onEvent: (IEvent) -> Unit,
 ) {
@@ -56,8 +56,9 @@ internal fun SettingsThemeContent(
     val coroutineScope = rememberCoroutineScope()
 
     AppColumn(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxWidth()
+            .padding(scaffoldPadding)
             .padding(vertical = PlatformPaddings.default),
             //.verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(PlatformPaddings.default),
@@ -272,7 +273,7 @@ fun ThemePreviewCard(
 fun PreviewSettingsThemeContent() {
     AppTheme {
         SettingsThemeContent(
-            modifier = Modifier.fillMaxSize(),
+            scaffoldPadding = PaddingValues(),
             uiState = SettingsThemeUiState(
                 appData = AppData(
                     modeConfig = ModeConfig.FOLLOW_SYSTEM,

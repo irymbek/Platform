@@ -1,9 +1,9 @@
 package kz.rymbek.platform.common.core.design.compound.components.container.regular
 
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.FabPosition
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -29,7 +29,7 @@ internal fun <T> BaseAppStateScaffold(
     containerColor: Color,
     contentColor: Color,
     contentWindowInsets: WindowInsets,
-    content: @Composable (Modifier, T) -> Unit,
+    content: @Composable (PaddingValues, T) -> Unit,
     appSnackbarState: AppSnackbarState
 ) {
     AppScaffold(
@@ -74,7 +74,7 @@ internal fun <T> BaseAppStateScaffold(
                 },
                 success = { data ->
                     content(
-                        Modifier.padding(paddingValues),
+                        paddingValues,
                         data
                     )
                 }

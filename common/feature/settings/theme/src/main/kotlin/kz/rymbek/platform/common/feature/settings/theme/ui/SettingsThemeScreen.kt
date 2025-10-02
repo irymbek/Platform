@@ -28,10 +28,9 @@ internal fun SettingsThemeScreen(
             )
         },
         containerColor = MaterialTheme.colorScheme.surface,
-        content = { paddingValues: PaddingValues ->
+        content = { scaffoldPadding: PaddingValues ->
             SettingsThemeContent(
-                modifier = Modifier
-                    .padding(paddingValues),
+                scaffoldPadding = scaffoldPadding,
                 uiState = uiState,
                 onEvent = onEvent,
             )

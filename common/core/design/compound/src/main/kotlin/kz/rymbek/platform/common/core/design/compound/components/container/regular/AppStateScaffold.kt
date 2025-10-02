@@ -1,6 +1,7 @@
 package kz.rymbek.platform.common.core.design.compound.components.container.regular
 
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.ScaffoldDefaults
@@ -27,7 +28,7 @@ fun <T> AppStateScaffold(
     containerColor: Color = Color.Transparent,
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
-    content: @Composable (Modifier, T) -> Unit,
+    content: @Composable (PaddingValues, T) -> Unit,
     appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
 ) {
     BaseAppStateScaffold(
@@ -60,7 +61,7 @@ fun <T> AppStateScaffold(
     containerColor: Color = Color.Transparent,
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
-    content: @Composable (Modifier, T) -> Unit,
+    content: @Composable (PaddingValues, T) -> Unit,
     appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
 ) {
     val combinedRemote = remember(remote) {
