@@ -5,7 +5,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.icon_button.A
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 
 @Composable
-fun AppTopAppBarNavigationIcon(
+fun TopAppBarNavigationIcon(
     onClick: () -> Unit,
 ) {
     AppIconButton(

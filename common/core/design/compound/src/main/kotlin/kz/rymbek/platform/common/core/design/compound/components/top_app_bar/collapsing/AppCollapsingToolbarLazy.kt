@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kz.rymbek.platform.common.core.architecture.ResultFlow
 import kz.rymbek.platform.common.core.architecture.isLoading
-import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.AppTopAppBarNavigationIcon
-import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.AppTopAppBarTitle
+import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.TopAppBarNavigationIcon
+import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.TopAppBarTitle
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppBox
 import kz.rymbek.platform.common.core.design.foundation.components.image.AppAsyncImage
 import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.column.AppLazyColumn
@@ -97,8 +97,8 @@ private fun CollapsingToolbar(
     val title by rememberUpdatedState(if (isScrolled) titleText else "")
 
     AppTopAppBar(
-        title = { AppTopAppBarTitle(title) },
-        navigationIcon = { AppTopAppBarNavigationIcon(onBackClick) },
+        title = { TopAppBarTitle(title) },
+        navigationIcon = { TopAppBarNavigationIcon(onBackClick) },
         actions = actions,
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = background

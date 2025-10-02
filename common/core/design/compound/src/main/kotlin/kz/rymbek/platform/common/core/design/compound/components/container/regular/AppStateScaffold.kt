@@ -3,12 +3,12 @@ package kz.rymbek.platform.common.core.design.compound.components.container.regu
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.FabPosition
+import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import kz.rymbek.platform.common.core.architecture.ResultFlow
 import kz.rymbek.platform.common.core.architecture.combineStatus
 import kz.rymbek.platform.common.core.design.foundation.components.snackbar.AppSnackbarState
@@ -26,7 +26,7 @@ fun <T> AppStateScaffold(
     floatingActionButtonPosition: FabPosition = FabPosition.End,
     containerColor: Color = Color.Transparent,
     contentColor: Color = contentColorFor(containerColor),
-    contentWindowInsets: WindowInsets = WindowInsets(0.dp),
+    contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     content: @Composable (Modifier, T) -> Unit,
     appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
 ) {
@@ -59,7 +59,7 @@ fun <T> AppStateScaffold(
     floatingActionButtonPosition: FabPosition = FabPosition.End,
     containerColor: Color = Color.Transparent,
     contentColor: Color = contentColorFor(containerColor),
-    contentWindowInsets: WindowInsets = WindowInsets(0.dp),
+    contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     content: @Composable (Modifier, T) -> Unit,
     appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
 ) {

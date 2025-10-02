@@ -6,8 +6,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
-import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.AppTopAppBarNavigationIcon
-import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.AppTopAppBarTitle
+import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.TopAppBarNavigationIcon
+import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.TopAppBarTitle
 import kz.rymbek.platform.common.core.design.foundation.components.scaffold.AppScaffold
 import kz.rymbek.platform.common.core.design.foundation.components.top_app_bar.AppCenterAlignedTopAppBar
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.event.SettingsThemeEvent
@@ -21,9 +21,9 @@ internal fun SettingsThemeScreen(
     AppScaffold(
         topBar = {
             AppCenterAlignedTopAppBar(
-                title = { AppTopAppBarTitle("Внешний вид") },
+                title = { TopAppBarTitle("Внешний вид") },
                 navigationIcon = {
-                    AppTopAppBarNavigationIcon { onEvent(SettingsThemeEvent.Navigation.Back) }
+                    TopAppBarNavigationIcon { onEvent(SettingsThemeEvent.Navigation.Back) }
                 }
             )
         },

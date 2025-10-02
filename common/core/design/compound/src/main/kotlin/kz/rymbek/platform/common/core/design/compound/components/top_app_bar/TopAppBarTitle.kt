@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 
 @Composable
-fun AppTopAppBarTitle(
+fun TopAppBarTitle(
     text: String,
     modifier: Modifier = Modifier,
 ) {
