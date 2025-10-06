@@ -6,10 +6,10 @@ import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 
 @Composable
 fun ListItemSupportingContent(
-    text: String,
+    text: String?,
 ) {
     AppText(
-        text = text,
+        text = text ?: "-",
         style = MaterialTheme.typography.labelMedium,
     )
 }
