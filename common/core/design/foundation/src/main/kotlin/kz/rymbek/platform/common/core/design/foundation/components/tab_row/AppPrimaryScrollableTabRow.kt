@@ -27,10 +27,10 @@ fun <T : ITabItem> AppPrimaryScrollableTabRow(
 ) {
     TabsWithPagerHost(
         tabItems = tabItems,
-        modifier = modifier,
         createTabRow = { selectedTabIndex, onClick ->
             PrimaryScrollableTabRow(
                 selectedTabIndex = selectedTabIndex,
+                modifier = modifier,
                 scrollState = scrollState,
                 containerColor = containerColor,
                 contentColor = contentColor,

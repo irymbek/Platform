@@ -1,6 +1,5 @@
 package kz.rymbek.platform.common.core.design.compound.components.container.dialog
 
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.FabPosition
 import androidx.compose.runtime.Composable
@@ -15,7 +14,7 @@ internal fun BaseAppDialogStateScaffold(
     state: ResultFlow<*>,
     onSnackbarClick: () -> Unit,
     topBar: @Composable (() -> Unit),
-    floatingActionButton:  @Composable (ColumnScope.() -> Unit),
+    floatingActionButton: @Composable (() -> Unit) = {},
     floatingActionButtonPosition: FabPosition,
     content: @Composable ((PaddingValues) -> Unit),
     appSnackbarState: AppSnackbarState

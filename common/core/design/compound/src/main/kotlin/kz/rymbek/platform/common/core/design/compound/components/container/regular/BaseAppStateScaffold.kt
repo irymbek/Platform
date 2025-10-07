@@ -1,6 +1,5 @@
 package kz.rymbek.platform.common.core.design.compound.components.container.regular
 
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,7 +23,7 @@ internal fun <T> BaseAppStateScaffold(
     topBar: @Composable () -> Unit,
     bottomBar: @Composable () -> Unit,
     onActionClick: () -> Unit,
-    floatingActionButton: @Composable (ColumnScope.() -> Unit),
+    floatingActionButton: @Composable (() -> Unit) = {},
     floatingActionButtonPosition: FabPosition,
     containerColor: Color,
     contentColor: Color,

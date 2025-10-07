@@ -1,7 +1,6 @@
 package kz.rymbek.platform.common.core.design.foundation.components.scaffold
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.FabPosition
@@ -21,7 +20,7 @@ fun AppScaffold(
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
     snackbarHost: @Composable () -> Unit = {},
-    floatingActionButton:  @Composable (ColumnScope.() -> Unit) = {},
+    floatingActionButton: @Composable (() -> Unit) = {},
     floatingActionButtonPosition: FabPosition = FabPosition.End,
     containerColor: Color = Color.Transparent,
     contentColor: Color = contentColorFor(containerColor),

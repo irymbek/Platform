@@ -20,10 +20,10 @@ fun <T : ITabItem> AppSecondaryTabRow(
 ) {
     TabsWithPagerHost(
         tabItems = tabItems,
-        modifier = modifier,
         createTabRow = { selectedTabIndex, onClick ->
             SecondaryTabRow(
                 selectedTabIndex = selectedTabIndex,
+                modifier = modifier,
                 containerColor = containerColor,
                 contentColor = contentColor,
                 divider = divider,
