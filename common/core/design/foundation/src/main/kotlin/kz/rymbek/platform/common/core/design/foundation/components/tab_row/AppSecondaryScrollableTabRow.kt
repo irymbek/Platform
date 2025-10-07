@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import kz.rymbek.platform.common.base.feature.architecture.ITabItem
 import kz.rymbek.platform.common.core.design.foundation.components.divider.AppHorizontalDivider
+import kz.rymbek.platform.common.core.design.foundation.components.tab_row.base.AppTabRowDefaults
 import kz.rymbek.platform.common.core.design.foundation.components.tab_row.base.TabsWithPagerHost
 
 @Composable
@@ -19,7 +20,7 @@ fun <T : ITabItem> AppSecondaryScrollableTabRow(
     scrollState: ScrollState = rememberScrollState(),
     containerColor: Color = TabRowDefaults.secondaryContainerColor,
     contentColor: Color = TabRowDefaults.secondaryContentColor,
-    edgePadding: Dp = TabRowDefaults.ScrollableTabRowEdgeStartPadding,
+    edgePadding: Dp = AppTabRowDefaults.ScrollableTabRowEdgeStartPadding,
     divider: @Composable () -> Unit = { AppHorizontalDivider() },
     minTabWidth: Dp = TabRowDefaults.ScrollableTabRowMinTabWidth,
     content: @Composable (page: Int) -> Unit,

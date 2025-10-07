@@ -1,5 +1,6 @@
 package kz.rymbek.platform.common.core.design.foundation.components.pager
 
+import androidx.compose.foundation.OverscrollEffect
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.TargetedFlingBehavior
 import androidx.compose.foundation.gestures.snapping.SnapPosition
@@ -9,6 +10,7 @@ import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.PagerDefaults
 import androidx.compose.foundation.pager.PagerScope
 import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.rememberOverscrollEffect
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,6 +36,7 @@ fun AppHorizontalPager(
         Orientation.Horizontal
     ),
     snapPosition: SnapPosition = SnapPosition.Start,
+    overscrollEffect: OverscrollEffect? = rememberOverscrollEffect(),
     content: @Composable PagerScope.(page: Int) -> Unit
 ) {
     HorizontalPager(
@@ -50,6 +53,7 @@ fun AppHorizontalPager(
         key = key,
         pageNestedScrollConnection = pageNestedScrollConnection,
         snapPosition = snapPosition,
+        overscrollEffect = overscrollEffect,
         pageContent = content
     )
 }
