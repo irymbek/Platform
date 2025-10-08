@@ -3,6 +3,7 @@ package kz.rymbek.platform.common.core.design.compound.components.container.dial
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.FabPosition
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import kz.rymbek.platform.common.core.architecture.ResultFlow
 import kz.rymbek.platform.common.core.design.compound.components.loading.LoadingDialog
 import kz.rymbek.platform.common.core.design.foundation.components.scaffold.AppScaffold
@@ -14,12 +15,14 @@ internal fun BaseAppDialogStateScaffold(
     state: ResultFlow<*>,
     onSnackbarClick: () -> Unit,
     topBar: @Composable (() -> Unit),
+    modifier: Modifier = Modifier,
     floatingActionButton: @Composable (() -> Unit) = {},
     floatingActionButtonPosition: FabPosition,
     content: @Composable ((PaddingValues) -> Unit),
     appSnackbarState: AppSnackbarState
 ) {
     AppScaffold(
+        modifier = modifier,
         topBar = topBar,
         floatingActionButton = floatingActionButton,
         floatingActionButtonPosition = floatingActionButtonPosition,

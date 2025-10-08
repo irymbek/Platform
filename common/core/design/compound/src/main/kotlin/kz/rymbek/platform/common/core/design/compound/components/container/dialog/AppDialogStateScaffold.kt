@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.FabPosition
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import kz.rymbek.platform.common.core.architecture.ResultFlow
 import kz.rymbek.platform.common.core.architecture.combineStatus
 import kz.rymbek.platform.common.core.design.foundation.components.snackbar.AppSnackbarState
@@ -12,6 +13,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.snackbar.reme
 @Composable
 fun AppDialogStateScaffold(
     resultFlow: ResultFlow<*>,
+    modifier: Modifier = Modifier,
     onSnackbarClick: () -> Unit = {},
     topBar: @Composable (() -> Unit) = {},
     floatingActionButton: @Composable (() -> Unit) = {},
@@ -23,6 +25,7 @@ fun AppDialogStateScaffold(
         state = resultFlow,
         onSnackbarClick = onSnackbarClick,
         topBar = topBar,
+        modifier = modifier,
         floatingActionButton = floatingActionButton,
         floatingActionButtonPosition = floatingActionButtonPosition,
         content = content,
@@ -33,6 +36,7 @@ fun AppDialogStateScaffold(
 @Composable
 fun AppDialogStateScaffold(
     resultFlows: List<ResultFlow<*>>,
+    modifier: Modifier = Modifier,
     onSnackbarClick: () -> Unit = {},
     topBar: @Composable (() -> Unit) = {},
     floatingActionButton: @Composable (() -> Unit) = {},
@@ -44,6 +48,7 @@ fun AppDialogStateScaffold(
         state = resultFlows.combineStatus(),
         onSnackbarClick = onSnackbarClick,
         topBar = topBar,
+        modifier = modifier,
         floatingActionButton = floatingActionButton,
         floatingActionButtonPosition = floatingActionButtonPosition,
         content = content,
