@@ -14,6 +14,7 @@ import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material.icons.outlined.VisibilityOff
+import androidx.compose.material.icons.outlined.WifiPassword
 
 object PlatformIcons {
     val OutlinedPalette = Icons.Outlined.Palette
@@ -38,4 +39,6 @@ object PlatformIcons {
 
     val OutlinedVisibility = Icons.Outlined.Visibility
     val OutlinedVisibilityOff = Icons.Outlined.VisibilityOff
+
+    val OutlinedWifiPassword = Icons.Outlined.WifiPassword
 }
