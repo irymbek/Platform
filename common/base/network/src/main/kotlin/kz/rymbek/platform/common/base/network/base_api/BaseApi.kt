@@ -27,7 +27,6 @@ open class BaseApi : BaseApiHelper() {
             get(resource = resource, builder = httpRequestBuilder).body()
         }
 
-
     suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.getData(
         resource: Resource,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}

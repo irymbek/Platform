@@ -14,7 +14,7 @@ open class BaseApiHelper {
     protected open fun log(msg: String) = println("[BaseApi] $msg")
 
     /**
-     * Универсальная обработка ошибок. Возвращает ResultFlow<T> с читаемым сообщением.
+     * Generic error handling. Returns a ResultFlow<T> with a readable message.
      */
     suspend fun <T> safeCall(block: suspend () -> T): ResultFlow<T> {
         return try {
@@ -50,7 +50,6 @@ open class BaseApiHelper {
         }
     }
 
-    // Flow-обёртка: Loading -> результат safeCall
     inline fun <reified T> HttpClient.requestFlowSafe(
         noinline block: suspend HttpClient.() -> T
     ): Flow<ResultFlow<T>> = flow {
@@ -58,7 +57,6 @@ open class BaseApiHelper {
         emit(safeCall { block(this@requestFlowSafe) })
     }
 
-    // Suspend-обёртка
     suspend inline fun <reified T> HttpClient.requestSafe(
         noinline block: suspend HttpClient.() -> T
     ): ResultFlow<T> = safeCall { block(this@requestSafe) }
