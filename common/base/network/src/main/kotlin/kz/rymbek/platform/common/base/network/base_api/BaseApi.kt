@@ -1,7 +1,5 @@
 package kz.rymbek.platform.common.base.network.base_api
 
-import android.R.attr.data
-import android.R.attr.resource
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.onUpload
@@ -15,7 +13,6 @@ import io.ktor.client.request.setBody
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kz.rymbek.platform.common.core.architecture.ResultFlow
 
 open class BaseApi : BaseApiHelper() {
@@ -47,7 +44,7 @@ open class BaseApi : BaseApiHelper() {
         data: Any? = null,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
     ): ResultFlow<Response> = requestSafe {
-        post(resource = resource){
+        post(resource = resource) {
             httpRequestBuilder()
             setBody(data)
         }.body()
@@ -69,7 +66,7 @@ open class BaseApi : BaseApiHelper() {
         data: Any? = null,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
     ): ResultFlow<Response> = requestSafe {
-        put(resource = resource ) {
+        put(resource = resource) {
             httpRequestBuilder()
             setBody(data)
         }.body()

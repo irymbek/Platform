@@ -1,6 +1,5 @@
 package kz.rymbek.platform.common.base.network.base_api
 
-import io.ktor.client.HttpClient
 import io.ktor.client.statement.bodyAsText
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.ResponseException
@@ -46,18 +45,18 @@ open class BaseApiHelper {
         } catch (e: Exception) {
             val msg = e.message ?: e::class.simpleName ?: "Неизвестная ошибка"
             log("Unknown: $msg")
-            ResultFlow.Error(Throwable("Ошибка: $msg"))
+            ResultFlow.Error(Throwable(msg))
         }
     }
 
-    inline fun <reified T> HttpClient.requestFlowSafe(
-        noinline block: suspend HttpClient.() -> T
+    inline fun <reified T> requestFlowSafe(
+        noinline apiCall: suspend () -> T
     ): Flow<ResultFlow<T>> = flow {
         emit(ResultFlow.Loading)
-        emit(safeCall { block(this@requestFlowSafe) })
+        emit(safeCall(apiCall))
     }
 
-    suspend inline fun <reified T> HttpClient.requestSafe(
-        noinline block: suspend HttpClient.() -> T
-    ): ResultFlow<T> = safeCall { block(this@requestSafe) }
+    suspend inline fun <reified T> requestSafe(
+        noinline apiCall: suspend () -> T,
+    ): ResultFlow<T> = safeCall(apiCall)
 }
