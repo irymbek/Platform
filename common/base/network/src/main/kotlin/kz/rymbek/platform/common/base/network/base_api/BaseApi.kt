@@ -22,10 +22,9 @@ open class BaseApi : BaseApiHelper() {
     inline fun <reified Resource : Any, reified Response : Any> HttpClient.getDataSafe(
         resource: Resource,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
-    ): Flow<ResultFlow<Response>> =
-        requestFlowSafe {
-            get(resource = resource, builder = httpRequestBuilder).body()
-        }
+    ): Flow<ResultFlow<Response>> = requestFlowSafe {
+        get(resource = resource, builder = httpRequestBuilder).body()
+    }
 
     suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.getData(
         resource: Resource,
@@ -36,49 +35,45 @@ open class BaseApi : BaseApiHelper() {
         resource: Resource,
         data: Any? = null,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
-    ): Flow<ResultFlow<Response>> =
-        requestFlowSafe {
-            post(resource = resource) {
-                httpRequestBuilder()
-                setBody(data)
-            }.body()
-        }
+    ): Flow<ResultFlow<Response>> = requestFlowSafe {
+        post(resource = resource) {
+            httpRequestBuilder()
+            setBody(data)
+        }.body()
+    }
 
     suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.postData(
         resource: Resource,
         data: Any? = null,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
-    ): ResultFlow<Response> =
-        requestSafe {
-            post(resource = resource){
-                httpRequestBuilder()
-                setBody(data)
-            }.body()
-        }
+    ): ResultFlow<Response> = requestSafe {
+        post(resource = resource){
+            httpRequestBuilder()
+            setBody(data)
+        }.body()
+    }
 
     inline fun <reified Resource : Any, reified Response : Any> HttpClient.putDataSafe(
         resource: Resource,
         data: Any,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
-    ): Flow<ResultFlow<Response>> =
-        requestFlowSafe {
-            put(resource = resource){
-                httpRequestBuilder()
-                setBody(data)
-            }.body()
-        }
+    ): Flow<ResultFlow<Response>> = requestFlowSafe {
+        put(resource = resource){
+            httpRequestBuilder()
+            setBody(data)
+        }.body()
+    }
 
     suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.putData(
         resource: Resource,
         data: Any? = null,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
-    ): ResultFlow<Response> =
-        requestSafe {
-            put(resource = resource ) {
-                httpRequestBuilder()
-                setBody(data)
-            }.body()
-        }
+    ): ResultFlow<Response> = requestSafe {
+        put(resource = resource ) {
+            httpRequestBuilder()
+            setBody(data)
+        }.body()
+    }
 
     suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.uploadFile(
         resource: Resource,
