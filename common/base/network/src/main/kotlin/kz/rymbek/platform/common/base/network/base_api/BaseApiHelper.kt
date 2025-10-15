@@ -1,6 +1,5 @@
 package kz.rymbek.platform.common.base.network.base_api
 
-import android.util.Log
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.ResponseException
 import kotlinx.coroutines.flow.Flow
@@ -9,6 +8,8 @@ import kotlinx.serialization.SerializationException
 import kz.rymbek.platform.common.core.architecture.ResultFlow
 
 open class BaseApiHelper {
+    private fun String.toThrowable() = Throwable(this)
+
     suspend fun <T> handleApiCall(
         apiCall: suspend () -> T,
     ): ResultFlow<T> {
@@ -17,20 +18,16 @@ open class BaseApiHelper {
             ResultFlow.Success(response)
         } catch (clientRequestException: ClientRequestException) {
             val message = "Status Code: ${clientRequestException.response.status.value} - API Key Missing"
-            Log.d("BaseApiHelper", message, clientRequestException)
-            ResultFlow.Error(clientRequestException)
+            ResultFlow.Error(message.toThrowable())
         } catch (responseException: ResponseException) {
-            val message = "Status Code: ${responseException.response.status.value} - HttpExceptions"
-            Log.d("BaseApiHelper", message, responseException)
-            ResultFlow.Error(responseException)
+            val message = "Status Code: ${responseException.response.status.value}"
+            ResultFlow.Error(message.toThrowable())
         } catch (serializationException: SerializationException) {
             val message = "Serialization error: ${serializationException.message}"
-            Log.d("BaseApiHelper", message, serializationException)
-            ResultFlow.Error(serializationException)
+            ResultFlow.Error(message.toThrowable())
         } catch (exception: Exception) {
             val message = "Unknown error: ${exception.message}"
-            Log.d("BaseApiHelper", message, exception)
-            ResultFlow.Error(exception)
+            ResultFlow.Error(message.toThrowable())
         }
     }
 
