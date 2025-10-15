@@ -1,5 +1,7 @@
 package kz.rymbek.platform.common.base.network.base_api
 
+import android.R.attr.data
+import android.R.attr.resource
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.onUpload
@@ -10,141 +12,101 @@ import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.MultiPartFormDataContent
 import io.ktor.client.request.forms.formData
 import io.ktor.client.request.setBody
-import io.ktor.http.ContentType
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
 import kotlinx.coroutines.flow.Flow
-import kotlinx.serialization.json.Json
+import kotlinx.coroutines.flow.flow
 import kz.rymbek.platform.common.core.architecture.ResultFlow
 
 open class BaseApi : BaseApiHelper() {
-    inline fun <reified T : Any, reified ResponseT : Any> HttpClient.getDataSafe(
-        resource: T,
-        crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
-    ): Flow<ResultFlow<ResponseT>> {
-        return safeRequestFlow {
-            get(
-                resource = resource,
-                builder = httpRequestBuilder,
-            ).body()
+    inline fun <reified Resource : Any, reified Response : Any> HttpClient.getDataSafe(
+        resource: Resource,
+        crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
+    ): Flow<ResultFlow<Response>> =
+        requestFlowSafe {
+            get(resource = resource, builder = httpRequestBuilder).body()
         }
-    }
 
-    suspend inline fun <reified T : Any, reified ResponseT : Any> HttpClient.getData(
-        resource: T,
-        httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
-    ): ResponseT {
-        return get(
-            resource = resource,
-            builder = httpRequestBuilder,
-        ).body()
-    }
 
-    inline fun <reified T : Any, reified ResponseT : Any> HttpClient.getListDataSafe(
-        resource: T,
-        crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
-    ): Flow<ResultFlow<List<ResponseT>>> {
-        return safeRequestFlow {
-            get(
-                resource = resource,
-                builder = httpRequestBuilder,
-            ).body()
-        }
-    }
+    suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.getData(
+        resource: Resource,
+        crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
+    ): Response = get(resource = resource, builder = httpRequestBuilder).body()
 
-    inline fun <reified T : Any, reified ResponseT : Any> HttpClient.getSetDataSafe(
-        resource: T,
-        crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
-    ): Flow<ResultFlow<Set<ResponseT>>> {
-        return safeRequestFlow {
-            get(
-                resource = resource,
-                builder = httpRequestBuilder,
-            ).body()
-        }
-    }
-
-    inline fun <reified T : Any, reified ResponseT : Any> HttpClient.getMatrixData(
-        resource: T,
-        crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
-    ): Flow<ResultFlow<List<List<ResponseT>>>> {
-        return safeRequestFlow {
-            get(
-                resource = resource,
-                builder = httpRequestBuilder,
-            ).body()
-        }
-    }
-
-    inline fun <reified T : Any, reified ResponseT : Any> HttpClient.postDataSafe(
-        resource: T,
+    inline fun <reified Resource : Any, reified Response : Any> HttpClient.postDataSafe(
+        resource: Resource,
         data: Any? = null,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
-    ): Flow<ResultFlow<ResponseT>> {
-        return safeRequestFlow {
+    ): Flow<ResultFlow<Response>> =
+        requestFlowSafe {
             post(resource = resource) {
                 httpRequestBuilder()
                 setBody(data)
             }.body()
         }
-    }
 
-    suspend inline fun <reified T : Any, reified ResponseT : Any> HttpClient.postData(
-        resource: T,
+    suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.postData(
+        resource: Resource,
         data: Any? = null,
-        crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
-    ): ResultFlow<ResponseT> {
-        return safeRequest {
-            post(resource = resource) {
+        crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
+    ): ResultFlow<Response> =
+        requestSafe {
+            post(resource = resource){
                 httpRequestBuilder()
                 setBody(data)
             }.body()
         }
-    }
 
-    inline fun <reified T : Any, reified ResponseT : Any> HttpClient.putData(
-        resource: T,
+    inline fun <reified Resource : Any, reified Response : Any> HttpClient.putDataSafe(
+        resource: Resource,
         data: Any,
-        crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
-    ): Flow<ResultFlow<ResponseT>> {
-        return safeRequestFlow {
-            put(resource = resource) {
+        crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
+    ): Flow<ResultFlow<Response>> =
+        requestFlowSafe {
+            put(resource = resource){
                 httpRequestBuilder()
                 setBody(data)
             }.body()
         }
-    }
 
-    suspend inline fun <reified T : Any, reified ResponseT : Any> HttpClient.uploadFile(
-        resource: T,
-        fileInfo: Pair<String, ByteArray>,
-        crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
-        key: String,
-    ): ResultFlow<ResponseT> {
-        val (name, bytes) = fileInfo
-        return safeRequest {
-            post(resource = resource) {
+    suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.putData(
+        resource: Resource,
+        data: Any? = null,
+        crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
+    ): ResultFlow<Response> =
+        requestSafe {
+            put(resource = resource ) {
                 httpRequestBuilder()
-                setBody(
-                    MultiPartFormDataContent(
-                        formData {
-                            append(
-                                key = key,
-                                value = bytes,
-                                headers = Headers.build {
-                                    append(
-                                        name = HttpHeaders.ContentDisposition,
-                                        value = "filename=\"${name}\""
-                                    )
-                                }
-                            )
+                setBody(data)
+            }.body()
+        }
+
+    suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.uploadFile(
+        resource: Resource,
+        fileName: String,
+        bytes: ByteArray,
+        key: String,
+        crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
+        noinline progressCallback: ((bytesSent: Long, contentLength: Long?) -> Unit)? = null
+    ): ResultFlow<Response> = requestSafe {
+        post(resource = resource) {
+            httpRequestBuilder()
+            setBody(
+                MultiPartFormDataContent(formData {
+                    append(
+                        key = key,
+                        value = bytes,
+                        headers = Headers.build {
+                            append(HttpHeaders.ContentDisposition, "filename=\"$fileName\"")
                         }
                     )
-                )
+                })
+            )
+            if (progressCallback != null) {
                 onUpload { bytesSentTotal, contentLength ->
-                    println("Sent $bytesSentTotal bytes from $contentLength")
+                    progressCallback(bytesSentTotal, contentLength)
                 }
-            }.body()
-        }
+            }
+        }.body()
     }
 }

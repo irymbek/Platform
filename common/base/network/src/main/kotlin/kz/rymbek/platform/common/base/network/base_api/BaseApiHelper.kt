@@ -1,46 +1,65 @@
 package kz.rymbek.platform.common.base.network.base_api
 
+import io.ktor.client.HttpClient
+import io.ktor.client.statement.bodyAsText
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.ResponseException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.SerializationException
 import kz.rymbek.platform.common.core.architecture.ResultFlow
+import kotlin.coroutines.cancellation.CancellationException
 
 open class BaseApiHelper {
-    private fun String.toThrowable() = Throwable(this)
+    protected open fun log(msg: String) = println("[BaseApi] $msg")
 
-    suspend fun <T> handleApiCall(
-        apiCall: suspend () -> T,
-    ): ResultFlow<T> {
+    /**
+     * Универсальная обработка ошибок. Возвращает ResultFlow<T> с читаемым сообщением.
+     */
+    suspend fun <T> safeCall(block: suspend () -> T): ResultFlow<T> {
         return try {
-            val response = apiCall()
-            ResultFlow.Success(response)
-        } catch (clientRequestException: ClientRequestException) {
-            val message = "Status Code: ${clientRequestException.response.status.value} - API Key Missing"
-            ResultFlow.Error(message.toThrowable())
-        } catch (responseException: ResponseException) {
-            val message = "Status Code: ${responseException.response.status.value}"
-            ResultFlow.Error(message.toThrowable())
-        } catch (serializationException: SerializationException) {
-            val message = "Serialization error: ${serializationException.message}"
-            ResultFlow.Error(message.toThrowable())
-        } catch (exception: Exception) {
-            val message = "Unknown error: ${exception.message}"
-            ResultFlow.Error(message.toThrowable())
+            ResultFlow.Success(block())
+        } catch (e: CancellationException) {
+            throw e // не мешаем отмене корутины
+        } catch (e: ClientRequestException) {
+            val status = e.response.status.value
+            val body = runCatching { e.response.bodyAsText() }.getOrNull()
+            val msg = buildString {
+                append("Ошибка $status")
+                body?.takeIf { it.isNotBlank() }?.let { append(": ${it.trim().take(200)}") }
+            }
+            log(msg)
+            ResultFlow.Error(Throwable(msg))
+        } catch (e: ResponseException) {
+            val status = e.response.status.value
+            val body = runCatching { e.response.bodyAsText() }.getOrNull()
+            val msg = buildString {
+                append("Сервер вернул $status")
+                body?.takeIf { it.isNotBlank() }?.let { append(": ${it.trim().take(200)}") }
+            }
+            log(msg)
+            ResultFlow.Error(Throwable(msg))
+        } catch (e: SerializationException) {
+            val msg = "Ошибка парсинга: ${e.message ?: e::class.simpleName}"
+            log(msg)
+            ResultFlow.Error(Throwable(msg))
+        } catch (e: Exception) {
+            val msg = e.message ?: e::class.simpleName ?: "Неизвестная ошибка"
+            log("Unknown: $msg")
+            ResultFlow.Error(Throwable("Ошибка: $msg"))
         }
     }
 
-    inline fun <reified T> safeRequestFlow(
-        noinline apiCall: suspend () -> T
+    // Flow-обёртка: Loading -> результат safeCall
+    inline fun <reified T> HttpClient.requestFlowSafe(
+        noinline block: suspend HttpClient.() -> T
     ): Flow<ResultFlow<T>> = flow {
         emit(ResultFlow.Loading)
-        emit(handleApiCall(apiCall))
+        emit(safeCall { block(this@requestFlowSafe) })
     }
 
-    suspend inline fun <reified T> safeRequest(
-        noinline apiCall: suspend () -> T,
-    ): ResultFlow<T> {
-        return handleApiCall(apiCall)
-    }
+    // Suspend-обёртка
+    suspend inline fun <reified T> HttpClient.requestSafe(
+        noinline block: suspend HttpClient.() -> T
+    ): ResultFlow<T> = safeCall { block(this@requestSafe) }
 }
