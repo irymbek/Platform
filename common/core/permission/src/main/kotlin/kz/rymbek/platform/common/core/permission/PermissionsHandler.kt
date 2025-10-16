@@ -9,8 +9,8 @@ import kz.rymbek.platform.common.core.design.foundation.components.snackbar.reme
 
 @Composable
 fun rememberPermissions(
-    appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
     permissions: List<String>,
+    appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
     onResult: (Map<String, Boolean>) -> Unit = {}
 ): PermissionHandler {
     val activityUtils = rememberActivityUtils()
