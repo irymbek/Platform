@@ -1,10 +1,14 @@
 package kz.rymbek.platform.common.core.design.compound.components.container.dialog
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.FabPosition
+import androidx.compose.material3.ScaffoldDefaults
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import kz.rymbek.platform.common.core.architecture.ResultFlow
 import kz.rymbek.platform.common.core.architecture.combineStatus
 import kz.rymbek.platform.common.core.design.foundation.components.snackbar.AppSnackbarState
@@ -14,22 +18,30 @@ import kz.rymbek.platform.common.core.design.foundation.components.snackbar.reme
 fun AppDialogStateScaffold(
     resultFlow: ResultFlow<*>,
     modifier: Modifier = Modifier,
-    onSnackbarClick: () -> Unit = {},
     topBar: @Composable (() -> Unit) = {},
+    bottomBar: @Composable () -> Unit = {},
+    appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
+    onSnackbarClick: () -> Unit = {},
     floatingActionButton: @Composable (() -> Unit) = {},
     floatingActionButtonPosition: FabPosition = FabPosition.End,
+    containerColor: Color = Color.Transparent,
+    contentColor: Color = contentColorFor(containerColor),
+    contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     content: @Composable ((PaddingValues) -> Unit),
-    appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
 ) {
     BaseAppDialogStateScaffold(
         state = resultFlow,
-        onSnackbarClick = onSnackbarClick,
-        topBar = topBar,
         modifier = modifier,
+        topBar = topBar,
+        bottomBar = bottomBar,
+        appSnackbarState = appSnackbarState,
+        onSnackbarClick = onSnackbarClick,
         floatingActionButton = floatingActionButton,
         floatingActionButtonPosition = floatingActionButtonPosition,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        contentWindowInsets = contentWindowInsets,
         content = content,
-        appSnackbarState = appSnackbarState
     )
 }
 
@@ -37,34 +49,47 @@ fun AppDialogStateScaffold(
 fun AppDialogStateScaffold(
     resultFlows: List<ResultFlow<*>>,
     modifier: Modifier = Modifier,
-    onSnackbarClick: () -> Unit = {},
     topBar: @Composable (() -> Unit) = {},
+    bottomBar: @Composable () -> Unit = {},
+    appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
+    onSnackbarClick: () -> Unit = {},
     floatingActionButton: @Composable (() -> Unit) = {},
     floatingActionButtonPosition: FabPosition = FabPosition.End,
+    containerColor: Color = Color.Transparent,
+    contentColor: Color = contentColorFor(containerColor),
+    contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     content: @Composable ((PaddingValues) -> Unit),
-    appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
 ) {
     BaseAppDialogStateScaffold(
         state = resultFlows.combineStatus(),
-        onSnackbarClick = onSnackbarClick,
-        topBar = topBar,
         modifier = modifier,
+        topBar = topBar,
+        bottomBar = bottomBar,
+        appSnackbarState = appSnackbarState,
+        onSnackbarClick = onSnackbarClick,
         floatingActionButton = floatingActionButton,
         floatingActionButtonPosition = floatingActionButtonPosition,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        contentWindowInsets = contentWindowInsets,
         content = content,
-        appSnackbarState = appSnackbarState
     )
 }
 
 @Composable
 fun AppDialogStateScaffold(
     vararg resultFlows: ResultFlow<*>,
-    onSnackbarClick: () -> Unit = {},
+    modifier: Modifier = Modifier,
     topBar: @Composable (() -> Unit) = {},
+    bottomBar: @Composable () -> Unit = {},
+    appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
+    onSnackbarClick: () -> Unit = {},
     floatingActionButton: @Composable (() -> Unit) = {},
     floatingActionButtonPosition: FabPosition = FabPosition.End,
+    containerColor: Color = Color.Transparent,
+    contentColor: Color = contentColorFor(containerColor),
+    contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     content: @Composable ((PaddingValues) -> Unit),
-    appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
 ) {
     val combined = remember(resultFlows) {
         resultFlows.toList().combineStatus()
@@ -72,11 +97,16 @@ fun AppDialogStateScaffold(
 
     BaseAppDialogStateScaffold(
         state = combined,
-        onSnackbarClick = onSnackbarClick,
+        modifier = modifier,
         topBar = topBar,
+        bottomBar = bottomBar,
+        appSnackbarState = appSnackbarState,
+        onSnackbarClick = onSnackbarClick,
         floatingActionButton = floatingActionButton,
         floatingActionButtonPosition = floatingActionButtonPosition,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        contentWindowInsets = contentWindowInsets,
         content = content,
-        appSnackbarState = appSnackbarState
     )
 }
