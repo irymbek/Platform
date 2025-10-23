@@ -51,10 +51,7 @@ fun rememberAppSnackbarState(
     snackbarHostState: SnackbarHostState = rememberSnackbarHostState(),
 ): AppSnackbarState {
     val coroutineScope = rememberCoroutineScope()
-    return remember(
-        snackbarHostState,
-        coroutineScope,
-    ) {
+    return remember(snackbarHostState) {
         AppSnackbarState(
             snackbarHostState = snackbarHostState,
             coroutineScope = coroutineScope,
