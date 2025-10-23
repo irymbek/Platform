@@ -3,6 +3,7 @@ package kz.rymbek.platform.common.core.design.foundation.constants
 import androidx.compose.ui.unit.Dp
 
 object PlatformIconSize {
+    val xxs: Dp = PlatformSpacing.space_6x
     val xs: Dp = PlatformSpacing.space_8x
     val sm: Dp = PlatformSpacing.space_12x
     val md: Dp = PlatformSpacing.space_16x
