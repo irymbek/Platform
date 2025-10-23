@@ -17,18 +17,18 @@ import kz.rymbek.platform.common.core.design.foundation.components.snackbar.reme
 @Composable
 fun <T> AppStateScaffold(
     remote: ResultFlow<*>,
-    local: ResultFlow<T> = ResultFlow.Initial,
     modifier: Modifier = Modifier,
+    local: ResultFlow<T> = ResultFlow.Initial,
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
-    onActionClick: () -> Unit = {},
+    appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
+    onSnackbarClick: () -> Unit = {},
     floatingActionButton: @Composable (() -> Unit) = {},
     floatingActionButtonPosition: FabPosition = FabPosition.End,
     containerColor: Color = Color.Transparent,
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     content: @Composable (PaddingValues, T) -> Unit,
-    appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
 ) {
     BaseAppStateScaffold(
         remote = remote,
@@ -36,7 +36,7 @@ fun <T> AppStateScaffold(
         modifier = modifier,
         topBar = topBar,
         bottomBar = bottomBar,
-        onActionClick = onActionClick,
+        onSnackbarClick = onSnackbarClick,
         floatingActionButton = floatingActionButton,
         floatingActionButtonPosition = floatingActionButtonPosition,
         containerColor = containerColor,
@@ -50,10 +50,11 @@ fun <T> AppStateScaffold(
 @Composable
 fun <T> AppStateScaffold(
     remote: List<ResultFlow<*>>,
-    local: ResultFlow<T> = ResultFlow.Initial,
     modifier: Modifier = Modifier,
+    local: ResultFlow<T> = ResultFlow.Initial,
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
+    appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
     onActionClick: () -> Unit = {},
     floatingActionButton: @Composable (() -> Unit) = {},
     floatingActionButtonPosition: FabPosition = FabPosition.End,
@@ -61,7 +62,6 @@ fun <T> AppStateScaffold(
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     content: @Composable (PaddingValues, T) -> Unit,
-    appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
 ) {
     val combinedRemote = remember(remote) {
         remote.combineStatus()
@@ -73,7 +73,44 @@ fun <T> AppStateScaffold(
         modifier = modifier,
         topBar = topBar,
         bottomBar = bottomBar,
-        onActionClick = onActionClick,
+        onSnackbarClick = onActionClick,
+        floatingActionButton = floatingActionButton,
+        floatingActionButtonPosition = floatingActionButtonPosition,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        contentWindowInsets = contentWindowInsets,
+        content = content,
+        appSnackbarState = appSnackbarState
+    )
+}
+
+@Composable
+fun <T> AppStateScaffold(
+    vararg remote: ResultFlow<*>,
+    modifier: Modifier = Modifier,
+    local: ResultFlow<T> = ResultFlow.Initial,
+    topBar: @Composable () -> Unit = {},
+    bottomBar: @Composable () -> Unit = {},
+    appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
+    onActionClick: () -> Unit = {},
+    floatingActionButton: @Composable (() -> Unit) = {},
+    floatingActionButtonPosition: FabPosition = FabPosition.End,
+    containerColor: Color = Color.Transparent,
+    contentColor: Color = contentColorFor(containerColor),
+    contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
+    content: @Composable (PaddingValues, T) -> Unit,
+) {
+    val combinedRemote = remember(remote) {
+        remote.toList().combineStatus()
+    }
+
+    BaseAppStateScaffold(
+        remote = combinedRemote,
+        local = local,
+        modifier = modifier,
+        topBar = topBar,
+        bottomBar = bottomBar,
+        onSnackbarClick = onActionClick,
         floatingActionButton = floatingActionButton,
         floatingActionButtonPosition = floatingActionButtonPosition,
         containerColor = containerColor,

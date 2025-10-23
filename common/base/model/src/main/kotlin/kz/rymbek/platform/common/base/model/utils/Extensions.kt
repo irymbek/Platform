@@ -1,14 +1,16 @@
 package kz.rymbek.platform.common.base.model.utils
 
+import android.util.Base64
 import java.math.BigDecimal
 
 const val HTTPS_PREFIX = "https://"
 
-fun String.asBase64() = "data:image/jpeg;base64,$this"
+fun String.toBase64() = "data:image/jpeg;base64,$this"
 
+fun ByteArray.toBase64Image(): String =
+    "data:image/jpeg;base64," + Base64.encodeToString(this, Base64.NO_WRAP)
 
 fun String.asImageUrl(host: String) = "$HTTPS_PREFIX$host$this"
-
 
 //Float
 fun String.toNullableFloat(): Float? {

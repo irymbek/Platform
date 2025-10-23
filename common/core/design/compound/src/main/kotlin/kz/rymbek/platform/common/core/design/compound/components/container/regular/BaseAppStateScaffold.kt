@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.FabPosition
+import androidx.compose.material3.ScaffoldDefaults
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -14,22 +16,23 @@ import kz.rymbek.platform.common.core.design.foundation.components.progress_indi
 import kz.rymbek.platform.common.core.design.foundation.components.scaffold.AppScaffold
 import kz.rymbek.platform.common.core.design.foundation.components.snackbar.AppSnackbarHost
 import kz.rymbek.platform.common.core.design.foundation.components.snackbar.AppSnackbarState
+import kz.rymbek.platform.common.core.design.foundation.components.snackbar.rememberAppSnackbarState
 
 @Composable
 internal fun <T> BaseAppStateScaffold(
     remote: ResultFlow<*>,
     local: ResultFlow<T>,
     modifier: Modifier,
-    topBar: @Composable () -> Unit,
-    bottomBar: @Composable () -> Unit,
-    onActionClick: () -> Unit,
+    topBar: @Composable () -> Unit = {},
+    bottomBar: @Composable () -> Unit = {},
+    appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
+    onSnackbarClick: () -> Unit,
     floatingActionButton: @Composable (() -> Unit) = {},
     floatingActionButtonPosition: FabPosition,
-    containerColor: Color,
-    contentColor: Color,
-    contentWindowInsets: WindowInsets,
+    containerColor: Color = Color.Transparent,
+    contentColor: Color = contentColorFor(containerColor),
+    contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     content: @Composable (PaddingValues, T) -> Unit,
-    appSnackbarState: AppSnackbarState
 ) {
     AppScaffold(
         modifier = modifier,
@@ -47,7 +50,7 @@ internal fun <T> BaseAppStateScaffold(
                         HandleError(
                             exception = exception,
                             appSnackbarState = appSnackbarState,
-                            onActionClick = onActionClick
+                            onActionClick = onSnackbarClick
                         )
                     },
                     success = { }
@@ -68,7 +71,7 @@ internal fun <T> BaseAppStateScaffold(
                     HandleError(
                         exception = exception,
                         appSnackbarState = appSnackbarState,
-                        onActionClick = onActionClick
+                        onActionClick = onSnackbarClick
                     )
                 },
                 success = { data ->
