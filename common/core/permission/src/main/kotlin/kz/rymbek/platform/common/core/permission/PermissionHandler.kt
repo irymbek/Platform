@@ -6,6 +6,6 @@ interface PermissionHandler {
     val appSnackbarState: AppSnackbarState
 
     fun requestPermissions(
-        onGranted: () -> Unit,
+        onGranted: () -> Unit = {},
     )
 }

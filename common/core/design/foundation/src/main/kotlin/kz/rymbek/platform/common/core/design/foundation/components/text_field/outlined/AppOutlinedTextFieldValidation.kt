@@ -12,6 +12,7 @@ fun AppOutlinedTextFieldValidation(
     value: String,
     label: String,
     onValueChange: (String) -> Unit,
+    enabled: Boolean = true,
     errorMessage: String?,
     keyboardType: KeyboardType = KeyboardType.Text,
 ) {
@@ -20,6 +21,7 @@ fun AppOutlinedTextFieldValidation(
         value = value,
         label = label,
         onValueChange = onValueChange,
+        enabled = enabled,
         isError = errorMessage != null,
         supportingText = {
             if (errorMessage != null) {
