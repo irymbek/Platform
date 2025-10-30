@@ -43,6 +43,7 @@ abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : IEvent.Navigation>(
 
     protected open fun handleAction(event: IEvent.Action) = Unit
 
+    @Suppress("UNCHECKED_CAST")
     protected open fun handleNavigation(event: IEvent.Navigation) {
         intent {
             postSideEffect(event as SIDE_EFFECT)
