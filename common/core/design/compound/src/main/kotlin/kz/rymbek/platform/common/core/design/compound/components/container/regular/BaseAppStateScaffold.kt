@@ -8,6 +8,10 @@ import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import kz.rymbek.platform.common.core.architecture.ResultFlow
@@ -114,11 +118,17 @@ private fun HandleError(
     appSnackbarState: AppSnackbarState,
     onActionClick: () -> Unit
 ) {
-    LaunchedEffect(exception) {
-        appSnackbarState.showSnackbar(
-            message = "Ошибка: ${exception.message}",
-            actionLabel = "Скрыть",
-            onActionClick = onActionClick
-        )
+    val message = exception.message
+    var shown by rememberSaveable(message) { mutableStateOf(false) }
+
+    LaunchedEffect(message) {
+        if (!shown) {
+            shown = true
+            appSnackbarState.showSnackbar(
+                message = "Ошибка: $message",
+                actionLabel = "Скрыть",
+                onActionClick = onActionClick
+            )
+        }
     }
 }

@@ -17,6 +17,7 @@ fun AppCircularProgressIndicator(
     strokeWidth: Dp = ProgressIndicatorDefaults.CircularStrokeWidth,
     trackColor: Color = ProgressIndicatorDefaults.circularIndeterminateTrackColor,
     strokeCap: StrokeCap = ProgressIndicatorDefaults.CircularIndeterminateStrokeCap,
+    gapSize: Dp = ProgressIndicatorDefaults.CircularIndicatorTrackGapSize,
 ) {
     CircularProgressIndicator(
         modifier = modifier
@@ -25,6 +26,7 @@ fun AppCircularProgressIndicator(
         strokeWidth = strokeWidth,
         trackColor = trackColor,
         strokeCap = strokeCap,
+        gapSize = gapSize,
     )
 }
 
