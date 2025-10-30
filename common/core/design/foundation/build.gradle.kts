@@ -28,4 +28,5 @@ dependencies {
     api(platformLibs.androidx.compose.material3)
     implementation(platformLibs.androidx.compose.material3.navigation.suite)
     implementation(platformLibs.androidx.compose.material.iconsExtended)
+    implementation("androidx.compose.runtime:runtime:1.9.4")
 }
