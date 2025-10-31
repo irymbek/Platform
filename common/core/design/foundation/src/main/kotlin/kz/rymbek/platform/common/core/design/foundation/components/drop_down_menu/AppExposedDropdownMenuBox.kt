@@ -22,7 +22,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.text_field.re
 fun <T: Any> AppExposedDropdownMenuBox(
     label: String,
     items: List<T>,
-    itemKey: ((Int, T) -> Any)?,
+    key: ((T) -> Any)?,
     onItemSelected: (
         item: T,
     ) -> Unit,
@@ -36,7 +36,7 @@ fun <T: Any> AppExposedDropdownMenuBox(
         items = items,
         itemLabel = itemLabel,
         selectedKey = null,
-        itemKey = itemKey,
+        key = key,
         onItemSelected = onItemSelected,
         modifier = modifier,
         itemImage = itemImage,
@@ -50,7 +50,7 @@ fun <T: Any, KEY: Any> AppExposedDropdownMenuBox(
     items: List<T>,
     selectedKey: KEY?,
     itemLabel: (T) -> String,
-    itemKey: ((Int, T) -> Any)?,
+    key: ((T) -> Any)?,
     onItemSelected: (
         item: T,
     ) -> Unit,
@@ -62,9 +62,7 @@ fun <T: Any, KEY: Any> AppExposedDropdownMenuBox(
 
     var selectedItem by remember(items, selectedKey) {
         mutableStateOf(
-            items.withIndex()
-                .firstOrNull { (i, item) -> itemKey?.invoke(i, item) == selectedKey }
-                ?.value
+            items.firstOrNull { key?.invoke(it) == selectedKey }
         )
     }
 
@@ -118,7 +116,7 @@ fun <T: Any, KEY: Any> AppExposedDropdownMenuBox(
                     expanded = expanded,
                     selectedItemToString = itemLabel,
                     selectedItemToImage = itemImage,
-                    keySelector = itemKey,
+                    key = key,
                     onSelectItem = {
                         expanded.value = false
                         onItemSelected(it)

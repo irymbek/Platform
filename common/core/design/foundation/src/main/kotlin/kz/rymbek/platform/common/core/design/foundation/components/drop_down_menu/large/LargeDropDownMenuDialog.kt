@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -32,7 +32,7 @@ fun <T: Any> LargeDropDownMenuDialog(
     items: List<T>,
     selectedItemToString: (T) -> String,
     selectedItemToImage: (T) -> Any?,
-    keySelector: ((Int, T) -> Any)?,
+    key: ((T) -> Any)? = null,
     onSelectItem: (item: T) -> Unit,
 ) {
     var searchQuery by rememberSaveable { mutableStateOf("") }
@@ -45,6 +45,10 @@ fun <T: Any> LargeDropDownMenuDialog(
         filteredItems = items.filter {
             selectedItemToString(it).contains(searchQuery, ignoreCase = true)
         }
+    }
+
+    val shown = remember(filteredItems) {
+        filteredItems.mapIndexed { idx, it -> it to (idx == filteredItems.lastIndex) }
     }
 
     AppDialog(
@@ -70,17 +74,17 @@ fun <T: Any> LargeDropDownMenuDialog(
                         contentPadding = PaddingValues(0.dp),
                         verticalArrangement = Arrangement.Center,
                     ) {
-                        itemsIndexed(
-                            items = filteredItems,
-                            key = keySelector,
-                            itemContent = { index, item ->
+                        items(
+                            items = shown,
+                            key = { (item, _) -> key?.invoke(item) ?: System.identityHashCode(item) },
+                            itemContent = { (item, isLast) ->
                                 AppDropdownMenuItem(
                                     text = selectedItemToString(item),
                                     trailingIconUri = selectedItemToImage(item),
-                                    onClick = { onSelectItem(item) },
+                                    onClick = { onSelectItem(item) }
                                 )
 
-                                if (index != filteredItems.lastIndex) {
+                                if (!isLast) {
                                     AppHorizontalDivider(
                                         modifier = Modifier
                                             .fillMaxWidth()
