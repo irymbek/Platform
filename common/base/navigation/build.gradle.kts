@@ -1,5 +1,3 @@
-import kz.rymbek.platform.common.base.convention.extensions.platformLibs
-
 plugins {
     alias(platformLibs.plugins.convention.library)
     alias(platformLibs.plugins.convention.library.compose)
