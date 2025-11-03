@@ -11,6 +11,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import kotlin.reflect.KClass
 
 @Composable
 fun rememberNavigationState(
@@ -36,10 +37,10 @@ class NavigationState(
 
     fun isTopLevelDestinationInHierarchy(
         destination: NavDestination?,
-        route: Any,
+        route: KClass<*>,
     ): Boolean {
         return destination?.hierarchy?.any {
-            it.hasRoute(route::class)
+            it.hasRoute(route)
         } == true
     }
 
