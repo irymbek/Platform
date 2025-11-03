@@ -5,7 +5,6 @@ import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaul
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldState
-import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldValue
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScope
 import androidx.compose.material3.adaptive.navigationsuite.rememberNavigationSuiteScaffoldState
 import androidx.compose.runtime.Composable
@@ -19,9 +18,7 @@ fun AppNavigationSuiteScaffold(
     navigationSuiteColors: NavigationSuiteColors = NavigationSuiteDefaults.colors(),
     containerColor: Color = Color.Transparent,
     contentColor: Color = NavigationSuiteScaffoldDefaults.contentColor,
-    state: NavigationSuiteScaffoldState = rememberNavigationSuiteScaffoldState(
-        initialValue = NavigationSuiteScaffoldValue.Hidden
-    ),
+    state: NavigationSuiteScaffoldState = rememberNavigationSuiteScaffoldState(),
     content: @Composable () -> Unit = {},
 ) {
     NavigationSuiteScaffold(
