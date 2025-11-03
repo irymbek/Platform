@@ -103,6 +103,9 @@ class ApplicationPlugin: Plugin<Project> {
                 implementation(platformLibs.koin.android)
                 implementation(platformLibs.koin.androidx.compose)
                 implementation(platformLibs.koin.androidx.startup)
+
+                // Adaptive Navigation
+                implementation(platformLibs.androidx.compose.material3.navigation.suite)
             }
         }
     }
