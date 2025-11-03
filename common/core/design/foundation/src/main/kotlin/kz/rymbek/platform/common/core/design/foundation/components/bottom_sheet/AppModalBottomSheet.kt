@@ -35,10 +35,10 @@ fun AppModalBottomSheet(
 ) {
     if (isShow.value) {
         ModalBottomSheet(
-            modifier = modifier,
             onDismissRequest = {
                 isShow.value = false
             },
+            modifier = modifier,
             sheetState = sheetState,
             sheetMaxWidth = sheetMaxWidth,
             shape = shape,
