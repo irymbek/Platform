@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 @Composable
 fun AppSwitch(
     checked: Boolean,
+    onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
-    onCheckedChange: ((Boolean) -> Unit)? = null,
     thumbContent: (@Composable () -> Unit)? = null,
     enabled: Boolean = true,
     colors: SwitchColors = SwitchDefaults.colors(),
