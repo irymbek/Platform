@@ -22,7 +22,7 @@ enum class CheckboxState {
 
 @Composable
 fun AppTriStateCheckboxCustom(
-    state: CheckboxState = rememberCheckBoxState(),
+    state: CheckboxState = rememberCheckBoxStateCustom(),
     onLongClick: () -> Unit
 ) {
     val color = when (state) {
@@ -56,7 +56,7 @@ fun AppTriStateCheckboxCustom(
 }
 
 @Composable
-fun rememberCheckBoxState(
+fun rememberCheckBoxStateCustom(
     isChecked: Boolean? = null,
 ): CheckboxState {
     return remember(

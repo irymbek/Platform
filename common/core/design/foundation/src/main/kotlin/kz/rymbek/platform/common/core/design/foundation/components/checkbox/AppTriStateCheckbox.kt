@@ -5,6 +5,7 @@ import androidx.compose.material3.CheckboxColors
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.TriStateCheckbox
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.state.ToggleableState
 
@@ -25,4 +26,20 @@ fun AppTriStateCheckbox(
         colors = colors,
         interactionSource = interactionSource,
     )
+}
+
+
+@Composable
+fun rememberCheckBoxState(
+    isChecked: Boolean? = null,
+): ToggleableState {
+    return remember(
+        isChecked
+    ) {
+        when (isChecked) {
+            true -> ToggleableState.On
+            false -> ToggleableState.Off
+            null -> ToggleableState.Indeterminate
+        }
+    }
 }
