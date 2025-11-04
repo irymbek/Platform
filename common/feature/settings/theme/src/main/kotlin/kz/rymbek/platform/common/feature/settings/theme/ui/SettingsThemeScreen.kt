@@ -1,10 +1,8 @@
 package kz.rymbek.platform.common.feature.settings.theme.ui
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
 import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.TopAppBarNavigationIcon
 import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.TopAppBarTitle
