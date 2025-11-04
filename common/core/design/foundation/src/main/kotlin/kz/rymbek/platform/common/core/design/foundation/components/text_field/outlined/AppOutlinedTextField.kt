@@ -1,7 +1,6 @@
 package kz.rymbek.platform.common.core.design.foundation.components.text_field.outlined
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.LocalTextStyle
@@ -19,10 +18,10 @@ import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 
 @Composable
 fun AppOutlinedTextField(
-    modifier: Modifier = Modifier,
     value: String,
     label: String,
     onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     textStyle: TextStyle = LocalTextStyle.current,
@@ -35,10 +34,7 @@ fun AppOutlinedTextField(
     isError: Boolean = false,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardType: KeyboardType = KeyboardType.Text,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
-        .copy(
-            keyboardType = keyboardType,
-        ),
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default.copy(keyboardType = keyboardType),
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     singleLine: Boolean = true,
     maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
@@ -48,8 +44,7 @@ fun AppOutlinedTextField(
     colors: TextFieldColors = OutlinedTextFieldDefaults.colors()
 ) {
     OutlinedTextField(
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier = modifier,
         value = value,
         onValueChange = onValueChange,
         enabled = enabled,
