@@ -43,9 +43,7 @@ fun AppDatePicker(
             selectedDateMillis = state.selectedDateMillis,
             displayMode = state.displayMode,
             dateFormatter = dateFormatter,
-            modifier = Modifier.padding(
-                PaddingValues(start = 24.dp, end = 12.dp, bottom = 12.dp)
-            )
+            modifier = Modifier.padding(PaddingValues(start = 24.dp, end = 12.dp, bottom = 12.dp))
         )
     },
     showModeToggle: Boolean = true,

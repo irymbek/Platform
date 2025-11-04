@@ -25,7 +25,6 @@ internal fun AppDatePickerDialog(
 ) {
     if (isVisible.value) {
         DatePickerDialog(
-            modifier = modifier,
             onDismissRequest = {
                 isVisible.value = false
             },
@@ -38,6 +37,7 @@ internal fun AppDatePickerDialog(
                     },
                 )
             },
+            modifier = modifier,
             dismissButton = {
                 AppTextButton(
                     text = "Отмена",
