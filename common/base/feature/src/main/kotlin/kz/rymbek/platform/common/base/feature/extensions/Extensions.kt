@@ -13,3 +13,6 @@ fun List<ValidationError>.errorAt(
     child: KProperty1<*, *>
 ): String? =
     this.messagesAtPath(parent, index, child).firstOrNull()
+
+fun List<ValidationError>.errorAt(parent: KProperty1<*, *>, child: KProperty1<*, *>): String? =
+    this.messagesAtPath(parent, child).firstOrNull()

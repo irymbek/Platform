@@ -7,7 +7,7 @@ import androidx.paging.cachedIn
 import io.konform.validation.ValidationError
 import kotlinx.coroutines.flow.Flow
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
-import kz.rymbek.platform.common.base.model.interfaces.Validatable
+import kz.rymbek.platform.common.base.model.interfaces.HasValidator
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.blockingIntent
 import org.orbitmvi.orbit.container
@@ -81,7 +81,7 @@ abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : IEvent.Navigation>(
         onValid: suspend Syntax<STATE, SIDE_EFFECT>.() -> Unit
     ) = Unit
 
-    protected suspend fun <T : Validatable<T>> Syntax<STATE, SIDE_EFFECT>.validation(
+    protected suspend fun <T : HasValidator<T>> Syntax<STATE, SIDE_EFFECT>.validation(
         model: T,
         copyErrors: STATE.(List<ValidationError>) -> STATE,
         onValid: suspend Syntax<STATE, SIDE_EFFECT>.() -> Unit
