@@ -11,12 +11,16 @@ import kz.rymbek.platform.common.core.design.foundation.components.snackbar.reme
 fun rememberPermissions(
     permissions: List<String>,
     appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
-    onResult: (Map<String, Boolean>) -> Unit = {}
+    onResult: (Map<String, Boolean>) -> Unit = {},
+    onAllGranted: () -> Unit = {}
 ): PermissionHandler {
     val activityUtils = rememberActivityUtils()
     val multiplePermissionsState = rememberMultiplePermissionsState(
         permissions = permissions,
-        onPermissionsResult = onResult,
+        onPermissionsResult = {
+            onResult(it)
+            if (it.values.all { granted -> granted }) onAllGranted()
+        },
     )
 
     return remember(appSnackbarState, multiplePermissionsState) {
