@@ -50,14 +50,6 @@ internal fun <T> BaseAppStateScaffold(
                             Modifier.fillMaxWidth()
                         )
                     },
-                    error = { exception ->
-                        HandleError(
-                            exception = exception,
-                            appSnackbarState = appSnackbarState,
-                            onActionClick = onSnackbarClick
-                        )
-                    },
-                    success = { }
                 )
             }
         },
@@ -70,7 +62,6 @@ internal fun <T> BaseAppStateScaffold(
         content = { paddingValues ->
             ResultFlowHandler(
                 result = local,
-                loading = { /* можно добавить shimmer или что-то своё */ },
                 error = { exception ->
                     HandleError(
                         exception = exception,
@@ -101,7 +92,7 @@ fun <T> ResultFlowHandler(
     error: @Composable (Throwable) -> Unit = {},
     empty: @Composable () -> Unit = {},
     initial: @Composable () -> Unit = {},
-    success: @Composable (T) -> Unit
+    success: @Composable (T) -> Unit = {}
 ) {
     when (result) {
         is ResultFlow.Initial -> initial()

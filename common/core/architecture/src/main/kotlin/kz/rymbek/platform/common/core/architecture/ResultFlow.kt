@@ -28,6 +28,23 @@ val ResultFlow<*>.isError get() = this is Error
 val ResultFlow<*>.isInitial get() = this is Initial
 val ResultFlow<*>.isEmpty get() = this is Empty
 
+/* ---- Data accessors ---- */
+fun <T> ResultFlow<T>.getOrNull(): T? = when (this) {
+    is ResultFlow.Success -> data
+    else -> null
+}
+
+fun <T> ResultFlow<T>.getOrThrow(): T = when (this) {
+    is ResultFlow.Success -> data
+    is ResultFlow.Error -> throw exception
+    else -> throw IllegalStateException("Result is not Success: $this")
+}
+
+fun <T> ResultFlow<T>.getOrElse(defaultValue: T): T = when (this) {
+    is ResultFlow.Success -> data
+    else -> defaultValue
+}
+
 
 /* ---- Status combinators ---- */
 

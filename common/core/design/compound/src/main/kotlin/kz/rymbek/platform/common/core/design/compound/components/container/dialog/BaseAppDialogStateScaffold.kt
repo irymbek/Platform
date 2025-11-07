@@ -19,6 +19,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.snackbar.reme
 internal fun BaseAppDialogStateScaffold(
     state: ResultFlow<*>,
     modifier: Modifier = Modifier,
+    message: String? = null,
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
     appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
@@ -47,7 +48,7 @@ internal fun BaseAppDialogStateScaffold(
         content = { paddingValues ->
             content(paddingValues)
             when (state) {
-                is ResultFlow.Loading -> LoadingDialog()
+                is ResultFlow.Loading -> LoadingDialog(message = message)
                 is ResultFlow.Error -> {
                     appSnackbarState.showSnackbar(
                         message = "Ошибка: ${state.exception.message}",

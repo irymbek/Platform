@@ -18,6 +18,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.snackbar.reme
 fun AppDialogStateScaffold(
     resultFlow: ResultFlow<*>,
     modifier: Modifier = Modifier,
+    message: String? = null,
     topBar: @Composable (() -> Unit) = {},
     bottomBar: @Composable () -> Unit = {},
     appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
@@ -32,6 +33,7 @@ fun AppDialogStateScaffold(
     BaseAppDialogStateScaffold(
         state = resultFlow,
         modifier = modifier,
+        message = message,
         topBar = topBar,
         bottomBar = bottomBar,
         appSnackbarState = appSnackbarState,
@@ -49,6 +51,7 @@ fun AppDialogStateScaffold(
 fun AppDialogStateScaffold(
     resultFlows: List<ResultFlow<*>>,
     modifier: Modifier = Modifier,
+    message: String? = null,
     topBar: @Composable (() -> Unit) = {},
     bottomBar: @Composable () -> Unit = {},
     appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
@@ -63,6 +66,7 @@ fun AppDialogStateScaffold(
     BaseAppDialogStateScaffold(
         state = resultFlows.combineStatus(),
         modifier = modifier,
+        message = message,
         topBar = topBar,
         bottomBar = bottomBar,
         appSnackbarState = appSnackbarState,
@@ -80,6 +84,7 @@ fun AppDialogStateScaffold(
 fun AppDialogStateScaffold(
     vararg resultFlows: ResultFlow<*>,
     modifier: Modifier = Modifier,
+    message: String? = null,
     topBar: @Composable (() -> Unit) = {},
     bottomBar: @Composable () -> Unit = {},
     appSnackbarState: AppSnackbarState = rememberAppSnackbarState(),
@@ -98,6 +103,7 @@ fun AppDialogStateScaffold(
     BaseAppDialogStateScaffold(
         state = combined,
         modifier = modifier,
+        message = message,
         topBar = topBar,
         bottomBar = bottomBar,
         appSnackbarState = appSnackbarState,
