@@ -27,7 +27,7 @@ ksp = "2.3.2"
 ktor = "3.3.2"
 konform = "0.11.1"
 okio = "3.16.2"
-orbit = "10.0.0"
+orbit = "11.0.0"
 
 compileSdk = "36"
 targetSdk = "36"
