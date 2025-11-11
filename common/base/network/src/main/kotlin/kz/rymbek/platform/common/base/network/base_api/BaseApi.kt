@@ -95,7 +95,7 @@ open class BaseApi : BaseApiHelper() {
         data: Any,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
     ): Flow<ResultFlow<Response>> = requestFlowSafe {
-        put(resource = resource){
+        put(resource = resource) {
             httpRequestBuilder()
             setBody(data)
         }.body()
@@ -103,12 +103,12 @@ open class BaseApi : BaseApiHelper() {
 
     suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.submitFormUnsafe(
         resource: Resource,
-        formParameters: Parameters = Parameters.Empty
+        formParameters: Parameters
     ): Response = submitForm(url = href(ResourcesFormat(), resource), formParameters = formParameters).body()
 
     suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.submitFormSafe(
         resource: Resource,
-        formParameters: Parameters = Parameters.Empty
+        formParameters: Parameters
     ): ResultFlow<Response> = requestSafe {
         val url = href(ResourcesFormat(), resource)
         submitForm(url = url, formParameters = formParameters).body()
@@ -116,7 +116,7 @@ open class BaseApi : BaseApiHelper() {
 
     inline fun <reified Resource : Any, reified Response : Any> HttpClient.submitFormSafeFlow(
         resource: Resource,
-        formParameters: Parameters = Parameters.Empty
+        formParameters: Parameters
     ): Flow<ResultFlow<Response>> = requestFlowSafe {
         val url = href(ResourcesFormat(), resource)
         submitForm(url = url, formParameters = formParameters).body()
