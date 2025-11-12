@@ -30,7 +30,7 @@ fun <T: Any> AppExposedDropdownMenuBox(
     itemLabel: (T) -> String = { it.toString() },
     itemImage: (T) -> Any? = { null },
     errorMessage: String? = null,
-    allowEmptySelection: Boolean = true,
+    allowEmptySelection: Boolean = false,
     emptyLabel: String = "Не выбрано",
 ) {
     AppExposedDropdownMenuBox(
@@ -60,7 +60,7 @@ fun <T: Any, KEY: Any> AppExposedDropdownMenuBox(
     ) -> Unit,
     modifier: Modifier = Modifier,
     itemImage: (T) -> Any? = { null },
-    allowEmptySelection: Boolean = true,
+    allowEmptySelection: Boolean = false,
     emptyLabel: String = "Не выбрано",
     errorMessage: String? = null,
 ) {
