@@ -20,6 +20,10 @@ fun Any?.toSafeString(
     default: String = "",
 ): String = this?.toString() ?: default
 
+fun Long?.toSafeLong(
+    default: Long = 0L,
+): Long = this ?: default
+
 /** Safe Int **/
 fun String.toSafeInt(
     default: Int = 0,

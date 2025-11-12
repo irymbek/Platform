@@ -33,7 +33,9 @@ fun <T: Any> LargeDropDownMenuDialog(
     selectedItemToString: (T) -> String,
     selectedItemToImage: (T) -> Any?,
     key: ((T) -> Any)? = null,
-    onSelectItem: (item: T) -> Unit,
+    onSelectItem: (item: T?) -> Unit,
+    allowEmptySelection: Boolean,
+    emptyLabel: String,
 ) {
     var searchQuery by rememberSaveable { mutableStateOf("") }
 
@@ -74,6 +76,23 @@ fun <T: Any> LargeDropDownMenuDialog(
                         contentPadding = PaddingValues(0.dp),
                         verticalArrangement = Arrangement.Center,
                     ) {
+                        if (allowEmptySelection && searchQuery.isBlank()) {
+                            item("empty_item") {
+                                AppDropdownMenuItem(
+                                    text = emptyLabel,
+                                    onClick = {
+                                        expanded.value = false
+                                        onSelectItem(null)
+                                    }
+                                )
+                                AppHorizontalDivider(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = PlatformPaddings.default)
+                                )
+                            }
+                        }
+
                         items(
                             items = shown,
                             key = { (item, _) -> key?.invoke(item) ?: System.identityHashCode(item) },

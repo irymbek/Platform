@@ -24,12 +24,14 @@ fun <T: Any> AppExposedDropdownMenuBox(
     items: List<T>,
     key: ((T) -> Any)?,
     onItemSelected: (
-        item: T,
+        item: T?,
     ) -> Unit,
     modifier: Modifier = Modifier,
     itemLabel: (T) -> String = { it.toString() },
     itemImage: (T) -> Any? = { null },
     errorMessage: String? = null,
+    allowEmptySelection: Boolean = true,
+    emptyLabel: String = "Не выбрано",
 ) {
     AppExposedDropdownMenuBox(
         label = label,
@@ -41,6 +43,8 @@ fun <T: Any> AppExposedDropdownMenuBox(
         modifier = modifier,
         itemImage = itemImage,
         errorMessage = errorMessage,
+        allowEmptySelection = allowEmptySelection,
+        emptyLabel = emptyLabel,
     )
 }
 
@@ -52,10 +56,12 @@ fun <T: Any, KEY: Any> AppExposedDropdownMenuBox(
     itemLabel: (T) -> String,
     key: ((T) -> Any)?,
     onItemSelected: (
-        item: T,
+        item: T?,
     ) -> Unit,
     modifier: Modifier = Modifier,
     itemImage: (T) -> Any? = { null },
+    allowEmptySelection: Boolean = true,
+    emptyLabel: String = "Не выбрано",
     errorMessage: String? = null,
 ) {
     val expanded = rememberSaveable { mutableStateOf(false) }
@@ -110,6 +116,8 @@ fun <T: Any, KEY: Any> AppExposedDropdownMenuBox(
                         expanded.value = false
                         onItemSelected(it)
                     },
+                    allowEmptySelection = allowEmptySelection,
+                    emptyLabel = emptyLabel,
                 )
                 else -> LargeDropDownMenuDialog(
                     items = items,
@@ -121,6 +129,8 @@ fun <T: Any, KEY: Any> AppExposedDropdownMenuBox(
                         expanded.value = false
                         onItemSelected(it)
                     },
+                    allowEmptySelection = allowEmptySelection,
+                    emptyLabel = emptyLabel,
                 )
             }
         }
