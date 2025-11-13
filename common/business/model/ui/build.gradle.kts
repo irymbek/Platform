@@ -9,4 +9,8 @@ android {
 
 dependencies {
     implementation(projects.platform.common.base.feature)
+
+    implementation(platform(platformLibs.androidx.compose.bom))
+    implementation(platformLibs.androidx.compose.material3)
+    implementation(platformLibs.androidx.compose.ui.graphics)
 }
