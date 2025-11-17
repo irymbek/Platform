@@ -78,7 +78,7 @@ private fun CollapsingHeader(
                 this.translationY = translationY
                 this.alpha = alpha
             },
-        uri = imageUrl
+        data = imageUrl
     )
 }
 

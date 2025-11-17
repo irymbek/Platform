@@ -47,7 +47,7 @@ fun <T: Any> ExposedDropdownMenuBoxScope.SmallDropDownMenu(
             items.forEachIndexed { index: Int, item: T ->
                 AppDropdownMenuItem(
                     text = selectedItemToString(item),
-                    trailingIconUri = selectedItemToImage(item),
+                    trailingImageData = selectedItemToImage(item),
                     onClick = {
                         onSelectItem(item)
                     },

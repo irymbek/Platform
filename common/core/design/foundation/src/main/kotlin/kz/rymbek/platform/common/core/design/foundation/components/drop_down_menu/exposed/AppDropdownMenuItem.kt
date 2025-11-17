@@ -19,7 +19,7 @@ fun AppDropdownMenuItem(
     text: String,
     onClick: () -> Unit,
     leadingIcon: @Composable (() -> Unit)? = null,
-    trailingIconUri: Any? = null,
+    trailingImageData: Any? = null,
     enabled: Boolean = true,
     colors: MenuItemColors = MenuDefaults.itemColors(),
     contentPadding: PaddingValues = ExposedDropdownMenuDefaults.ItemContentPadding,
@@ -36,11 +36,11 @@ fun AppDropdownMenuItem(
         onClick = onClick,
         leadingIcon = leadingIcon,
         trailingIcon = {
-            if(trailingIconUri != null) {
+            if(trailingImageData != null) {
                 AppAsyncImage(
                     modifier = Modifier
                         .size(100.dp),
-                    uri = trailingIconUri,
+                    data = trailingImageData,
                 )
             }
         },

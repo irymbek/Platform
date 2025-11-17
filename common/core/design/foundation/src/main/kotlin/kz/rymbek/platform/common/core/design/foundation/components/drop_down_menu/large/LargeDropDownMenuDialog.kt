@@ -99,7 +99,7 @@ fun <T: Any> LargeDropDownMenuDialog(
                             itemContent = { (item, isLast) ->
                                 AppDropdownMenuItem(
                                     text = selectedItemToString(item),
-                                    trailingIconUri = selectedItemToImage(item),
+                                    trailingImageData = selectedItemToImage(item),
                                     onClick = { onSelectItem(item) }
                                 )
 

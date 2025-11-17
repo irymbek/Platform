@@ -20,7 +20,7 @@ import coil3.video.videoFramePercent
 
 @Composable
 fun AppAsyncImage(
-    uri: Any?,
+    data: Any?,
     modifier: Modifier = Modifier,
     model: Any? = null,
     context: Context = LocalContext.current,
@@ -42,7 +42,7 @@ fun AppAsyncImage(
         modifier = modifier
             .background(MaterialTheme.colorScheme.outline),
         model = model ?: ImageRequest.Builder(context)
-            .data(uri)
+            .data(data)
             .videoFramePercent(0.1)
             .build(),
         contentDescription = contentDescription,
