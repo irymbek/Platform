@@ -79,6 +79,7 @@ coil = { group = "io.coil-kt.coil3", name = "coil" }
 coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose" }
 coil-compose-core = { group = "io.coil-kt.coil3", name = "coil-compose-core" }
 coil-network-ktor3 = { group = "io.coil-kt.coil3", name = "coil-network-ktor3" }
+coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp" }
 coil-video = { group = "io.coil-kt.coil3", name = "coil-video" }
 
 com-google-accompanist-permissions = { group = "com.google.accompanist", name ="accompanist-permissions", version.ref = "googleAccompanist" }
