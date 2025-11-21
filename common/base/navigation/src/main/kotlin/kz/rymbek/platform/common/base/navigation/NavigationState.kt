@@ -79,7 +79,7 @@ class NavigationState(
     }
 
     /** Навигация вверх: удаляет последний элемент в текущем backStack (если есть). */
-    fun navigateUp() {
+    fun navigateBack() {
         backStacks[topLevelRoute]?.removeLastOrNull()
     }
 
