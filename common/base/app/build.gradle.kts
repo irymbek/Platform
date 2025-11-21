@@ -10,4 +10,7 @@ android {
 
 dependencies {
     implementation(platformLibs.androidx.compose.material3)
+
+    //NavKey
+    implementation(platformLibs.androidx.navigation3.runtime)
 }

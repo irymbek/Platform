@@ -31,8 +31,7 @@ class PlatformFeaturePlugin : Plugin<Project> {
                 //coil
                 implementation(platformLibs.coil.compose.core)
 
-                //toRoute()
-                implementation(platformLibs.androidx.navigation.compose)
+                implementation(platformLibs.androidx.lifecycle.viewmodel.navigation3)
 
                 implementation(platformLibs.orbit.compose)
 

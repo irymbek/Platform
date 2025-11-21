@@ -7,7 +7,7 @@ androidxCoreSplashscreen = "1.2.0"
 androidxDataStore = "1.2.0"
 androidxLifecycle = "2.10.0"
 androidxMedia3 = "1.8.0"
-androidxNavigation = "2.9.6"
+androidxNavigation3 = "1.0.0"
 androidxPaging3 = "3.3.6"
 androidxRoom = "2.8.4"
 androidxWork = "2.11.0"
@@ -43,6 +43,7 @@ androidx-camera-core = { group = "androidx.camera", name = "camera-core", versio
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCoreKtx" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
 androidx-lifecycle-viewmodelKtx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
+androidx-lifecycle-viewmodel-navigation3 = { group = "androidx.lifecycle",  name = "lifecycle-viewmodel-navigation3", version.ref = "androidxLifecycle" }
 
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
@@ -61,8 +62,8 @@ androidx-dataStore-preferences = { group = "androidx.datastore", name = "datasto
 androidx-media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "androidxMedia3" }
 androidx-media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "androidxMedia3" }
 
-androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "androidxNavigation" }
-androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "androidxNavigation3" }
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "androidxNavigation3" }
 
 androidx-paging-common = { group = "androidx.paging", name = "paging-common", version.ref = "androidxPaging3" }
 androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "androidxPaging3" }

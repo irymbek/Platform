@@ -1,28 +1,17 @@
 package kz.rymbek.platform.common.feature.settings.theme.navigation
 
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavOptions
-import androidx.navigation.compose.composable
+import androidx.navigation3.runtime.EntryProviderScope
+import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 import kz.rymbek.platform.common.feature.settings.theme.ui.SettingsThemeRoute
 
 @Serializable
-object SettingsThemeRoute
+object SettingsThemeKey : NavKey
 
-fun NavController.navigateToSettingsTheme(
-    navOptions: NavOptions? = null,
-) {
-    navigate(
-        route = SettingsThemeRoute,
-        navOptions = navOptions,
-    )
-}
-
-fun NavGraphBuilder.settingsThemeScreen(
+fun EntryProviderScope<NavKey>.settingsThemeScreen(
     onNavigateBack: () -> Unit,
 ) {
-    composable<SettingsThemeRoute> {
+    entry<SettingsThemeKey> {
         SettingsThemeRoute(
             onNavigateBack = onNavigateBack,
         )

@@ -94,8 +94,7 @@ class ApplicationPlugin: Plugin<Project> {
                 // Splash screen
                 implementation(platformLibs.androidx.core.splashscreen)
 
-                // Navigation
-                implementation(platformLibs.androidx.navigation.compose)
+                implementation(platformLibs.androidx.navigation3.ui)
 
                 implementation(platformLibs.orbit.compose)
 
