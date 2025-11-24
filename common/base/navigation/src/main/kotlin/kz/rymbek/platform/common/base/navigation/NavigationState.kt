@@ -25,7 +25,7 @@ import androidx.savedstate.compose.serialization.serializers.MutableStateSeriali
 fun rememberNavigationState(
     startRoute: NavKey,
     topLevelRoutes: Set<NavKey>
-): NavigationState {
+): NavigationInterface {
     val topLevelRoute = rememberSerializable(
         startRoute, topLevelRoutes,
         serializer = MutableStateSerializer(NavKeySerializer()),
@@ -52,14 +52,14 @@ fun rememberNavigationState(
  * @param topLevelRoute - the current top level route
  * @param backStacks - the back stacks for each top level route
  */
-class NavigationState(
+internal class NavigationState(
     val startRoute: NavKey,
     topLevelRoute: MutableState<NavKey>,
-    val backStacks: Map<NavKey, NavBackStack<NavKey>>
-) {
-    var topLevelRoute: NavKey by topLevelRoute
+    override val backStacks: Map<NavKey, NavBackStack<NavKey>>
+) : NavigationInterface {
+    override var topLevelRoute: NavKey by topLevelRoute
 
-    val stacksInUse: List<NavKey>
+    override val stacksInUse: List<NavKey>
         get() = if (topLevelRoute == startRoute) {
             listOf(startRoute)
         } else {
@@ -67,19 +67,19 @@ class NavigationState(
         }
 
     /** Возвращает текущий активный backStack (для текущего topLevelRoute). */
-    fun currentBackStack(): NavBackStack<NavKey> = backStacks[topLevelRoute]
+    override fun currentBackStack(): NavBackStack<NavKey> = backStacks[topLevelRoute]
         ?: error("No backStack for top level: $topLevelRoute")
 
-    val currentScreen: NavKey?
+    override val currentScreen: NavKey?
         get() = currentBackStack().lastOrNull()
 
     /** Навигация: добавляет элемент в текущий backStack. */
-    fun navigate(key: NavKey) {
+    override fun navigate(key: NavKey) {
         backStacks[topLevelRoute]?.add(key)
     }
 
     /** Навигация вверх: удаляет последний элемент в текущем backStack (если есть). */
-    fun navigateBack() {
+    override fun navigateBack() {
         backStacks[topLevelRoute]?.removeLastOrNull()
     }
 
@@ -88,18 +88,11 @@ class NavigationState(
      * Если требуется при переключении очистить стек — вызывай clearTarget = true.
      */
 
-    fun navigateTopLevel(target: NavKey, clearTarget: Boolean = false) {
+    override fun navigateTopLevel(target: NavKey) {
         if (!backStacks.containsKey(target)) error("Unknown top level route: $target")
 
-        if (clearTarget) {
-            backStacks[target]?.clear()
+        if (backStacks[target]?.lastOrNull() == null) {
             backStacks[target]?.add(target)
-        } else {
-            // Если стек целевого топ-левела пуст — добавим туда сам ключ,
-            // чтобы currentScreen не стал null при переключении.
-            if (backStacks[target]?.lastOrNull() == null) {
-                backStacks[target]?.add(target)
-            }
         }
 
         // Наконец — переключаем активный topLevelRoute
@@ -111,7 +104,7 @@ class NavigationState(
  * Convert NavigationState into NavEntries.
  */
 @Composable
-fun NavigationState.toEntries(
+fun NavigationInterface.toEntries(
     entryProvider: (NavKey) -> NavEntry<NavKey>
 ): SnapshotStateList<NavEntry<NavKey>> {
 
