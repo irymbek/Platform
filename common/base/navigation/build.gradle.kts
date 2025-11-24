@@ -9,4 +9,5 @@ android {
 
 dependencies {
     implementation(platformLibs.androidx.navigation3.runtime)
+    implementation(platformLibs.androidx.lifecycle.viewmodel.navigation3)
 }
