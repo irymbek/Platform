@@ -34,7 +34,9 @@ fun rememberNavigationState(
         }
     )
 
-    val backStacks = topLevelRoutes.associateWith { key -> rememberNavBackStack(key) }
+    val backStacks = topLevelRoutes.associateWith {
+        rememberNavBackStack(it)
+    }
 
     return remember(startRoute, topLevelRoutes) {
         NavigationState(
@@ -66,37 +68,29 @@ internal class NavigationState(
             listOf(startRoute, topLevelRoute)
         }
 
-    /** Возвращает текущий активный backStack (для текущего topLevelRoute). */
     override fun currentBackStack(): NavBackStack<NavKey> = backStacks[topLevelRoute]
         ?: error("No backStack for top level: $topLevelRoute")
 
     override val currentScreen: NavKey?
         get() = currentBackStack().lastOrNull()
 
-    /** Навигация: добавляет элемент в текущий backStack. */
     override fun navigate(key: NavKey) {
-        backStacks[topLevelRoute]?.add(key)
+        if (key in backStacks.keys) {
+            navigateTopLevel(key)
+        } else {
+            backStacks[topLevelRoute]?.add(key)
+        }
     }
 
-    /** Навигация вверх: удаляет последний элемент в текущем backStack (если есть). */
     override fun navigateBack() {
         backStacks[topLevelRoute]?.removeLastOrNull()
     }
 
-    /**
-     * Переключает текущий top-level. При переключении не меняем содержимое стека — просто меняем активный backStack.
-     * Если требуется при переключении очистить стек — вызывай clearTarget = true.
-     */
-
-    override fun navigateTopLevel(target: NavKey) {
-        if (!backStacks.containsKey(target)) error("Unknown top level route: $target")
-
-        if (backStacks[target]?.lastOrNull() == null) {
-            backStacks[target]?.add(target)
+    private fun navigateTopLevel(key: NavKey) {
+        if (backStacks[key]?.lastOrNull() == null) {
+            backStacks[key]?.add(key)
         }
-
-        // Наконец — переключаем активный topLevelRoute
-        topLevelRoute = target
+        topLevelRoute = key
     }
 }
 

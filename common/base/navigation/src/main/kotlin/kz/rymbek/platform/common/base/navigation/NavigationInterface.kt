@@ -17,6 +17,4 @@ interface NavigationInterface {
     fun navigate(key: NavKey)
 
     fun navigateBack()
-
-    fun navigateTopLevel(target: NavKey)
 }
