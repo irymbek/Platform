@@ -7,7 +7,7 @@ import androidx.compose.ui.window.DialogProperties
 
 @Composable
 fun AppDialog(
-    isDialogOpen : MutableState<Boolean>,
+    isDialogOpen: MutableState<Boolean>,
     properties: DialogProperties = DialogProperties(
         usePlatformDefaultWidth = false
     ),

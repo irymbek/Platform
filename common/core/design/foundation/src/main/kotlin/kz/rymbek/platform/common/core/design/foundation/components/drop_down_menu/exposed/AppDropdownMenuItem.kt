@@ -36,7 +36,7 @@ fun AppDropdownMenuItem(
         onClick = onClick,
         leadingIcon = leadingIcon,
         trailingIcon = {
-            if(trailingImageData != null) {
+            if (trailingImageData != null) {
                 AppAsyncImage(
                     modifier = Modifier
                         .size(100.dp),

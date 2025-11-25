@@ -15,7 +15,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 
 @Composable
 fun AppAlertDialog(
-    isDialogOpen : MutableState<Boolean>,
+    isDialogOpen: MutableState<Boolean>,
     onConfirmationClick: () -> Unit,
     modifier: Modifier = Modifier,
     onDismissClick: () -> Unit = {

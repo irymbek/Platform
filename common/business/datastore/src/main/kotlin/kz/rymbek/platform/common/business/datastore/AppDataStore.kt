@@ -35,7 +35,7 @@ internal class AppDataStore(
     }
 
     override suspend fun setThemeBrand(appThemeBrand: AppThemeBrand) {
-       saveValue(DataStoreConstants.THEME_KEY, appThemeBrand)
+        saveValue(DataStoreConstants.THEME_KEY, appThemeBrand)
     }
 
     override fun getModeConfig(): Flow<ModeConfig> {

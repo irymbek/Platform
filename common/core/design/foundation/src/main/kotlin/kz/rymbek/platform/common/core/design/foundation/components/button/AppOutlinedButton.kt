@@ -24,7 +24,7 @@ fun AppOutlinedButton(
     border: BorderStroke? = ButtonDefaults.outlinedButtonBorder(enabled),
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     interactionSource: MutableInteractionSource? = null,
-){
+) {
     OutlinedButton(
         onClick = onClick,
         modifier = modifier,

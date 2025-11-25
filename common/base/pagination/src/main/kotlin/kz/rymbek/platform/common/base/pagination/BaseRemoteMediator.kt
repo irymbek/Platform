@@ -19,7 +19,8 @@ class BaseRemoteMediator<Response : Any, Local : Any>(
         state: PagingState<Int, Local>
     ): MediatorResult {
         return try {
-            val page: Int = getPage(loadType) ?: return MediatorResult.Success(endOfPaginationReached = true)
+            val page: Int =
+                getPage(loadType) ?: return MediatorResult.Success(endOfPaginationReached = true)
 
             val response = fetchFromNetwork(page, state.config.pageSize)
 
@@ -45,13 +46,16 @@ class BaseRemoteMediator<Response : Any, Local : Any>(
                 deleteData()
                 1
             }
+
             LoadType.APPEND -> keyStorage.getKey(paginationType)
             LoadType.PREPEND -> null
         }
     }
 
     override suspend fun initialize(): InitializeAction {
-        return if (System.currentTimeMillis() - (keyStorage.getCreationTime(paginationType) ?: 0) < TimeUnit.MILLISECONDS.convert(2, TimeUnit.HOURS)) {
+        return if (System.currentTimeMillis() - (keyStorage.getCreationTime(paginationType)
+                ?: 0) < TimeUnit.MILLISECONDS.convert(2, TimeUnit.HOURS)
+        ) {
             InitializeAction.SKIP_INITIAL_REFRESH
         } else {
             InitializeAction.LAUNCH_INITIAL_REFRESH

@@ -19,7 +19,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.components.text_field.regular.AppTextField
 
 @Composable
-fun <T: Any> AppExposedDropdownMenuBox(
+fun <T : Any> AppExposedDropdownMenuBox(
     label: String,
     items: List<T>,
     key: ((T) -> Any)?,
@@ -49,7 +49,7 @@ fun <T: Any> AppExposedDropdownMenuBox(
 }
 
 @Composable
-fun <T: Any, KEY: Any> AppExposedDropdownMenuBox(
+fun <T : Any, KEY : Any> AppExposedDropdownMenuBox(
     label: String,
     items: List<T>,
     selectedKey: KEY?,
@@ -119,6 +119,7 @@ fun <T: Any, KEY: Any> AppExposedDropdownMenuBox(
                     allowEmptySelection = allowEmptySelection,
                     emptyLabel = emptyLabel,
                 )
+
                 else -> LargeDropDownMenuDialog(
                     items = items,
                     expanded = expanded,

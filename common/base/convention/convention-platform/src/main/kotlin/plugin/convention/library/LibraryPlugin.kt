@@ -10,7 +10,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 
-class LibraryPlugin: Plugin<Project> {
+class LibraryPlugin : Plugin<Project> {
     override fun apply(project: Project) {
         with(project) {
             applyPlugin(platformLibs.plugins.android.library)

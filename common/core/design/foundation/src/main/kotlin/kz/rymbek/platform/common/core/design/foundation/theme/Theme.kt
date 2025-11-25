@@ -68,7 +68,7 @@ fun AppTheme(
     }
 
     val colorsPaletteCustom =
-        if(isDarkTheme) CustomColorScheme.darkScheme
+        if (isDarkTheme) CustomColorScheme.darkScheme
         else CustomColorScheme.lightScheme
 
     CompositionLocalProvider(

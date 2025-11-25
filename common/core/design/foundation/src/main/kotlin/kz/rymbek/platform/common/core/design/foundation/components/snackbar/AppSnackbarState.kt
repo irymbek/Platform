@@ -35,6 +35,7 @@ class AppSnackbarState(
                 SnackbarResult.Dismissed -> {
 
                 }
+
                 SnackbarResult.ActionPerformed -> {
                     onActionClick()
                 }

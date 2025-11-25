@@ -56,6 +56,7 @@ internal fun BaseAppDialogStateScaffold(
                         onActionClick = onSnackbarClick
                     )
                 }
+
                 is ResultFlow.Success,
                 is ResultFlow.Empty,
                 is ResultFlow.Initial -> Unit

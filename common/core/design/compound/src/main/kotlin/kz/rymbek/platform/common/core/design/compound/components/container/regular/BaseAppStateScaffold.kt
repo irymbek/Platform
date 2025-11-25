@@ -97,8 +97,8 @@ fun <T> ResultFlowHandler(
     when (result) {
         is ResultFlow.Initial -> initial()
         is ResultFlow.Loading -> loading()
-        is ResultFlow.Error   -> error(result.exception)
-        is ResultFlow.Empty   -> empty()
+        is ResultFlow.Error -> error(result.exception)
+        is ResultFlow.Empty -> empty()
         is ResultFlow.Success -> success(result.data)
     }
 }

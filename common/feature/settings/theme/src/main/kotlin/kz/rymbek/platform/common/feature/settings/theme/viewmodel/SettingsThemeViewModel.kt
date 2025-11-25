@@ -20,6 +20,7 @@ class SettingsThemeViewModel(
             is SettingsThemeEvent.Action.UpdateThemeBrand -> {
                 updateThemeBrand(appThemeBrand = event.appThemeBrand)
             }
+
             is SettingsThemeEvent.Action.UpdateModeConfig -> {
                 updateModeConfig(modeConfig = event.modeConfig)
             }

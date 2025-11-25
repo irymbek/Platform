@@ -30,7 +30,7 @@ fun DependencyHandlerScope.debugImplementation(
     add("debugImplementation", dependency)
 }
 
-fun Project.prefix(): String = if(isInsidePlatform()) "" else ":platform:"
+fun Project.prefix(): String = if (isInsidePlatform()) "" else ":platform:"
 
 fun Project.contextPrefix(modules: Iterable<String>): List<String> {
     val prefix = prefix()

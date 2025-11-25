@@ -60,7 +60,7 @@ internal fun SettingsThemeContent(
             .fillMaxWidth()
             .padding(scaffoldPadding)
             .padding(vertical = PlatformPaddings.default),
-            //.verticalScroll(rememberScrollState()),
+        //.verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(PlatformPaddings.default),
         content = {
             AppText(
@@ -187,26 +187,36 @@ fun ThemePreviewCard(
                                             // Квадрат (inversePrimary)
                                             drawRoundRect(
                                                 color = inversePrimary,
-                                                topLeft = Offset(width * 0.12f, topOffset + cardHeight * 0.15f),
+                                                topLeft = Offset(
+                                                    width * 0.12f,
+                                                    topOffset + cardHeight * 0.15f
+                                                ),
                                                 size = Size(squareSize, squareSize * 1.8F),
                                                 cornerRadius = CornerRadius(4.dp.toPx())
                                             )
 
                                             // Два прямоугольника
-                                            val contentStartX = width * 0.12f + squareSize + width * 0.02f
+                                            val contentStartX =
+                                                width * 0.12f + squareSize + width * 0.02f
                                             val contentWidth = width * 0.6f
                                             val rectCornerRadius = CornerRadius(6.dp.toPx())
 
                                             drawRoundRect(
                                                 color = tertiary,
-                                                topLeft = Offset(contentStartX, topOffset + cardHeight * 0.15f),
+                                                topLeft = Offset(
+                                                    contentStartX,
+                                                    topOffset + cardHeight * 0.15f
+                                                ),
                                                 size = Size(contentWidth, cardHeight * 0.25f),
                                                 cornerRadius = rectCornerRadius
                                             )
 
                                             drawRoundRect(
                                                 color = secondary,
-                                                topLeft = Offset(contentStartX, topOffset + cardHeight * 0.55f),
+                                                topLeft = Offset(
+                                                    contentStartX,
+                                                    topOffset + cardHeight * 0.55f
+                                                ),
                                                 size = Size(contentWidth, cardHeight * 0.25f),
                                                 cornerRadius = rectCornerRadius
                                             )
@@ -225,7 +235,10 @@ fun ThemePreviewCard(
                                     repeat(3) { i ->
                                         drawRoundRect(
                                             color = primary,
-                                            topLeft = Offset(width * (0.15f + i * 0.3f), height * 0.89f),
+                                            topLeft = Offset(
+                                                width * (0.15f + i * 0.3f),
+                                                height * 0.89f
+                                            ),
                                             size = Size(iconSize, iconSize),
                                             cornerRadius = CornerRadius(4.dp.toPx())
                                         )

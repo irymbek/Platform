@@ -41,6 +41,7 @@ fun rememberPermissions(
                             }
                         )
                     }
+
                     else -> multiplePermissionsState.launchMultiplePermissionRequest()
                 }
             }

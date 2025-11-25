@@ -25,7 +25,7 @@ fun <T : Any> LazyListScope.pagingItems(
     )
 }
 
-fun <T: Any> LazyGridScope.pagingItems(
+fun <T : Any> LazyGridScope.pagingItems(
     items: LazyPagingItems<T>,
     key: ((T) -> Any)? = null,
     span: (LazyGridItemSpanScope.(Int) -> GridItemSpan)? = null,

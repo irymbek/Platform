@@ -26,7 +26,7 @@ fun AppFilledButton(
     border: BorderStroke? = null,
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     interactionSource: MutableInteractionSource? = null,
-){
+) {
     Button(
         onClick = onClick,
         modifier = modifier,

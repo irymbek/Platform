@@ -7,7 +7,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class PlatformNetworkPlugin: Plugin<Project> {
+class PlatformNetworkPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             applyPlugin(platformLibs.plugins.convention.library)

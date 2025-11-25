@@ -10,7 +10,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class PlatformModelBasePlugin: Plugin<Project> {
+class PlatformModelBasePlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             applyPlugin(platformLibs.plugins.convention.library)

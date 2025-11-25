@@ -7,7 +7,8 @@ plugins {
 
 group = "kz.rymbek.platform.common.base.convention"
 
-private val projectJavaVersion: JavaVersion = JavaVersion.toVersion(platformLibs.versions.java.get())
+private val projectJavaVersion: JavaVersion =
+    JavaVersion.toVersion(platformLibs.versions.java.get())
 private val projectJvmTarget: JvmTarget = JvmTarget.fromTarget(platformLibs.versions.java.get())
 
 java {

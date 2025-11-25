@@ -12,7 +12,7 @@ import kz.rymbek.platform.common.base.pagination.PaginationKeyStorage
 import kz.rymbek.platform.common.base.pagination.PagingUtils
 
 abstract class BaseRepository {
-    protected fun <Entity: Any , Ui: Any> getPagedData(
+    protected fun <Entity : Any, Ui : Any> getPagedData(
         pageSize: Int = 10,
         prefetchDistance: Int = 5,
         initialLoadSize: Int = 20,
@@ -30,13 +30,13 @@ abstract class BaseRepository {
             ),
             pagingSourceFactory = pagingSourceFactory
         ).flow.map { pagingData ->
-            pagingData.map {
-                item -> mapToUi(item)
+            pagingData.map { item ->
+                mapToUi(item)
             }
         }
     }
 
-    protected fun <Local : Any, Remote : Any, Ui: Any> getPagedCombined(
+    protected fun <Local : Any, Remote : Any, Ui : Any> getPagedCombined(
         paginationType: String,
         fetchFromNetwork: suspend (Int, Int) -> List<Remote>,
         pagingSourceFactory: () -> PagingSource<Int, Local>,

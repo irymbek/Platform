@@ -11,6 +11,6 @@ sealed interface SettingsThemeEvent : IEvent {
     }
 
     sealed interface Navigation : SettingsThemeEvent, IEvent.Navigation {
-        data object Back: Navigation
+        data object Back : Navigation
     }
 }

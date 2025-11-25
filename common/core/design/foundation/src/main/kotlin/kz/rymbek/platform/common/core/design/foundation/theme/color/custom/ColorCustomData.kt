@@ -20,7 +20,7 @@ data class ColorCustomData(
     val onNeutralContainer: Color = Color.Unspecified,
 )
 
-val LocalColorsPaletteCustom  = staticCompositionLocalOf { ColorCustomData() }
+val LocalColorsPaletteCustom = staticCompositionLocalOf { ColorCustomData() }
 
 val MaterialTheme.colorSchemeCustom: ColorCustomData
     @Composable

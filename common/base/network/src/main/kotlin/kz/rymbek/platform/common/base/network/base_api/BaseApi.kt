@@ -104,7 +104,8 @@ open class BaseApi : BaseApiHelper() {
     suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.submitFormUnsafe(
         resource: Resource,
         formParameters: Parameters
-    ): Response = submitForm(url = href(ResourcesFormat(), resource), formParameters = formParameters).body()
+    ): Response =
+        submitForm(url = href(ResourcesFormat(), resource), formParameters = formParameters).body()
 
     suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.submitFormSafe(
         resource: Resource,

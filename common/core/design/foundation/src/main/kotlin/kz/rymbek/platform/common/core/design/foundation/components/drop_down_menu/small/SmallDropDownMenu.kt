@@ -12,7 +12,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.drop_down_men
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 
 @Composable
-fun <T: Any> ExposedDropdownMenuBoxScope.SmallDropDownMenu(
+fun <T : Any> ExposedDropdownMenuBoxScope.SmallDropDownMenu(
     modifier: Modifier = Modifier,
     items: List<T>,
     expanded: MutableState<Boolean>,
@@ -53,7 +53,7 @@ fun <T: Any> ExposedDropdownMenuBoxScope.SmallDropDownMenu(
                     },
                 )
 
-                if(index != items.lastIndex) {
+                if (index != items.lastIndex) {
                     AppHorizontalDivider(
                         modifier = Modifier
                             .fillMaxWidth()

@@ -27,7 +27,7 @@ import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddin
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 
 @Composable
-fun <T: Any> LargeDropDownMenuDialog(
+fun <T : Any> LargeDropDownMenuDialog(
     expanded: MutableState<Boolean>,
     items: List<T>,
     selectedItemToString: (T) -> String,
@@ -95,7 +95,9 @@ fun <T: Any> LargeDropDownMenuDialog(
 
                         items(
                             items = shown,
-                            key = { (item, _) -> key?.invoke(item) ?: System.identityHashCode(item) },
+                            key = { (item, _) ->
+                                key?.invoke(item) ?: System.identityHashCode(item)
+                            },
                             itemContent = { (item, isLast) ->
                                 AppDropdownMenuItem(
                                     text = selectedItemToString(item),

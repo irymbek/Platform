@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 
 @Composable
-fun <T: Any> AppSingleChoiceSegmentedButtonRow(
+fun <T : Any> AppSingleChoiceSegmentedButtonRow(
     items: List<T>,
     selectedIndex: Int,
     onItemSelected: (T) -> Unit,

@@ -6,7 +6,7 @@ import kz.rymbek.platform.common.base.database.BaseDao
 import kz.rymbek.platform.common.business.model.cache.pagination.PaginationKeyEntity
 
 @Dao
-interface PaginationKeyDao: BaseDao<PaginationKeyEntity> {
+interface PaginationKeyDao : BaseDao<PaginationKeyEntity> {
     @Query("SELECT nextKey FROM pagination_keys WHERE type = :type")
     suspend fun getKey(type: String): Int?
 
