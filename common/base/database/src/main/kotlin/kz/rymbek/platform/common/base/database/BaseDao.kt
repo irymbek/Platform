@@ -22,10 +22,10 @@ interface BaseDao<Entity> {
     fun update(entities: List<Entity>)
 
     @Upsert
-    suspend fun upsert(entity: Entity): Long
+    fun upsert(entity: Entity): Long
 
     @Upsert
-    suspend fun upsert(entities: List<Entity>): LongArray
+    fun upsert(entities: List<Entity>): LongArray
 
     @Delete
     fun delete(entity: Entity)

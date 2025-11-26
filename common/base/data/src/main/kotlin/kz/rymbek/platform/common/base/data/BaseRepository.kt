@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kz.rymbek.platform.common.base.pagination.BaseRemoteMediator
 import kz.rymbek.platform.common.base.pagination.PaginationKeyStorage
-import kz.rymbek.platform.common.base.pagination.PagingUtils
 import kz.rymbek.platform.common.base.pagination.PagingUtils.createPagingConfig
 
 abstract class BaseRepository {
@@ -19,11 +18,7 @@ abstract class BaseRepository {
         return Pager(
             config = createPagingConfig(),
             pagingSourceFactory = pagingSourceFactory
-        ).flow.map { pagingData ->
-            pagingData.map { item ->
-                mapToUi(item)
-            }
-        }
+        ).flow.map { it.map(mapToUi) }
     }
 
     protected fun <Local : Any, Remote : Any, Ui : Any> getPagedCombined(
@@ -36,7 +31,7 @@ abstract class BaseRepository {
         deleteData: suspend () -> Unit,
     ): Flow<PagingData<Ui>> {
         return Pager(
-            config = PagingUtils.createPagingConfig(),
+            config = createPagingConfig(),
             remoteMediator = BaseRemoteMediator(
                 paginationType = paginationType,
                 keyStorage = keyStorage,

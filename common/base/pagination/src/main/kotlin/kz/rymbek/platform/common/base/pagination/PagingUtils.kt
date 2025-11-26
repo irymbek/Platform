@@ -5,16 +5,19 @@ import androidx.paging.PagingConfig
 object PagingUtils {
     fun createPagingConfig(
         pageSize: Int = 10,
-        prefetchDistance: Int = 4,
-        initialLoadSize: Int = pageSize,
-        maxSize: Int = pageSize * 3,
+        prefetchDistance: Int = pageSize,
+        enablePlaceHolders: Boolean = false,
+        initialLoadSize: Int = pageSize * 3,
+        maxSize: Int = Int.MAX_VALUE,
+        jumpThreshold: Int = Int.MIN_VALUE
     ): PagingConfig {
         return PagingConfig(
             pageSize = pageSize,
             prefetchDistance = prefetchDistance,
-            enablePlaceholders = true,
+            enablePlaceholders = enablePlaceHolders,
             initialLoadSize = initialLoadSize,
-            maxSize = maxSize
+            maxSize = maxSize,
+            jumpThreshold = jumpThreshold,
         )
     }
 }
