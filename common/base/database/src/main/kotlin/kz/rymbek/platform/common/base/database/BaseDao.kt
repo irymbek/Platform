@@ -10,31 +10,31 @@ import androidx.sqlite.db.SupportSQLiteQuery
 
 interface BaseDao<Entity> {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(entity: Entity): Long
+    suspend fun insert(entity: Entity): Long
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(entities: List<Entity>): LongArray
+    suspend fun insert(entities: List<Entity>): LongArray
 
     @Update
-    fun update(entity: Entity)
+    suspend fun update(entity: Entity)
 
     @Update
-    fun update(entities: List<Entity>)
+    suspend fun update(entities: List<Entity>)
 
     @Upsert
-    fun upsert(entity: Entity): Long
+    suspend fun upsert(entity: Entity): Long
 
     @Upsert
-    fun upsert(entities: List<Entity>): LongArray
+    suspend fun upsert(entities: List<Entity>): LongArray
 
     @Delete
-    fun delete(entity: Entity)
+    suspend fun delete(entity: Entity)
 
     @Delete
-    fun delete(entities: List<Entity>)
+    suspend fun delete(entities: List<Entity>)
 
     @RawQuery
-    fun getItem(
+    suspend fun getItem(
         query: SupportSQLiteQuery,
     ): Entity
 }
