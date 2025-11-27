@@ -6,7 +6,7 @@ object PagingUtils {
     fun createPagingConfig(
         pageSize: Int = 10,
         prefetchDistance: Int = pageSize,
-        enablePlaceHolders: Boolean = false,
+        enablePlaceHolders: Boolean = true,
         initialLoadSize: Int = pageSize * 3,
         maxSize: Int = Int.MAX_VALUE,
         jumpThreshold: Int = Int.MIN_VALUE

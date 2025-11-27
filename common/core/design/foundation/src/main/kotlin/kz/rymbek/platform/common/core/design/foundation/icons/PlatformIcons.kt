@@ -7,6 +7,8 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.filled.KeyboardDoubleArrowDown
+import androidx.compose.material.icons.filled.KeyboardDoubleArrowUp
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.Palette
@@ -41,4 +43,7 @@ object PlatformIcons {
     val OutlinedVisibilityOff = Icons.Outlined.VisibilityOff
 
     val OutlinedWifiPassword = Icons.Outlined.WifiPassword
+
+    val FilledKeyboardDoubleArrowDown = Icons.Filled.KeyboardDoubleArrowDown
+    val FilledKeyboardDoubleArrowUp = Icons.Filled.KeyboardDoubleArrowUp
 }
