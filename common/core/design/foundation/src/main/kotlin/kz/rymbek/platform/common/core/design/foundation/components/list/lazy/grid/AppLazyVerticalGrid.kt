@@ -19,7 +19,7 @@ import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddin
 @Composable
 fun AppLazyVerticalGrid(
     modifier: Modifier = Modifier,
-    columns: GridCells = GridCells.Adaptive(minSize = PlatformItemSizes.standart),
+    columns: GridCells = GridCells.Adaptive(minSize = PlatformItemSizes.standard),
     state: LazyGridState = rememberLazyGridState(),
     contentPadding: PaddingValues = PaddingValues(PlatformPaddings.element),
     reverseLayout: Boolean = false,
