@@ -4,7 +4,7 @@ import java.math.BigDecimal
 
 const val HTTPS_PREFIX = "https://"
 
-fun String.asImageUrl(host: String) = "$HTTPS_PREFIX$host$this"
+fun String?.asImageUrl(host: String) = "$HTTPS_PREFIX$host$this"
 
 //Float
 fun String.toNullableFloat(): Float? {

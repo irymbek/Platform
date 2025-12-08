@@ -9,7 +9,10 @@ import kotlinx.datetime.format.Padding
 import kotlinx.datetime.format.char
 import kotlinx.datetime.toLocalDateTime
 import kotlin.time.Clock
+import kotlin.time.Duration
+import kotlin.time.DurationUnit
 import kotlin.time.Instant
+import kotlin.time.toDuration
 
 object DateUtils {
     private val currentTimeZone: TimeZone
@@ -61,7 +64,14 @@ object DateUtils {
         }).orEmpty()
     }
 
+    fun Duration.toFormattedString(): String =
+        this.toComponents { minutes, seconds, _ ->
+            "%02d:%02d".format(minutes, seconds)
+        }
+
     fun Long?.toFormattedString(): String {
         return this.toInstantOrDefault().toFormattedString()
     }
+
+    fun String.toDuration() = this.toLong().toDuration(DurationUnit.SECONDS)
 }
