@@ -5,6 +5,7 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.format
+import kotlinx.datetime.format.MonthNames
 import kotlinx.datetime.format.Padding
 import kotlinx.datetime.format.char
 import kotlinx.datetime.toLocalDateTime
@@ -15,6 +16,13 @@ import kotlin.time.Instant
 import kotlin.time.toDuration
 
 object DateUtils {
+    private val RUSSIAN_ABBREVIATED: MonthNames = MonthNames(
+        listOf(
+            "Янв", "Фев", "Мар", "Апр", "Май", "Июн",
+            "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"
+        )
+    )
+
     private val currentTimeZone: TimeZone
         get() = TimeZone.currentSystemDefault()
 
@@ -63,6 +71,19 @@ object DateUtils {
             second()
         }).orEmpty()
     }
+
+    fun Instant?.toFormattedMonth(): String = this
+            ?.toLocalDateTime(currentTimeZone)
+            ?.format(
+                LocalDateTime.Format {
+                    day(padding = Padding.ZERO)
+                    char(' ')
+                    monthName(RUSSIAN_ABBREVIATED)
+                    char('.')
+                    char(' ')
+                    year()
+                }
+            ).orEmpty()
 
     fun Duration.toFormattedString(): String =
         this.toComponents { minutes, seconds, _ ->
