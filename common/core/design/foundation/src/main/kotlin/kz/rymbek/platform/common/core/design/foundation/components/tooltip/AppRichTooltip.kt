@@ -1,4 +1,4 @@
-package kz.rymbek.platform.common.core.design.foundation.components.tooltop
+package kz.rymbek.platform.common.core.design.foundation.components.tooltip
 
 import androidx.compose.material3.RichTooltip
 import androidx.compose.material3.RichTooltipColors
