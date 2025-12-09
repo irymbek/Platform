@@ -1,5 +1,6 @@
 package kz.rymbek.platform.common.core.design.foundation.components.text_field.outlined
 
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -31,6 +32,6 @@ fun AppOutlinedTextFieldValidation(
                 )
             }
         },
-        keyboardType = keyboardType,
+        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
     )
 }
