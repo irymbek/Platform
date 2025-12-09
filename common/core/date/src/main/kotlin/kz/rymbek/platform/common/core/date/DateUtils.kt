@@ -41,6 +41,12 @@ object DateUtils {
     val year: Int
         get() = localDate.year
 
+    val hour: Int
+        get() = localDateTime.hour
+
+    val minute: Int
+        get() = localDateTime.minute
+
     val dayStartMilliseconds: Long
         get() = localDate.atStartOfDayIn(currentTimeZone).toEpochMilliseconds()
 

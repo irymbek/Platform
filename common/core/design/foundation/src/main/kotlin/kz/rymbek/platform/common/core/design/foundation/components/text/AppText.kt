@@ -1,5 +1,6 @@
 package kz.rymbek.platform.common.core.design.foundation.components.text
 
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +21,7 @@ fun AppText(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    autoSize: TextAutoSize? = null,
     fontSize: TextUnit = TextUnit.Unspecified,
     fontStyle: FontStyle? = null,
     fontWeight: FontWeight? = null,
@@ -39,6 +41,7 @@ fun AppText(
         text = text,
         modifier = modifier,
         color = color,
+        autoSize = autoSize,
         fontSize = fontSize,
         fontStyle = fontStyle,
         fontWeight = fontWeight,
