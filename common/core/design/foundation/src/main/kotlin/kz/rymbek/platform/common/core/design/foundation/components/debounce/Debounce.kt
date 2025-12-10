@@ -26,14 +26,6 @@ import kotlinx.coroutines.launch
 import kz.rymbek.platform.common.core.design.foundation.components.progress_indicator.AppCircularProgressIndicator
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformIconSize
 
-/**
- * Modifier для debounce / блокировки повторных кликов.
- *
- * Обратите внимание:
- * - это "throttle" — блокирует повторы на время cooldownMillis после старта onClick.
- * - не рисует спиннер.
- * - есть версия для suspend и для обычного onClick.
- */
 @Composable
 fun Modifier.debouncedClickable(
     enabled: Boolean = true,
@@ -67,9 +59,6 @@ fun Modifier.debouncedClickable(
         )
 }
 
-/**
- * suspend-версия: debounce для suspend onClick.
- */
 @Composable
 fun Modifier.debouncedClickableSuspend(
     enabled: Boolean = true,
