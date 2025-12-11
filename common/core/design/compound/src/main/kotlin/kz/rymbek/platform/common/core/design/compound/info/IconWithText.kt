@@ -19,13 +19,13 @@ import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddin
 fun IconWithText(
     icon: ImageVector,
     text: String,
+    modifier: Modifier = Modifier,
     iconSize: Dp = PlatformIconSize.xxs,
 ) {
     AppRow(
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(PlatformPaddings.element),
-        modifier = Modifier
-            .padding(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(PlatformPaddings.default),
         content = {
             AppIcon(
                 imageVector = icon,
