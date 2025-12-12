@@ -7,15 +7,15 @@ import androidx.compose.runtime.remember
 @Composable
 fun rememberCarouselStateCustom(
     initialItem: Int = 0,
-    itemCount: () -> Int,
+    itemCount: Int,
 ): CarouselState {
     val state = remember(
-        key1 = itemCount(),
+        key1 = itemCount,
         calculation = {
             CarouselState(
                 currentItem = initialItem,
                 currentItemOffsetFraction = 0F,
-                itemCount = itemCount
+                itemCount = { itemCount }
             )
         }
     )
