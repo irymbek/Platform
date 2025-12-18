@@ -11,7 +11,6 @@ import androidx.compose.material3.ElevatedButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
-import kz.rymbek.platform.common.core.design.foundation.components.button.base.ButtonContent
 import kz.rymbek.platform.common.core.design.foundation.constants.corner.PlatformShapes
 
 @Composable

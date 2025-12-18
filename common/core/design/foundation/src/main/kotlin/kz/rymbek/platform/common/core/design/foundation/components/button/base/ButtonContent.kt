@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.Color
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 
 @Composable
-internal fun ButtonContent(
+fun ButtonContent(
     text: String,
     color: Color = Color.Unspecified,
 ) {
