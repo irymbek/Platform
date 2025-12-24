@@ -2,6 +2,7 @@ package kz.rymbek.platform.common.core.design.foundation.components.text_field.s
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.KeyboardActionHandler
 import androidx.compose.foundation.text.input.TextFieldState
@@ -17,7 +18,9 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
+import kz.rymbek.platform.common.core.design.foundation.components.text_field.base.DefaultObfuscationCharacter
 import kz.rymbek.platform.common.core.design.foundation.components.text_field.base.OutlinedTextFieldLabel
+import kz.rymbek.platform.common.core.design.foundation.components.text_field.base.SecureTextFieldKeyboardOptions
 
 @Composable
 fun AppOutlinedSecureTextField(
@@ -36,6 +39,8 @@ fun AppOutlinedSecureTextField(
     isError: Boolean = false,
     inputTransformation: InputTransformation? = null,
     textObfuscationMode: TextObfuscationMode = TextObfuscationMode.RevealLastTyped,
+    textObfuscationCharacter: Char = DefaultObfuscationCharacter,
+    keyboardOptions: KeyboardOptions = SecureTextFieldKeyboardOptions,
     onKeyboardAction: KeyboardActionHandler? = null,
     onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
     shape: Shape = OutlinedTextFieldDefaults.shape,
@@ -63,6 +68,8 @@ fun AppOutlinedSecureTextField(
         isError = isError,
         inputTransformation = inputTransformation,
         textObfuscationMode = textObfuscationMode,
+        textObfuscationCharacter = textObfuscationCharacter,
+        keyboardOptions = keyboardOptions,
         onKeyboardAction = onKeyboardAction,
         onTextLayout = onTextLayout,
         shape = shape,
