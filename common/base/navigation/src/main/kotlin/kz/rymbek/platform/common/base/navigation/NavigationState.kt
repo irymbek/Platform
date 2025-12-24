@@ -1,12 +1,9 @@
 package kz.rymbek.platform.common.base.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSerializable
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
@@ -16,34 +13,24 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.rememberDecoratedNavEntries
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
-import androidx.navigation3.runtime.serialization.NavKeySerializer
-import androidx.savedstate.compose.serialization.serializers.MutableStateSerializer
 
 /**
  * Create a navigation state that persists config changes and process death.
  */
 @Composable
 fun rememberNavigationState(
-    startRoute: NavKey,
-    topLevelRoutes: Set<NavKey>
-): NavigationInterface {
-    val topLevelRoute = rememberSerializable(
-        startRoute, topLevelRoutes,
-        serializer = MutableStateSerializer(NavKeySerializer()),
-        init = {
-            mutableStateOf(startRoute)
-        }
-    )
+    startKey: NavKey,
+    topLevelKeys: Set<NavKey>,
+): NavigationState {
 
-    val backStacks = topLevelRoutes.associateWith {
-        rememberNavBackStack(it)
-    }
+    val topLevelStack = rememberNavBackStack(startKey)
+    val subStacks = topLevelKeys.associateWith { key -> rememberNavBackStack(key) }
 
-    return remember(startRoute, topLevelRoutes) {
+    return remember(startKey, topLevelKeys) {
         NavigationState(
-            startRoute = startRoute,
-            topLevelRoute = topLevelRoute,
-            backStacks = backStacks
+            startKey = startKey,
+            topLevelStack = topLevelStack,
+            subStacks = subStacks,
         )
     }
 }
@@ -51,71 +38,43 @@ fun rememberNavigationState(
 /**
  * State holder for navigation state.
  *
- * @param startRoute - the start route. The user will exit the app through this route.
- * @param topLevelRoute - the current top level route
- * @param backStacks - the back stacks for each top level route
+ * @param startKey - the starting navigation key. The user will exit the app through this key.
+ * @param topLevelStack - the top level back stack. It holds only top level keys.
+ * @param subStacks - the back stacks for each top level key
  */
-internal class NavigationState(
-    val startRoute: NavKey,
-    topLevelRoute: MutableState<NavKey>,
-    override val backStacks: Map<NavKey, NavBackStack<NavKey>>
-) : NavigationInterface {
-    override var topLevelRoute: NavKey by topLevelRoute
+class NavigationState(
+    val startKey: NavKey,
+    val topLevelStack: NavBackStack<NavKey>,
+    val subStacks: Map<NavKey, NavBackStack<NavKey>>
+) {
+    val currentTopLevelKey: NavKey by derivedStateOf { topLevelStack.last() }
 
-    override val stacksInUse: List<NavKey>
-        get() = if (topLevelRoute == startRoute) {
-            listOf(startRoute)
-        } else {
-            listOf(startRoute, topLevelRoute)
-        }
+    val topLevelKeys
+        get() = subStacks.keys
 
-    override fun currentBackStack(): NavBackStack<NavKey> = backStacks[topLevelRoute]
-        ?: error("No backStack for top level: $topLevelRoute")
+    val currentSubStack: NavBackStack<NavKey>
+        get() = subStacks[currentTopLevelKey]
+            ?: error("Sub stack for $currentTopLevelKey does not exist")
 
-    override val currentScreen: NavKey?
-        get() = currentBackStack().lastOrNull()
-
-    override fun navigate(key: NavKey) {
-        if (key in backStacks.keys) {
-            navigateTopLevel(key)
-        } else {
-            backStacks[topLevelRoute]?.add(key)
-        }
-    }
-
-    override fun navigateBack() {
-        backStacks[topLevelRoute]?.removeLastOrNull()
-    }
-
-    private fun navigateTopLevel(key: NavKey) {
-        if (backStacks[key]?.lastOrNull() == null) {
-            backStacks[key]?.add(key)
-        }
-        topLevelRoute = key
-    }
+    val currentKey: NavKey by derivedStateOf { currentSubStack.last() }
 }
 
 /**
  * Convert NavigationState into NavEntries.
  */
 @Composable
-fun NavigationInterface.toEntries(
+fun NavigationState.toEntries(
     entryProvider: (NavKey) -> NavEntry<NavKey>
 ): SnapshotStateList<NavEntry<NavKey>> {
-
-    val decoratedEntries = backStacks.mapValues { (_, stack) ->
+    val decoratedEntries = subStacks.mapValues { (_, stack) ->
         val decorators = listOf(
             rememberSaveableStateHolderNavEntryDecorator<NavKey>(),
             rememberViewModelStoreNavEntryDecorator<NavKey>()
         )
         rememberDecoratedNavEntries(
-            backStack = stack,
-            entryDecorators = decorators,
-            entryProvider = entryProvider
+            backStack = stack, entryDecorators = decorators, entryProvider = entryProvider
         )
     }
 
-    return stacksInUse
-        .flatMap { decoratedEntries[it] ?: emptyList() }
-        .toMutableStateList()
+    return topLevelStack.flatMap { decoratedEntries[it] ?: emptyList() }.toMutableStateList()
 }

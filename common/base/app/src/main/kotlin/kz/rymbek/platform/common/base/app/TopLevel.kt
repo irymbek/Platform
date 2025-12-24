@@ -7,5 +7,5 @@ interface TopLevel {
     val selectedIcon: ImageVector
     val unselectedIcon: ImageVector
     val text: String
-    val route: NavKey
+    val navKey: NavKey
 }
