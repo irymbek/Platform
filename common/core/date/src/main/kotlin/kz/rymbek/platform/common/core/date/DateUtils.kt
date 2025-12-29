@@ -61,8 +61,8 @@ object DateUtils {
         return this.toInstantOrDefault().toLocalDateTime(currentTimeZone).date
     }
 
-    fun Instant?.toFormattedString(): String {
-        return this?.toLocalDateTime(currentTimeZone)?.format(LocalDateTime.Format {
+    fun LocalDateTime?.toFormattedString(): String =
+        this?.format(LocalDateTime.Format {
             year()
             char('-')
             monthNumber()
@@ -77,7 +77,9 @@ object DateUtils {
             char(':')
             second()
         }).orEmpty()
-    }
+
+    fun Instant?.toFormattedString(): String =
+        this?.toLocalDateTime(currentTimeZone).toFormattedString()
 
     fun Instant?.toFormattedMonth(): String = this
             ?.toLocalDateTime(currentTimeZone)
