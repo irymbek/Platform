@@ -50,8 +50,9 @@ object DateUtils {
     val dayStartMilliseconds: Long
         get() = localDate.atStartOfDayIn(currentTimeZone).toEpochMilliseconds()
 
-    val defaultInstant = Instant.DISTANT_PAST
-    val defaultLocalDate = defaultInstant.toLocalDateTime(currentTimeZone).date
+    val defaultInstant: Instant = Instant.DISTANT_PAST
+    val defaultLocalDateTime: LocalDateTime = defaultInstant.toLocalDateTime(currentTimeZone)
+    val defaultLocalDate: LocalDate = defaultLocalDateTime.date
 
     fun Long?.toInstantOrDefault(def: Instant = defaultInstant): Instant =
         if (this == null) def else Instant.fromEpochMilliseconds(this)
