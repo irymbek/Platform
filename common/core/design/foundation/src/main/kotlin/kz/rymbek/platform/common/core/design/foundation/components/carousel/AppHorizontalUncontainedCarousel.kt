@@ -18,6 +18,7 @@ fun AppHorizontalUncontainedCarousel(
     modifier: Modifier = Modifier,
     itemSpacing: Dp = 0.dp,
     flingBehavior: TargetedFlingBehavior = CarouselDefaults.noSnapFlingBehavior(),
+    userScrollEnabled: Boolean = true,
     contentPadding: PaddingValues = PaddingValues(0.dp),
     content: @Composable CarouselItemScope.(itemIndex: Int) -> Unit
 ) {
@@ -27,6 +28,7 @@ fun AppHorizontalUncontainedCarousel(
         itemWidth = itemWidth,
         itemSpacing = itemSpacing,
         flingBehavior = flingBehavior,
+        userScrollEnabled = userScrollEnabled,
         contentPadding = contentPadding,
         content = content,
     )
