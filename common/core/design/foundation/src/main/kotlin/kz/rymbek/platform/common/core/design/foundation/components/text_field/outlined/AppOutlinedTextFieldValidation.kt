@@ -1,21 +1,21 @@
 package kz.rymbek.platform.common.core.design.foundation.components.text_field.outlined
 
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.KeyboardType
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 
 @Composable
 fun AppOutlinedTextFieldValidation(
-    modifier: Modifier = Modifier,
     value: String,
-    label: String,
     onValueChange: (String) -> Unit,
-    enabled: Boolean = true,
+    label: String,
     errorMessage: String?,
-    keyboardType: KeyboardType = KeyboardType.Text,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
 ) {
     AppOutlinedTextField(
         modifier = modifier,
@@ -32,6 +32,33 @@ fun AppOutlinedTextFieldValidation(
                 )
             }
         },
-        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+        keyboardOptions = keyboardOptions,
+    )
+}
+
+@Composable
+fun AppOutlinedTextFieldValidation(
+    state: TextFieldState,
+    label: String,
+    errorMessage: String?,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+) {
+    AppOutlinedTextField(
+        state = state,
+        modifier = modifier,
+        label = label,
+        enabled = enabled,
+        isError = errorMessage != null,
+        supportingText = {
+            if (errorMessage != null) {
+                AppText(
+                    text = errorMessage,
+                    color = MaterialTheme.colorScheme.error,
+                )
+            }
+        },
+        keyboardOptions = keyboardOptions,
     )
 }
