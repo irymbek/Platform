@@ -36,9 +36,7 @@ fun AppAlertDialog(
 ) {
     if (isDialogOpen.value) {
         AlertDialog(
-            onDismissRequest = {
-                isDialogOpen.value = false
-            },
+            onDismissRequest = { isDialogOpen.value = false },
             confirmButton = {
                 AppOutlinedButton(
                     text = confirmButtonText,
