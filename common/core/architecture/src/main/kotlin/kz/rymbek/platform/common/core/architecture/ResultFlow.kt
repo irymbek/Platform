@@ -30,21 +30,20 @@ val ResultFlow<*>.isEmpty get() = this is Empty
 
 /* ---- Data accessors ---- */
 fun <T> ResultFlow<T>.getOrNull(): T? = when (this) {
-    is ResultFlow.Success -> data
+    is Success -> data
     else -> null
 }
 
 fun <T> ResultFlow<T>.getOrThrow(): T = when (this) {
-    is ResultFlow.Success -> data
-    is ResultFlow.Error -> throw exception
+    is Success -> data
+    is Error -> throw exception
     else -> throw IllegalStateException("Result is not Success: $this")
 }
 
 fun <T> ResultFlow<T>.getOrElse(defaultValue: T): T = when (this) {
-    is ResultFlow.Success -> data
+    is Success -> data
     else -> defaultValue
 }
-
 
 /* ---- Status combinators ---- */
 
@@ -180,6 +179,18 @@ inline fun <T> ResultFlow<T>.onLoading(block: () -> Unit): ResultFlow<T> {
     return this
 }
 
+inline fun <T> ResultFlow<T>.onMessage(
+    successMessage: String? = null,
+    onMessage: (String) -> Unit
+): ResultFlow<T> {
+    when (this) {
+        is Success -> successMessage?.let(onMessage)
+        is Error -> onMessage(exception.message ?: "Ошибка")
+        else -> {}
+    }
+    return this
+}
+
 /* ---- Convenience: map Flow<T?> -> ResultFlow<T> ---- */
 /**
  * Преобразует Flow<T?> в Flow<ResultFlow<T>>:
@@ -204,15 +215,4 @@ fun <Model> Flow<Model?>.asResult(
             Log.e("ResultFlow", throwable.message.orEmpty())
             emit(Error(throwable))
         }
-}
-
-fun <T> ResultFlow<T>.toSnackbarMessage(
-    successMessage: String? = null,
-    errorMessage: (Throwable) -> String = { it.localizedMessage ?: "Произошла ошибка" }
-): String? {
-    return when (this) {
-        is Success -> successMessage
-        is Error -> errorMessage(exception)
-        else -> null
-    }
 }
