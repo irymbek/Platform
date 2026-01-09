@@ -18,6 +18,15 @@ import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
+internal val json = Json {
+    ignoreUnknownKeys = true
+    isLenient = true
+    encodeDefaults = true
+    allowSpecialFloatingPointValues = true
+    explicitNulls = false
+    coerceInputValues = true
+    prettyPrint = true
+}
 
 object KtorHttpClientHelper {
     fun HttpClientConfig<*>.installHttpTimeout(
@@ -42,16 +51,6 @@ object KtorHttpClientHelper {
     }
 
     fun HttpClientConfig<*>.installContentNegotiation() {
-        val json = Json {
-            ignoreUnknownKeys = true
-            isLenient = true
-            encodeDefaults = true
-            allowSpecialFloatingPointValues = true
-            explicitNulls = false
-            coerceInputValues = true
-            prettyPrint = true
-        }
-
         install(ContentNegotiation) {
             json(
                 json = json,

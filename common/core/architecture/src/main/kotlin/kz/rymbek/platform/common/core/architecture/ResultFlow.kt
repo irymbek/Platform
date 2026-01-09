@@ -205,3 +205,14 @@ fun <Model> Flow<Model?>.asResult(
             emit(Error(throwable))
         }
 }
+
+fun <T> ResultFlow<T>.toSnackbarMessage(
+    successMessage: String? = null,
+    errorMessage: (Throwable) -> String = { it.localizedMessage ?: "Произошла ошибка" }
+): String? {
+    return when (this) {
+        is Success -> successMessage
+        is Error -> errorMessage(exception)
+        else -> null
+    }
+}

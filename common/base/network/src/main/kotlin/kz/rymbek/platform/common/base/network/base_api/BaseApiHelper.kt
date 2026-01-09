@@ -1,10 +1,13 @@
 package kz.rymbek.platform.common.base.network.base_api
 
-import io.ktor.client.plugins.ClientRequestException
+import android.util.Log
 import io.ktor.client.plugins.ResponseException
+import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
+import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.io.IOException
 import kotlinx.serialization.SerializationException
 import kz.rymbek.platform.common.core.architecture.ResultFlow
 import kotlin.coroutines.cancellation.CancellationException
@@ -12,40 +15,46 @@ import kotlin.coroutines.cancellation.CancellationException
 open class BaseApiHelper {
     protected open fun log(msg: String) = println("[BaseApi] $msg")
 
-    /**
-     * Generic error handling. Returns a ResultFlow<T> with a readable message.
-     */
     suspend fun <T> safeCall(block: suspend () -> T): ResultFlow<T> {
         return try {
             ResultFlow.Success(block())
         } catch (e: CancellationException) {
-            throw e // не мешаем отмене корутины
-        } catch (e: ClientRequestException) {
-            val status = e.response.status.value
-            val body = runCatching { e.response.bodyAsText() }.getOrNull()
-            val msg = buildString {
-                append("Ошибка $status")
-                body?.takeIf { it.isNotBlank() }?.let { append(": ${it.trim().take(200)}") }
-            }
-            log(msg)
-            ResultFlow.Error(Throwable(msg))
+            throw e
         } catch (e: ResponseException) {
-            val status = e.response.status.value
-            val body = runCatching { e.response.bodyAsText() }.getOrNull()
-            val msg = buildString {
-                append("Сервер вернул $status")
-                body?.takeIf { it.isNotBlank() }?.let { append(": ${it.trim().take(200)}") }
-            }
-            log(msg)
-            ResultFlow.Error(Throwable(msg))
+            val errorMsg = parseError(e.response)
+            log("API Error: ${e.response.status} -> $errorMsg")
+            ResultFlow.Error(Throwable(errorMsg))
         } catch (e: SerializationException) {
-            val msg = "Ошибка парсинга: ${e.message ?: e::class.simpleName}"
-            log(msg)
-            ResultFlow.Error(Throwable(msg))
+            log("Serialization Error: ${e.message}")
+            ResultFlow.Error(Throwable("Ошибка обработки данных"))
+        } catch (_: IOException) {
+            ResultFlow.Error(Throwable("Нет подключения к интернету"))
         } catch (e: Exception) {
-            val msg = e.message ?: e::class.simpleName ?: "Неизвестная ошибка"
-            log("Unknown: $msg")
-            ResultFlow.Error(Throwable(msg))
+            log("Unknown Error: ${e.message}")
+            ResultFlow.Error(Throwable("Неизвестная ошибка"))
+        }
+    }
+
+    private suspend fun parseError(response: HttpResponse): String {
+        val body = response.bodyAsText()
+        Log.d("BaseApiHelper", "parseError: $body")
+        return runCatching {
+            val model = json.decodeFromString<ApiErrorModel>(body)
+            model.toUserMessage()
+        }.getOrElse {
+            getDefaultMessage(response.status)
+        }
+    }
+
+    private fun getDefaultMessage(status: HttpStatusCode): String {
+        return when (status.value) {
+            400 -> "Неверные данные запроса"
+            401 -> "Требуется авторизация"
+            403 -> "Доступ запрещен"
+            404 -> "Ресурс не найден"
+            429 -> "Слишком много запросов"
+            in 500..599 -> "Сервер временно недоступен. Попробуйте позже."
+            else -> "Ошибка сервера (Код: ${status.value})"
         }
     }
 

@@ -1,5 +1,6 @@
 plugins {
     alias(platformLibs.plugins.convention.library)
+    alias(platformLibs.plugins.dependency.serialization)
 }
 
 android {
