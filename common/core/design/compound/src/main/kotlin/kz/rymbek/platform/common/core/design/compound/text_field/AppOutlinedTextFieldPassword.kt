@@ -32,9 +32,9 @@ fun AppOutlinedTextFieldPassword(
             else TextObfuscationMode.Visible,
         trailingIcon = {
             val icon = if (passwordHidden) {
-                PlatformIcons.OutlinedVisibility
-            } else {
                 PlatformIcons.OutlinedVisibilityOff
+            } else {
+                PlatformIcons.OutlinedVisibility
             }
             AppIconButton(
                 icon = icon,
