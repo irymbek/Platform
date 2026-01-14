@@ -188,7 +188,6 @@ inline fun <T> ResultFlow<T>.onMessage(
             if (successMessage != null) {
                 onMessage(successMessage)
             }
-
             else if (data is String && data.isNotEmpty()) {
                 onMessage(data)
             }
