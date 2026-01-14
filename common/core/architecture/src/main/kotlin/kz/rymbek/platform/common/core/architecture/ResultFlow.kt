@@ -184,7 +184,15 @@ inline fun <T> ResultFlow<T>.onMessage(
     onMessage: (String) -> Unit
 ): ResultFlow<T> {
     when (this) {
-        is Success -> successMessage?.let(onMessage)
+        is Success -> {
+            if (successMessage != null) {
+                onMessage(successMessage)
+            }
+
+            else if (data is String && data.isNotEmpty()) {
+                onMessage(data)
+            }
+        }
         is Error -> onMessage(exception.message ?: "Ошибка")
         else -> {}
     }
