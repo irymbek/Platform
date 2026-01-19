@@ -7,6 +7,7 @@ import io.ktor.client.plugins.resources.get
 import io.ktor.client.plugins.resources.post
 import io.ktor.client.plugins.resources.put
 import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.request.forms.InputProvider
 import io.ktor.client.request.forms.MultiPartFormDataContent
 import io.ktor.client.request.forms.formData
 import io.ktor.client.request.forms.submitForm
@@ -16,8 +17,10 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.Parameters
 import io.ktor.resources.href
 import io.ktor.resources.serialization.ResourcesFormat
+import io.ktor.utils.io.streams.asInput
 import kotlinx.coroutines.flow.Flow
 import kz.rymbek.platform.common.core.architecture.ResultFlow
+import java.io.File
 
 open class BaseApi : BaseApiHelper() {
     suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.getUnsafe(
@@ -125,8 +128,7 @@ open class BaseApi : BaseApiHelper() {
 
     suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.uploadFile(
         resource: Resource,
-        fileName: String,
-        bytes: ByteArray,
+        file: File,
         key: String,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
         noinline progressCallback: ((bytesSent: Long, contentLength: Long?) -> Unit)? = null
@@ -137,9 +139,9 @@ open class BaseApi : BaseApiHelper() {
                 MultiPartFormDataContent(formData {
                     append(
                         key = key,
-                        value = bytes,
+                        value = InputProvider(file.length()) { file.inputStream().asInput() },
                         headers = Headers.build {
-                            append(HttpHeaders.ContentDisposition, "filename=\"$fileName\"")
+                            append(HttpHeaders.ContentDisposition, "filename=\"${file.name}\"")
                         }
                     )
                 })

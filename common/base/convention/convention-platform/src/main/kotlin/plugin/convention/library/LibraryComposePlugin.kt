@@ -1,6 +1,6 @@
 package plugin.convention.library
 
-import com.android.build.gradle.LibraryExtension
+import com.android.build.api.dsl.LibraryExtension
 import kz.rymbek.platform.common.base.convention.configureAndroidCompose
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs

@@ -1,8 +1,8 @@
 package plugin.convention.library
 
+import com.android.build.api.dsl.LibraryExtension
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
-import com.android.build.gradle.LibraryExtension
-import kz.rymbek.platform.common.base.convention.configureKotlinAndroid
+import kz.rymbek.platform.common.base.convention.configureLibraryModule
 import kz.rymbek.platform.common.base.convention.disableAllTests
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
@@ -14,11 +14,11 @@ class LibraryPlugin : Plugin<Project> {
     override fun apply(project: Project) {
         with(project) {
             applyPlugin(platformLibs.plugins.android.library)
-            applyPlugin(platformLibs.plugins.kotlin)
 
             extensions.configure<LibraryExtension> {
-                configureKotlinAndroid(this)
-                defaultConfig.targetSdk = platformLibs.versions.targetSdk.get().toInt()
+                configureLibraryModule(this)
+
+                //defaultConfig.targetSdk = platformLibs.versions.targetSdk.get().toInt()
                 testOptions.animationsDisabled = true
             }
 

@@ -11,6 +11,7 @@ import org.gradle.kotlin.dsl.project
 import org.gradle.plugin.devel.PluginDeclaration
 import org.gradle.plugin.use.PluginDependency
 
+
 fun NamedDomainObjectContainer<PluginDeclaration>.conventionPlugin(
     pluginIdProvider: Provider<PluginDependency>,
     implementationClass: String

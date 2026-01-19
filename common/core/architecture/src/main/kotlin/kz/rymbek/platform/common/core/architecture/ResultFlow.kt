@@ -95,9 +95,7 @@ fun <T> List<ResultFlow<T>>.combineData(): ResultFlow<List<T>> =
 fun <T> combineDataFlows(vararg flows: Flow<ResultFlow<T>>): Flow<ResultFlow<List<T>>> {
     if (flows.isEmpty()) return flowOf(Initial)
     return combine(*flows) { arr ->
-        // arr: Array<ResultFlow<T>> (star-projected at runtime)
-        @Suppress("UNCHECKED_CAST")
-        (arr.toList() as List<ResultFlow<T>>).combineData()
+        arr.toList().combineData()
     }
 }
 

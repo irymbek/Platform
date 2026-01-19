@@ -1,5 +1,6 @@
 package kz.rymbek.platform.common.base.convention.extensions
 
+import com.android.build.api.dsl.CommonExtension
 import org.gradle.accessors.dm.LibrariesForPlatformLibs
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
@@ -15,10 +16,6 @@ val Project.projectJavaVersion: JavaVersion
 
 val Project.projectJvmTarget: JvmTarget
     get() = JvmTarget.fromTarget(platformLibs.versions.java.get())
-
-fun Project.applyPlugin(plugin: LibrariesForPlatformLibs.KotlinPluginAccessors) {
-    pluginManager.apply(plugin.asProvider().get().pluginId)
-}
 
 fun Project.applyPlugin(plugin: LibrariesForPlatformLibs.ConventionLibraryPluginAccessors) {
     pluginManager.apply(plugin.asProvider().get().pluginId)

@@ -1,6 +1,6 @@
 [versions]
 activityCompose = "1.12.2"
-androidGradlePlugin = "8.13.2"
+androidGradlePlugin = "9.0.0"
 androidxCamera = "1.5.2"
 androidxCoreKtx = "1.17.0"
 androidxCoreSplashscreen = "1.2.0"
@@ -133,7 +133,6 @@ convention-platform = { group = "kz.rymbek.platform.common.base.convention", nam
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

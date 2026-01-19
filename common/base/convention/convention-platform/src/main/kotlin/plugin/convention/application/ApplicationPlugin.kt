@@ -3,7 +3,7 @@ package plugin.convention.application
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import kz.rymbek.platform.common.base.convention.AppBuildType
-import kz.rymbek.platform.common.base.convention.configureKotlinAndroid
+import kz.rymbek.platform.common.base.convention.configureAppModule
 import kz.rymbek.platform.common.base.convention.disableAllTests
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.implementation
@@ -12,19 +12,16 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
-import java.io.File
 
 class ApplicationPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             applyPlugin(platformLibs.plugins.android.application)
-            applyPlugin(platformLibs.plugins.kotlin)
             applyPlugin(platformLibs.plugins.convention.application.compose)
             applyPlugin(platformLibs.plugins.dependency.koin)
 
             extensions.configure<ApplicationExtension> {
-                configureKotlinAndroid(this)
-                defaultConfig.targetSdk = platformLibs.versions.targetSdk.get().toInt()
+                configureAppModule(this)
 
                 buildFeatures.buildConfig = true
 
@@ -58,6 +55,22 @@ class ApplicationPlugin : Plugin<Project> {
                     }
                 }
 
+                /*pluginManager.withPlugin("com.android.application") {
+                    extensions.configure<ApplicationAndroidComponentsExtension> {
+                        disableAllTests()
+
+                        onVariants { variant ->
+
+                            val variantName = variant.name
+                            extensions.configure<ApplicationExtension> {
+                                sourceSets.getByName("main") {
+                                    java.srcDir(File("build/generated/ksp/$variantName/kotlin"))
+                                }
+                            }
+                        }
+                    }
+                }
+
                 extensions.configure<ApplicationAndroidComponentsExtension> {
                     disableAllTests()
                     onVariants { variant ->
@@ -70,7 +83,11 @@ class ApplicationPlugin : Plugin<Project> {
                             }
                         }
                     }
-                }
+                }*/
+            }
+
+            extensions.configure<ApplicationAndroidComponentsExtension> {
+                disableAllTests()
             }
 
             dependencies {

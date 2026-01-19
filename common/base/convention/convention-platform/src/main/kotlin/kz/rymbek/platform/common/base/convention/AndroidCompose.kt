@@ -1,6 +1,8 @@
 package kz.rymbek.platform.common.base.convention
 
+import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.CommonExtension
+import com.android.build.api.dsl.LibraryExtension
 import kz.rymbek.platform.common.base.convention.extensions.debugImplementation
 import kz.rymbek.platform.common.base.convention.extensions.implementation
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
@@ -11,34 +13,29 @@ import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 
 fun Project.configureAndroidCompose(
-    commonExtension: CommonExtension<*, *, *, *, *, *>,
+    commonExtension: CommonExtension,
 ) {
-    commonExtension.apply {
-        buildFeatures {
-            compose = true
-        }
-
-        dependencies {
-            implementation(platform(platformLibs.androidx.compose.bom))
-            implementation(platformLibs.androidx.compose.ui.tooling.preview)
-            debugImplementation(platformLibs.androidx.compose.ui.tooling)
-        }
+    when (commonExtension) {
+        is ApplicationExtension -> commonExtension.buildFeatures.compose = true
+        is LibraryExtension -> commonExtension.buildFeatures.compose = true
+    }
+    dependencies {
+        implementation(platform(platformLibs.androidx.compose.bom))
+        implementation(platformLibs.androidx.compose.ui.tooling.preview)
+        debugImplementation(platformLibs.androidx.compose.ui.tooling)
     }
 
     extensions.configure<ComposeCompilerGradlePluginExtension> {
         fun Provider<String>.onlyIfTrue() = flatMap { provider { it.takeIf(String::toBoolean) } }
-        fun Provider<*>.relativeToRootProject(dir: String) = map {
-            isolated.rootProject.projectDirectory
-                .dir("build")
-                .dir(projectDir.toRelativeString(rootDir))
-        }.map { it.dir(dir) }
 
-        project.providers.gradleProperty("enableComposeCompilerMetrics").onlyIfTrue()
-            .relativeToRootProject("compose-metrics")
-            .let(metricsDestination::set)
+        fun Provider<*>.relativeToRootProject(dirName: String) = map {
+            layout.buildDirectory.dir("compose-reports/$dirName").get()
+        }
 
-        project.providers.gradleProperty("enableComposeCompilerReports").onlyIfTrue()
-            .relativeToRootProject("compose-reports")
-            .let(reportsDestination::set)
+        val enableMetrics = providers.gradleProperty("enableComposeCompilerMetrics").onlyIfTrue()
+        val enableReports = providers.gradleProperty("enableComposeCompilerReports").onlyIfTrue()
+
+        metricsDestination.set(enableMetrics.relativeToRootProject("metrics"))
+        reportsDestination.set(enableReports.relativeToRootProject("reports"))
     }
 }

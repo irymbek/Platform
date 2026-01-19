@@ -17,7 +17,6 @@ plugins {
     alias(platformLibs.plugins.compose) apply false
     alias(platformLibs.plugins.kotlin.jvm) apply false
     alias(platformLibs.plugins.kotlin.serialization) apply false
-    alias(platformLibs.plugins.kotlin) apply false
     alias(platformLibs.plugins.ksp) apply false
     alias(platformLibs.plugins.room) apply false
 }
