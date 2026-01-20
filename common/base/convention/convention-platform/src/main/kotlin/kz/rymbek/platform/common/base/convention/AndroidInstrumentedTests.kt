@@ -1,7 +1,9 @@
 package kz.rymbek.platform.common.base.convention
 
-import com.android.build.api.variant.ApplicationAndroidComponentsExtension
-import com.android.build.api.variant.LibraryAndroidComponentsExtension
+import com.android.build.api.variant.AndroidComponentsExtension
+import com.android.build.api.variant.DeviceTestBuilder
+import com.android.build.api.variant.HasDeviceTestsBuilder
+import com.android.build.api.variant.HasUnitTestBuilder
 
 /*internal fun CommonExtension.disableUnitTests() {
     return testOptions.unitTests
@@ -27,8 +29,21 @@ internal fun AndroidComponentsExtension<*,*,*>.disableAllTests() {
     }
 }*/
 
+internal fun AndroidComponentsExtension<*, *, *>.disableAllTests() {
+    beforeVariants {
+        if (it is HasUnitTestBuilder) {
+            it.enableUnitTest = false
+        }
 
-internal fun LibraryAndroidComponentsExtension.disableAllTests() {
+        if (it is HasDeviceTestsBuilder) {
+            it.deviceTests[DeviceTestBuilder.ANDROID_TEST_TYPE]?.enable = false
+        }
+    }
+}
+
+
+
+/*internal fun LibraryAndroidComponentsExtension.disableAllTests() {
     return beforeVariants {
         it.androidTest.enable = false
         //it.unitTestEnabled = false
@@ -42,4 +57,4 @@ internal fun ApplicationAndroidComponentsExtension.disableAllTests() {
         //(it as? com.android.build.api.variant.HasAndroidTestBuilder)?.androidTest?.enable = false
         //it.unitTestEnabled = false
     }
-}
+}*/

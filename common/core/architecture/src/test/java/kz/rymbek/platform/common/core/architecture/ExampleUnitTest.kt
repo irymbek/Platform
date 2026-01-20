@@ -1,6 +1,6 @@
 package kz.rymbek.platform.common.core.architecture
 
-import org.junit.Test
+import org.Бjunit.Test
 
 import org.junit.Assert.*
 
