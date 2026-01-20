@@ -85,7 +85,6 @@ class ApplicationPlugin : Plugin<Project> {
                     }
                 }*/
             }
-
             extensions.configure<ApplicationAndroidComponentsExtension> {
                 disableAllTests()
             }
