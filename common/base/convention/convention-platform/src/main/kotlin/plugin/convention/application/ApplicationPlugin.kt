@@ -55,37 +55,8 @@ class ApplicationPlugin : Plugin<Project> {
                         excludes.add("/META-INF/{AL2.0,LGPL2.1}")
                     }
                 }
-
-                /*pluginManager.withPlugin("com.android.application") {
-                    extensions.configure<ApplicationAndroidComponentsExtension> {
-                        disableAllTests()
-
-                        onVariants { variant ->
-
-                            val variantName = variant.name
-                            extensions.configure<ApplicationExtension> {
-                                sourceSets.getByName("main") {
-                                    java.srcDir(File("build/generated/ksp/$variantName/kotlin"))
-                                }
-                            }
-                        }
-                    }
-                }
-
-                extensions.configure<ApplicationAndroidComponentsExtension> {
-                    disableAllTests()
-                    onVariants { variant ->
-                        val variantName = variant.name
-                        project.extensions.configure<ApplicationExtension> {
-                            sourceSets {
-                                getByName("main") {
-                                    java.srcDir(File("build/generated/ksp/$variantName/kotlin"))
-                                }
-                            }
-                        }
-                    }
-                }*/
             }
+
             extensions.configure<ApplicationAndroidComponentsExtension> {
                 disableAllTests()
             }
