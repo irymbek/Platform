@@ -3,7 +3,7 @@ package plugin.convention.application
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import kz.rymbek.platform.common.base.convention.AppBuildType
-import kz.rymbek.platform.common.base.convention.configureAppModule
+import kz.rymbek.platform.common.base.convention.configureKotlinAndroid
 import kz.rymbek.platform.common.base.convention.disableAllTests
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.implementation
@@ -21,8 +21,9 @@ class ApplicationPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.koin)
 
             extensions.configure<ApplicationExtension> {
-                configureAppModule(this)
-
+                configureKotlinAndroid(this)
+                defaultConfig.targetSdk = platformLibs.versions.targetSdk.get().toInt()
+                testOptions.animationsDisabled = true
                 buildFeatures.buildConfig = true
 
                 defaultConfig {

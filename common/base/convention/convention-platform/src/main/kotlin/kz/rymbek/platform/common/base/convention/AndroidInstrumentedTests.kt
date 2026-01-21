@@ -5,30 +5,6 @@ import com.android.build.api.variant.DeviceTestBuilder
 import com.android.build.api.variant.HasDeviceTestsBuilder
 import com.android.build.api.variant.HasUnitTestBuilder
 
-/*internal fun CommonExtension.disableUnitTests() {
-    return testOptions.unitTests
-        .all {
-            it.enabled = false
-            it.isScanForTestClasses = false
-        }
-}
-
-internal fun AndroidComponentsExtension<*,*,*>.disableAllTests() {
-
-    return beforeVariants {
-        it.enable = false
-        /*if (builder is HasUnitTestBuilder) {
-            builder.enableUnitTest = false
-        }
-
-        if (builder is HasDeviceTestsBuilder) {
-            builder.deviceTests.forEach { (_, testBuilder) ->
-                testBuilder.enable = false
-            }
-        }*/
-    }
-}*/
-
 internal fun AndroidComponentsExtension<*, *, *>.disableAllTests() {
     beforeVariants {
         if (it is HasUnitTestBuilder) {
@@ -40,8 +16,6 @@ internal fun AndroidComponentsExtension<*, *, *>.disableAllTests() {
         }
     }
 }
-
-
 
 /*internal fun LibraryAndroidComponentsExtension.disableAllTests() {
     return beforeVariants {

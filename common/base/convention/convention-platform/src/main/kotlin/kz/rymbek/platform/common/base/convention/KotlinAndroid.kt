@@ -1,7 +1,6 @@
 package kz.rymbek.platform.common.base.convention
 
-import com.android.build.api.dsl.ApplicationExtension
-import com.android.build.api.dsl.LibraryExtension
+import com.android.build.api.dsl.CommonExtension
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import kz.rymbek.platform.common.base.convention.extensions.projectJavaVersion
 import kz.rymbek.platform.common.base.convention.extensions.projectJvmTarget
@@ -12,43 +11,23 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinBaseExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
-private fun Project.configureJavaOptions(options: com.android.build.api.dsl.CompileOptions) {
-    options.apply {
-        sourceCompatibility = projectJavaVersion
-        targetCompatibility = projectJavaVersion
-    }
-}
 
-private fun Project.configureKotlinOptions(extension: KotlinAndroidProjectExtension) {
-    extension.compilerOptions.apply {
-        jvmTarget.set(projectJvmTarget)
-    }
-}
-
-internal fun Project.configureAppModule(extension: ApplicationExtension) {
-    extension.apply {
-        compileSdk = platformLibs.versions.compileSdk.get().toInt()
-
-        defaultConfig.apply {
-            minSdk = platformLibs.versions.minSdk.get().toInt()
-            targetSdk = platformLibs.versions.targetSdk.get().toInt()
-        }
-
-        configureJavaOptions(compileOptions)
-    }
-    configureKotlin<KotlinAndroidProjectExtension>()
-}
-
-internal fun Project.configureLibraryModule(extension: LibraryExtension) {
-    extension.apply {
+internal fun Project.configureKotlinAndroid(
+    commonExtension: CommonExtension,
+) {
+    commonExtension.apply {
         compileSdk = platformLibs.versions.compileSdk.get().toInt()
 
         defaultConfig.apply {
             minSdk = platformLibs.versions.minSdk.get().toInt()
         }
 
-        configureJavaOptions(compileOptions)
+        compileOptions.apply {
+            sourceCompatibility = projectJavaVersion
+            targetCompatibility = projectJavaVersion
+        }
     }
+
     configureKotlin<KotlinAndroidProjectExtension>()
 }
 
