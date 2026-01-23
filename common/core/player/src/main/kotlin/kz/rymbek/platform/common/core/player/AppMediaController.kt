@@ -2,6 +2,7 @@ package kz.rymbek.platform.common.core.player
 
 import android.content.ComponentName
 import android.content.Context
+import androidx.media3.common.MediaItem
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
@@ -30,5 +31,26 @@ class AppMediaController(
             },
             MoreExecutors.directExecutor()
         )
+    }
+
+    fun playPause() {
+        val controller = mediaController ?: return
+        if (controller.isPlaying) controller.pause() else controller.play()
+    }
+
+    fun play() {
+        mediaController?.play()
+    }
+
+    fun pause() {
+        mediaController?.pause()
+    }
+
+    fun setMediaItems(items: List<MediaItem>) {
+        mediaController?.apply {
+            setMediaItems(items)
+            prepare()
+            play()
+        }
     }
 }
