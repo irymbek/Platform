@@ -20,7 +20,7 @@ import kz.rymbek.platform.common.core.player.ui.base.AppContentFrame
 
 @Composable
 fun AppPlayer(
-    player: Player?,
+    player: Player,
     modifier: Modifier = Modifier,
     surfaceType: @SurfaceType Int = SURFACE_TYPE_SURFACE_VIEW,
     contentScale: ContentScale = ContentScale.Fit,
@@ -39,6 +39,10 @@ fun AppPlayer(
                 keepContentOnReset = keepContentOnReset,
                 shutter = shutter,
             )
+
+            if (showControls) {
+                Controls(player)
+            }
         }
     )
 }

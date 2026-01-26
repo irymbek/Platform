@@ -3,16 +3,20 @@ package kz.rymbek.platform.common.core.player.playback
 import android.content.ComponentName
 import android.content.Context
 import androidx.media3.common.MediaItem
+import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import com.google.common.util.concurrent.MoreExecutors
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kz.rymbek.platform.common.core.player.playback.media_session.AppMediaSessionService
 
-@UnstableApi
 class AppMediaController(
     context: Context,
 ) {
+    @UnstableApi
     val sessionToken =
         SessionToken(context, ComponentName(context, AppMediaSessionService::class.java))
 
@@ -20,34 +24,49 @@ class AppMediaController(
         .Builder(context, sessionToken)
         .buildAsync()
 
-    private val mediaController: MediaController?
-        get() = if (controllerFuture.isDone && !controllerFuture.isCancelled) controllerFuture.get() else null
+    /*private val mediaController: MediaController?
+        get() = if (controllerFuture.isDone && !controllerFuture.isCancelled) controllerFuture.get() else null*/
 
+    private val _player = MutableStateFlow<Player?>(null)
+    val player: StateFlow<Player?> = _player.asStateFlow()
+
+    private val activePlayer: Player? get() = _player.value
 
     init {
         controllerFuture.addListener(
             {
+                _player.value = controllerFuture.get()
             },
             MoreExecutors.directExecutor()
         )
     }
 
     fun playPause() {
-        val controller = mediaController ?: return
-        if (controller.isPlaying) controller.pause() else controller.play()
+        activePlayer?.apply {
+            if (isPlaying) pause() else play()
+
+        }
     }
 
     fun play() {
-        mediaController?.play()
+        activePlayer?.play()
     }
 
     fun pause() {
-        mediaController?.pause()
+        activePlayer?.pause()
     }
 
-    fun setMediaItems(items: List<MediaItem>) {
-        mediaController?.apply {
-            setMediaItems(items)
+    fun setMediaItems(
+        mediaItems: List<MediaItem>,
+        startIndex: Int = 0,
+        startPositionMs: Long = 0L,
+    ) {
+        activePlayer?.apply {
+            setMediaItems(
+                mediaItems,
+                startIndex,
+                startPositionMs
+            )
             prepare()
             play()
         }
