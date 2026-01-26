@@ -8,5 +8,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.platform.common.core.design.foundation)
 
+    implementation(platformLibs.androidx.media3.ui.compose.material3)
 }
