@@ -12,7 +12,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kz.rymbek.platform.common.core.player.playback.media_session.AppMediaSessionService
+import org.koin.core.annotation.Single
 
+@Single
 class AppMediaController(
     context: Context,
 ) {
