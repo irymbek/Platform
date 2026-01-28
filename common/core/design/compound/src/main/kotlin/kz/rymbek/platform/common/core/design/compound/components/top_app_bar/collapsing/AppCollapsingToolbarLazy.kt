@@ -158,7 +158,7 @@ fun AppCollapsingToolbarLazy(
                 contentPadding = PaddingValues(0.dp),
                 verticalArrangement = Arrangement.spacedBy(0.dp),
                 content = {
-                    item { AppSpacer(headerHeightDp) }
+                    item { AppSpacer(Modifier.height(headerHeightDp)) }
 
                     if (loading.isLoading) {
                         item {

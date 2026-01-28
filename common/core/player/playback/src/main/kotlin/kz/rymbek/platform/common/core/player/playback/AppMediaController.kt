@@ -46,7 +46,6 @@ class AppMediaController(
     fun playPause() {
         activePlayer?.apply {
             if (isPlaying) pause() else play()
-
         }
     }
 
