@@ -10,5 +10,6 @@ android {
 dependencies {
     api(platformLibs.androidx.media3.exoplayer)
     implementation(platformLibs.androidx.media3.session)
+    implementation(platformLibs.androidx.media3.exoplayer.hls)
     implementation(platformLibs.kotlinx.coroutines.core)
 }
