@@ -10,8 +10,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.common.core.file)
-
     //koin inject
     implementation(platformLibs.koin.androidx.compose)
 
