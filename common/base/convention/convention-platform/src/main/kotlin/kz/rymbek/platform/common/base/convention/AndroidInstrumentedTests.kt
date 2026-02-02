@@ -4,18 +4,19 @@ import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.api.variant.DeviceTestBuilder
 import com.android.build.api.variant.HasDeviceTestsBuilder
 import com.android.build.api.variant.HasUnitTestBuilder
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
+import org.gradle.api.Project
 
-internal fun AndroidComponentsExtension<*, *, *>.disableAllTests() {
-    beforeVariants {
-        if (it is HasUnitTestBuilder) {
-            it.enableUnitTest = false
-        }
+internal fun AndroidComponentsExtension<*, *, *>.disableAllTests() = beforeVariants {
+    if (it is HasUnitTestBuilder) {
+        it.enableUnitTest = false
+    }
 
-        if (it is HasDeviceTestsBuilder) {
-            it.deviceTests[DeviceTestBuilder.ANDROID_TEST_TYPE]?.enable = false
-        }
+    if (it is HasDeviceTestsBuilder) {
+        it.deviceTests[DeviceTestBuilder.ANDROID_TEST_TYPE]?.enable = false
     }
 }
+
 
 /*internal fun LibraryAndroidComponentsExtension.disableAllTests() {
     return beforeVariants {
