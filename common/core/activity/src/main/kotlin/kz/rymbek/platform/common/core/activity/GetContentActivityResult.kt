@@ -15,10 +15,10 @@ import org.koin.compose.koinInject
 class GetContentActivityResult(
     private val launcher: ManagedActivityResultLauncher<Uri, Boolean>,
     private val imagePath: MutableState<String?>,
-    private val imageId: MutableState<Long?>,
+    private val imageId: MutableState<Int?>,
     private val fileUtils: FileUtils,
 ) {
-    fun launch(id: Long? = null) {
+    fun launch(id: Int? = null) {
         val filePath = fileUtils.createFilePath()
         imagePath.value = filePath
         imageId.value = id
@@ -30,10 +30,10 @@ class GetContentActivityResult(
 fun rememberGetContentActivityResult(
     contract: ActivityResultContract<Uri, Boolean> = ActivityResultContracts.TakePicture(),
     fileUtils: FileUtils = koinInject(),
-    onSuccess: (String, Long?) -> Unit,
+    onSuccess: (String, Int?) -> Unit,
 ): GetContentActivityResult {
     val filePath = remember { mutableStateOf<String?>(null) }
-    val fileId = remember { mutableStateOf<Long?>(null) }
+    val fileId = remember { mutableStateOf<Int?>(null) }
 
     val launcher = rememberLauncherForActivityResult(
         contract = contract,
