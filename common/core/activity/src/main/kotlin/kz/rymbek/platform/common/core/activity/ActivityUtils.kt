@@ -1,11 +1,14 @@
 package kz.rymbek.platform.common.core.activity
 
 import android.app.Activity
+import android.app.PictureInPictureParams
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.provider.Settings
+import android.util.Rational
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
@@ -35,12 +38,37 @@ class ActivityUtils(
         )
         activity.startActivity(intent)
     }
-}
 
-@Composable
-fun rememberActivityUtils(): ActivityUtils {
-    val context = LocalContext.current
-    return remember(context) {
-        ActivityUtils(context)
+
+    @Composable
+    fun EnterInPipAuto(enabled: Boolean, aspectRatio: Rational? = null) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val builder = PictureInPictureParams.Builder()
+            builder.setAutoEnterEnabled(true)
+            context.findActivity().setPictureInPictureParams(builder.build())
+        } else {
+            /*DisposableEffect(context) {
+                val onUserLeaveBehavior = Runnable {
+                    context.findActivity()
+                        .enterPictureInPictureMode(PictureInPictureParams.Builder().build())
+                }
+                context.findActivity().addOnUserLeaveHintListener(
+                    onUserLeaveBehavior
+                )
+                onDispose {
+                    context.findActivity().removeOnUserLeaveHintListener(
+                        onUserLeaveBehavior
+                    )
+                }
+            }*/
+        }
+    }
+
+    @Composable
+    fun rememberActivityUtils(): ActivityUtils {
+        val context = LocalContext.current
+        return remember(context) {
+            ActivityUtils(context)
+        }
     }
 }

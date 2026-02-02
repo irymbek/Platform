@@ -18,7 +18,6 @@ class LibraryPlugin : Plugin<Project> {
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
                 testOptions.targetSdk = platformLibs.versions.targetSdk.get().toInt()
-                //defaultConfig.targetSdk = platformLibs.versions.targetSdk.get().toInt()
                 testOptions.animationsDisabled = true
             }
 
