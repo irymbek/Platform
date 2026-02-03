@@ -1,6 +1,5 @@
 package kz.rymbek.platform.common.core.activity
 
-import android.app.Activity
 import android.app.PictureInPictureParams
 import android.content.Context
 import android.content.ContextWrapper
@@ -9,7 +8,9 @@ import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import android.util.Rational
+import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import org.koin.core.annotation.Single
@@ -22,10 +23,10 @@ class ActivityUtils(
         context.findActivity()
     }
 
-    private fun Context.findActivity(): Activity {
+    private fun Context.findActivity(): ComponentActivity {
         var context = this
         while (context is ContextWrapper) {
-            if (context is Activity) return context
+            if (context is ComponentActivity) return context
             context = context.baseContext ?: break
         }
         throw IllegalStateException("findActivity should be called in the context of an Activity")
@@ -47,7 +48,7 @@ class ActivityUtils(
             builder.setAutoEnterEnabled(true)
             context.findActivity().setPictureInPictureParams(builder.build())
         } else {
-            /*DisposableEffect(context) {
+            DisposableEffect(context) {
                 val onUserLeaveBehavior = Runnable {
                     context.findActivity()
                         .enterPictureInPictureMode(PictureInPictureParams.Builder().build())
@@ -60,7 +61,7 @@ class ActivityUtils(
                         onUserLeaveBehavior
                     )
                 }
-            }*/
+            }
         }
     }
 }
