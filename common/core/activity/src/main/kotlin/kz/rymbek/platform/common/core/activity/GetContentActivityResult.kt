@@ -7,7 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import kz.uso.common.core.file.FileUtils
+import kz.rymbek.platform.common.core.file.FileUtils
 import org.koin.compose.koinInject
 
 @Composable

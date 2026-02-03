@@ -10,7 +10,7 @@ android {
 }
 
 dependencies {
-    api(projects.common.core.file)
+    api(projects.platform.common.core.file)
 
     //koin inject
     implementation(platformLibs.koin.androidx.compose)
