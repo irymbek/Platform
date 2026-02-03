@@ -1,6 +1,8 @@
 package kz.rymbek.platform.common.core.design.foundation.components.text_field.outlined
 
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.KeyboardActionHandler
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -16,6 +18,7 @@ fun AppOutlinedTextFieldValidation(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
 ) {
     AppOutlinedTextField(
         modifier = modifier,
@@ -33,6 +36,7 @@ fun AppOutlinedTextFieldValidation(
             }
         },
         keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
     )
 }
 
@@ -44,6 +48,7 @@ fun AppOutlinedTextFieldValidation(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    onKeyboardAction: KeyboardActionHandler? = null,
 ) {
     AppOutlinedTextField(
         state = state,
@@ -60,5 +65,6 @@ fun AppOutlinedTextFieldValidation(
             }
         },
         keyboardOptions = keyboardOptions,
+        onKeyboardAction = onKeyboardAction,
     )
 }

@@ -63,12 +63,12 @@ class ActivityUtils(
             }*/
         }
     }
+}
 
-    @Composable
-    fun rememberActivityUtils(): ActivityUtils {
-        val context = LocalContext.current
-        return remember(context) {
-            ActivityUtils(context)
-        }
+@Composable
+fun rememberActivityUtils(): ActivityUtils {
+    val context = LocalContext.current
+    return remember(context) {
+        ActivityUtils(context)
     }
 }
