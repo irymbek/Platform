@@ -7,6 +7,9 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.filled.Fullscreen
+import androidx.compose.material.icons.filled.FullscreenExit
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardDoubleArrowDown
 import androidx.compose.material.icons.filled.KeyboardDoubleArrowUp
 import androidx.compose.material.icons.filled.Remove
@@ -46,4 +49,9 @@ object PlatformIcons {
 
     val FilledKeyboardDoubleArrowDown = Icons.Filled.KeyboardDoubleArrowDown
     val FilledKeyboardDoubleArrowUp = Icons.Filled.KeyboardDoubleArrowUp
+
+    val FilledKeyboardArrowDown = Icons.Filled.KeyboardArrowDown
+
+    val FilledFullscreen = Icons.Filled.Fullscreen
+    val FilledFullscreenExit = Icons.Filled.FullscreenExit
 }

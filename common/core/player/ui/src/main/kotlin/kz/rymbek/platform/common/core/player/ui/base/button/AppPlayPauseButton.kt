@@ -1,6 +1,5 @@
 package kz.rymbek.platform.common.core.player.ui.base.button
 
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -8,12 +7,13 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.media3.common.Player
 import androidx.media3.ui.compose.material3.buttons.PlayPauseButton
 import androidx.media3.ui.compose.state.PlayPauseButtonState
+import kz.rymbek.platform.common.core.player.ui.base.Constants
 
 @Composable
 fun AppPlayPauseButton(
     player: Player,
     modifier: Modifier = Modifier,
-    tint: Color = LocalContentColor.current,
+    tint: Color = Constants.color,
     onClick: PlayPauseButtonState.() -> Unit = PlayPauseButtonState::onClick,
 ) {
     PlayPauseButton(
@@ -29,7 +29,7 @@ fun AppPlayPauseButton(
     player: Player,
     modifier: Modifier = Modifier,
     imageVector: PlayPauseButtonState.() -> ImageVector,
-    tint: Color = LocalContentColor.current,
+    tint: Color = Constants.color,
     onClick: PlayPauseButtonState.() -> Unit = PlayPauseButtonState::onClick,
 ) {
     PlayPauseButton(

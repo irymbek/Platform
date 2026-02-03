@@ -1,23 +1,47 @@
 package kz.rymbek.platform.common.core.player.ui.base.indicator
 
+import androidx.annotation.OptIn
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.media3.common.Player
-import androidx.media3.ui.compose.material3.indicator.PositionAndDurationText
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.common.util.Util
+import androidx.media3.ui.compose.indicators.TimeText
 import kotlinx.coroutines.CoroutineScope
+import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
+import java.util.Formatter
+import java.util.Locale
 
+@OptIn(UnstableApi::class)
 @Composable
 fun AppPositionAndDurationText(
     player: Player,
     modifier: Modifier = Modifier,
     separator: String = " / ",
     scope: CoroutineScope = rememberCoroutineScope(),
+    color: Color = Color.White
 ) {
-    PositionAndDurationText(
+    TimeText(
         player = player,
-        modifier = modifier,
-        separator = separator,
-        scope = scope
+        scope = scope,
+        content = {
+            val positionText = remember(currentPositionMs) {
+                Util.getStringForTime(StringBuilder(), Formatter(Locale.getDefault()), currentPositionMs)
+            }
+            val durationText = remember(durationMs) {
+                Util.getStringForTime(StringBuilder(), Formatter(Locale.getDefault()), durationMs)
+            }
+
+            AppText(
+                text = "$positionText$separator$durationText",
+                modifier = modifier,
+                color = color,
+                style = MaterialTheme.typography.labelMedium // Или ваш стиль
+            )
+        }
     )
 }

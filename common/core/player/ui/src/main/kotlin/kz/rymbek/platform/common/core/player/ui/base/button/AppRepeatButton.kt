@@ -1,6 +1,5 @@
 package kz.rymbek.platform.common.core.player.ui.base.button
 
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -8,6 +7,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.media3.common.Player
 import androidx.media3.ui.compose.material3.buttons.RepeatButton
 import androidx.media3.ui.compose.state.RepeatButtonState
+import kz.rymbek.platform.common.core.player.ui.base.Constants
 
 @Composable
 fun AppRepeatButton(
@@ -15,7 +15,7 @@ fun AppRepeatButton(
     modifier: Modifier = Modifier,
     toggleModeSequence: List<@Player.RepeatMode Int> =
         listOf(Player.REPEAT_MODE_OFF, Player.REPEAT_MODE_ONE, Player.REPEAT_MODE_ALL),
-    tint: Color = LocalContentColor.current,
+    tint: Color = Constants.color,
     onClick: RepeatButtonState.() -> Unit = RepeatButtonState::onClick,
 ) {
     RepeatButton(
@@ -34,7 +34,7 @@ fun AppRepeatButton(
     toggleModeSequence: List<@Player.RepeatMode Int> =
         listOf(Player.REPEAT_MODE_OFF, Player.REPEAT_MODE_ONE, Player.REPEAT_MODE_ALL),
     imageVector: RepeatButtonState.() -> ImageVector,
-    tint: Color = LocalContentColor.current,
+    tint: Color = Constants.color,
     onClick: RepeatButtonState.() -> Unit = RepeatButtonState::onClick,
 ) {
     RepeatButton(

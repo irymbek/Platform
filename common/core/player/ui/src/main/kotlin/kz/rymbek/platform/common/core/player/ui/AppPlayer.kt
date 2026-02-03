@@ -30,10 +30,16 @@ fun AppPlayer(
     var showControls by remember { mutableStateOf(true) }
 
     AppBox(
+        modifier = Modifier
+            .background(Color.Black),
         content = {
             AppContentFrame(
                 player = player,
-                modifier = modifier.clickable { showControls = !showControls },
+                modifier = modifier
+                    .clickable(
+                        interactionSource = null,
+                        indication = null
+                    ) { showControls = !showControls },
                 surfaceType = surfaceType,
                 contentScale = contentScale,
                 keepContentOnReset = keepContentOnReset,

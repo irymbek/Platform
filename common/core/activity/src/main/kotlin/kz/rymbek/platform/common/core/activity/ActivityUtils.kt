@@ -4,15 +4,18 @@ import android.app.PictureInPictureParams
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
-import android.util.Rational
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import org.koin.core.annotation.Single
 
 @Single
@@ -40,9 +43,17 @@ class ActivityUtils(
         activity.startActivity(intent)
     }
 
+    fun systemBarConfiguration() {
+        val window = activity.window
+        WindowInsetsControllerCompat(window, window.decorView).let { controller ->
+            controller.systemBarsBehavior =
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            controller.hide(WindowInsetsCompat.Type.systemBars())
+        }
+    }
 
     @Composable
-    fun EnterInPipAuto(enabled: Boolean, aspectRatio: Rational? = null) {
+    fun EnterInPipAuto() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val builder = PictureInPictureParams.Builder()
             builder.setAutoEnterEnabled(true)
@@ -62,6 +73,15 @@ class ActivityUtils(
                     )
                 }
             }
+        }
+    }
+
+    fun toggleOrientation() {
+        val isLandscape = activity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+        activity.requestedOrientation = if (isLandscape) {
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        } else {
+            ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
         }
     }
 }
