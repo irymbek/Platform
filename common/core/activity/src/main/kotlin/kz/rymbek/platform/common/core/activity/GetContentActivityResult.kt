@@ -35,9 +35,9 @@ fun rememberCameraLauncher(
     return remember(launcher) {
         object : CameraLauncher {
             override fun launch(id: Int?) {
-                val path = fileUtils.createFilePath()
+                val path = fileUtils.createFile()
                 val uri = fileUtils.getFileUri(path)
-                currentPath.value = path
+                currentPath.value = path.absolutePath
                 currentId.value = id
                 launcher.launch(uri)
             }

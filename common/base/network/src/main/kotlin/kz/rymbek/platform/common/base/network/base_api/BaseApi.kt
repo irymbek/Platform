@@ -153,4 +153,24 @@ open class BaseApi : BaseApiHelper() {
             }
         }.body()
     }
+
+    inline fun <reified Resource : Any, reified Response : Any> HttpClient.uploadFileFlow(
+        resource: Resource,
+        file: File,
+        key: String,
+        crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
+    ): Flow<ResultFlow<Response>> = requestFlowSafe {
+        post(resource = resource) {
+            httpRequestBuilder()
+            setBody(
+                MultiPartFormDataContent(formData {
+                    append(key, InputProvider(file.length()) { file.inputStream().asInput() },
+                        Headers.build {
+                            append(HttpHeaders.ContentDisposition, "filename=\"${file.name}\"")
+                        }
+                    )
+                })
+            )
+        }.body<Response>()
+    }
 }
