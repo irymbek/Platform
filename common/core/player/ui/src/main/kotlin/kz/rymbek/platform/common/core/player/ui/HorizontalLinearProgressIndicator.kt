@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -20,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
@@ -32,6 +35,61 @@ import androidx.compose.ui.unit.times
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.compose.state.rememberProgressStateWithTickCount
+
+@OptIn(UnstableApi::class)
+@Composable
+fun HorizontalLinearProgressIndicator2(
+    player: Player,
+    modifier: Modifier = Modifier,
+) {
+    // Получаем состояние прогресса (текущая позиция и буфер)
+    val progressState = rememberProgressStateWithTickCount(player, 0)
+
+    // Флаг, чтобы прогресс ползунка не "прыгал", пока пользователь его тянет
+    var isDragging by remember { mutableStateOf(false) }
+    var dragProgress by remember { mutableFloatStateOf(0f) }
+
+    val currentProgress = if (isDragging) dragProgress else progressState.currentPositionProgress
+
+    Slider(
+        value = currentProgress.coerceIn(0f, 1f),
+        onValueChange = {
+            isDragging = true
+            dragProgress = it
+        },
+        onValueChangeFinished = {
+            // Перематываем плеер по завершении жеста
+            val seekPosition = (dragProgress * player.duration).toLong()
+            player.seekTo(seekPosition)
+            isDragging = false
+        },
+        modifier = modifier.fillMaxWidth(),
+        // Кастомизируем внешний вид под ваш дизайн
+        colors = SliderDefaults.colors(
+            activeTrackColor = Color.Red,        // Проиграно
+            inactiveTrackColor = Color.DarkGray, // Не проиграно
+            thumbColor = Color.Red               // Скруббер
+        ),
+        // Здесь магия: рисуем полоску буфера поверх стандартного трека
+        track = { sliderState ->
+            SliderDefaults.Track(
+                sliderState = sliderState,
+                modifier = Modifier.drawBehind {
+                    // Рисуем буферную часть
+                    val bufferWidth = size.width * progressState.bufferedPositionProgress
+                    drawRect(
+                        color = Color.LightGray,
+                        size = size.copy(width = bufferWidth)
+                    )
+                },
+                colors = SliderDefaults.colors(
+                    activeTrackColor = Color.Red,
+                    inactiveTrackColor = Color.Transparent // Делаем прозрачным, чтобы видеть буфер
+                )
+            )
+        }
+    )
+}
 
 @OptIn(UnstableApi::class)
 @Composable

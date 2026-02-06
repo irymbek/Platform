@@ -22,6 +22,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.spacer.AppSpa
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformIconSize
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
+import kz.rymbek.platform.common.core.player.ui.base.Constants
 import kz.rymbek.platform.common.core.player.ui.base.button.AppMuteButton
 import kz.rymbek.platform.common.core.player.ui.base.button.AppNextButton
 import kz.rymbek.platform.common.core.player.ui.base.button.AppOrientationButton
@@ -42,6 +43,7 @@ private fun TopContent(
         content = {
             AppIconButton(
                 icon = PlatformIcons.FilledKeyboardArrowDown,
+                tintIcon = Constants.color,
                 onClick = {
                     /*BackHandler(enabled = true, onBack = {
                         backPressedCount += 1
@@ -141,14 +143,19 @@ internal fun BoxScope.Controls(
                     AppOrientationButton()
                 }
             )
-            HorizontalLinearProgressIndicator(player, Modifier.fillMaxWidth())
+
+            HorizontalLinearProgressIndicator2(
+                player = player,
+                modifier = Modifier.padding(horizontal = 8.dp)
+            )
+
+            //HorizontalLinearProgressIndicator(player, Modifier.fillMaxWidth())
             Row(
                 modifier =
                     Modifier.fillMaxWidth().background(Color.Gray.copy(alpha = 0.4f)),
                 horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                AppSpacer(Modifier.weight(1f))
                 PlaybackSpeedPopUpButton(player)
                 AppShuffleButton(player)
                 AppRepeatButton(player)
