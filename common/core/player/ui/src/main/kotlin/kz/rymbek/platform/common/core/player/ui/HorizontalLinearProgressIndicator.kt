@@ -36,6 +36,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.slider.AppSli
 fun PlayerProgressSlider(
     player: Player,
     modifier: Modifier = Modifier,
+    onInteraction: () -> Unit = {},
     playedColor: Color = MaterialTheme.colorScheme.primary,
     bufferedColor: Color = Color.LightGray.copy(alpha = 0.5f),
     unplayedColor: Color = Color.DarkGray.copy(alpha = 0.5f),
@@ -68,6 +69,7 @@ fun PlayerProgressSlider(
             modifier = modifier,
             value = sliderValue,
             onValueChange = {
+                onInteraction()
                 isDragging = true
                 sliderValue = it
             },

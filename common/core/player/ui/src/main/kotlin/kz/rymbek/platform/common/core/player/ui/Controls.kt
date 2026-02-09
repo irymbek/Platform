@@ -13,6 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.changedToDown
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.Player
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
@@ -93,21 +96,24 @@ private fun BottomContent(
 @Composable
 internal fun BoxScope.Controls(
     player: Player,
+    onInteraction: () -> Unit
 ) {
     val buttonModifier = Modifier
         .size(50.dp)
         .background(Color.Black.copy(alpha = 0.3f), CircleShape)
 
+
     TopContent(
         modifier = Modifier
             .fillMaxWidth()
-            .align(Alignment.TopCenter),
+            .align(Alignment.TopCenter)
+            .onInteractionTap(onInteraction),
     )
 
     CenterContent(
         modifier = Modifier
-            .fillMaxWidth()
-            .align(Alignment.Center),
+            .align(Alignment.Center)
+            .onInteractionTap(onInteraction),
         buttons =
             listOf(
                 { AppPreviousButton(player, buttonModifier) },
@@ -128,34 +134,30 @@ internal fun BoxScope.Controls(
     BottomContent(
         modifier = Modifier
             .fillMaxWidth()
-            .align(Alignment.BottomCenter),
+            .align(Alignment.BottomCenter)
+            .onInteractionTap(onInteraction),
         content = {
+
             AppRow(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = PlatformPaddings.default),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                content = {
-                    AppPositionAndDurationText(
-                        player = player
-                    )
-
-                    AppOrientationButton()
-                }
-            )
+            ) {
+                AppPositionAndDurationText(player)
+                AppOrientationButton()
+            }
 
             PlayerProgressSlider(
                 player = player,
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                onInteraction = onInteraction
             )
 
             Row(
-                modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .background(Color.Gray.copy(alpha = 0.4f)),
-                horizontalArrangement = Arrangement.Start,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.Gray.copy(alpha = 0.4f)),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 PlaybackSpeedPopUpButton(player)
@@ -165,4 +167,15 @@ internal fun BoxScope.Controls(
             }
         }
     )
+}
+
+fun Modifier.onInteractionTap(onInteraction: () -> Unit): Modifier = this.pointerInput(Unit) {
+    awaitPointerEventScope {
+        while (true) {
+            val event = awaitPointerEvent(PointerEventPass.Initial)
+            if (event.changes.any { it.changedToDown() }) {
+                onInteraction()
+            }
+        }
+    }
 }
