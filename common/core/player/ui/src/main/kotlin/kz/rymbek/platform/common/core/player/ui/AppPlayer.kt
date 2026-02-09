@@ -9,6 +9,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
@@ -43,11 +44,21 @@ fun AppPlayer(
     var showControls by remember { mutableStateOf(false) }
     var lastInteraction by remember { mutableLongStateOf(0L) }
 
-    val hideDelayMs = 3_000L
+    var isPlaying by remember { mutableStateOf(player.isPlaying) }
 
-    LaunchedEffect(showControls, lastInteraction, player.isPlaying) {
-        if (showControls && player.isPlaying) {
-            delay(hideDelayMs)
+    DisposableEffect(player) {
+        val listener = object : Player.Listener {
+            override fun onIsPlayingChanged(playing: Boolean) {
+                isPlaying = playing
+            }
+        }
+        player.addListener(listener)
+        onDispose { player.removeListener(listener) }
+    }
+
+    LaunchedEffect(lastInteraction, isPlaying) {
+        if (isPlaying) {
+            delay(3000L)
             showControls = false
         }
     }
@@ -66,7 +77,7 @@ fun AppPlayer(
                         indication = null
                     ) {
                         showControls = !showControls
-                        if (showControls) onInteraction()
+                        onInteraction()
                     },
                 surfaceType = surfaceType,
                 contentScale = contentScale,
