@@ -1,174 +1,134 @@
 package kz.rymbek.platform.common.core.player.ui
 
-import androidx.annotation.IntRange
-import androidx.annotation.OptIn
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Slider
-import androidx.compose.material3.SliderDefaults
+import androidx.compose.material3.LocalMinimumInteractiveComponentSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.times
 import androidx.media3.common.Player
-import androidx.media3.common.util.UnstableApi
-import androidx.media3.ui.compose.state.rememberProgressStateWithTickCount
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kz.rymbek.platform.common.core.design.foundation.components.slider.AppSlider
 
-@OptIn(UnstableApi::class)
 @Composable
-fun HorizontalLinearProgressIndicator2(
+fun PlayerProgressSlider(
     player: Player,
     modifier: Modifier = Modifier,
+    playedColor: Color = MaterialTheme.colorScheme.primary,
+    bufferedColor: Color = Color.LightGray.copy(alpha = 0.5f),
+    unplayedColor: Color = Color.DarkGray.copy(alpha = 0.5f),
+    thumbColor: Color = MaterialTheme.colorScheme.primary,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
 ) {
-    // Получаем состояние прогресса (текущая позиция и буфер)
-    val progressState = rememberProgressStateWithTickCount(player, 0)
-
-    // Флаг, чтобы прогресс ползунка не "прыгал", пока пользователь его тянет
+    var duration by remember { mutableLongStateOf(1L) }
+    var bufferedPosition by remember { mutableLongStateOf(0L) }
+    var sliderValue by remember { mutableFloatStateOf(0f) }
     var isDragging by remember { mutableStateOf(false) }
-    var dragProgress by remember { mutableFloatStateOf(0f) }
 
-    val currentProgress = if (isDragging) dragProgress else progressState.currentPositionProgress
+    val animatedThumbSize by animateDpAsState(
+        targetValue = if (isDragging) 20.dp else 14.dp,
+        label = "thumbSize"
+    )
 
-    Slider(
-        value = currentProgress.coerceIn(0f, 1f),
-        onValueChange = {
-            isDragging = true
-            dragProgress = it
-        },
-        onValueChangeFinished = {
-            // Перематываем плеер по завершении жеста
-            val seekPosition = (dragProgress * player.duration).toLong()
-            player.seekTo(seekPosition)
-            isDragging = false
-        },
-        modifier = modifier.fillMaxWidth(),
-        // Кастомизируем внешний вид под ваш дизайн
-        colors = SliderDefaults.colors(
-            activeTrackColor = Color.Red,        // Проиграно
-            inactiveTrackColor = Color.DarkGray, // Не проиграно
-            thumbColor = Color.Red               // Скруббер
-        ),
-        // Здесь магия: рисуем полоску буфера поверх стандартного трека
-        track = { sliderState ->
-            SliderDefaults.Track(
-                sliderState = sliderState,
-                modifier = Modifier.drawBehind {
-                    // Рисуем буферную часть
-                    val bufferWidth = size.width * progressState.bufferedPositionProgress
-                    drawRect(
-                        color = Color.LightGray,
-                        size = size.copy(width = bufferWidth)
-                    )
-                },
-                colors = SliderDefaults.colors(
-                    activeTrackColor = Color.Red,
-                    inactiveTrackColor = Color.Transparent // Делаем прозрачным, чтобы видеть буфер
+    LaunchedEffect(player) {
+        while (isActive) {
+            duration = player.duration.coerceAtLeast(1L)
+            bufferedPosition = player.bufferedPosition
+            if (!isDragging) {
+                sliderValue = player.currentPosition.toFloat()
+            }
+            delay(if (player.isPlaying) 100 else 500)
+        }
+    }
+
+    CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 0.dp) {
+        AppSlider(
+            modifier = modifier,
+            value = sliderValue,
+            onValueChange = {
+                isDragging = true
+                sliderValue = it
+            },
+            onValueChangeFinished = {
+                player.seekTo(sliderValue.toLong())
+                isDragging = false
+            },
+            valueRange = 0f..duration.toFloat(),
+            interactionSource = interactionSource,
+            thumb = {
+                Box(
+                    modifier = Modifier
+                        .size(animatedThumbSize)
+                        .background(thumbColor, CircleShape)
                 )
-            )
-        }
-    )
-}
+            },
+            track = { sliderState ->
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(28.dp), // Высота области клика
+                    contentAlignment = androidx.compose.ui.Alignment.Center
+                ) {
+                    Canvas(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(5.dp) // Визуальная высота трека
+                    ) {
+                        val width = size.width
+                        val height = size.height
+                        val radius = height / 2
+                        val isRtl = layoutDirection == LayoutDirection.Rtl
 
-@OptIn(UnstableApi::class)
-@Composable
-fun HorizontalLinearProgressIndicator(
-    player: Player,
-    modifier: Modifier = Modifier,
-    @IntRange(from = 0) totalTickCount: Int = 0,
-) {
-    var ticks by remember(totalTickCount) { mutableIntStateOf(totalTickCount) }
-    val progressState = rememberProgressStateWithTickCount(player, ticks)
-    HorizontalLinearProgressIndicator(
-        modifier,
-        currentPositionProgress = { progressState.currentPositionProgress },
-        bufferedPositionProgress = { progressState.bufferedPositionProgress },
-        onLayoutWidthChanged = { widthPx -> if (totalTickCount == 0) ticks = widthPx },
-    )
-}
+                        // 1. Фон
+                        drawRoundRect(
+                            color = unplayedColor,
+                            size = size,
+                            cornerRadius = CornerRadius(radius)
+                        )
 
-@Composable
-private fun HorizontalLinearProgressIndicator(
-    modifier: Modifier = Modifier,
-    currentPositionProgress: () -> Float,
-    bufferedPositionProgress: () -> Float = currentPositionProgress,
-    onLayoutWidthChanged: (Int) -> Unit = {},
-    playedColor: Color = Color.Red,
-    bufferedColor: Color = Color.LightGray,
-    unplayedColor: Color = Color.DarkGray,
-    scrubberColor: Color = playedColor,
-    scrubberShape: Shape = CircleShape,
-    rectHeightDp: Dp = 10.dp,
-) {
-    // the following X-coordinates are relative to the size of the Canvas, not the whole HLPI
-    var positionX by remember { mutableFloatStateOf(0f) }
-    var scrubberX by remember { mutableFloatStateOf(0f) }
-    var bufferX by remember { mutableFloatStateOf(0f) }
-    var barSize by remember { mutableStateOf(Size(0f, 0f)) }
-    val rectHeightPx = with(LocalDensity.current) { rectHeightDp.roundToPx() }
-    val scrubberBoxSizeDp = 2 * rectHeightDp
-    val scrubberBoxSizePx = 2 * rectHeightPx
-    val canvasTopDownPaddingDp = 5.dp
-    val canvasTopDownPaddingPx = with(LocalDensity.current) { canvasTopDownPaddingDp.roundToPx() }
-    val canvasLeftRightPaddingDp = scrubberBoxSizeDp / 2 + canvasTopDownPaddingDp
-    val canvasLeftRightPaddingPx = scrubberBoxSizePx / 2 + canvasTopDownPaddingPx
+                        // 2. Буфер
+                        val bufferWidth = (bufferedPosition.toFloat() / duration) * width
+                        drawRoundRect(
+                            color = bufferedColor,
+                            size = Size(bufferWidth.coerceIn(0f, width), height),
+                            cornerRadius = CornerRadius(radius),
+                            topLeft = Offset(if (isRtl) width - bufferWidth else 0f, 0f)
+                        )
 
-    Box(
-        contentAlignment = Alignment.CenterStart,
-        modifier =
-            modifier
-                .background(Color.Gray.copy(alpha = 0.4f))
-                .height(scrubberBoxSizeDp + 2 * canvasTopDownPaddingDp),
-    ) {
-        Canvas(
-            Modifier.padding(
-                start = canvasLeftRightPaddingDp,
-                top = canvasTopDownPaddingDp,
-                bottom = canvasTopDownPaddingDp,
-                end = canvasLeftRightPaddingDp,
-            )
-                .fillMaxWidth()
-                .height(rectHeightDp)
-                .onSizeChanged { (w, _) -> onLayoutWidthChanged(w) }
-        ) {
-            positionX = (currentPositionProgress() * size.width).coerceAtLeast(0f)
-            scrubberX = positionX
-            bufferX = (bufferedPositionProgress() * size.width).coerceAtLeast(0f)
-            // Canvas.size.height = 0, hence need our own height
-            barSize = Size(size.width, rectHeightDp.toPx())
-
-            drawRect(unplayedColor, size = barSize)
-            drawRect(bufferedColor, size = barSize.copy(width = bufferX))
-            drawRect(playedColor, size = barSize.copy(width = positionX))
-        }
-
-        val absoluteThumbX = canvasLeftRightPaddingPx + scrubberX
-        val scrubberTopLeftX = absoluteThumbX - scrubberBoxSizePx / 2
-        Box(
-            Modifier.offset { IntOffset(x = scrubberTopLeftX.toInt(), y = 0) }
-                .size(scrubberBoxSizeDp)
-                .background(scrubberColor, scrubberShape)
+                        // 3. Прогресс
+                        val sliderFraction = (sliderState.value / duration.toFloat()).coerceIn(0f, 1f)
+                        val progressWidth = sliderFraction * width
+                        drawRoundRect(
+                            color = playedColor,
+                            size = Size(progressWidth, height),
+                            cornerRadius = CornerRadius(radius),
+                            topLeft = Offset(if (isRtl) width - progressWidth else 0f, 0f)
+                        )
+                    }
+                }
+            }
         )
     }
 }

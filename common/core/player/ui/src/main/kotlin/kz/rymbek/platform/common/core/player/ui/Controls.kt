@@ -61,7 +61,7 @@ private fun CenterContent(
     verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
     buttons: List<@Composable () -> Unit>,
 ) {
-    AppRow (
+    AppRow(
         modifier = modifier,
         horizontalArrangement = horizontalArrangement,
         verticalAlignment = verticalAlignment,
@@ -144,15 +144,17 @@ internal fun BoxScope.Controls(
                 }
             )
 
-            HorizontalLinearProgressIndicator2(
+            PlayerProgressSlider(
                 player = player,
-                modifier = Modifier.padding(horizontal = 8.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
             )
 
-            //HorizontalLinearProgressIndicator(player, Modifier.fillMaxWidth())
             Row(
                 modifier =
-                    Modifier.fillMaxWidth().background(Color.Gray.copy(alpha = 0.4f)),
+                    Modifier
+                        .fillMaxWidth()
+                        .background(Color.Gray.copy(alpha = 0.4f)),
                 horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.CenterVertically,
             ) {

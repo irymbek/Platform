@@ -40,7 +40,7 @@ fun AppPositionAndDurationText(
                 text = "$positionText$separator$durationText",
                 modifier = modifier,
                 color = color,
-                style = MaterialTheme.typography.labelMedium // Или ваш стиль
+                style = MaterialTheme.typography.labelMedium
             )
         }
     )

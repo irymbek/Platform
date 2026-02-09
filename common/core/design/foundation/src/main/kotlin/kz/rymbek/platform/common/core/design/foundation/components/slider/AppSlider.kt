@@ -36,7 +36,7 @@ fun AppSlider(
 }
 
 @Composable
-fun Slider(
+fun AppSlider(
     value: Float,
     onValueChange: (Float) -> Unit,
     modifier: Modifier = Modifier,
