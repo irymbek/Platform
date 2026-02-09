@@ -13,7 +13,7 @@ import kz.rymbek.platform.common.core.player.ui.base.Constants
 fun AppSeekForwardButton(
     player: Player,
     modifier: Modifier = Modifier,
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
     onClick: SeekForwardButtonState.() -> Unit = SeekForwardButtonState::onClick,
 ) {
     SeekForwardButton(
@@ -29,7 +29,7 @@ fun AppSeekForwardButton(
     player: Player,
     modifier: Modifier = Modifier,
     imageVector: SeekForwardButtonState.() -> ImageVector,
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
     onClick: SeekForwardButtonState.() -> Unit = SeekForwardButtonState::onClick,
 ) {
     SeekForwardButton(

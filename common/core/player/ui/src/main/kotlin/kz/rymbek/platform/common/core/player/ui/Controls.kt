@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -12,7 +11,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.changedToDown
 import androidx.compose.ui.input.pointer.pointerInput
@@ -22,6 +21,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.container.App
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppRow
 import kz.rymbek.platform.common.core.design.foundation.components.icon_button.AppIconButton
 import kz.rymbek.platform.common.core.design.foundation.components.spacer.AppSpacer
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformAlpha
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformIconSize
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
@@ -46,7 +46,7 @@ private fun TopContent(
         content = {
             AppIconButton(
                 icon = PlatformIcons.FilledKeyboardArrowDown,
-                tintIcon = Constants.color,
+                tintIcon = Constants.primary,
                 onClick = {
                     /*BackHandler(enabled = true, onBack = {
                         backPressedCount += 1
@@ -100,13 +100,23 @@ internal fun BoxScope.Controls(
 ) {
     val buttonModifier = Modifier
         .size(50.dp)
-        .background(Color.Black.copy(alpha = 0.3f), CircleShape)
-
+        .background(
+            color = Constants.background.copy(alpha = PlatformAlpha.OVERLAY),
+            shape = CircleShape
+        )
 
     TopContent(
         modifier = Modifier
             .fillMaxWidth()
             .align(Alignment.TopCenter)
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Constants.background.copy(alpha = PlatformAlpha.SECONDARY),
+                        Constants.background.copy(alpha = PlatformAlpha.TRANSPARENT)
+                    )
+                )
+            )
             .onInteractionTap(onInteraction),
     )
 
@@ -123,7 +133,10 @@ internal fun BoxScope.Controls(
                         player = player,
                         modifier = Modifier
                             .size(PlatformIconSize.md)
-                            .background(Color.Black.copy(alpha = 0.3f), CircleShape),
+                            .background(
+                                color = Constants.background.copy(alpha = PlatformAlpha.OVERLAY),
+                                shape = CircleShape
+                            )
                     )
                 },
                 { AppSeekForwardButton(player, buttonModifier) },
@@ -135,6 +148,14 @@ internal fun BoxScope.Controls(
         modifier = Modifier
             .fillMaxWidth()
             .align(Alignment.BottomCenter)
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Constants.background.copy(alpha = PlatformAlpha.TRANSPARENT),
+                        Constants.background.copy(alpha = PlatformAlpha.SCRIM)
+                    )
+                )
+            )
             .onInteractionTap(onInteraction),
         content = {
 
@@ -154,17 +175,18 @@ internal fun BoxScope.Controls(
                 onInteraction = onInteraction
             )
 
-            Row(
+            AppRow(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.Gray.copy(alpha = 0.4f)),
+                    .background(Constants.background.copy(alpha = PlatformAlpha.OVERLAY)),
                 verticalAlignment = Alignment.CenterVertically,
-            ) {
-                PlaybackSpeedPopUpButton(player)
-                AppShuffleButton(player)
-                AppRepeatButton(player)
-                AppMuteButton(player)
-            }
+                content = {
+                    PlaybackSpeedPopUpButton(player)
+                    AppShuffleButton(player)
+                    AppRepeatButton(player)
+                    AppMuteButton(player)
+                }
+            )
         }
     )
 }

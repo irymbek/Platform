@@ -13,7 +13,7 @@ import kz.rymbek.platform.common.core.player.ui.base.Constants
 fun AppPlayPauseButton(
     player: Player,
     modifier: Modifier = Modifier,
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
     onClick: PlayPauseButtonState.() -> Unit = PlayPauseButtonState::onClick,
 ) {
     PlayPauseButton(
@@ -29,7 +29,7 @@ fun AppPlayPauseButton(
     player: Player,
     modifier: Modifier = Modifier,
     imageVector: PlayPauseButtonState.() -> ImageVector,
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
     onClick: PlayPauseButtonState.() -> Unit = PlayPauseButtonState::onClick,
 ) {
     PlayPauseButton(

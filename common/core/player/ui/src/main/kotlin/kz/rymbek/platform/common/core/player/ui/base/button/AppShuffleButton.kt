@@ -13,7 +13,7 @@ import kz.rymbek.platform.common.core.player.ui.base.Constants
 fun AppShuffleButton(
     player: Player,
     modifier: Modifier = Modifier,
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
     onClick: ShuffleButtonState.() -> Unit = ShuffleButtonState::onClick,
 ) {
     ShuffleButton(
@@ -29,7 +29,7 @@ fun AppShuffleButton(
     player: Player,
     modifier: Modifier = Modifier,
     imageVector: ShuffleButtonState.() -> ImageVector,
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
     onClick: ShuffleButtonState.() -> Unit = ShuffleButtonState::onClick,
 ) {
     ShuffleButton(

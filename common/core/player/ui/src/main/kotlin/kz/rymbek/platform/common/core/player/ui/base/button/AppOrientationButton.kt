@@ -13,7 +13,7 @@ import kz.rymbek.platform.common.core.player.ui.base.Constants
 @Composable
 fun AppOrientationButton(
     modifier: Modifier = Modifier,
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
 ) {
     val utils = rememberActivityUtils()
     val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE

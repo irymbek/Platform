@@ -13,7 +13,7 @@ import kz.rymbek.platform.common.core.player.ui.base.Constants
 fun AppSeekBackButton(
     player: Player,
     modifier: Modifier = Modifier,
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
     onClick: SeekBackButtonState.() -> Unit = SeekBackButtonState::onClick,
 ) {
     SeekBackButton(
@@ -29,7 +29,7 @@ fun AppSeekBackButton(
     player: Player,
     modifier: Modifier = Modifier,
     imageVector: SeekBackButtonState.() -> ImageVector,
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
     onClick: SeekBackButtonState.() -> Unit = SeekBackButtonState::onClick,
 ) {
     SeekBackButton(

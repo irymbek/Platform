@@ -15,7 +15,7 @@ fun AppRepeatButton(
     modifier: Modifier = Modifier,
     toggleModeSequence: List<@Player.RepeatMode Int> =
         listOf(Player.REPEAT_MODE_OFF, Player.REPEAT_MODE_ONE, Player.REPEAT_MODE_ALL),
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
     onClick: RepeatButtonState.() -> Unit = RepeatButtonState::onClick,
 ) {
     RepeatButton(
@@ -34,7 +34,7 @@ fun AppRepeatButton(
     toggleModeSequence: List<@Player.RepeatMode Int> =
         listOf(Player.REPEAT_MODE_OFF, Player.REPEAT_MODE_ONE, Player.REPEAT_MODE_ALL),
     imageVector: RepeatButtonState.() -> ImageVector,
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
     onClick: RepeatButtonState.() -> Unit = RepeatButtonState::onClick,
 ) {
     RepeatButton(

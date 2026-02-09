@@ -13,7 +13,7 @@ import kz.rymbek.platform.common.core.player.ui.base.Constants
 fun AppPreviousButton(
     player: Player,
     modifier: Modifier = Modifier,
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
     onClick: PreviousButtonState.() -> Unit = PreviousButtonState::onClick,
 ) {
     PreviousButton(
@@ -29,7 +29,7 @@ fun AppPreviousButton(
     player: Player,
     modifier: Modifier = Modifier,
     imageVector: @Composable PreviousButtonState.() -> ImageVector,
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
     onClick: PreviousButtonState.() -> Unit = PreviousButtonState::onClick,
 ) {
     PreviousButton(

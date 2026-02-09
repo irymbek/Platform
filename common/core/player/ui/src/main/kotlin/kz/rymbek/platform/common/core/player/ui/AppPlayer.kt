@@ -43,7 +43,6 @@ fun AppPlayer(
 ) {
     var showControls by remember { mutableStateOf(false) }
     var lastInteraction by remember { mutableLongStateOf(0L) }
-
     var isPlaying by remember { mutableStateOf(player.isPlaying) }
 
     DisposableEffect(player) {

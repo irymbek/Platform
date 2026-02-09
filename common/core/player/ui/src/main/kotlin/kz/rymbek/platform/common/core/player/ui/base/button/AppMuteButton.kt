@@ -15,7 +15,7 @@ import kz.rymbek.platform.common.core.player.ui.base.Constants
 fun AppMuteButton(
     player: Player,
     modifier: Modifier = Modifier,
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
     onClick: MuteButtonState.() -> Unit = MuteButtonState::onClick,
 ) {
     MuteButton(
@@ -31,7 +31,7 @@ fun AppMuteButton(
     player: Player,
     modifier: Modifier = Modifier,
     imageVector: MuteButtonState.() -> ImageVector,
-    tint: Color = Constants.color,
+    tint: Color = Constants.primary,
     onClick: MuteButtonState.() -> Unit = MuteButtonState::onClick,
 ) {
     MuteButton(
