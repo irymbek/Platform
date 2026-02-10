@@ -8,7 +8,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -16,11 +22,13 @@ import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.changedToDown
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
+import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppRow
 import kz.rymbek.platform.common.core.design.foundation.components.icon_button.AppIconButton
 import kz.rymbek.platform.common.core.design.foundation.components.spacer.AppSpacer
+import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformAlpha
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformIconSize
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
@@ -40,6 +48,7 @@ import kz.rymbek.platform.common.core.player.ui.base.indicator.AppPositionAndDur
 
 @Composable
 private fun TopContent(
+    player: Player,
     modifier: Modifier = Modifier,
 ) {
     AppRow(
@@ -52,6 +61,24 @@ private fun TopContent(
                     /*BackHandler(enabled = true, onBack = {
                         backPressedCount += 1
                     })*/
+                }
+            )
+
+            val mediaMetadata = rememberMediaMetadata(player)
+
+            AppColumn(
+                content = {
+                    AppText(
+                        text = mediaMetadata.displayTitle.toString(),
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Constants.primary
+                    )
+
+                    AppText(
+                        text = "Эпизод ${mediaMetadata.subtitle}. ${mediaMetadata.title}",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = Constants.primary
+                    )
                 }
             )
         }
@@ -107,6 +134,7 @@ internal fun BoxScope.Controls(
         )
 
     TopContent(
+        player = player,
         modifier = Modifier
             .fillMaxWidth()
             .align(Alignment.TopCenter)
@@ -206,6 +234,26 @@ internal fun BoxScope.Controls(
             )
         }
     )
+}
+
+@Composable
+fun rememberMediaMetadata(player: Player): MediaMetadata {
+    var metadata by remember {
+        mutableStateOf(player.mediaMetadata)
+    }
+
+    DisposableEffect(player) {
+        val listener = object : Player.Listener {
+            override fun onMediaMetadataChanged(mediaMetadata: MediaMetadata) {
+                metadata = mediaMetadata
+            }
+        }
+
+        player.addListener(listener)
+        onDispose { player.removeListener(listener) }
+    }
+
+    return metadata
 }
 
 fun Modifier.onInteractionTap(onInteraction: () -> Unit): Modifier = this.pointerInput(Unit) {
