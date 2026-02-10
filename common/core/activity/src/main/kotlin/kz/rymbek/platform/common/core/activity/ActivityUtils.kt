@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.util.Consumer
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import org.koin.core.annotation.Single
@@ -57,18 +58,17 @@ class ActivityUtils(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val builder = PictureInPictureParams.Builder()
             builder.setAutoEnterEnabled(true)
-            context.findActivity().setPictureInPictureParams(builder.build())
+            activity.setPictureInPictureParams(builder.build())
         } else {
             DisposableEffect(context) {
                 val onUserLeaveBehavior = Runnable {
-                    context.findActivity()
-                        .enterPictureInPictureMode(PictureInPictureParams.Builder().build())
+                    enterInPipMode()
                 }
-                context.findActivity().addOnUserLeaveHintListener(
+                activity.addOnUserLeaveHintListener(
                     onUserLeaveBehavior
                 )
                 onDispose {
-                    context.findActivity().removeOnUserLeaveHintListener(
+                    activity.removeOnUserLeaveHintListener(
                         onUserLeaveBehavior
                     )
                 }
@@ -76,13 +76,37 @@ class ActivityUtils(
         }
     }
 
+    @Composable
+    fun OnNewIntentListener(
+        onNewIntent: (Intent) -> Unit,
+    ) {
+        DisposableEffect(Unit) {
+            val listener = Consumer<Intent> {
+                onNewIntent(it)
+            }
+            activity.addOnNewIntentListener(listener)
+            onDispose { activity.removeOnNewIntentListener(listener) }
+        }
+    }
+
+    fun enterInPipMode() {
+        context.findActivity()
+            .enterPictureInPictureMode(PictureInPictureParams.Builder().build())
+    }
+
     fun toggleOrientation() {
         val isLandscape = activity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-        activity.requestedOrientation = if (isLandscape) {
-            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        if(isLandscape) {
+            setOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         } else {
-            ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+            setOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
         }
+    }
+
+    fun setOrientation(
+        orientation: Int
+    ) {
+        activity.requestedOrientation = orientation
     }
 }
 

@@ -1,5 +1,6 @@
 package kz.rymbek.platform.common.core.player.ui
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -23,6 +24,8 @@ import androidx.media3.common.Player
 import androidx.media3.ui.compose.SURFACE_TYPE_SURFACE_VIEW
 import androidx.media3.ui.compose.SurfaceType
 import kotlinx.coroutines.delay
+import kz.rymbek.platform.common.core.activity.ActivityUtils
+import kz.rymbek.platform.common.core.activity.rememberActivityUtils
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppBox
 import kz.rymbek.platform.common.core.player.ui.base.AppContentFrame
 
@@ -40,10 +43,18 @@ fun AppPlayer(
                 .background(Color.Black)
         )
     },
+    activityUtils: ActivityUtils = rememberActivityUtils()
 ) {
     var showControls by remember { mutableStateOf(false) }
     var lastInteraction by remember { mutableLongStateOf(0L) }
     var isPlaying by remember { mutableStateOf(player.isPlaying) }
+
+    BackHandler {
+        showControls = false
+        activityUtils.enterInPipMode()
+    }
+
+    activityUtils.EnterInPipAuto()
 
     DisposableEffect(player) {
         val listener = object : Player.Listener {
