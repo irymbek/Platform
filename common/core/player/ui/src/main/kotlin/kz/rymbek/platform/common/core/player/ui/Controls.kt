@@ -24,6 +24,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.spacer.AppSpa
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformAlpha
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformIconSize
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
+import kz.rymbek.platform.common.core.design.foundation.constants.corner.PlatformShapes
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 import kz.rymbek.platform.common.core.player.ui.base.Constants
 import kz.rymbek.platform.common.core.player.ui.base.button.AppMuteButton
@@ -117,7 +118,12 @@ internal fun BoxScope.Controls(
                     )
                 )
             )
-            .onInteractionTap(onInteraction),
+            .onInteractionTap(onInteraction)
+            .padding(
+                top = PlatformPaddings.default,
+                start = PlatformPaddings.default,
+                end = PlatformPaddings.default
+            ),
     )
 
     CenterContent(
@@ -156,9 +162,13 @@ internal fun BoxScope.Controls(
                     )
                 )
             )
-            .onInteractionTap(onInteraction),
+            .onInteractionTap(onInteraction)
+            .padding(
+                bottom = PlatformPaddings.default,
+                start = PlatformPaddings.default,
+                end = PlatformPaddings.default
+            ),
         content = {
-
             AppRow(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -176,15 +186,22 @@ internal fun BoxScope.Controls(
             )
 
             AppRow(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Constants.background.copy(alpha = PlatformAlpha.OVERLAY)),
-                verticalAlignment = Alignment.CenterVertically,
                 content = {
-                    PlaybackSpeedPopUpButton(player)
-                    AppShuffleButton(player)
-                    AppRepeatButton(player)
-                    AppMuteButton(player)
+                    AppRow(
+                        modifier = Modifier
+                            .background(
+                                color = Constants.background.copy(alpha = PlatformAlpha.OVERLAY),
+                                shape = PlatformShapes.medium
+                            )
+                            .padding(start = PlatformPaddings.element),
+                        verticalAlignment = Alignment.CenterVertically,
+                        content = {
+                            PlaybackSpeedPopUpButton(player)
+                            AppShuffleButton(player)
+                            AppRepeatButton(player)
+                            AppMuteButton(player)
+                        }
+                    )
                 }
             )
         }

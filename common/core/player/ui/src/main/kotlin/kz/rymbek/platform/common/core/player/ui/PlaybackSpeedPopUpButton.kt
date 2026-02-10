@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.text.BasicText
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -19,7 +18,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.window.Dialog
@@ -28,6 +26,8 @@ import androidx.compose.ui.window.DialogWindowProvider
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.compose.state.rememberPlaybackSpeedState
+import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
+import kz.rymbek.platform.common.core.player.ui.base.Constants
 
 @OptIn(UnstableApi::class)
 @Composable
@@ -40,7 +40,10 @@ internal fun PlaybackSpeedPopUpButton(
     var openDialog by remember { mutableStateOf(false) }
     TextButton(onClick = { openDialog = true }, modifier = modifier, enabled = state.isEnabled) {
         // TODO: look into TextMeasurer to ensure 1.1 and 2.2 occupy the same space
-        BasicText("%.1fx".format(state.playbackSpeed))
+        AppText(
+            text = "%.1fx".format(state.playbackSpeed),
+            color = Constants.primary
+        )
     }
     if (openDialog) {
         BottomDialogOfChoices(
@@ -69,7 +72,7 @@ private fun BottomDialogOfChoices(
             window.setDimAmount(0f) // Remove dimmed background of ongoing playback
         }
 
-        Box(modifier = Modifier.wrapContentSize().background(Color.LightGray)) {
+        Box(modifier = Modifier.wrapContentSize().background(Constants.background)) {
             Column(
                 modifier = Modifier.fillMaxWidth().wrapContentWidth(),
                 verticalArrangement = Arrangement.Center,
