@@ -50,8 +50,11 @@ fun AppPlayer(
     var isPlaying by remember { mutableStateOf(player.isPlaying) }
 
     BackHandler {
-        showControls = false
-        activityUtils.enterInPipMode()
+        if (showControls) {
+            showControls = false
+        } else {
+            activityUtils.enterInPipMode()
+        }
     }
 
     activityUtils.EnterInPipAuto()
@@ -105,7 +108,11 @@ fun AppPlayer(
                     ) {
                         Controls(
                             player = player,
-                            onInteraction = onInteraction
+                            onInteraction = onInteraction,
+                            onCloseClick = {
+                                showControls = false
+                                activityUtils.enterInPipMode()
+                            }
                         )
                     }
                 }

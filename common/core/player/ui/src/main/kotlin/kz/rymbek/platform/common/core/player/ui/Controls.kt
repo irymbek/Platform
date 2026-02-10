@@ -49,6 +49,7 @@ import kz.rymbek.platform.common.core.player.ui.base.indicator.AppPositionAndDur
 @Composable
 private fun TopContent(
     player: Player,
+    onCloseClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     AppRow(
@@ -57,11 +58,7 @@ private fun TopContent(
             AppIconButton(
                 icon = PlatformIcons.FilledKeyboardArrowDown,
                 tintIcon = Constants.primary,
-                onClick = {
-                    /*BackHandler(enabled = true, onBack = {
-                        backPressedCount += 1
-                    })*/
-                }
+                onClick = onCloseClick
             )
 
             val mediaMetadata = rememberMediaMetadata(player)
@@ -124,7 +121,8 @@ private fun BottomContent(
 @Composable
 internal fun BoxScope.Controls(
     player: Player,
-    onInteraction: () -> Unit
+    onInteraction: () -> Unit,
+    onCloseClick: () -> Unit,
 ) {
     val buttonModifier = Modifier
         .size(50.dp)
@@ -135,6 +133,7 @@ internal fun BoxScope.Controls(
 
     TopContent(
         player = player,
+        onCloseClick = onCloseClick,
         modifier = Modifier
             .fillMaxWidth()
             .align(Alignment.TopCenter)
