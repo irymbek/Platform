@@ -22,6 +22,10 @@ class FileUtils(
         return File(file, createName())
     }
 
+
+    fun getFileUri(path: String): Uri =
+        getFileUri(getFile(path))
+
     fun getFileUri(file: File): Uri {
         return FileProvider.getUriForFile(
             context,
