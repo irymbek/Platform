@@ -7,12 +7,12 @@ import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import kz.rymbek.platform.common.core.design.foundation.components.chip.filter.AppFilterChip
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppFlowRow
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 
 @Composable
@@ -27,7 +27,7 @@ fun <T> FilterSection(
 ) {
     AppColumn(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(PlatformPaddings.default),
         content = {
             AppText(
                 text = title,
@@ -36,8 +36,7 @@ fun <T> FilterSection(
 
             AppFlowRow(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp),
+                horizontalArrangement = Arrangement.spacedBy(PlatformPaddings.default),
                 content = {
                     items.forEach { item ->
                         val isSelected = codeProvider(item) in selectedItems
