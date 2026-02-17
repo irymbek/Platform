@@ -99,11 +99,9 @@ fun <T : Any, KEY : Any> AppExposedDropdownMenuBox(
                 },
                 singleLine = true,
                 isError = errorMessage != null,
-                supportingText = {
-                    if (errorMessage != null) {
-                        AppText(text = errorMessage, color = MaterialTheme.colorScheme.error)
-                    }
-                },
+                supportingText = if (errorMessage != null) {
+                    { AppText(text = errorMessage, color = MaterialTheme.colorScheme.error) }
+                } else null,
                 value = selectedItem?.let { itemLabel(it) } ?: emptyLabel,
                 onValueChange = {},
                 trailingIcon = {
