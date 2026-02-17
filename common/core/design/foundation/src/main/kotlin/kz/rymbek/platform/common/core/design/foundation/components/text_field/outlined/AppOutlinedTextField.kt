@@ -24,7 +24,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Density
-import kz.rymbek.platform.common.core.design.foundation.components.text_field.base.OutlinedTextFieldLabel
+import kz.rymbek.platform.common.core.design.foundation.components.text_field.base.TextFieldLabel
 
 @Composable
 fun AppOutlinedTextField(
@@ -62,7 +62,7 @@ fun AppOutlinedTextField(
         textStyle = textStyle,
         labelPosition = labelPosition,
         label = {
-            OutlinedTextFieldLabel(
+            TextFieldLabel(
                 label = label
             )
         },
@@ -121,7 +121,7 @@ fun AppOutlinedTextField(
         readOnly = readOnly,
         textStyle = textStyle,
         label = {
-            OutlinedTextFieldLabel(
+            TextFieldLabel(
                 label = label
             )
         },
@@ -178,7 +178,7 @@ fun AppOutlinedTextField(
         readOnly = readOnly,
         textStyle = textStyle,
         label = {
-            OutlinedTextFieldLabel(
+            TextFieldLabel(
                 label = label
             )
         },

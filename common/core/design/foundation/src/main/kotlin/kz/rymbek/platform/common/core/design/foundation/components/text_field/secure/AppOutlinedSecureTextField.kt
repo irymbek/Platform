@@ -19,7 +19,7 @@ import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
 import kz.rymbek.platform.common.core.design.foundation.components.text_field.base.DefaultObfuscationCharacter
-import kz.rymbek.platform.common.core.design.foundation.components.text_field.base.OutlinedTextFieldLabel
+import kz.rymbek.platform.common.core.design.foundation.components.text_field.base.TextFieldLabel
 import kz.rymbek.platform.common.core.design.foundation.components.text_field.base.SecureTextFieldKeyboardOptions
 
 @Composable
@@ -55,7 +55,7 @@ fun AppOutlinedSecureTextField(
         textStyle = textStyle,
         labelPosition = labelPosition,
         label = {
-            OutlinedTextFieldLabel(
+            TextFieldLabel(
                 label = label
             )
         },

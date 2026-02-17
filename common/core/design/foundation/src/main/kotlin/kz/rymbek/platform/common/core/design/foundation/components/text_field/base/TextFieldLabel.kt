@@ -8,7 +8,7 @@ import androidx.compose.ui.text.TextStyle
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 
 @Composable
-fun OutlinedTextFieldLabel(
+fun TextFieldLabel(
     label: String,
     modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.primary,

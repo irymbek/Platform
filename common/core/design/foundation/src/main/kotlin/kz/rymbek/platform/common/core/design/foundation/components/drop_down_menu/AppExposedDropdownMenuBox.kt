@@ -17,17 +17,18 @@ import androidx.compose.ui.graphics.Color
 import kz.rymbek.platform.common.core.design.foundation.components.drop_down_menu.large.LargeDropDownMenuDialog
 import kz.rymbek.platform.common.core.design.foundation.components.drop_down_menu.small.SmallDropDownMenu
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
+import kz.rymbek.platform.common.core.design.foundation.components.text_field.base.TextFieldLabel
 import kz.rymbek.platform.common.core.design.foundation.components.text_field.regular.AppTextField
 
 @Composable
 fun <T : Any> AppExposedDropdownMenuBox(
-    label: String,
     items: List<T>,
     key: ((T) -> Any)?,
     onItemSelected: (
         item: T?,
     ) -> Unit,
     modifier: Modifier = Modifier,
+    label: String? = null,
     itemLabel: (T) -> String = { it.toString() },
     itemImage: (T) -> Any? = { null },
     errorMessage: String? = null,
@@ -51,7 +52,6 @@ fun <T : Any> AppExposedDropdownMenuBox(
 
 @Composable
 fun <T : Any, KEY : Any> AppExposedDropdownMenuBox(
-    label: String,
     items: List<T>,
     selectedKey: KEY?,
     itemLabel: (T) -> String,
@@ -60,6 +60,7 @@ fun <T : Any, KEY : Any> AppExposedDropdownMenuBox(
         item: T?,
     ) -> Unit,
     modifier: Modifier = Modifier,
+    label: String? = null,
     itemImage: (T) -> Any? = { null },
     allowEmptySelection: Boolean = false,
     emptyLabel: String = "Не выбрано",
@@ -93,6 +94,9 @@ fun <T : Any, KEY : Any> AppExposedDropdownMenuBox(
                         }
                     },
                 readOnly = true,
+                label = label?.let {
+                    { TextFieldLabel(label = it) }
+                },
                 singleLine = true,
                 isError = errorMessage != null,
                 supportingText = {
@@ -100,7 +104,7 @@ fun <T : Any, KEY : Any> AppExposedDropdownMenuBox(
                         AppText(text = errorMessage, color = MaterialTheme.colorScheme.error)
                     }
                 },
-                value = selectedItem?.let { itemLabel(it) } ?: label,
+                value = selectedItem?.let { itemLabel(it) } ?: emptyLabel,
                 onValueChange = {},
                 trailingIcon = {
                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded.value)
