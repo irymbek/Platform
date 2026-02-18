@@ -21,14 +21,15 @@ abstract class BaseRepository {
         ).flow.map { it.map(mapToUi) }
     }
 
-    protected fun <Local : Any, Remote : Any, Ui : Any> getPagedCombined(
+    protected fun <Entity : Any, Remote : Any, Ui : Any> getPagedCombined(
         paginationType: String,
         fetchFromNetwork: suspend (Int, Int) -> List<Remote>,
-        pagingSourceFactory: () -> PagingSource<Int, Local>,
+        pagingSourceFactory: () -> PagingSource<Int, Entity>,
         keyStorage: PaginationKeyStorage,
-        mapToUi: suspend (Local) -> Ui,
+        mapToUi: suspend (Entity) -> Ui,
         saveData: suspend (List<Remote>) -> Unit,
         deleteData: suspend () -> Unit,
+        forceRefresh: Boolean = false
     ): Flow<PagingData<Ui>> {
         return Pager(
             config = createPagingConfig(),
@@ -38,6 +39,7 @@ abstract class BaseRepository {
                 fetchFromNetwork = fetchFromNetwork,
                 saveData = saveData,
                 deleteData = deleteData,
+                forceRefresh = forceRefresh,
             ),
             pagingSourceFactory = pagingSourceFactory
         ).flow.map { it.map(mapToUi) }

@@ -7,16 +7,17 @@ import androidx.paging.RemoteMediator
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-class BaseRemoteMediator<Response : Any, Local : Any>(
+class BaseRemoteMediator<Response : Any, Entity : Any>(
     private val paginationType: String,
     private val keyStorage: PaginationKeyStorage,
     private val fetchFromNetwork: suspend (Int, Int) -> List<Response>,
     private val saveData: suspend (List<Response>) -> Unit,
     private val deleteData: suspend () -> Unit = {},
-) : RemoteMediator<Int, Local>() {
+    private val forceRefresh: Boolean = false
+) : RemoteMediator<Int, Entity>() {
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, Local>
+        state: PagingState<Int, Entity>
     ): MediatorResult {
         return try {
             val page: Int =
@@ -53,12 +54,14 @@ class BaseRemoteMediator<Response : Any, Local : Any>(
     }
 
     override suspend fun initialize(): InitializeAction {
-        return if (System.currentTimeMillis() - (keyStorage.getCreationTime(paginationType)
-                ?: 0) < TimeUnit.MILLISECONDS.convert(2, TimeUnit.HOURS)
-        ) {
-            InitializeAction.SKIP_INITIAL_REFRESH
-        } else {
+        val cacheTimeout = TimeUnit.MILLISECONDS.convert(2, TimeUnit.HOURS)
+        val creationTime = keyStorage.getCreationTime(paginationType) ?: 0
+        val isCacheExpired = System.currentTimeMillis() - creationTime > cacheTimeout
+
+        return if (forceRefresh || isCacheExpired) {
             InitializeAction.LAUNCH_INITIAL_REFRESH
+        } else {
+            InitializeAction.SKIP_INITIAL_REFRESH
         }
     }
 }
