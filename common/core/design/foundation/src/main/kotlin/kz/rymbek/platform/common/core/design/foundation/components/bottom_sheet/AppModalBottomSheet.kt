@@ -10,7 +10,6 @@ import androidx.compose.material3.SheetState
 import androidx.compose.material3.contentColorFor
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
@@ -19,7 +18,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun AppModalBottomSheet(
-    isShow: MutableState<Boolean>,
+    onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
     sheetState: SheetState = rememberModalBottomSheetState(),
     sheetMaxWidth: Dp = BottomSheetDefaults.SheetMaxWidth,
@@ -33,23 +32,19 @@ fun AppModalBottomSheet(
     properties: ModalBottomSheetProperties = ModalBottomSheetDefaults.properties,
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    if (isShow.value) {
-        ModalBottomSheet(
-            onDismissRequest = {
-                isShow.value = false
-            },
-            modifier = modifier,
-            sheetState = sheetState,
-            sheetMaxWidth = sheetMaxWidth,
-            shape = shape,
-            containerColor = containerColor,
-            contentColor = contentColor,
-            tonalElevation = tonalElevation,
-            scrimColor = scrimColor,
-            dragHandle = dragHandle,
-            contentWindowInsets = contentWindowInsets,
-            properties = properties,
-            content = content,
-        )
-    }
+    ModalBottomSheet(
+        onDismissRequest = onDismissRequest,
+        modifier = modifier,
+        sheetState = sheetState,
+        sheetMaxWidth = sheetMaxWidth,
+        shape = shape,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        tonalElevation = tonalElevation,
+        scrimColor = scrimColor,
+        dragHandle = dragHandle,
+        contentWindowInsets = contentWindowInsets,
+        properties = properties,
+        content = content,
+    )
 }
