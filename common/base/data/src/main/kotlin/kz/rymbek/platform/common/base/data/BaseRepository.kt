@@ -9,8 +9,23 @@ import kotlinx.coroutines.flow.map
 import kz.rymbek.platform.common.base.pagination.BaseRemoteMediator
 import kz.rymbek.platform.common.base.pagination.PaginationKeyStorage
 import kz.rymbek.platform.common.base.pagination.PagingUtils.createPagingConfig
+import kz.rymbek.platform.common.base.pagination.network.BaseNetworkPagingSource
 
 abstract class BaseRepository {
+    protected fun <Remote : Any, Ui : Any> getPagedRemote(
+        fetchFromNetwork: suspend (page: Int, pageSize: Int) -> List<Remote>,
+        mapToUi: suspend (Remote) -> Ui
+    ): Flow<PagingData<Ui>> {
+        return Pager(
+            config = createPagingConfig(),
+            pagingSourceFactory = {
+                BaseNetworkPagingSource(fetchFromNetwork)
+            }
+        ).flow.map { pagingData ->
+            pagingData.map { mapToUi(it) }
+        }
+    }
+
     protected fun <Entity : Any, Ui : Any> getPagedData(
         pagingSourceFactory: () -> PagingSource<Int, Entity>,
         mapToUi: suspend (Entity) -> Ui
