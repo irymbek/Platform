@@ -25,6 +25,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import kz.rymbek.platform.common.core.design.foundation.components.button.AppTextButton
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppBox
+import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppRow
 import kz.rymbek.platform.common.core.design.foundation.components.progress_indicator.AppCircularProgressIndicator
 import kz.rymbek.platform.common.core.design.foundation.components.pull_refresh.AppPullToRefreshBox
@@ -135,21 +136,8 @@ fun LazyGridScope.PagingAppendHandler(
         }
 
         is LoadState.Error -> item(span = span) {
-            AppRow(
-                content = {
-                    AppText(
-                        modifier = Modifier
-                            .weight(1F),
-                        text = "Ошибка загрузки",
-                        textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.outline
-                    )
-
-                    AppTextButton(
-                        text = "Повторить",
-                        onClick = { items.retry() }
-                    )
-                }
+            ErrorContentRow(
+                onClick = { items.retry() }
             )
         }
 
@@ -183,5 +171,48 @@ fun InitialLoadingContent(
         Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
         content = content
+    )
+}
+
+@Composable
+fun ErrorContentRow(
+    onClick: () -> Unit,
+) {
+    AppRow(
+        content = {
+            AppText(
+                modifier = Modifier
+                    .weight(1F),
+                text = "Ошибка загрузки",
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.outline
+            )
+
+            AppTextButton(
+                text = "Повторить",
+                onClick = onClick
+            )
+        }
+    )
+}
+
+@Composable
+fun ErrorContentColumn(
+    text: String = "Ошибка загрузки",
+    onClick: () -> Unit,
+) {
+    AppColumn(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        content = {
+            AppText(
+                text = text,
+                color = MaterialTheme.colorScheme.outline
+            )
+
+            AppTextButton(
+                text = "Повторить попытку",
+                onClick = onClick
+            )
+        }
     )
 }
