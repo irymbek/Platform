@@ -2,7 +2,7 @@ package kz.rymbek.platform.common.core.design.foundation.constants
 
 import androidx.compose.ui.unit.dp
 
-internal object PlatformSpacing {
+object PlatformSpacing {
     private val BASE = 4.dp
     val space_0 = BASE * 0F // 1.dp
     val space_0_25x = BASE * 0.25F // 1.dp
