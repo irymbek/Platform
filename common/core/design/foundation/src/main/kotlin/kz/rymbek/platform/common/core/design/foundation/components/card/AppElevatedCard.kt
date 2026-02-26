@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Shape
 fun AppElevatedCard(
     modifier: Modifier = Modifier,
     shape: Shape = MaterialTheme.shapes.extraSmall,
-    colors: CardColors = AppCardDefaults.cardColors(),
+    colors: CardColors = CardDefaults.elevatedCardColors(),
     elevation: CardElevation = CardDefaults.elevatedCardElevation(),
     content: @Composable ColumnScope.() -> Unit
 ) {
@@ -34,7 +34,7 @@ fun AppElevatedCard(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     shape: Shape = MaterialTheme.shapes.extraSmall,
-    colors: CardColors = AppCardDefaults.cardColors(),
+    colors: CardColors = CardDefaults.elevatedCardColors(),
     elevation: CardElevation = CardDefaults.elevatedCardElevation(),
     interactionSource: MutableInteractionSource? = null,
     content: @Composable ColumnScope.() -> Unit

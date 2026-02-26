@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.Shape
 fun AppOutlinedCard(
     modifier: Modifier = Modifier,
     shape: Shape = MaterialTheme.shapes.extraSmall,
-    colors: CardColors = AppCardDefaults.cardColors(),
+    colors: CardColors = CardDefaults.outlinedCardColors(),
     elevation: CardElevation = CardDefaults.outlinedCardElevation(),
     border: BorderStroke = CardDefaults.outlinedCardBorder(),
     content: @Composable ColumnScope.() -> Unit
@@ -37,7 +37,7 @@ fun AppOutlinedCard(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     shape: Shape = MaterialTheme.shapes.extraSmall,
-    colors: CardColors = AppCardDefaults.cardColors(),
+    colors: CardColors = CardDefaults.outlinedCardColors(),
     elevation: CardElevation = CardDefaults.outlinedCardElevation(),
     border: BorderStroke = CardDefaults.outlinedCardBorder(enabled),
     interactionSource: MutableInteractionSource? = null,

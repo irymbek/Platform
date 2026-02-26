@@ -16,7 +16,9 @@ import androidx.compose.ui.graphics.Shape
 fun AppFilledCard(
     modifier: Modifier = Modifier,
     shape: Shape = MaterialTheme.shapes.extraSmall,
-    colors: CardColors = AppCardDefaults.cardColors(),
+    colors: CardColors = CardDefaults.cardColors(
+        containerColor = MaterialTheme.colorScheme.surface,
+    ),
     elevation: CardElevation = CardDefaults.cardElevation(),
     border: BorderStroke? = null,
     content: @Composable ColumnScope.() -> Unit
@@ -37,7 +39,9 @@ fun AppFilledCard(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     shape: Shape = MaterialTheme.shapes.extraSmall,
-    colors: CardColors = AppCardDefaults.cardColors(),
+    colors: CardColors = CardDefaults.cardColors(
+        containerColor = MaterialTheme.colorScheme.surface,
+    ),
     elevation: CardElevation = CardDefaults.cardElevation(),
     border: BorderStroke? = null,
     interactionSource: MutableInteractionSource? = null,
