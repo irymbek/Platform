@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import kz.rymbek.platform.common.core.design.foundation.components.button.base.ButtonContent
-import kz.rymbek.platform.common.core.design.foundation.constants.corner.PlatformShapes
 
 @Composable
 fun AppFilledButton(
@@ -20,7 +19,7 @@ fun AppFilledButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    shape: Shape = PlatformShapes.medium,
+    shape: Shape = MaterialTheme.shapes.small,
     colors: ButtonColors = ButtonDefaults.buttonColors(),
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
     border: BorderStroke? = null,

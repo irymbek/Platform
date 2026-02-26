@@ -3,8 +3,10 @@ package kz.rymbek.platform.common.core.design.foundation.components.card
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
@@ -12,9 +14,9 @@ import androidx.compose.ui.graphics.Shape
 @Composable
 fun AppElevatedCard(
     modifier: Modifier = Modifier,
-    shape: Shape = AppCardDefaults.elevatedShape,
+    shape: Shape = MaterialTheme.shapes.extraSmall,
     colors: CardColors = AppCardDefaults.cardColors(),
-    elevation: CardElevation = AppCardDefaults.elevatedCardElevation(),
+    elevation: CardElevation = CardDefaults.elevatedCardElevation(),
     content: @Composable ColumnScope.() -> Unit
 ) {
     ElevatedCard(
@@ -31,9 +33,9 @@ fun AppElevatedCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    shape: Shape = AppCardDefaults.elevatedShape,
+    shape: Shape = MaterialTheme.shapes.extraSmall,
     colors: CardColors = AppCardDefaults.cardColors(),
-    elevation: CardElevation = AppCardDefaults.elevatedCardElevation(),
+    elevation: CardElevation = CardDefaults.elevatedCardElevation(),
     interactionSource: MutableInteractionSource? = null,
     content: @Composable ColumnScope.() -> Unit
 ) {

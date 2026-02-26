@@ -32,7 +32,6 @@ import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformAlpha
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformIconSize
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
-import kz.rymbek.platform.common.core.design.foundation.constants.corner.PlatformShapes
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 import kz.rymbek.platform.common.core.player.ui.base.Constants
 import kz.rymbek.platform.common.core.player.ui.base.button.AppMuteButton
@@ -218,7 +217,7 @@ internal fun BoxScope.Controls(
                         modifier = Modifier
                             .background(
                                 color = Constants.background.copy(alpha = PlatformAlpha.OVERLAY),
-                                shape = PlatformShapes.medium
+                                shape = MaterialTheme.shapes.small,
                             )
                             .padding(start = PlatformPaddings.element),
                         verticalAlignment = Alignment.CenterVertically,

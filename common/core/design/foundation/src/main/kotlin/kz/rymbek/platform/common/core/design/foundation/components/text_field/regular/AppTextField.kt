@@ -28,7 +28,6 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Density
 import kz.rymbek.platform.common.core.design.foundation.components.text_field.base.TextFieldPlaceholder
-import kz.rymbek.platform.common.core.design.foundation.constants.corner.PlatformShapes
 
 @Composable
 fun AppTextField(
@@ -39,7 +38,7 @@ fun AppTextField(
     textStyle: TextStyle = MaterialTheme.typography.bodySmall,
     labelPosition: TextFieldLabelPosition = TextFieldLabelPosition.Attached(),
     label: @Composable (TextFieldLabelScope.() -> Unit)? = null,
-    placeholder: String = "",
+    placeholder: @Composable (() -> Unit)? = null,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
     prefix: @Composable (() -> Unit)? = null,
@@ -71,11 +70,7 @@ fun AppTextField(
         textStyle = textStyle,
         labelPosition = labelPosition,
         label = label,
-        placeholder = {
-            TextFieldPlaceholder(
-                placeholder = placeholder,
-            )
-        },
+        placeholder = placeholder,
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
         prefix = prefix,
@@ -119,7 +114,7 @@ fun AppTextField(
     maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
     minLines: Int = 1,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    shape: Shape = PlatformShapes.small,
+    shape: Shape = TextFieldDefaults.shape,
     colors: TextFieldColors = TextFieldDefaults.colors()
 ) {
     TextField(
@@ -176,7 +171,7 @@ fun AppTextField(
     maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
     minLines: Int = 1,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    shape: Shape = PlatformShapes.small,
+    shape: Shape = TextFieldDefaults.shape,
     colors: TextFieldColors = TextFieldDefaults.colors()
 ) {
     TextField(

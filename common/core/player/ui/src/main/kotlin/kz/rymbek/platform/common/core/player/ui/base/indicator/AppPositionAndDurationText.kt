@@ -16,7 +16,6 @@ import androidx.media3.common.util.Util
 import androidx.media3.ui.compose.indicators.TimeText
 import kotlinx.coroutines.CoroutineScope
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
-import kz.rymbek.platform.common.core.design.foundation.constants.corner.PlatformShapes
 import java.util.Formatter
 import java.util.Locale
 
@@ -45,7 +44,7 @@ fun AppPositionAndDurationText(
                 modifier = modifier
                     .background(
                         color = Color.Black.copy(alpha = 0.5f),
-                        shape = PlatformShapes.medium
+                        shape = MaterialTheme.shapes.small,
                     )
                     .padding(6.dp),
                 color = color,
