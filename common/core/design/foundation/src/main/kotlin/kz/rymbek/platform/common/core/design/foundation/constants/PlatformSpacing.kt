@@ -4,7 +4,7 @@ import androidx.compose.ui.unit.dp
 
 object PlatformSpacing {
     private val BASE = 4.dp
-    val space_0 = BASE * 0F // 0.dp
+   val space_0 = BASE * 0F // 0.dp
     val space_0_25x = BASE * 0.25F // 1.dp
     val space_0_5x = BASE * 0.5F // 2.dp
     val space_1x = BASE * 1 // 4.dp
@@ -22,4 +22,6 @@ object PlatformSpacing {
     val space_48x = BASE * 48 // 192.dp
     val space_64x = BASE * 64 // 256.dp
     val space_80x = BASE * 80 // 320.dp
+    val space_96x = BASE * 80 // 384.dp
+    val space_112x = BASE * 80 // 448.dp
 }
