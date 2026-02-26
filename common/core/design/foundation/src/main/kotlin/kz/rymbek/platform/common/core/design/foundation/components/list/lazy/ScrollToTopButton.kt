@@ -50,7 +50,7 @@ fun ScrollToTopButton(
                         state.animateScrollToItem(0)
                     }
                 },
-                modifier = Modifier.size(PlatformIconSize.sm),
+                modifier = Modifier.size(PlatformIconSize.xl),
                 icon = PlatformIcons.FilledKeyboardDoubleArrowUp
             )
         }

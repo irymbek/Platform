@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppBox
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
-import kz.rymbek.platform.common.core.design.foundation.constants.PlatformIconSize
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformImageSize
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 import kz.rymbek.platform.common.core.design.foundation.theme.color.custom.colorSchemeCustom
 
@@ -39,7 +39,7 @@ fun AppTriStateCheckboxCustom(
 
     AppBox(
         modifier = Modifier
-            .size(PlatformIconSize.lg)
+            .size(PlatformImageSize.lg)
             .border(2.dp, color, shape = RoundedCornerShape(4.dp))
             .combinedClickable(
                 onClick = {},

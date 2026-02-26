@@ -129,7 +129,7 @@ fun LazyGridScope.PagingAppendHandler(
                 content = {
                     AppCircularProgressIndicator(
                         modifier = Modifier
-                            .size(PlatformIconSize.xs)
+                            .size(PlatformIconSize.lg)
                     )
                 }
             )

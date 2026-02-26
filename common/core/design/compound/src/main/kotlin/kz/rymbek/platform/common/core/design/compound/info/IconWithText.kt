@@ -1,14 +1,13 @@
 package kz.rymbek.platform.common.core.design.compound.info
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppRow
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
@@ -20,12 +19,12 @@ fun IconWithText(
     icon: ImageVector,
     text: String,
     modifier: Modifier = Modifier,
-    iconSize: Dp = PlatformIconSize.xxs,
+    iconSize: Dp = PlatformIconSize.xs,
 ) {
     AppRow(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(PlatformPaddings.default),
+        horizontalArrangement = Arrangement.spacedBy(PlatformPaddings.element),
         content = {
             AppIcon(
                 imageVector = icon,
@@ -35,6 +34,7 @@ fun IconWithText(
 
             AppText(
                 text = text,
+                style = MaterialTheme.typography.labelMedium
             )
         }
     )

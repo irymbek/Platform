@@ -164,7 +164,7 @@ internal fun BoxScope.Controls(
                     AppPlayPauseButton(
                         player = player,
                         modifier = Modifier
-                            .size(PlatformIconSize.md)
+                            .size(PlatformIconSize.xxl)
                             .background(
                                 color = Constants.background.copy(alpha = PlatformAlpha.OVERLAY),
                                 shape = CircleShape

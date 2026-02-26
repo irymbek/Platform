@@ -1,11 +1,21 @@
 package kz.rymbek.platform.common.core.design.foundation.constants
 
-import androidx.compose.ui.unit.Dp
-
 object PlatformIconSize {
-    val xxs: Dp = PlatformSpacing.space_6x
-    val xs: Dp = PlatformSpacing.space_8x
-    val sm: Dp = PlatformSpacing.space_12x
-    val md: Dp = PlatformSpacing.space_16x
-    val lg: Dp = PlatformSpacing.space_20x
+    /** 16dp — микро */
+    val xs = PlatformSpacing.space_4x
+
+    /** 20dp — компакт */
+    val sm = PlatformSpacing.space_5x
+
+    /** 24dp — стандарт Material */
+    val md = PlatformSpacing.space_6x
+
+    /** 32dp — крупные */
+    val lg = PlatformSpacing.space_8x
+
+    /** 48dp — hero icons, empty state */
+    val xl = PlatformSpacing.space_12x
+
+    /** 64dp */
+    val xxl = PlatformSpacing.space_16x
 }

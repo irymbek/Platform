@@ -122,7 +122,7 @@ fun ClickWithLoading(
                         }
                     } else {
                         AppCircularProgressIndicator(
-                            modifier = Modifier.size(PlatformIconSize.xxs)
+                            modifier = Modifier.size(PlatformIconSize.md)
                         )
                     }
                 }
@@ -179,7 +179,7 @@ fun ClickWithDebounce(
                         }
                     } else {
                         AppCircularProgressIndicator(
-                            modifier = Modifier.size(PlatformIconSize.xxs)
+                            modifier = Modifier.size(PlatformIconSize.md)
                         )
                     }
                 }

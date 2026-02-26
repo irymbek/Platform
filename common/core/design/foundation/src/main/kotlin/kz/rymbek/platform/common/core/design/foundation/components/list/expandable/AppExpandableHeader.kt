@@ -29,7 +29,7 @@ fun ExpandableHeader(
         content = {
             AppIcon(
                 modifier = Modifier
-                    .size(PlatformIconSize.md),
+                    .size(PlatformIconSize.xxl),
                 imageVector = if (isExpanded) {
                     PlatformIcons.FilledExpandLess
                 } else {
