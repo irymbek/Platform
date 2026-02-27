@@ -3,6 +3,7 @@ package kz.rymbek.platform.common.core.design.foundation.components.button
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonElevation
@@ -11,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import kz.rymbek.platform.common.core.design.foundation.components.button.base.ButtonContent
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformSpacing
 
 @Composable
 fun AppOutlinedButton(
@@ -27,7 +29,8 @@ fun AppOutlinedButton(
 ) {
     OutlinedButton(
         onClick = onClick,
-        modifier = modifier,
+        modifier = modifier
+            .heightIn(min = PlatformSpacing.space_12x),
         enabled = enabled,
         shape = shape,
         colors = colors,
