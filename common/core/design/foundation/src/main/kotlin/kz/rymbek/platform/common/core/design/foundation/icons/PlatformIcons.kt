@@ -12,8 +12,10 @@ import androidx.compose.material.icons.filled.FullscreenExit
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardDoubleArrowDown
 import androidx.compose.material.icons.filled.KeyboardDoubleArrowUp
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Settings
@@ -54,4 +56,8 @@ object PlatformIcons {
 
     val FilledFullscreen = Icons.Filled.Fullscreen
     val FilledFullscreenExit = Icons.Filled.FullscreenExit
+
+    val FilledMenu = Icons.Filled.Menu
+    val OutlinedMenu = Icons.Outlined.Menu
+
 }

@@ -7,18 +7,30 @@ import androidx.navigation3.runtime.NavKey
 /**
  * Handles navigation events (forward and back) by updating the navigation state.
  *
- * @param state - The navigation state that will be updated in response to navigation events.
+ * @param navigationState - The navigation state that will be updated in response to navigation events.
  */
-internal class AppNavigator(val state: NavigationState) : NavigationInterface {
+internal class AppNavigator(
+    val navigationState: NavigationState,
+    private val isLoggedIn: () -> Boolean,
+    private val onRequireGlobalAuth: (targetKey: NavKey) -> Unit
+) : NavigationInterface {
     /**
      * Navigate to a navigation key
      *
      * @param key - the navigation key to navigate to.
      */
     override fun navigate(key: NavKey) {
+        // 1. ПЕРЕХВАТЧИК: Если экран требует авторизации, а токена нет
+        if (key is RequiresAuth && !isLoggedIn()) {
+            // Передаем целевой ключ в глобальный скоуп, чтобы открыть логин
+            onRequireGlobalAuth(key)
+            return
+        }
+
+        // 2. СТАНДАРТНАЯ ЛОГИКА (ваш текущий код)
         when (key) {
-            state.currentTopLevelKey -> clearSubStack()
-            in state.topLevelKeys -> goToTopLevel(key)
+            navigationState.currentTopLevelKey -> clearSubStack()
+            in navigationState.topLevelKeys -> goToTopLevel(key)
             else -> goToKey(key)
         }
     }
@@ -27,14 +39,14 @@ internal class AppNavigator(val state: NavigationState) : NavigationInterface {
      * Go back to the previous navigation key.
      */
     override fun navigateBack() {
-        when (state.currentKey) {
-            state.startKey -> error("You cannot go back from the start route")
-            state.currentTopLevelKey -> {
+        when (navigationState.currentKey) {
+            navigationState.startKey -> error("You cannot go back from the start route")
+            navigationState.currentTopLevelKey -> {
                 // We're at the base of the current sub stack, go back to the previous top level
                 // stack.
-                state.topLevelStack.removeLastOrNull()
+                navigationState.topLevelStack.removeLastOrNull()
             }
-            else -> state.currentSubStack.removeLastOrNull()
+            else -> navigationState.currentSubStack.removeLastOrNull()
         }
     }
 
@@ -42,7 +54,7 @@ internal class AppNavigator(val state: NavigationState) : NavigationInterface {
      * Go to a non top level key.
      */
     private fun goToKey(key: NavKey) {
-        state.currentSubStack.apply {
+        navigationState.currentSubStack.apply {
             // Remove it if it's already in the stack so it's added at the end.
             remove(key)
             add(key)
@@ -53,8 +65,8 @@ internal class AppNavigator(val state: NavigationState) : NavigationInterface {
      * Go to a top level stack.
      */
     private fun goToTopLevel(key: NavKey) {
-        state.topLevelStack.apply {
-            if (key == state.startKey) {
+        navigationState.topLevelStack.apply {
+            if (key == navigationState.startKey) {
                 // This is the start key. Clear the stack so it's added as the only key.
                 clear()
             } else {
@@ -69,7 +81,7 @@ internal class AppNavigator(val state: NavigationState) : NavigationInterface {
      * Clearing all but the root key in the current sub stack.
      */
     private fun clearSubStack() {
-        state.currentSubStack.run {
+        navigationState.currentSubStack.run {
             if (size > 1) subList(1, size).clear()
         }
     }
@@ -77,9 +89,15 @@ internal class AppNavigator(val state: NavigationState) : NavigationInterface {
 
 @Composable
 fun rememberNavigationInterface(
-    navigationState: NavigationState
+    navigationState: NavigationState,
+    isLoggedIn: () -> Boolean,
+    onRequireGlobalAuth: (NavKey) -> Unit,
 ): NavigationInterface {
     return remember(navigationState) {
-        AppNavigator(navigationState)
+        AppNavigator(
+            navigationState = navigationState,
+            isLoggedIn = isLoggedIn,
+            onRequireGlobalAuth = onRequireGlobalAuth,
+        )
     }
 }
