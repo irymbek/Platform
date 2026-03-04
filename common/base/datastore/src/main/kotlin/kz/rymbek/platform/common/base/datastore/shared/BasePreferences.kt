@@ -6,10 +6,10 @@ import androidx.core.content.edit
 
 abstract class BasePreferences(
     context: Context,
-    prefsName: String,
+    preferenceName: String,
 ) : BasePreferencesInterface {
     override val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+        context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE)
 
     override fun putString(
         key: String,
