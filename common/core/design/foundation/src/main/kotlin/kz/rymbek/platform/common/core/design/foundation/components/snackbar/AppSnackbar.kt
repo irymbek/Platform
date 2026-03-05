@@ -1,5 +1,6 @@
 package kz.rymbek.platform.common.core.design.foundation.components.snackbar
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarData
 import androidx.compose.material3.SnackbarDefaults
@@ -14,8 +15,8 @@ fun AppSnackbar(
     modifier: Modifier = Modifier,
     actionOnNewLine: Boolean = false,
     shape: Shape = SnackbarDefaults.shape,
-    containerColor: Color = SnackbarDefaults.color,
-    contentColor: Color = SnackbarDefaults.contentColor,
+    containerColor: Color = MaterialTheme.colorScheme.background,
+    contentColor: Color = MaterialTheme.colorScheme.onBackground,
     actionColor: Color = SnackbarDefaults.actionColor,
     actionContentColor: Color = SnackbarDefaults.actionContentColor,
     dismissActionContentColor: Color = SnackbarDefaults.dismissActionContentColor,

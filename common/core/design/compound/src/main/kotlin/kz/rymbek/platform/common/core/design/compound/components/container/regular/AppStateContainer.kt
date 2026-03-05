@@ -50,7 +50,15 @@ fun <T> AppStateContainer(
                 result = local,
                 initial = initialContent,
                 loading = initialContent,
-                empty = emptyContent,
+                empty = {
+                    AppPullToRefreshBox(
+                        isRefreshing = isRefreshing,
+                        onRefresh = onRefresh,
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        emptyContent()
+                    }
+                },
                 error = { exception ->
 
                     ErrorContentColumn(

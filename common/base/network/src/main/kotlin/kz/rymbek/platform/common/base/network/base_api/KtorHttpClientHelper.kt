@@ -30,7 +30,7 @@ internal val json = Json {
 
 object KtorHttpClientHelper {
     fun HttpClientConfig<*>.installHttpTimeout(
-        timeoutDuration: Long = 50_000L,
+        timeoutDuration: Long = 20_000L,
     ) {
         install(HttpTimeout) {
             requestTimeoutMillis = timeoutDuration
@@ -41,7 +41,7 @@ object KtorHttpClientHelper {
 
     fun HttpClientConfig<*>.installHttpRequestRetry() {
         install(HttpRequestRetry) {
-            retryOnServerErrors(maxRetries = 5)
+            retryOnServerErrors(maxRetries = 3)
             exponentialDelay()
         }
     }
@@ -85,4 +85,14 @@ object KtorHttpClientHelper {
             contentType(ContentType.Application.Json)
         }
     }
+
+    /*fun HttpClientConfig<*>.installAuth(
+
+    ) {
+        install(Auth) {
+            basic {
+                // Configure basic authentication
+            }
+        }
+    }*/
 }
