@@ -14,6 +14,7 @@ import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.resources.Resources
 import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
@@ -69,7 +70,7 @@ object KtorHttpClientHelper {
                 }
             }
             level = LogLevel.ALL
-            //sanitizeHeader { header -> header == HttpHeaders.Authorization }
+            sanitizeHeader { header -> header == HttpHeaders.Authorization }
         }
     }
 
@@ -95,9 +96,8 @@ object KtorHttpClientHelper {
         install(Auth) {
             bearer {
                 loadTokens {
-                    Log.d("Bearer", "${tokenProvider()}")
                     tokenProvider()?.let { token ->
-                        BearerTokens(accessToken = token, refreshToken = "")
+                        BearerTokens(accessToken = token, refreshToken = null)
                     }
                 }
 
