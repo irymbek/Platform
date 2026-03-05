@@ -104,6 +104,7 @@ komm-annotations = { group = "com.ucasoft.komm", name = "komm-annotations", vers
 komm-processor = { group = "com.ucasoft.komm", name = "komm-processor", version.ref = "komm" }
 komm-plugins-enum = { group = "com.ucasoft.komm", name = "komm-plugins-enum", version.ref = "komm" }
 
+ktor-client-auth = { group = "io.ktor", name = "ktor-client-auth", version.ref = "ktor" }
 ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }

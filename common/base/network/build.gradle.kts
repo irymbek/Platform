@@ -12,6 +12,7 @@ dependencies {
 
     implementation(platformLibs.ktor.client.resources)
 
+    implementation(platformLibs.ktor.client.auth)
     implementation(platformLibs.ktor.client.okhttp)
     implementation(platformLibs.ktor.client.content.negotiation)
     implementation(platformLibs.ktor.client.logging)

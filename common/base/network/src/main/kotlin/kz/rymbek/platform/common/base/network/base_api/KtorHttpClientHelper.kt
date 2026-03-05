@@ -5,13 +5,15 @@ import io.ktor.client.HttpClientConfig
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.providers.BearerTokens
+import io.ktor.client.plugins.auth.providers.bearer
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.resources.Resources
 import io.ktor.http.ContentType
-import io.ktor.http.HttpHeaders
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
@@ -67,7 +69,7 @@ object KtorHttpClientHelper {
                 }
             }
             level = LogLevel.ALL
-            sanitizeHeader { header -> header == HttpHeaders.Authorization }
+            //sanitizeHeader { header -> header == HttpHeaders.Authorization }
         }
     }
 
@@ -86,13 +88,23 @@ object KtorHttpClientHelper {
         }
     }
 
-    /*fun HttpClientConfig<*>.installAuth(
-
+    fun HttpClientConfig<*>.installAuth(
+        tokenProvider: suspend () -> String?,
+        protectedPath: String,
     ) {
         install(Auth) {
-            basic {
-                // Configure basic authentication
+            bearer {
+                loadTokens {
+                    Log.d("Bearer", "${tokenProvider()}")
+                    tokenProvider()?.let { token ->
+                        BearerTokens(accessToken = token, refreshToken = "")
+                    }
+                }
+
+                sendWithoutRequest { request ->
+                    request.url.pathSegments.contains(protectedPath)
+                }
             }
         }
-    }*/
+    }
 }
