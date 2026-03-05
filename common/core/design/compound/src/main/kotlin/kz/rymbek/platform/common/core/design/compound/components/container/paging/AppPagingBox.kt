@@ -47,6 +47,11 @@ fun <T : Any> AppPagingBox(
     val loadState = items.loadState
 
     val refreshError = loadState.refresh as? LoadState.Error
+    /*RemoteErrorEffect(
+        error = refreshError?.error,
+        appSnackbarState = appSnackbarState,
+        onRetry = { items.refresh() }
+    )*/
     LaunchedEffect(refreshError) {
         refreshError?.let {
             appSnackbarState.showSnackbar(
@@ -147,7 +152,7 @@ fun LazyGridScope.PagingAppendHandler(
 
 @Composable
 fun ScreenEmptyContent(
-    text: String = "Список пуск"
+    text: String = "Данных нет"
 ) {
     AppBox(
         modifier = Modifier.fillMaxSize(),
