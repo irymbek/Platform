@@ -60,25 +60,19 @@ fun <T> AppStateContainer(
                     }
                 },
                 error = { exception ->
-
                     ErrorContentColumn(
                         text = exception.localizedMessage ?: "Ошибка БД",
                         onClick = onRetryLocal
                     )
-
                 },
                 success = { data ->
-
                     AppPullToRefreshBox(
                         isRefreshing = isRefreshing,
                         onRefresh = onRefresh,
                         modifier = Modifier.fillMaxSize()
                     ) {
-
                         content(data)
-
                     }
-
                 }
             )
 
@@ -115,11 +109,8 @@ private fun BoxScope.RemoteLoadingOverlay(
         exit = fadeOut() + shrinkVertically(),
         modifier = Modifier.align(Alignment.TopCenter)
     ) {
-
         AppLinearProgressIndicator(
             modifier = Modifier.fillMaxWidth()
         )
-
     }
-
 }
