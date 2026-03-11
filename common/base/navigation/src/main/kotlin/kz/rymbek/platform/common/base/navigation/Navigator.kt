@@ -46,6 +46,7 @@ internal class AppNavigator(
                 // stack.
                 navigationState.topLevelStack.removeLastOrNull()
             }
+
             else -> navigationState.currentSubStack.removeLastOrNull()
         }
     }
@@ -101,3 +102,17 @@ fun rememberNavigationInterface(
         )
     }
 }
+
+@Composable
+fun rememberNavigationInterface(
+    navigationState: NavigationState,
+): NavigationInterface {
+    return remember(navigationState) {
+        AppNavigator(
+            navigationState = navigationState,
+            isLoggedIn = { true },
+            onRequireGlobalAuth = {},
+        )
+    }
+}
+
