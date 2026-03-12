@@ -40,7 +40,7 @@ fun <T : Any> LargeDropDownMenuDialog(
     var searchQuery by rememberSaveable { mutableStateOf("") }
 
     //Don't use rememberSaveable, on intent you may get percelable error
-    var filteredItems by remember { mutableStateOf(items) }
+    var filteredItems by remember(items) { mutableStateOf(items) }
 
     LaunchedEffect(searchQuery) {
         delay(300)

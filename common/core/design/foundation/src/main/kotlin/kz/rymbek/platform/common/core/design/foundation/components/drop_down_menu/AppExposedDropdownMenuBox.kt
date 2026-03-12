@@ -1,16 +1,15 @@
 package kz.rymbek.platform.common.core.design.foundation.components.drop_down_menu
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExposedDropdownMenuAnchorType
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
@@ -28,6 +27,7 @@ fun <T : Any> AppExposedDropdownMenuBox(
         item: T?,
     ) -> Unit,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     label: String? = null,
     itemLabel: (T) -> String = { it.toString() },
     itemImage: (T) -> Any? = { null },
@@ -43,6 +43,7 @@ fun <T : Any> AppExposedDropdownMenuBox(
         key = key,
         onItemSelected = onItemSelected,
         modifier = modifier,
+        enabled = enabled,
         itemImage = itemImage,
         errorMessage = errorMessage,
         allowEmptySelection = allowEmptySelection,
@@ -60,6 +61,7 @@ fun <T : Any, KEY : Any> AppExposedDropdownMenuBox(
         item: T?,
     ) -> Unit,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     label: String? = null,
     itemImage: (T) -> Any? = { null },
     allowEmptySelection: Boolean = false,
@@ -68,17 +70,19 @@ fun <T : Any, KEY : Any> AppExposedDropdownMenuBox(
 ) {
     val expanded = rememberSaveable { mutableStateOf(false) }
 
-    var selectedItem by remember(items, selectedKey) {
-        mutableStateOf(
-            items.firstOrNull { key?.invoke(it) == selectedKey }
-        )
+    Log.d("AppExposedDropdownMenuBox", "items: $items")
+
+    val selectedItem = remember(items, selectedKey) {
+        items.firstOrNull { key?.invoke(it) == selectedKey }
     }
 
     ExposedDropdownMenuBox(
         modifier = modifier,
         expanded = expanded.value,
         onExpandedChange = {
-            expanded.value = it
+            if (enabled) {
+                expanded.value = it
+            }
         },
         content = {
             AppTextField(
@@ -93,6 +97,7 @@ fun <T : Any, KEY : Any> AppExposedDropdownMenuBox(
                             expanded.value = true
                         }
                     },
+                enabled = enabled,
                 readOnly = true,
                 label = label?.let {
                     { TextFieldLabel(label = it) }
