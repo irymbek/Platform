@@ -1,6 +1,5 @@
 package kz.rymbek.platform.common.base.pagination
 
-import android.util.Log
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
@@ -27,15 +26,14 @@ class BaseRemoteMediator<Response : Any, Entity : Any>(
 
             val nextKey = if (response.isNotEmpty()) page + 1 else null
 
-            if (response.isNotEmpty()) page + 1
-
             keyStorage.upsert(paginationType, nextKey = nextKey)
 
             saveData(response)
 
             MediatorResult.Success(endOfPaginationReached = response.isEmpty())
         } catch (exception: IOException) {
-            Log.d("BaseRemoteMediator", "$exception")
+            MediatorResult.Error(exception)
+        } catch (exception: Exception) {
             MediatorResult.Error(exception)
         }
     }
