@@ -18,13 +18,12 @@ import kotlin.time.toDuration
 object DateUtils {
     private val RUSSIAN_ABBREVIATED: MonthNames = MonthNames(
         listOf(
-            "Янв", "Фев", "Мар", "Апр", "Май", "Июн",
-            "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"
+            "янв.", "февр.", "мар.", "апр.", "май", "июн.",
+            "июл.", "авг.", "сент.", "окт.", "нояб.", "дек."
         )
     )
 
-    private val currentTimeZone: TimeZone
-        get() = TimeZone.currentSystemDefault()
+    private val currentTimeZone: TimeZone = TimeZone.currentSystemDefault()
 
     val instant: Instant
         get() = Clock.System.now()
@@ -94,6 +93,19 @@ object DateUtils {
                 }
             ).orEmpty()
 
+    /*fun Instant?.toRelativeString(): String {
+        if (this == null) return ""
+        val diff = Clock.System.now() - this
+        return when {
+            diff.inWholeMinutes < 1    -> "только что"
+            diff.inWholeHours < 1      -> "${diff.inWholeMinutes} мин. назад"
+            diff.inWholeDays < 1       -> "${diff.inWholeHours} ч. назад"
+            diff.inWholeDays == 1L     -> "вчера"
+            diff.inWholeDays < 7       -> "${diff.inWholeDays} дн. назад"
+            else                       -> toFormattedMonth()
+        }
+    }*/
+
     fun Duration.toFormattedString(): String =
         this.toComponents { minutes, seconds, _ ->
             "%02d:%02d".format(minutes, seconds)
@@ -103,5 +115,6 @@ object DateUtils {
         return this.toInstantOrDefault().toFormattedString()
     }
 
-    fun String.toDuration() = this.toLong().toDuration(DurationUnit.SECONDS)
+    fun String.toDuration(): Duration =
+        toLongOrNull()?.toDuration(DurationUnit.SECONDS) ?: Duration.ZERO
 }
