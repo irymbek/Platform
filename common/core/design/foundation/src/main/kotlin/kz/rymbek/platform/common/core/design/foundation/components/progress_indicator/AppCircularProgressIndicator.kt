@@ -30,4 +30,25 @@ fun AppCircularProgressIndicator(
     )
 }
 
+@Composable
+fun AppCircularProgressIndicator(
+    progress: () -> Float,
+    modifier: Modifier = Modifier,
+    color: Color = ProgressIndicatorDefaults.circularColor,
+    strokeWidth: Dp = ProgressIndicatorDefaults.CircularStrokeWidth,
+    trackColor: Color = ProgressIndicatorDefaults.circularDeterminateTrackColor,
+    strokeCap: StrokeCap = ProgressIndicatorDefaults.CircularDeterminateStrokeCap,
+    gapSize: Dp = ProgressIndicatorDefaults.CircularIndicatorTrackGapSize,
+) {
+    CircularProgressIndicator(
+        progress = progress,
+        modifier = modifier,
+        color = color,
+        strokeWidth = strokeWidth,
+        trackColor = trackColor,
+        strokeCap = strokeCap,
+        gapSize = gapSize,
+    )
+}
+
 

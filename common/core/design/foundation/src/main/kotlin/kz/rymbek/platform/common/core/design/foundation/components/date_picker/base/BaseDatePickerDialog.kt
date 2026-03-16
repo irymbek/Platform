@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.window.DialogProperties
 import kz.rymbek.platform.common.core.design.foundation.components.button.AppTextButton
+import kz.rymbek.platform.common.core.design.foundation.components.button.base.ButtonContent
 
 @Composable
 internal fun BaseDatePickerDialog(
@@ -30,20 +31,24 @@ internal fun BaseDatePickerDialog(
             },
             confirmButton = {
                 AppTextButton(
-                    text = "ОК",
                     onClick = {
                         onClick()
                         isVisible.value = false
                     },
+                    content = {
+                        ButtonContent(text = "ОК")
+                    }
                 )
             },
             modifier = modifier,
             dismissButton = {
                 AppTextButton(
-                    text = "Отмена",
                     onClick = {
                         isVisible.value = false
                     },
+                    content = {
+                        ButtonContent(text = "Отмена")
+                    }
                 )
             },
             shape = shape,

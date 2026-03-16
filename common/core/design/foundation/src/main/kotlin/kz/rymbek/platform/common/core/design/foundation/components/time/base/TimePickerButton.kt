@@ -11,6 +11,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import kz.rymbek.platform.common.core.design.foundation.components.button.AppTextButton
+import kz.rymbek.platform.common.core.design.foundation.components.button.base.ButtonContent
 
 @Composable
 fun TimePickerButton(
@@ -27,7 +28,6 @@ fun TimePickerButton(
     interactionSource: MutableInteractionSource? = null,
 ) {
     AppTextButton(
-        text = text,
         onClick = {
             onClick()
             isVisible.value = false
@@ -40,5 +40,8 @@ fun TimePickerButton(
         border = border,
         contentPadding = contentPadding,
         interactionSource = interactionSource,
+        content = {
+            ButtonContent(text = text)
+        }
     )
 }

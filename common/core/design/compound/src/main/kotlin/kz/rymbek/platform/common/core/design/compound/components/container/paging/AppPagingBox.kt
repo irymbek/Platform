@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import kz.rymbek.platform.common.core.design.foundation.components.button.AppTextButton
+import kz.rymbek.platform.common.core.design.foundation.components.button.base.ButtonContent
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppBox
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppRow
@@ -194,8 +195,10 @@ fun ErrorContentRow(
             )
 
             AppTextButton(
-                text = "Повторить",
-                onClick = onClick
+                onClick = onClick,
+                content = {
+                    ButtonContent(text = "Повторить")
+                }
             )
         }
     )
@@ -215,8 +218,10 @@ fun ErrorContentColumn(
             )
 
             AppTextButton(
-                text = "Повторить попытку",
-                onClick = onClick
+                onClick = onClick,
+                content = {
+                    ButtonContent(text = "Повторить попытку")
+                }
             )
         }
     )

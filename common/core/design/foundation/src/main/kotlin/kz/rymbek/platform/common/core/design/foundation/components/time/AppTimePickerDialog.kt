@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.window.DialogProperties
 import kz.rymbek.platform.common.core.design.foundation.components.button.AppTextButton
+import kz.rymbek.platform.common.core.design.foundation.components.button.base.ButtonContent
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.icon.toggle.AppIconToggleButton
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
@@ -49,10 +50,12 @@ fun AppTimePickerDialog(
         },
         confirmButton = {
             AppTextButton(
-                text = "ОК",
                 onClick = {
                     isVisible.value = false
                     onConfirm()
+                },
+                content = {
+                    ButtonContent(text = "ОК")
                 }
             )
         },
@@ -72,8 +75,10 @@ fun AppTimePickerDialog(
         },
         dismissButton = {
             AppTextButton(
-                text = "Отмена",
                 onClick = { isVisible.value = false },
+                content = {
+                    ButtonContent(text = "Отмена")
+                }
             )
         },
         shape = shape,
