@@ -18,8 +18,8 @@ import kotlin.time.toDuration
 object DateUtils {
     private val RUSSIAN_ABBREVIATED: MonthNames = MonthNames(
         listOf(
-            "янв.", "февр.", "мар.", "апр.", "май", "июн.",
-            "июл.", "авг.", "сент.", "окт.", "нояб.", "дек."
+            "января", "февраля", "марта", "апреля", "мая", "июня",
+            "июля", "августа", "сентября", "октября", "ноября", "декабря"
         )
     )
 
@@ -84,10 +84,9 @@ object DateUtils {
             ?.toLocalDateTime(currentTimeZone)
             ?.format(
                 LocalDateTime.Format {
-                    day(padding = Padding.ZERO)
+                    day(padding = Padding.NONE)
                     char(' ')
                     monthName(RUSSIAN_ABBREVIATED)
-                    char('.')
                     char(' ')
                     year()
                 }
