@@ -1,6 +1,18 @@
 package kz.rymbek.platform.common.core.design.foundation.constants
 
 object PlatformItemWidth {
+    object Avatar {
+        val tiny = PlatformSpacing.space_6x     // 24.dp
+        val small = PlatformSpacing.space_8x    // 32.dp
+        val medium = PlatformSpacing.space_10x  // 40.dp
+        val large = PlatformSpacing.space_12x   // 48.dp
+        val giant = PlatformSpacing.space_16x   // 64.dp
+    }
+
+    val avatarSmall = PlatformSpacing.space_8x   // 32.dp
+    val avatar = PlatformSpacing.space_10x       // 40.dp (Стандартный размер аватарки)
+    val avatarLarge = PlatformSpacing.space_12x
+    val nano = PlatformSpacing.space_12x
     val micro = PlatformSpacing.space_20x    // 80.dp
     val tiny = PlatformSpacing.space_24x     // 96.dp
     val compact = PlatformSpacing.space_32x  // 144.dp
