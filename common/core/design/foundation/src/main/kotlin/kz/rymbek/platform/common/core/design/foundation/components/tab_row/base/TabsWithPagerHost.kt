@@ -7,12 +7,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import kotlinx.coroutines.launch
-import kz.rymbek.platform.common.base.feature.architecture.ITabItem
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
 import kz.rymbek.platform.common.core.design.foundation.components.pager.AppHorizontalPager
 
 @Composable
-internal fun <T : ITabItem> TabsWithPagerHost(
+internal fun <T> TabsWithPagerHost(
     tabItems: List<T>,
     modifier: Modifier = Modifier,
     createTabRow: @Composable (selectedIndex: Int, onTabClick: (Int) -> Unit) -> Unit,

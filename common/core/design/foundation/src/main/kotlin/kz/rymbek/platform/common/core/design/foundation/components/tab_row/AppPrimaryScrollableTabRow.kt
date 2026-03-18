@@ -8,14 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
-import kz.rymbek.platform.common.base.feature.architecture.ITabItem
 import kz.rymbek.platform.common.core.design.foundation.components.divider.AppHorizontalDivider
 import kz.rymbek.platform.common.core.design.foundation.components.tab_row.base.AppTabRowDefaults
 import kz.rymbek.platform.common.core.design.foundation.components.tab_row.base.TabsWithPagerHost
 
 @Composable
-fun <T : ITabItem> AppPrimaryScrollableTabRow(
+fun <T> AppPrimaryScrollableTabRow(
     tabItems: List<T>,
+    tabTitle: (T) -> String,
     modifier: Modifier = Modifier,
     scrollState: ScrollState = rememberScrollState(),
     containerColor: Color = TabRowDefaults.primaryContainerColor,
@@ -42,7 +42,7 @@ fun <T : ITabItem> AppPrimaryScrollableTabRow(
                         AppTab(
                             selected = selectedTabIndex == index,
                             onClick = { onClick(index) },
-                            title = item.title,
+                            title = tabTitle(item),
                         )
                     }
                 }
