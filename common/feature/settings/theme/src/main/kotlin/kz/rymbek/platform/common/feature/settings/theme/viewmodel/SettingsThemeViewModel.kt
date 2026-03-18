@@ -7,7 +7,7 @@ import kz.rymbek.platform.common.business.model.ui.enums.design.AppThemeBrand
 import kz.rymbek.platform.common.business.model.ui.enums.design.ModeConfig
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.event.SettingsThemeEvent
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.state.SettingsThemeUiState
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel
 class SettingsThemeViewModel(

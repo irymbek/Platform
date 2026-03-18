@@ -29,6 +29,9 @@ class PlatformFeaturePlugin : Plugin<Project> {
                 // koinViewModel
                 implementation(platformLibs.koin.androidx.compose)
 
+                //Navigation support
+                implementation(platformLibs.koin.compose.navigation3)
+
                 //coil
                 implementation(platformLibs.coil.compose.core)
 

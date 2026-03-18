@@ -16,8 +16,8 @@ composeBom = "2026.03.00"
 googleAccompanist = "0.37.3"
 googleMlkit = "17.3.0"
 googleServicesLocation = "21.3.0"
-koin = "4.1.1"
-koinAnnotations = "2.3.1"
+koin = "4.2.0"
+koinPlugin = "0.4.1"
 komm = "0.25.0"
 kotlin = "2.3.20"
 kotlinxDatetime = "0.7.1"
@@ -94,11 +94,12 @@ com-google-services-location = { group = "com.google.android.gms", name = "play-
 koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+koin-compose-navigation3 = { group = "io.insert-koin", name = "koin-compose-navigation3", version.ref = "koin" }
 koin-androidx-startup = { group = "io.insert-koin", name = "koin-androidx-startup", version.ref = "koin" }
 koin-androidx-workmanager = { group = "io.insert-koin", name = "koin-androidx-workmanager", version.ref = "koin" }
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
-koin-annotations = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koinAnnotations" }
-koin-ksp-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koinAnnotations" }
+koin-annotations = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koin" }
+koin-ksp-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koin" }
 
 komm-annotations = { group = "com.ucasoft.komm", name = "komm-annotations", version.ref = "komm" }
 komm-processor = { group = "com.ucasoft.komm", name = "komm-processor", version.ref = "komm" }
@@ -137,6 +138,7 @@ convention-platform = { group = "kz.rymbek.platform.common.base.convention", nam
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+koin-compiler = { id = "io.insert-koin.compiler.plugin", version.ref = "koinPlugin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
