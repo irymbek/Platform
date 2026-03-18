@@ -64,8 +64,7 @@ fun <T : Any> AppPagingBox(
     }
 
     Box(modifier = modifier.fillMaxSize()) {
-        when (
-            loadState.refresh) {
+        when (loadState.refresh) {
             is LoadState.Loading if items.itemCount == 0 -> {
                 initialLoadingContent()
             }
