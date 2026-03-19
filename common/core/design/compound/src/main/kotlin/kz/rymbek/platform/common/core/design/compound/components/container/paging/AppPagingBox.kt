@@ -32,7 +32,6 @@ import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformIconSize
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 
-// AppPagingBox.kt
 @Composable
 fun <T : Any> AppPagingBox(
     items: LazyPagingItems<T>,
@@ -43,9 +42,6 @@ fun <T : Any> AppPagingBox(
     content: @Composable () -> Unit,
 ) {
     val state = items.toPagingUiState()
-
-    // Используем referential identity для Throwable,
-    // иначе два одинаковых исключения не перезапустят эффект
     LaunchedEffect(state.refreshError) {
         val error = state.refreshError ?: return@LaunchedEffect
         if (state.hasContent) {
@@ -57,8 +53,6 @@ fun <T : Any> AppPagingBox(
         }
     }
 
-    // Единственный PullToRefreshBox на весь компонент (DRY)
-    // isRefreshing = true только когда есть контент + идёт обновление
     AppPullToRefreshBox(
         isRefreshing = state.isRefreshing,
         onRefresh = { items.refresh() },
@@ -66,13 +60,10 @@ fun <T : Any> AppPagingBox(
     ) {
         when {
             state.isInitialLoading -> {
-                // Первая загрузка — pull-to-refresh не нужен, просто спиннер
                 loadingContent()
             }
 
             state.isEmptyWithError -> {
-                // Ошибка на пустом экране — verticalScroll обязателен,
-                // иначе NestedScrollConnection не получит жесты
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -87,7 +78,6 @@ fun <T : Any> AppPagingBox(
             }
 
             state.isEmpty -> {
-                // Пустой список — аналогично нужен scroll для жестов
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -99,16 +89,12 @@ fun <T : Any> AppPagingBox(
             }
 
             else -> {
-                // LazyList/LazyGrid сами реализуют NestedScrollConnection
                 content()
             }
         }
     }
 }
 
-
-// pagingAppendItem.kt
-// Передаём готовый state снаружи — не пересчитываем внутри
 fun LazyListScope.pagingAppendItem(
     state: PagingUiState,
     onRetry: () -> Unit,
