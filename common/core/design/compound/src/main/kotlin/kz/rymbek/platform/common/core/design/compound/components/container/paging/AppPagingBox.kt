@@ -1,9 +1,7 @@
 package kz.rymbek.platform.common.core.design.compound.components.container.paging
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,16 +10,15 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridItemSpanScope
 import androidx.compose.foundation.lazy.grid.LazyGridScope
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import kz.rymbek.platform.common.core.design.foundation.components.button.AppTextButton
 import kz.rymbek.platform.common.core.design.foundation.components.button.base.ButtonContent
@@ -35,118 +32,123 @@ import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformIconSize
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 
+// AppPagingBox.kt
 @Composable
 fun <T : Any> AppPagingBox(
     items: LazyPagingItems<T>,
     modifier: Modifier = Modifier,
     appSnackbarState: AppSnackbarState,
-    contentPadding: PaddingValues = PaddingValues(0.dp),
     emptyContent: @Composable () -> Unit = { ScreenEmptyContent() },
-    initialLoadingContent: @Composable () -> Unit = { InitialLoadingContent() },
-    content: @Composable (PaddingValues) -> Unit
+    loadingContent: @Composable () -> Unit = { InitialLoadingContent() },
+    content: @Composable () -> Unit,
 ) {
-    val loadState = items.loadState
+    val state = items.toPagingUiState()
 
-    val refreshError = loadState.refresh as? LoadState.Error
-    /*RemoteErrorEffect(
-        error = refreshError?.error,
-        appSnackbarState = appSnackbarState,
-        onRetry = { items.refresh() }
-    )*/
-    LaunchedEffect(refreshError) {
-        refreshError?.let {
+    // Используем referential identity для Throwable,
+    // иначе два одинаковых исключения не перезапустят эффект
+    LaunchedEffect(state.refreshError) {
+        val error = state.refreshError ?: return@LaunchedEffect
+        if (state.hasContent) {
             appSnackbarState.showSnackbar(
-                message = "Ошибка: ${it.error.localizedMessage}",
+                message = "Ошибка: ${error.localizedMessage}",
                 actionLabel = "Повторить",
                 onActionClick = { items.retry() }
             )
         }
     }
 
-    Box(modifier = modifier.fillMaxSize()) {
-        when (loadState.refresh) {
-            is LoadState.Loading if items.itemCount == 0 -> {
-                initialLoadingContent()
+    // Единственный PullToRefreshBox на весь компонент (DRY)
+    // isRefreshing = true только когда есть контент + идёт обновление
+    AppPullToRefreshBox(
+        isRefreshing = state.isRefreshing,
+        onRefresh = { items.refresh() },
+        modifier = modifier.fillMaxSize(),
+    ) {
+        when {
+            state.isInitialLoading -> {
+                // Первая загрузка — pull-to-refresh не нужен, просто спиннер
+                loadingContent()
             }
 
-            is LoadState.NotLoading if items.itemCount == 0 -> {
-                emptyContent()
+            state.isEmptyWithError -> {
+                // Ошибка на пустом экране — verticalScroll обязателен,
+                // иначе NestedScrollConnection не получит жесты
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState()),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    ErrorContentColumn(
+                        text = "Ошибка загрузки.\nПотяните вниз или нажмите «Повторить»",
+                        onClick = { items.retry() }
+                    )
+                }
+            }
+
+            state.isEmpty -> {
+                // Пустой список — аналогично нужен scroll для жестов
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState()),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    emptyContent()
+                }
             }
 
             else -> {
-                AppPullToRefreshBox(
-                    isRefreshing = loadState.refresh is LoadState.Loading,
-                    onRefresh = { items.refresh() },
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    content(contentPadding)
-                }
+                // LazyList/LazyGrid сами реализуют NestedScrollConnection
+                content()
             }
         }
     }
 }
 
-fun LazyListScope.PagingAppendHandler(items: LazyPagingItems<*>) {
-    when (val appendState = items.loadState.append) {
-        is LoadState.Loading -> item {
-            Box(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator()
-            }
-        }
 
-        is LoadState.Error -> item {
-            val e = appendState.error
-            Box(
-                Modifier
-                    .fillMaxWidth()
-                    .clickable { items.retry() }
-                    .padding(16.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = "Ошибка: ${e.localizedMessage}\nНажмите, чтобы повторить",
-                    textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.error
-                )
-            }
-        }
-
-        else -> Unit
-    }
-}
-
-fun LazyGridScope.PagingAppendHandler(
-    items: LazyPagingItems<*>,
-    span: (LazyGridItemSpanScope.() -> GridItemSpan)? = { GridItemSpan(maxLineSpan) }
+// pagingAppendItem.kt
+// Передаём готовый state снаружи — не пересчитываем внутри
+fun LazyListScope.pagingAppendItem(
+    state: PagingUiState,
+    onRetry: () -> Unit,
 ) {
-    when (val appendState = items.loadState.append) {
-        is LoadState.Loading -> item(span = span) {
-            AppBox(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(PlatformPaddings.default),
-                contentAlignment = Alignment.Center,
-                content = {
-                    AppCircularProgressIndicator(
-                        modifier = Modifier
-                            .size(PlatformIconSize.lg)
-                    )
-                }
-            )
+    when {
+        state.isAppendLoading -> item(key = "paging_append_loading") {
+            AppendLoadingContent()
         }
-
-        is LoadState.Error -> item(span = span) {
-            ErrorContentRow(
-                onClick = { items.retry() }
-            )
+        state.appendError != null -> item(key = "paging_append_error") {
+            ErrorContentRow(onClick = onRetry)
         }
+    }
+}
 
-        else -> Unit
+fun LazyGridScope.pagingAppendItem(
+    state: PagingUiState,
+    onRetry: () -> Unit,
+    span: (LazyGridItemSpanScope.() -> GridItemSpan)? = { GridItemSpan(maxLineSpan) },
+) {
+    when {
+        state.isAppendLoading -> item(key = "paging_append_loading", span = span) {
+            AppendLoadingContent()
+        }
+        state.appendError != null -> item(key = "paging_append_error", span = span) {
+            ErrorContentRow(onClick = onRetry)
+        }
+    }
+}
+
+@Composable
+private fun AppendLoadingContent() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(PlatformPaddings.default),
+        contentAlignment = Alignment.Center,
+    ) {
+        AppCircularProgressIndicator(
+            modifier = Modifier.size(PlatformIconSize.lg)
+        )
     }
 }
 
