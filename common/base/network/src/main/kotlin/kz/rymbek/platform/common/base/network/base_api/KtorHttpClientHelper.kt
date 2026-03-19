@@ -8,6 +8,8 @@ import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.auth.Auth
 import io.ktor.client.plugins.auth.providers.BearerTokens
 import io.ktor.client.plugins.auth.providers.bearer
+import io.ktor.client.plugins.cache.HttpCache
+import io.ktor.client.plugins.cache.storage.FileStorage
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
@@ -15,11 +17,11 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.resources.Resources
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
-import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import java.io.File
 
 internal val json = Json {
     ignoreUnknownKeys = true
@@ -44,13 +46,24 @@ object KtorHttpClientHelper {
 
     fun HttpClientConfig<*>.installHttpRequestRetry() {
         install(HttpRequestRetry) {
-            retryOnServerErrors(maxRetries = 3)
+            maxRetries = 3
+            retryOnException(retryOnTimeout = true)
+            retryIf { _, response ->
+                response.status.value in 500..599
+            }
             exponentialDelay()
         }
     }
 
     fun HttpClientConfig<*>.installResources() {
         install(Resources)
+    }
+
+    fun HttpClientConfig<*>.installCaching() {
+        install(HttpCache) {
+            val cacheFile = File("app_cache")
+            publicStorage(FileStorage(cacheFile))
+        }
     }
 
     fun HttpClientConfig<*>.installContentNegotiation() {
@@ -77,21 +90,20 @@ object KtorHttpClientHelper {
     fun HttpClientConfig<*>.installDefaultRequest(
         hostNetwork: String,
         urlProtocol: URLProtocol = URLProtocol.HTTPS,
-        block: URLBuilder.() -> Unit = {}
     ) {
         install(DefaultRequest) {
             host = hostNetwork
             url {
                 protocol = urlProtocol
-                block()
             }
             contentType(ContentType.Application.Json)
         }
     }
 
+
     fun HttpClientConfig<*>.installAuth(
         tokenProvider: suspend () -> String?,
-        protectedPath: String,
+        protectedPath: String?,
     ) {
         install(Auth) {
             bearer {
