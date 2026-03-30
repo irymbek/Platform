@@ -24,10 +24,12 @@ kotlinxDatetime = "0.7.1"
 kotlinxSerialization = "1.10.0"
 kotlinxCoroutines = "1.10.2"
 ksp = "2.3.6"
+ktlint = "1.8.0"
 ktor = "3.4.2"
 konform = "0.11.1"
 okio = "3.17.0"
 orbit = "11.0.0"
+spotless = "8.4.0"
 
 compileSdk = "36"
 targetSdk = "36"
@@ -131,6 +133,7 @@ compose-gradlePlugin = { group = "org.jetbrains.kotlin", name = "compose-compile
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "androidxRoom" }
+spotless-gradlePlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
 
 convention-platform = { group = "kz.rymbek.platform.common.base.convention", name = "convention-platform" }
 
@@ -143,6 +146,7 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "androidxRoom" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 
 # Plugins defined by this project
 # Application

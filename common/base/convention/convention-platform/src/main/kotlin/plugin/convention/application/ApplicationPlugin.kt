@@ -4,6 +4,7 @@ import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import kz.rymbek.platform.common.base.convention.AppBuildType
 import kz.rymbek.platform.common.base.convention.configureKotlinAndroid
+import kz.rymbek.platform.common.base.convention.configureSpotlessForAndroid
 import kz.rymbek.platform.common.base.convention.disableAllTests
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.implementation
@@ -60,6 +61,8 @@ class ApplicationPlugin : Plugin<Project> {
             extensions.configure<ApplicationAndroidComponentsExtension> {
                 disableAllTests()
             }
+
+            configureSpotlessForAndroid()
 
             dependencies {
                 implementation(":platform:common:base:app")
