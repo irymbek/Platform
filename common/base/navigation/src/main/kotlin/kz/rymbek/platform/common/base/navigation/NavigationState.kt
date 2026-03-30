@@ -22,7 +22,6 @@ fun rememberNavigationState(
     startKey: NavKey,
     topLevelKeys: Set<NavKey>,
 ): NavigationState {
-
     val topLevelStack = rememberNavBackStack(startKey)
     val subStacks = topLevelKeys.associateWith { key -> rememberNavBackStack(key) }
 
@@ -45,7 +44,7 @@ fun rememberNavigationState(
 class NavigationState(
     val startKey: NavKey,
     val topLevelStack: NavBackStack<NavKey>,
-    val subStacks: Map<NavKey, NavBackStack<NavKey>>
+    val subStacks: Map<NavKey, NavBackStack<NavKey>>,
 ) {
     val currentTopLevelKey: NavKey by derivedStateOf { topLevelStack.last() }
 
@@ -64,15 +63,17 @@ class NavigationState(
  */
 @Composable
 fun NavigationState.toEntries(
-    entryProvider: (NavKey) -> NavEntry<NavKey>
+    entryProvider: (NavKey) -> NavEntry<NavKey>,
 ): SnapshotStateList<NavEntry<NavKey>> {
     val decoratedEntries = subStacks.mapValues { (_, stack) ->
         val decorators = listOf(
             rememberSaveableStateHolderNavEntryDecorator<NavKey>(),
-            rememberViewModelStoreNavEntryDecorator<NavKey>()
+            rememberViewModelStoreNavEntryDecorator<NavKey>(),
         )
         rememberDecoratedNavEntries(
-            backStack = stack, entryDecorators = decorators, entryProvider = entryProvider
+            backStack = stack,
+            entryDecorators = decorators,
+            entryProvider = entryProvider,
         )
     }
 

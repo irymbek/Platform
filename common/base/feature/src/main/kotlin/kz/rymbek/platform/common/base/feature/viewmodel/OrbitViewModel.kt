@@ -23,8 +23,9 @@ import org.orbitmvi.orbit.syntax.Syntax
  *
  */
 abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : IEvent.Navigation>(
-    initialState: STATE
-) : ContainerHost<STATE, SIDE_EFFECT>, ViewModel() {
+    initialState: STATE,
+) : ViewModel(),
+    ContainerHost<STATE, SIDE_EFFECT> {
     override val container = viewModelScope.container<STATE, SIDE_EFFECT>(initialState)
 
     /**
@@ -55,11 +56,11 @@ abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : IEvent.Navigation>(
      *  - Проксировать поток в scope ViewModel для корректного кеширования.
      */
     protected inline fun <T : Any, R> Flow<PagingData<T>>.cachedInVm(
-        action: (Flow<PagingData<T>>) -> R
+        action: (Flow<PagingData<T>>) -> R,
     ): R = action(this.cachedIn(viewModelScope))
 
-
     /* Простейшие обёртки для reduce */
+
     /**
      * Асинхронная обёртка для изменения состояния: запускает intent { reduce { ... } }.
      *  - Вызывать из внешнего контекста (не внутри intent).
@@ -78,13 +79,13 @@ abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : IEvent.Navigation>(
 
     /* Валидация */
     protected open fun validation(
-        onValid: suspend Syntax<STATE, SIDE_EFFECT>.() -> Unit
+        onValid: suspend Syntax<STATE, SIDE_EFFECT>.() -> Unit,
     ) = Unit
 
     protected suspend fun <T : HasValidator<T>> Syntax<STATE, SIDE_EFFECT>.validation(
         model: T,
         copyErrors: STATE.(List<ValidationError>) -> STATE,
-        onValid: suspend Syntax<STATE, SIDE_EFFECT>.() -> Unit
+        onValid: suspend Syntax<STATE, SIDE_EFFECT>.() -> Unit,
     ) {
         val result = model.validator(model)
         if (result.errors.isNotEmpty()) {

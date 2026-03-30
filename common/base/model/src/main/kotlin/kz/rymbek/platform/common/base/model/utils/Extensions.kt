@@ -6,15 +6,11 @@ const val HTTPS_PREFIX = "https://"
 
 fun String?.asImageUrl(host: String) = "$HTTPS_PREFIX$host$this"
 
-//Float
-fun String.toNullableFloat(): Float? {
-    return this.replace(',', '.').toFloatOrNull()
-}
+// Float
+fun String.toNullableFloat(): Float? = this.replace(',', '.').toFloatOrNull()
 
-fun String.toSafeFloat(default: Float = 0f): Float {
-    return replace(',', '.')
-        .toFloatOrNull() ?: default
-}
+fun String.toSafeFloat(default: Float = 0f): Float = replace(',', '.')
+    .toFloatOrNull() ?: default
 
 fun Any?.toSafeString(
     default: String = "",
@@ -27,14 +23,9 @@ fun Long?.toSafeLong(
 /** Safe Int **/
 fun String.toSafeInt(
     default: Int = 0,
-): Int {
-    return this.toIntOrNull() ?: default
-}
+): Int = this.toIntOrNull() ?: default
 
 /** Safe BigDecimal **/
 fun String.toSafeBigDecimal(
     default: BigDecimal = BigDecimal.ZERO,
-): BigDecimal {
-    return this.toBigDecimalOrNull() ?: default
-}
-
+): BigDecimal = this.toBigDecimalOrNull() ?: default

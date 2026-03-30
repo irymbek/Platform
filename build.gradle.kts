@@ -20,4 +20,5 @@ plugins {
     alias(platformLibs.plugins.kotlin.serialization) apply false
     alias(platformLibs.plugins.ksp) apply false
     alias(platformLibs.plugins.room) apply false
+    alias(platformLibs.plugins.spotless) apply false
 }

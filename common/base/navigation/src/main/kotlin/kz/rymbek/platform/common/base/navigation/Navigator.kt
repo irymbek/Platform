@@ -12,7 +12,7 @@ import androidx.navigation3.runtime.NavKey
 internal class AppNavigator(
     val navigationState: NavigationState,
     private val isLoggedIn: () -> Boolean,
-    private val onRequireGlobalAuth: (targetKey: NavKey) -> Unit
+    private val onRequireGlobalAuth: (targetKey: NavKey) -> Unit,
 ) : NavigationInterface {
     /**
      * Navigate to a navigation key
@@ -41,6 +41,7 @@ internal class AppNavigator(
     override fun navigateBack() {
         when (navigationState.currentKey) {
             navigationState.startKey -> error("You cannot go back from the start route")
+
             navigationState.currentTopLevelKey -> {
                 // We're at the base of the current sub stack, go back to the previous top level
                 // stack.
@@ -93,26 +94,21 @@ fun rememberNavigationInterface(
     navigationState: NavigationState,
     isLoggedIn: () -> Boolean,
     onRequireGlobalAuth: (NavKey) -> Unit,
-): NavigationInterface {
-    return remember(navigationState) {
-        AppNavigator(
-            navigationState = navigationState,
-            isLoggedIn = isLoggedIn,
-            onRequireGlobalAuth = onRequireGlobalAuth,
-        )
-    }
+): NavigationInterface = remember(navigationState) {
+    AppNavigator(
+        navigationState = navigationState,
+        isLoggedIn = isLoggedIn,
+        onRequireGlobalAuth = onRequireGlobalAuth,
+    )
 }
 
 @Composable
 fun rememberNavigationInterface(
     navigationState: NavigationState,
-): NavigationInterface {
-    return remember(navigationState) {
-        AppNavigator(
-            navigationState = navigationState,
-            isLoggedIn = { true },
-            onRequireGlobalAuth = {},
-        )
-    }
+): NavigationInterface = remember(navigationState) {
+    AppNavigator(
+        navigationState = navigationState,
+        isLoggedIn = { true },
+        onRequireGlobalAuth = {},
+    )
 }
-

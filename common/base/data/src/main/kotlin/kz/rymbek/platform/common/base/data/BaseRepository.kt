@@ -14,27 +14,23 @@ import kz.rymbek.platform.common.base.pagination.network.BaseNetworkPagingSource
 abstract class BaseRepository {
     protected fun <Remote : Any, Ui : Any> getPagedRemote(
         fetchFromNetwork: suspend (page: Int, pageSize: Int) -> List<Remote>,
-        mapToUi: suspend (Remote) -> Ui
-    ): Flow<PagingData<Ui>> {
-        return Pager(
-            config = createPagingConfig(),
-            pagingSourceFactory = {
-                BaseNetworkPagingSource(fetchFromNetwork)
-            }
-        ).flow.map { pagingData ->
-            pagingData.map { mapToUi(it) }
-        }
+        mapToUi: suspend (Remote) -> Ui,
+    ): Flow<PagingData<Ui>> = Pager(
+        config = createPagingConfig(),
+        pagingSourceFactory = {
+            BaseNetworkPagingSource(fetchFromNetwork)
+        },
+    ).flow.map { pagingData ->
+        pagingData.map { mapToUi(it) }
     }
 
     protected fun <Entity : Any, Ui : Any> getPagedData(
         pagingSourceFactory: () -> PagingSource<Int, Entity>,
-        mapToUi: suspend (Entity) -> Ui
-    ): Flow<PagingData<Ui>> {
-        return Pager(
-            config = createPagingConfig(),
-            pagingSourceFactory = pagingSourceFactory
-        ).flow.map { it.map(mapToUi) }
-    }
+        mapToUi: suspend (Entity) -> Ui,
+    ): Flow<PagingData<Ui>> = Pager(
+        config = createPagingConfig(),
+        pagingSourceFactory = pagingSourceFactory,
+    ).flow.map { it.map(mapToUi) }
 
     protected fun <Entity : Any, Remote : Any, Ui : Any> getPagedCombined(
         paginationType: String,
@@ -44,19 +40,17 @@ abstract class BaseRepository {
         mapToUi: suspend (Entity) -> Ui,
         saveData: suspend (List<Remote>) -> Unit,
         deleteData: suspend () -> Unit,
-        forceRefresh: Boolean = false
-    ): Flow<PagingData<Ui>> {
-        return Pager(
-            config = createPagingConfig(),
-            remoteMediator = BaseRemoteMediator(
-                paginationType = paginationType,
-                keyStorage = keyStorage,
-                fetchFromNetwork = fetchFromNetwork,
-                saveData = saveData,
-                deleteData = deleteData,
-                forceRefresh = forceRefresh,
-            ),
-            pagingSourceFactory = pagingSourceFactory
-        ).flow.map { it.map(mapToUi) }
-    }
+        forceRefresh: Boolean = false,
+    ): Flow<PagingData<Ui>> = Pager(
+        config = createPagingConfig(),
+        remoteMediator = BaseRemoteMediator(
+            paginationType = paginationType,
+            keyStorage = keyStorage,
+            fetchFromNetwork = fetchFromNetwork,
+            saveData = saveData,
+            deleteData = deleteData,
+            forceRefresh = forceRefresh,
+        ),
+        pagingSourceFactory = pagingSourceFactory,
+    ).flow.map { it.map(mapToUi) }
 }

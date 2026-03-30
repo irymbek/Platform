@@ -10,14 +10,12 @@ import kotlinx.serialization.encoding.Encoder
 class StringFormatSerializer<T>(
     serialName: String,
     private val toString: (T) -> String,
-    private val fromString: (String) -> T
+    private val fromString: (String) -> T,
 ) : KSerializer<T> {
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor(serialName, PrimitiveKind.STRING)
 
-    override fun deserialize(decoder: Decoder): T {
-        return fromString(decoder.decodeString())
-    }
+    override fun deserialize(decoder: Decoder): T = fromString(decoder.decodeString())
 
     override fun serialize(encoder: Encoder, value: T) {
         encoder.encodeString(toString(value))

@@ -10,39 +10,33 @@ import kotlinx.coroutines.flow.map
 
 abstract class BaseDataStore(
     context: Context,
-    dataStoreName: String
+    dataStoreName: String,
 ) {
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
-        name = dataStoreName
+        name = dataStoreName,
     )
 
     val dataStore = context.dataStore
 
     inline fun <reified T : Any> getValueOrNull(
         key: Preferences.Key<T>,
-    ): Flow<T?> {
-        return dataStore.data.map { preferences ->
-            preferences[key]
-        }
+    ): Flow<T?> = dataStore.data.map { preferences ->
+        preferences[key]
     }
 
     suspend fun <T : Enum<T>> saveValue(key: Preferences.Key<String>, value: T) {
         dataStore.edit { preferences -> preferences[key] = value.name }
     }
 
-    inline fun <reified T : Enum<T>> getValue(key: Preferences.Key<String>, default: T): Flow<T> {
-        return dataStore.data.map { preferences ->
-            enumValueOf(preferences[key] ?: default.name)
-        }
+    inline fun <reified T : Enum<T>> getValue(key: Preferences.Key<String>, default: T): Flow<T> = dataStore.data.map { preferences ->
+        enumValueOf(preferences[key] ?: default.name)
     }
 
     suspend fun <T : Any> saveValue(key: Preferences.Key<T>, value: T) {
         dataStore.edit { preferences -> preferences[key] = value }
     }
 
-    inline fun <reified T : Any> getValue(key: Preferences.Key<T>, default: T): Flow<T> {
-        return dataStore.data.map { preferences -> preferences[key] ?: default }
-    }
+    inline fun <reified T : Any> getValue(key: Preferences.Key<T>, default: T): Flow<T> = dataStore.data.map { preferences -> preferences[key] ?: default }
 
     suspend fun removeValue(key: Preferences.Key<*>) {
         dataStore.edit { preferences -> preferences.remove(key) }

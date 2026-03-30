@@ -10,32 +10,20 @@ abstract class BaseConverter<T>(
     private val serializer: KSerializer<T>,
 ) {
     @TypeConverter
-    fun toString(data: T): String {
-        return Json.encodeToString(serializer, data)
-    }
+    fun toString(data: T): String = Json.encodeToString(serializer, data)
 
     @TypeConverter
-    fun fromString(data: String): T? {
-        return Json.decodeFromString(serializer, data)
-    }
+    fun fromString(data: String): T? = Json.decodeFromString(serializer, data)
 
     @TypeConverter
-    fun toList(data: String): List<T> {
-        return Json.decodeFromString(ListSerializer(serializer), data)
-    }
+    fun toList(data: String): List<T> = Json.decodeFromString(ListSerializer(serializer), data)
 
     @TypeConverter
-    fun listToString(data: List<T>): String {
-        return Json.encodeToString(ListSerializer(serializer), data)
-    }
+    fun listToString(data: List<T>): String = Json.encodeToString(ListSerializer(serializer), data)
 
     @TypeConverter
-    fun toSet(data: String): Set<T> {
-        return Json.decodeFromString(SetSerializer(serializer), data)
-    }
+    fun toSet(data: String): Set<T> = Json.decodeFromString(SetSerializer(serializer), data)
 
     @TypeConverter
-    fun setToString(data: Set<T>): String {
-        return Json.encodeToString(SetSerializer(serializer), data)
-    }
+    fun setToString(data: Set<T>): String = Json.encodeToString(SetSerializer(serializer), data)
 }

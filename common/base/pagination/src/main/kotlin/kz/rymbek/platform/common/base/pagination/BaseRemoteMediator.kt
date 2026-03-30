@@ -12,11 +12,11 @@ class BaseRemoteMediator<Response : Any, Entity : Any>(
     private val fetchFromNetwork: suspend (Int, Int) -> List<Response>,
     private val saveData: suspend (List<Response>) -> Unit,
     private val deleteData: suspend () -> Unit = {},
-    private val forceRefresh: Boolean = false
+    private val forceRefresh: Boolean = false,
 ) : RemoteMediator<Int, Entity>() {
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, Entity>
+        state: PagingState<Int, Entity>,
     ): MediatorResult {
         return try {
             val page: Int =
@@ -38,17 +38,16 @@ class BaseRemoteMediator<Response : Any, Entity : Any>(
         }
     }
 
-    private suspend fun getPage(loadType: LoadType): Int? {
-        return when (loadType) {
-            LoadType.REFRESH -> {
-                keyStorage.clear(paginationType)
-                deleteData()
-                1
-            }
-
-            LoadType.APPEND -> keyStorage.getKey(paginationType)
-            LoadType.PREPEND -> null
+    private suspend fun getPage(loadType: LoadType): Int? = when (loadType) {
+        LoadType.REFRESH -> {
+            keyStorage.clear(paginationType)
+            deleteData()
+            1
         }
+
+        LoadType.APPEND -> keyStorage.getKey(paginationType)
+
+        LoadType.PREPEND -> null
     }
 
     override suspend fun initialize(): InitializeAction {

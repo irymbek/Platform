@@ -21,9 +21,7 @@ abstract class BasePreferences(
     override fun getString(
         key: String,
         defaultValue: String,
-    ): String {
-        return sharedPreferences.getString(key, defaultValue) ?: defaultValue
-    }
+    ): String = sharedPreferences.getString(key, defaultValue) ?: defaultValue
 
     override fun putLong(
         key: String,
@@ -35,9 +33,7 @@ abstract class BasePreferences(
     override fun getLong(
         key: String,
         defaultValue: Long,
-    ): Long {
-        return sharedPreferences.getLong(key, defaultValue)
-    }
+    ): Long = sharedPreferences.getLong(key, defaultValue)
 
     override fun clear() {
         sharedPreferences.edit { clear() }

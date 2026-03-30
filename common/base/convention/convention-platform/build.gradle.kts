@@ -28,6 +28,7 @@ dependencies {
     compileOnly(platformLibs.kotlin.gradlePlugin)
     compileOnly(platformLibs.ksp.gradlePlugin)
     compileOnly(platformLibs.room.gradlePlugin)
+    compileOnly(platformLibs.spotless.gradlePlugin)
     // Workaround for version catalog working inside precompiled scripts
     // Issue - https://github.com/gradle/gradle/issues/15383
     implementation(files(platformLibs.javaClass.superclass.protectionDomain.codeSource.location))

@@ -9,15 +9,13 @@ object PagingUtils {
         enablePlaceHolders: Boolean = true,
         initialLoadSize: Int = pageSize * 3,
         maxSize: Int = Int.MAX_VALUE,
-        jumpThreshold: Int = Int.MIN_VALUE
-    ): PagingConfig {
-        return PagingConfig(
-            pageSize = pageSize,
-            prefetchDistance = prefetchDistance,
-            enablePlaceholders = enablePlaceHolders,
-            initialLoadSize = initialLoadSize,
-            maxSize = maxSize,
-            jumpThreshold = jumpThreshold,
-        )
-    }
+        jumpThreshold: Int = Int.MIN_VALUE,
+    ): PagingConfig = PagingConfig(
+        pageSize = pageSize,
+        prefetchDistance = prefetchDistance,
+        enablePlaceholders = enablePlaceHolders,
+        initialLoadSize = initialLoadSize,
+        maxSize = maxSize,
+        jumpThreshold = jumpThreshold,
+    )
 }
