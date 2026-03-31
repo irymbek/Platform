@@ -17,12 +17,12 @@ internal fun ApiErrorModel.toUserMessage(): String {
     if (!message.isNullOrBlank()) return message
 
     errors?.let { element ->
-        return when {
-            element is JsonArray -> {
+        return when (element) {
+            is JsonArray -> {
                 element.mapNotNull { it.jsonPrimitive.contentOrNull }.joinToString("\n")
             }
 
-            element is JsonObject -> {
+            is JsonObject -> {
                 element.values
                     .filterIsInstance<JsonArray>()
                     .flatMap { array -> array.mapNotNull { it.jsonPrimitive.contentOrNull } }
