@@ -34,7 +34,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.slider.AppSli
 
 @Composable
 fun PlayerProgressSlider(
-    player: Player,
+    player: Player?,
     modifier: Modifier = Modifier,
     onInteraction: () -> Unit = {},
     playedColor: Color = MaterialTheme.colorScheme.primary,
@@ -55,12 +55,12 @@ fun PlayerProgressSlider(
 
     LaunchedEffect(player) {
         while (isActive) {
-            duration = player.duration.coerceAtLeast(1L)
-            bufferedPosition = player.bufferedPosition
+            duration = player?.duration?.coerceAtLeast(1L) ?: 1L
+            bufferedPosition = player?.bufferedPosition ?: 0L
             if (!isDragging) {
-                sliderValue = player.currentPosition.toFloat()
+                sliderValue = player?.currentPosition?.toFloat() ?: 0f
             }
-            delay(if (player.isPlaying) 100 else 500)
+            delay(if (player?.isPlaying == true) 100 else 500)
         }
     }
 
@@ -74,7 +74,7 @@ fun PlayerProgressSlider(
                 sliderValue = it
             },
             onValueChangeFinished = {
-                player.seekTo(sliderValue.toLong())
+                player?.seekTo(sliderValue.toLong())
                 isDragging = false
             },
             valueRange = 0f..duration.toFloat(),

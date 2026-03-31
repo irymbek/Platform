@@ -9,6 +9,7 @@ import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.compose.material3.indicator.RemainingDurationText
 import kotlinx.coroutines.CoroutineScope
+import kz.rymbek.platform.common.core.player.ui.base.Constants
 
 @OptIn(UnstableApi::class)
 @Composable
@@ -16,7 +17,7 @@ fun AppRemainingDurationText(
     player: Player?,
     modifier: Modifier = Modifier,
     showNegative: Boolean = false,
-    color: Color = Color.Unspecified,
+    color: Color = Constants.primary,
     scope: CoroutineScope = rememberCoroutineScope(),
 ) {
     RemainingDurationText(

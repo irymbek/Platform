@@ -1,9 +1,12 @@
 package kz.rymbek.platform.common.core.player.ui
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -27,7 +30,6 @@ import androidx.media3.common.Player
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppRow
 import kz.rymbek.platform.common.core.design.foundation.components.iconbutton.AppIconButton
-import kz.rymbek.platform.common.core.design.foundation.components.spacer.AppSpacer
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformAlpha
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformIconSize
@@ -38,6 +40,7 @@ import kz.rymbek.platform.common.core.player.ui.base.button.AppMuteButton
 import kz.rymbek.platform.common.core.player.ui.base.button.AppNextButton
 import kz.rymbek.platform.common.core.player.ui.base.button.AppOrientationButton
 import kz.rymbek.platform.common.core.player.ui.base.button.AppPlayPauseButton
+import kz.rymbek.platform.common.core.player.ui.base.button.AppPlaybackSpeedToggleButton
 import kz.rymbek.platform.common.core.player.ui.base.button.AppPreviousButton
 import kz.rymbek.platform.common.core.player.ui.base.button.AppRepeatButton
 import kz.rymbek.platform.common.core.player.ui.base.button.AppSeekBackButton
@@ -46,186 +49,68 @@ import kz.rymbek.platform.common.core.player.ui.base.button.AppShuffleButton
 import kz.rymbek.platform.common.core.player.ui.base.indicator.AppPositionAndDurationText
 
 @Composable
-private fun TopContent(
-    player: Player,
-    onCloseClick: () -> Unit,
-    modifier: Modifier = Modifier,
+private fun PlayerControlAnimation(
+    visible: Boolean,
+    content: @Composable (AnimatedVisibilityScope.() -> Unit)
 ) {
-    AppRow(
-        modifier = modifier,
-        content = {
-            AppIconButton(
-                icon = PlatformIcons.FilledKeyboardArrowDown,
-                tintIcon = Constants.primary,
-                onClick = onCloseClick
-            )
-
-            val mediaMetadata = rememberMediaMetadata(player)
-
-            AppColumn(
-                content = {
-                    AppText(
-                        text = mediaMetadata.displayTitle.toString(),
-                        style = MaterialTheme.typography.titleMedium,
-                        color = Constants.primary
-                    )
-
-                    AppText(
-                        text = "Эпизод ${mediaMetadata.subtitle}. ${mediaMetadata.title}",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = Constants.primary
-                    )
-                }
-            )
-        }
-    )
-}
-
-@Composable
-private fun CenterContent(
-    modifier: Modifier = Modifier,
-    horizontalArrangement: Arrangement.Horizontal = Arrangement.Center,
-    verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
-    buttons: List<@Composable () -> Unit>,
-) {
-    AppRow(
-        modifier = modifier,
-        horizontalArrangement = horizontalArrangement,
-        verticalAlignment = verticalAlignment,
-        content = {
-            buttons.forEachIndexed { index, button ->
-                button()
-                if (index < buttons.lastIndex) {
-                    AppSpacer(
-                        modifier = Modifier
-                            .size(PlatformPaddings.content)
-                    )
-                }
-            }
-        }
-    )
-}
-
-@Composable
-private fun BottomContent(
-    modifier: Modifier = Modifier,
-    content: @Composable (ColumnScope.() -> Unit)
-) {
-    AppColumn(
-        modifier = modifier,
+    AnimatedVisibility(
+        visible = visible,
+        enter = fadeIn(),
+        exit = fadeOut(),
         content = content
     )
 }
 
 @Composable
-internal fun BoxScope.Controls(
-    player: Player,
-    onInteraction: () -> Unit,
+internal fun BoxScope.TopContent(
+    player: Player?,
+    showControls: Boolean,
     onCloseClick: () -> Unit,
+    onInteraction: () -> Unit,
 ) {
-    val buttonModifier = Modifier
-        .size(50.dp)
-        .background(
-            color = Constants.background.copy(alpha = PlatformAlpha.OVERLAY),
-            shape = CircleShape
-        )
-
-    TopContent(
-        player = player,
-        onCloseClick = onCloseClick,
-        modifier = Modifier
-            .fillMaxWidth()
-            .align(Alignment.TopCenter)
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Constants.background.copy(alpha = PlatformAlpha.SECONDARY),
-                        Constants.background.copy(alpha = PlatformAlpha.TRANSPARENT)
-                    )
-                )
-            )
-            .onInteractionTap(onInteraction)
-            .padding(
-                top = PlatformPaddings.default,
-                start = PlatformPaddings.default,
-                end = PlatformPaddings.default
-            ),
-    )
-
-    CenterContent(
-        modifier = Modifier
-            .align(Alignment.Center)
-            .onInteractionTap(onInteraction),
-        buttons =
-        listOf(
-            { AppPreviousButton(player, buttonModifier) },
-            { AppSeekBackButton(player, buttonModifier) },
-            {
-                AppPlayPauseButton(
-                    player = player,
-                    modifier = Modifier
-                        .size(PlatformIconSize.xxl)
-                        .background(
-                            color = Constants.background.copy(alpha = PlatformAlpha.OVERLAY),
-                            shape = CircleShape
-                        )
-                )
-            },
-            { AppSeekForwardButton(player, buttonModifier) },
-            { AppNextButton(player, buttonModifier) },
-        ),
-    )
-
-    BottomContent(
-        modifier = Modifier
-            .fillMaxWidth()
-            .align(Alignment.BottomCenter)
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Constants.background.copy(alpha = PlatformAlpha.TRANSPARENT),
-                        Constants.background.copy(alpha = PlatformAlpha.SCRIM)
-                    )
-                )
-            )
-            .onInteractionTap(onInteraction)
-            .padding(
-                bottom = PlatformPaddings.default,
-                start = PlatformPaddings.default,
-                end = PlatformPaddings.default
-            ),
+    PlayerControlAnimation(
+        visible = showControls,
         content = {
             AppRow(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = PlatformPaddings.default),
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ) {
-                AppPositionAndDurationText(player)
-                AppOrientationButton()
-            }
-
-            PlayerProgressSlider(
-                player = player,
-                modifier = Modifier.fillMaxWidth(),
-                onInteraction = onInteraction
-            )
-
-            AppRow(
-                content = {
-                    AppRow(
-                        modifier = Modifier
-                            .background(
-                                color = Constants.background.copy(alpha = PlatformAlpha.OVERLAY),
-                                shape = MaterialTheme.shapes.small,
+                    .align(Alignment.TopCenter)
+                    .background(
+                        brush = Brush.verticalGradient(
+                            colors = listOf(
+                                Constants.background.copy(alpha = PlatformAlpha.SECONDARY),
+                                Constants.background.copy(alpha = PlatformAlpha.TRANSPARENT),
                             )
-                            .padding(start = PlatformPaddings.element),
-                        verticalAlignment = Alignment.CenterVertically,
+                        )
+                    )
+                    .onInteractionTap(onInteraction)
+                    .padding(
+                        top = PlatformPaddings.default,
+                        start = PlatformPaddings.default,
+                        end = PlatformPaddings.default,
+                    ),
+                content = {
+                    AppIconButton(
+                        icon = PlatformIcons.FilledKeyboardArrowDown,
+                        tintIcon = Constants.primary,
+                        onClick = onCloseClick
+                    )
+
+                    val mediaMetadata = rememberMediaMetadata(player)
+
+                    AppColumn(
                         content = {
-                            PlaybackSpeedPopUpButton(player)
-                            AppShuffleButton(player)
-                            AppRepeatButton(player)
-                            AppMuteButton(player)
+                            AppText(
+                                text = mediaMetadata?.displayTitle.toString(),
+                                style = MaterialTheme.typography.titleMedium,
+                                color = Constants.primary
+                            )
+
+                            AppText(
+                                text = "Эпизод ${mediaMetadata?.subtitle}. ${mediaMetadata?.title}",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = Constants.primary
+                            )
                         }
                     )
                 }
@@ -235,9 +120,126 @@ internal fun BoxScope.Controls(
 }
 
 @Composable
-fun rememberMediaMetadata(player: Player): MediaMetadata {
+internal fun BoxScope.CenterContent(
+    player: Player?,
+    showControls: Boolean,
+    onInteraction: () -> Unit,
+) {
+    val buttonModifier = Modifier
+        .size(50.dp)
+        .background(
+            color = Constants.background.copy(alpha = PlatformAlpha.OVERLAY),
+            shape = CircleShape,
+        )
+
+    PlayerControlAnimation(
+        visible = showControls,
+        content = {
+            AppRow(
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .onInteractionTap(onInteraction),
+                horizontalArrangement = Arrangement.spacedBy(
+                    PlatformPaddings.section,
+                    Alignment.CenterHorizontally
+                ),
+                verticalAlignment = Alignment.CenterVertically,
+                content = {
+                    AppPreviousButton(player, buttonModifier)
+
+                    AppSeekBackButton(player, buttonModifier)
+
+                    AppPlayPauseButton(
+                        player = player,
+                        modifier = Modifier
+                            .size(PlatformIconSize.xxl)
+                            .background(
+                                color = Constants.background.copy(alpha = PlatformAlpha.OVERLAY),
+                                shape = CircleShape
+                            )
+                    )
+
+                    AppSeekForwardButton(player, buttonModifier)
+
+                    AppNextButton(player, buttonModifier)
+                }
+            )
+        }
+    )
+}
+
+@Composable
+internal fun BoxScope.BottomContent(
+    player: Player?,
+    showControls: Boolean,
+    onInteraction: () -> Unit,
+) {
+    PlayerControlAnimation(
+        visible = showControls,
+        content = {
+            AppColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter)
+                    .background(
+                        brush = Brush.verticalGradient(
+                            colors = listOf(
+                                Constants.background.copy(alpha = PlatformAlpha.TRANSPARENT),
+                                Constants.background.copy(alpha = PlatformAlpha.SCRIM),
+                            )
+                        )
+                    )
+                    .onInteractionTap(onInteraction)
+                    .padding(
+                        bottom = PlatformPaddings.default,
+                        start = PlatformPaddings.default,
+                        end = PlatformPaddings.default,
+                    ),
+            ) {
+                AppRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = PlatformPaddings.default),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                ) {
+                    AppPositionAndDurationText(player)
+                    AppOrientationButton()
+                }
+
+                PlayerProgressSlider(
+                    player = player,
+                    modifier = Modifier.fillMaxWidth(),
+                    onInteraction = onInteraction
+                )
+
+                AppRow(
+                    content = {
+                        AppRow(
+                            modifier = Modifier
+                                .background(
+                                    color = Constants.background.copy(alpha = PlatformAlpha.OVERLAY),
+                                    shape = MaterialTheme.shapes.small,
+                                )
+                                .padding(start = PlatformPaddings.element),
+                            verticalAlignment = Alignment.CenterVertically,
+                            content = {
+                                AppPlaybackSpeedToggleButton(player)
+                                AppShuffleButton(player)
+                                AppRepeatButton(player)
+                                AppMuteButton(player)
+                            }
+                        )
+                    }
+                )
+            }
+        }
+    )
+}
+
+@Composable
+fun rememberMediaMetadata(player: Player?): MediaMetadata? {
     var metadata by remember {
-        mutableStateOf(player.mediaMetadata)
+        mutableStateOf(player?.mediaMetadata)
     }
 
     DisposableEffect(player) {
@@ -247,8 +249,8 @@ fun rememberMediaMetadata(player: Player): MediaMetadata {
             }
         }
 
-        player.addListener(listener)
-        onDispose { player.removeListener(listener) }
+        player?.addListener(listener)
+        onDispose { player?.removeListener(listener) }
     }
 
     return metadata

@@ -1,9 +1,6 @@
 package kz.rymbek.platform.common.core.player.ui
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -23,15 +20,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.media3.common.Player
 import androidx.media3.ui.compose.SURFACE_TYPE_SURFACE_VIEW
 import androidx.media3.ui.compose.SurfaceType
+import androidx.media3.ui.compose.material3.Player
 import kotlinx.coroutines.delay
 import kz.rymbek.platform.common.core.activity.ActivityUtils
 import kz.rymbek.platform.common.core.activity.rememberActivityUtils
-import kz.rymbek.platform.common.core.design.foundation.components.container.AppBox
-import kz.rymbek.platform.common.core.player.ui.base.AppContentFrame
 
 @Composable
-fun AppPlayer(
-    player: Player,
+fun FullPlayer(
+    player: Player?,
     modifier: Modifier = Modifier,
     surfaceType: @SurfaceType Int = SURFACE_TYPE_SURFACE_VIEW,
     contentScale: ContentScale = ContentScale.Fit,
@@ -47,7 +43,7 @@ fun AppPlayer(
 ) {
     var showControls by remember { mutableStateOf(false) }
     var lastInteraction by remember { mutableLongStateOf(0L) }
-    var isPlaying by remember { mutableStateOf(player.isPlaying) }
+    var isPlaying by remember { mutableStateOf(player?.isPlaying == true) }
 
     BackHandler {
         if (showControls) {
@@ -65,8 +61,8 @@ fun AppPlayer(
                 isPlaying = playing
             }
         }
-        player.addListener(listener)
-        onDispose { player.removeListener(listener) }
+        player?.addListener(listener)
+        onDispose { player?.removeListener(listener) }
     }
 
     LaunchedEffect(lastInteraction, isPlaying) {
@@ -78,45 +74,46 @@ fun AppPlayer(
 
     val onInteraction = { lastInteraction = System.currentTimeMillis() }
 
-    AppBox(
-        modifier = Modifier
-            .background(Color.Black),
-        content = {
-            AppContentFrame(
+    Player(
+        player = player,
+        modifier = modifier
+            .background(Color.Black)
+            .clickable(
+            interactionSource = remember { MutableInteractionSource() },
+            indication = null
+        ) {
+            showControls = !showControls
+            onInteraction()
+        },
+        surfaceType = surfaceType,
+        contentScale = contentScale,
+        keepContentOnReset = keepContentOnReset,
+        shutter = shutter,
+        showControls = showControls,
+        topControls = { _, isVisible ->
+            TopContent(
                 player = player,
-                modifier = modifier
-                    .clickable(
-                        interactionSource = remember { MutableInteractionSource() },
-                        indication = null
-                    ) {
-                        showControls = !showControls
-                        onInteraction()
-                    },
-                surfaceType = surfaceType,
-                contentScale = contentScale,
-                keepContentOnReset = keepContentOnReset,
-                shutter = shutter,
+                showControls = isVisible,
+                onCloseClick = {
+                    showControls = false
+                    activityUtils.enterInPipMode()
+                },
+                onInteraction = onInteraction
             )
-            AnimatedVisibility(
-                visible = showControls,
-                enter = fadeIn(),
-                exit = fadeOut(),
-                content = {
-                    AppBox(
-                        modifier = Modifier
-                            .fillMaxSize()
-                    ) {
-                        Controls(
-                            player = player,
-                            onInteraction = onInteraction,
-                            onCloseClick = {
-                                showControls = false
-                                activityUtils.enterInPipMode()
-                            }
-                        )
-                    }
-                }
+        },
+        centerControls = { _, isVisible ->
+            CenterContent(
+                player = player,
+                showControls = isVisible,
+                onInteraction = onInteraction,
             )
-        }
+        },
+        bottomControls = { _, isVisible ->
+            BottomContent(
+                player = player,
+                showControls = isVisible,
+                onInteraction = onInteraction,
+            )
+        },
     )
 }
