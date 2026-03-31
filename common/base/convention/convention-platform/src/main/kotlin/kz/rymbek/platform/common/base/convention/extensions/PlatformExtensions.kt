@@ -1,6 +1,5 @@
 package kz.rymbek.platform.common.base.convention.extensions
 
-import com.android.build.api.dsl.CommonExtension
 import org.gradle.accessors.dm.LibrariesForPlatformLibs
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
