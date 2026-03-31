@@ -103,10 +103,12 @@ object KtorHttpClientHelper {
 
     fun HttpClientConfig<*>.installDefaultRequest(
         hostProvider: () -> String,
+        urlProtocol: URLProtocol = URLProtocol.HTTPS,
     ) {
         install(DefaultRequest) {
             url {
                 host = hostProvider()
+                protocol = urlProtocol
             }
             contentType(ContentType.Application.Json)
         }

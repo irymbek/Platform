@@ -237,7 +237,9 @@ internal fun BoxScope.BottomContent(
 }
 
 @Composable
-fun rememberMediaMetadata(player: Player?): MediaMetadata? {
+fun rememberMediaMetadata(
+    player: Player?
+): MediaMetadata? {
     var metadata by remember(player) {
         mutableStateOf(player?.mediaMetadata)
     }
