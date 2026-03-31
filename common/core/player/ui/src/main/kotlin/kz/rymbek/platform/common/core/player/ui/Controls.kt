@@ -238,7 +238,7 @@ internal fun BoxScope.BottomContent(
 
 @Composable
 fun rememberMediaMetadata(player: Player?): MediaMetadata? {
-    var metadata by remember {
+    var metadata by remember(player) {
         mutableStateOf(player?.mediaMetadata)
     }
 
@@ -248,7 +248,6 @@ fun rememberMediaMetadata(player: Player?): MediaMetadata? {
                 metadata = mediaMetadata
             }
         }
-
         player?.addListener(listener)
         onDispose { player?.removeListener(listener) }
     }
@@ -256,13 +255,14 @@ fun rememberMediaMetadata(player: Player?): MediaMetadata? {
     return metadata
 }
 
-fun Modifier.onInteractionTap(onInteraction: () -> Unit): Modifier = this.pointerInput(Unit) {
-    awaitPointerEventScope {
-        while (true) {
-            val event = awaitPointerEvent(PointerEventPass.Initial)
-            if (event.changes.any { it.changedToDown() }) {
-                onInteraction()
+fun Modifier.onInteractionTap(onInteraction: () -> Unit): Modifier =
+    this.pointerInput(onInteraction) {
+        awaitPointerEventScope {
+            while (true) {
+                val event = awaitPointerEvent(PointerEventPass.Initial)
+                if (event.changes.any { it.changedToDown() }) {
+                    onInteraction()
+                }
             }
         }
     }
-}

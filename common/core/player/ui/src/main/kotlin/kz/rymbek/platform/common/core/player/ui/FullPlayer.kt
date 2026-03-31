@@ -43,7 +43,7 @@ fun FullPlayer(
 ) {
     var showControls by remember { mutableStateOf(false) }
     var lastInteraction by remember { mutableLongStateOf(0L) }
-    var isPlaying by remember { mutableStateOf(player?.isPlaying == true) }
+    var isPlaying by remember(player) { mutableStateOf(player?.isPlaying == true) }
 
     BackHandler {
         if (showControls) {
@@ -72,7 +72,9 @@ fun FullPlayer(
         }
     }
 
-    val onInteraction = { lastInteraction = System.currentTimeMillis() }
+    val onInteraction = remember {
+        { lastInteraction = System.currentTimeMillis() }
+    }
 
     Player(
         player = player,
