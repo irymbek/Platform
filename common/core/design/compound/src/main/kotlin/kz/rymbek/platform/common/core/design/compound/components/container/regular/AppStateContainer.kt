@@ -17,8 +17,8 @@ import kz.rymbek.platform.common.core.design.compound.components.container.pagin
 import kz.rymbek.platform.common.core.design.compound.components.container.paging.InitialLoadingContent
 import kz.rymbek.platform.common.core.design.compound.components.container.paging.ScreenEmptyContent
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppBox
-import kz.rymbek.platform.common.core.design.foundation.components.progress_indicator.AppLinearProgressIndicator
-import kz.rymbek.platform.common.core.design.foundation.components.pull_refresh.AppPullToRefreshBox
+import kz.rymbek.platform.common.core.design.foundation.components.progressindicator.AppLinearProgressIndicator
+import kz.rymbek.platform.common.core.design.foundation.components.pullrefresh.AppPullToRefreshBox
 import kz.rymbek.platform.common.core.design.foundation.components.snackbar.AppSnackbarState
 
 @Composable
@@ -102,7 +102,6 @@ fun RemoteErrorEffect(
 private fun BoxScope.RemoteLoadingOverlay(
     isRefreshing: Boolean
 ) {
-
     AnimatedVisibility(
         visible = isRefreshing,
         enter = fadeIn() + expandVertically(),

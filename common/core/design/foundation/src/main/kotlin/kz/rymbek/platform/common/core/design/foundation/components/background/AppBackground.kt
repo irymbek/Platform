@@ -108,4 +108,3 @@ fun GradientBackgroundDefault() {
         AppGradientBackground(Modifier.size(100.dp), content = {})
     }
 }
-

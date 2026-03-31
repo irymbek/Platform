@@ -38,4 +38,3 @@ fun AppAssistChip(
         interactionSource = interactionSource,
     )
 }
-

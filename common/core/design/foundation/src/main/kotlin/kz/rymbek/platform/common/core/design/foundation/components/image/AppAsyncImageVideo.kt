@@ -33,7 +33,7 @@ fun AppAsyncImageVideo(
     onSuccess: ((State.Success) -> Unit)? = null,
     onError: ((State.Error) -> Unit)? = null,
     alignment: Alignment = Alignment.Center,
-    contentScale: ContentScale = ContentScale.Crop, //Fit
+    contentScale: ContentScale = ContentScale.Crop, // Fit
     alpha: Float = DefaultAlpha,
     colorFilter: ColorFilter? = null,
     filterQuality: FilterQuality = DefaultFilterQuality,

@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import kz.rymbek.platform.common.core.activity.rememberActivityUtils
-import kz.rymbek.platform.common.core.design.foundation.components.icon_button.AppIconButton
+import kz.rymbek.platform.common.core.design.foundation.components.iconbutton.AppIconButton
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 import kz.rymbek.platform.common.core.player.ui.base.Constants
 

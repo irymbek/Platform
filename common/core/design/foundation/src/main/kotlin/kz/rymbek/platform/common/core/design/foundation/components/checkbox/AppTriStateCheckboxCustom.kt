@@ -17,7 +17,9 @@ import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
 import kz.rymbek.platform.common.core.design.foundation.theme.color.custom.colorSchemeCustom
 
 enum class CheckboxState {
-    ERROR, SUCCESS, NEUTRAL
+    ERROR,
+    SUCCESS,
+    NEUTRAL
 }
 
 @Composable

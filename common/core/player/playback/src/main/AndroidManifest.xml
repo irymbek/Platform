@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
     <application>
         <service
-            android:name=".media_session.AppMediaSessionService"
+            android:name=".mediasession.AppMediaSessionService"
             android:foregroundServiceType="mediaPlayback"
             android:exported="true">
             <intent-filter>

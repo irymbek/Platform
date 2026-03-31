@@ -26,7 +26,7 @@ import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppRow
-import kz.rymbek.platform.common.core.design.foundation.components.icon_button.AppIconButton
+import kz.rymbek.platform.common.core.design.foundation.components.iconbutton.AppIconButton
 import kz.rymbek.platform.common.core.design.foundation.components.spacer.AppSpacer
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformAlpha
@@ -157,23 +157,23 @@ internal fun BoxScope.Controls(
             .align(Alignment.Center)
             .onInteractionTap(onInteraction),
         buttons =
-            listOf(
-                { AppPreviousButton(player, buttonModifier) },
-                { AppSeekBackButton(player, buttonModifier) },
-                {
-                    AppPlayPauseButton(
-                        player = player,
-                        modifier = Modifier
-                            .size(PlatformIconSize.xxl)
-                            .background(
-                                color = Constants.background.copy(alpha = PlatformAlpha.OVERLAY),
-                                shape = CircleShape
-                            )
-                    )
-                },
-                { AppSeekForwardButton(player, buttonModifier) },
-                { AppNextButton(player, buttonModifier) },
-            ),
+        listOf(
+            { AppPreviousButton(player, buttonModifier) },
+            { AppSeekBackButton(player, buttonModifier) },
+            {
+                AppPlayPauseButton(
+                    player = player,
+                    modifier = Modifier
+                        .size(PlatformIconSize.xxl)
+                        .background(
+                            color = Constants.background.copy(alpha = PlatformAlpha.OVERLAY),
+                            shape = CircleShape
+                        )
+                )
+            },
+            { AppSeekForwardButton(player, buttonModifier) },
+            { AppNextButton(player, buttonModifier) },
+        ),
     )
 
     BottomContent(

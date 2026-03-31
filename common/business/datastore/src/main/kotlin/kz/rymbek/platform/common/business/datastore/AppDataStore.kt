@@ -26,7 +26,6 @@ internal class AppDataStore(
         }
     }
 
-
     override fun getThemeBrand(): Flow<AppThemeBrand> {
         return getValue(
             DataStoreConstants.THEME_KEY,

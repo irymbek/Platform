@@ -140,8 +140,11 @@ fun <Model> Flow<ResultFlow<Model>>.onSuccessUnit(
         }
 
         is Error -> result
+
         Loading -> Loading
+
         Initial -> Initial
+
         Empty -> Empty
     }
 }
@@ -185,18 +188,20 @@ inline fun <T> ResultFlow<T>.onMessage(
         is Success -> {
             if (successMessage != null) {
                 onMessage(successMessage)
-            }
-            else if (data is String && data.isNotEmpty()) {
+            } else if (data is String && data.isNotEmpty()) {
                 onMessage(data)
             }
         }
+
         is Error -> onMessage(exception.message ?: "Ошибка")
+
         else -> {}
     }
     return this
 }
 
 /* ---- Convenience: map Flow<T?> -> ResultFlow<T> ---- */
+
 /**
  * Преобразует Flow<T?> в Flow<ResultFlow<T>>:
  * - onStart -> emit(Loading)

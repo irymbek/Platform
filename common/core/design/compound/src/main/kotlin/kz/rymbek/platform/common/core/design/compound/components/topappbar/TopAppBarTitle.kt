@@ -1,0 +1,19 @@
+package kz.rymbek.platform.common.core.design.compound.components.topappbar
+
+import androidx.compose.foundation.basicMarquee
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
+
+@Composable
+fun TopAppBarTitle(
+    text: String,
+    modifier: Modifier = Modifier,
+) {
+    AppText(
+        modifier = modifier.basicMarquee(),
+        text = text,
+        style = MaterialTheme.typography.titleMedium,
+    )
+}

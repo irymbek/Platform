@@ -38,7 +38,6 @@ fun AppExtendedFloatingActionButton(
     )
 }
 
-
 @Composable
 fun AppExtendedFloatingActionButton(
     text: String,

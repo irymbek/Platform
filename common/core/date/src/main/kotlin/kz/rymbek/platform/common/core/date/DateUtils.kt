@@ -61,36 +61,38 @@ object DateUtils {
     }
 
     fun LocalDateTime?.toFormattedString(): String =
-        this?.format(LocalDateTime.Format {
-            year()
-            char('-')
-            monthNumber()
-            char('-')
-            day(padding = Padding.ZERO)
+        this?.format(
+            LocalDateTime.Format {
+                year()
+                char('-')
+                monthNumber()
+                char('-')
+                day(padding = Padding.ZERO)
 
-            char('/')
+                char('/')
 
-            hour()
-            char(':')
-            minute()
-            char(':')
-            second()
-        }).orEmpty()
+                hour()
+                char(':')
+                minute()
+                char(':')
+                second()
+            }
+        ).orEmpty()
 
     fun Instant?.toFormattedString(): String =
         this?.toLocalDateTime(currentTimeZone).toFormattedString()
 
     fun Instant?.toFormattedMonth(): String = this
-            ?.toLocalDateTime(currentTimeZone)
-            ?.format(
-                LocalDateTime.Format {
-                    day(padding = Padding.NONE)
-                    char(' ')
-                    monthName(RUSSIAN_ABBREVIATED)
-                    char(' ')
-                    year()
-                }
-            ).orEmpty()
+        ?.toLocalDateTime(currentTimeZone)
+        ?.format(
+            LocalDateTime.Format {
+                day(padding = Padding.NONE)
+                char(' ')
+                monthName(RUSSIAN_ABBREVIATED)
+                char(' ')
+                year()
+            }
+        ).orEmpty()
 
     /*fun Instant?.toRelativeString(): String {
         if (this == null) return ""

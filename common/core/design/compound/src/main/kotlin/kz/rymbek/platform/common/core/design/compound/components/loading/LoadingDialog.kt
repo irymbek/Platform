@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import kz.rymbek.platform.common.core.design.foundation.components.card.AppFilledCard
 import kz.rymbek.platform.common.core.design.foundation.components.dialog.AppDialog
-import kz.rymbek.platform.common.core.design.foundation.components.progress_indicator.AppCircularProgressIndicator
+import kz.rymbek.platform.common.core.design.foundation.components.progressindicator.AppCircularProgressIndicator
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 

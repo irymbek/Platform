@@ -12,7 +12,7 @@ internal fun Project.configureSpotlessForAndroid() {
     applyPlugin(platformLibs.plugins.spotless)
     extensions.configure<SpotlessExtension> {
         configureKotlin(this@configureSpotlessForAndroid)
-        configureKts(this@configureSpotlessForAndroid)
+        configureKts()
         format("xml") {
             target("src/**/*.xml")
             //licenseHeaderFile(rootDir.resolve("spotless/copyright.xml"), "(<[^!?])")
@@ -26,7 +26,7 @@ internal fun Project.configureSpotlessForJvm() {
     applyPlugin(platformLibs.plugins.spotless)
     extensions.configure<SpotlessExtension> {
         configureKotlin(this@configureSpotlessForJvm)
-        configureKts(this@configureSpotlessForJvm)
+        configureKts()
     }
 }
 
@@ -39,7 +39,7 @@ internal fun Project.configureSpotlessForRootProject() {
         }
         format("kts") {
             target("*.kts", "build-logic/**/*.kts")
-            applyKtsSettings(this@configureSpotlessForRootProject)
+            applyKtsSettings()
         }
     }
 }
@@ -57,10 +57,10 @@ private fun SpotlessExtension.configureKotlin(project: Project) {
     }
 }
 
-private fun SpotlessExtension.configureKts(project: Project) {
+private fun SpotlessExtension.configureKts() {
     format("kts") {
         target("src/**/*.kts", "*.kts")
-        applyKtsSettings(project)
+        applyKtsSettings()
     }
 }
 
@@ -75,7 +75,7 @@ private fun KotlinExtension.applyKotlinSettings(project: Project) {
     endWithNewline()
 }
 
-private fun FormatExtension.applyKtsSettings(project: Project) {
+private fun FormatExtension.applyKtsSettings() {
     /*licenseHeaderFile(
         project.rootDir.resolve("spotless/copyright.kts"),
         "(^(?![\\/ ]\\*).*$)" // Регулярка, чтобы вставить после возможного заголовка

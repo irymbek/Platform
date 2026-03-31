@@ -49,6 +49,7 @@ internal fun BaseAppDialogStateScaffold(
             content(paddingValues)
             when (state) {
                 is ResultFlow.Loading -> LoadingDialog(message = message)
+
                 is ResultFlow.Error -> {
                     appSnackbarState.showSnackbar(
                         message = "Ошибка: ${state.exception.message}",

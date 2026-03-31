@@ -38,7 +38,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.card.AppFille
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.row.AppLazyRow
-import kz.rymbek.platform.common.core.design.foundation.components.segmented_button.AppSingleChoiceSegmentedButtonRow
+import kz.rymbek.platform.common.core.design.foundation.components.segmentedbutton.AppSingleChoiceSegmentedButtonRow
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
@@ -60,7 +60,7 @@ internal fun SettingsThemeContent(
             .fillMaxWidth()
             .padding(scaffoldPadding)
             .padding(vertical = PlatformPaddings.default),
-        //.verticalScroll(rememberScrollState()),
+        // .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(PlatformPaddings.default),
         content = {
             AppText(
@@ -71,7 +71,7 @@ internal fun SettingsThemeContent(
                 text = "Тема",
                 style = MaterialTheme.typography.titleMedium,
             )
-            //ThemeItem()
+            // ThemeItem()
 
             AppSingleChoiceSegmentedButtonRow(
                 modifier = Modifier
@@ -253,7 +253,6 @@ fun ThemePreviewCard(
                                     )
                                 }
 
-
                                 // Галочка, если элемент выбран
                                 if (isSelected) {
                                     AppIcon(
@@ -279,7 +278,6 @@ fun ThemePreviewCard(
         }
     )
 }
-
 
 @Preview(showBackground = true)
 @Composable

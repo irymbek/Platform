@@ -43,7 +43,9 @@ fun <T> FilterSection(
                                         modifier = Modifier.size(FilterChipDefaults.IconSize)
                                     )
                                 }
-                            } else null
+                            } else {
+                                null
+                            }
                         )
                     }
                 }

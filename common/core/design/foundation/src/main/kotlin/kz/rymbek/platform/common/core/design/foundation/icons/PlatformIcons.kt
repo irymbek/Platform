@@ -59,5 +59,4 @@ object PlatformIcons {
 
     val FilledMenu = Icons.Filled.Menu
     val OutlinedMenu = Icons.Outlined.Menu
-
 }

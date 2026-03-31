@@ -36,4 +36,3 @@ fun AppScaffold(
         content = content,
     )
 }
-

@@ -20,6 +20,10 @@ class LibraryPlugin : Plugin<Project> {
                 configureKotlinAndroid(this)
                 testOptions.targetSdk = platformLibs.versions.targetSdk.get().toInt()
                 testOptions.animationsDisabled = true
+
+                resourcePrefix =
+                    path.split("""\W""".toRegex()).drop(1).distinct().joinToString(separator = "_")
+                        .lowercase() + "_"
             }
 
             extensions.configure<LibraryAndroidComponentsExtension> {

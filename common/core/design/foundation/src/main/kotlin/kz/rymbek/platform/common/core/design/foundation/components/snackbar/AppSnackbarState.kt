@@ -33,7 +33,6 @@ class AppSnackbarState(
 
             when (result) {
                 SnackbarResult.Dismissed -> {
-
                 }
 
                 SnackbarResult.ActionPerformed -> {

@@ -16,7 +16,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import kotlinx.coroutines.launch
-import kz.rymbek.platform.common.core.design.foundation.components.icon_button.AppFilledTonalIconButton
+import kz.rymbek.platform.common.core.design.foundation.components.iconbutton.AppFilledTonalIconButton
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformIconSize
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons

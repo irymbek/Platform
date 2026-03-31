@@ -41,8 +41,11 @@ fun <PARENT, CHILD> AppExpandableLazyColumn(
 
                 item(key = "parent_$parentId") {
                     header(parent, isExpanded) {
-                        if (isExpanded) expandedIds.remove(parentId)
-                        else expandedIds.add(parentId)
+                        if (isExpanded) {
+                            expandedIds.remove(parentId)
+                        } else {
+                            expandedIds.add(parentId)
+                        }
                     }
                 }
 

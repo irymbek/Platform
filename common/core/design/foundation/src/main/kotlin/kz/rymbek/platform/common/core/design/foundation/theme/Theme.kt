@@ -68,8 +68,11 @@ fun AppTheme(
     }
 
     val colorsPaletteCustom =
-        if (isDarkTheme) CustomColorScheme.darkScheme
-        else CustomColorScheme.lightScheme
+        if (isDarkTheme) {
+            CustomColorScheme.darkScheme
+        } else {
+            CustomColorScheme.lightScheme
+        }
 
     CompositionLocalProvider(
         LocalGradientColors provides gradientColors,

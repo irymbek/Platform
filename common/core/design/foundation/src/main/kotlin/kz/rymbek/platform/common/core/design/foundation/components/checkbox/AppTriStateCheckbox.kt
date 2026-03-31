@@ -28,7 +28,6 @@ fun AppTriStateCheckbox(
     )
 }
 
-
 @Composable
 fun rememberCheckBoxState(
     isChecked: Boolean? = null,

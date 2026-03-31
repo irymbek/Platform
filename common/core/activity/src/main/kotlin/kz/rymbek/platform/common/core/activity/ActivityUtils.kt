@@ -96,7 +96,7 @@ class ActivityUtils(
 
     fun toggleOrientation() {
         val isLandscape = activity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-        if(isLandscape) {
+        if (isLandscape) {
             setOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         } else {
             setOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)

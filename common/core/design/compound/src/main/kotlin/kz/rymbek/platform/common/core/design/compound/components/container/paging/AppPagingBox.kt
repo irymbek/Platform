@@ -25,8 +25,8 @@ import kz.rymbek.platform.common.core.design.foundation.components.button.base.B
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppBox
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppRow
-import kz.rymbek.platform.common.core.design.foundation.components.progress_indicator.AppCircularProgressIndicator
-import kz.rymbek.platform.common.core.design.foundation.components.pull_refresh.AppPullToRefreshBox
+import kz.rymbek.platform.common.core.design.foundation.components.progressindicator.AppCircularProgressIndicator
+import kz.rymbek.platform.common.core.design.foundation.components.pullrefresh.AppPullToRefreshBox
 import kz.rymbek.platform.common.core.design.foundation.components.snackbar.AppSnackbarState
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformIconSize
@@ -103,6 +103,7 @@ fun LazyListScope.pagingAppendItem(
         state.isAppendLoading -> item(key = "paging_append_loading") {
             AppendLoadingContent()
         }
+
         state.appendError != null -> item(key = "paging_append_error") {
             ErrorContentRow(onClick = onRetry)
         }
@@ -118,6 +119,7 @@ fun LazyGridScope.pagingAppendItem(
         state.isAppendLoading -> item(key = "paging_append_loading", span = span) {
             AppendLoadingContent()
         }
+
         state.appendError != null -> item(key = "paging_append_error", span = span) {
             ErrorContentRow(onClick = onRetry)
         }

@@ -23,7 +23,7 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kz.rymbek.platform.common.core.design.foundation.components.progress_indicator.AppCircularProgressIndicator
+import kz.rymbek.platform.common.core.design.foundation.components.progressindicator.AppCircularProgressIndicator
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformIconSize
 
 @Composable

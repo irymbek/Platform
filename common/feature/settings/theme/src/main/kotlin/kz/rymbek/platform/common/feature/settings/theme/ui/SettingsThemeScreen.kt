@@ -4,10 +4,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
-import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.TopAppBarNavigationIcon
-import kz.rymbek.platform.common.core.design.compound.components.top_app_bar.TopAppBarTitle
+import kz.rymbek.platform.common.core.design.compound.components.topappbar.TopAppBarNavigationIcon
+import kz.rymbek.platform.common.core.design.compound.components.topappbar.TopAppBarTitle
 import kz.rymbek.platform.common.core.design.foundation.components.scaffold.AppScaffold
-import kz.rymbek.platform.common.core.design.foundation.components.top_app_bar.AppCenterAlignedTopAppBar
+import kz.rymbek.platform.common.core.design.foundation.components.topappbar.AppCenterAlignedTopAppBar
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.event.SettingsThemeEvent
 import kz.rymbek.platform.common.feature.settings.theme.viewmodel.state.SettingsThemeUiState
 

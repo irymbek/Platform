@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import kz.rymbek.platform.common.core.architecture.ResultFlow
 import kz.rymbek.platform.common.core.design.foundation.components.container.AppColumn
-import kz.rymbek.platform.common.core.design.foundation.components.progress_indicator.AppLinearProgressIndicator
+import kz.rymbek.platform.common.core.design.foundation.components.progressindicator.AppLinearProgressIndicator
 import kz.rymbek.platform.common.core.design.foundation.components.scaffold.AppScaffold
 import kz.rymbek.platform.common.core.design.foundation.components.snackbar.AppSnackbarHost
 import kz.rymbek.platform.common.core.design.foundation.components.snackbar.AppSnackbarState
