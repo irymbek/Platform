@@ -1,5 +1,7 @@
 package kz.rymbek.platform.common.core.player.ui.base.button
 
+import androidx.compose.material3.IconButtonColors
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -13,14 +15,16 @@ import kz.rymbek.platform.common.core.player.ui.base.Constants
 @UnstableApi
 @Composable
 fun AppMuteButton(
-    player: Player,
+    player: Player?,
     modifier: Modifier = Modifier,
-    tint: Color = Constants.primary,
+    colors: IconButtonColors = IconButtonDefaults.iconButtonColors(),
+    tint: Color = Color.Unspecified,
     onClick: MuteButtonState.() -> Unit = MuteButtonState::onClick,
 ) {
     MuteButton(
         player = player,
         modifier = modifier,
+        colors = colors,
         tint = tint,
         onClick = onClick,
     )
@@ -28,9 +32,10 @@ fun AppMuteButton(
 
 @Composable
 fun AppMuteButton(
-    player: Player,
+    player: Player?,
     modifier: Modifier = Modifier,
     imageVector: MuteButtonState.() -> ImageVector,
+    colors: IconButtonColors = IconButtonDefaults.iconButtonColors(),
     tint: Color = Constants.primary,
     onClick: MuteButtonState.() -> Unit = MuteButtonState::onClick,
 ) {
@@ -38,6 +43,7 @@ fun AppMuteButton(
         player = player,
         modifier = modifier,
         imageVector = imageVector,
+        colors = colors,
         tint = tint,
         onClick = onClick,
     )

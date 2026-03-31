@@ -1,5 +1,7 @@
 package kz.rymbek.platform.common.core.player.ui.base.button
 
+import androidx.compose.material3.IconButtonColors
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -11,14 +13,16 @@ import kz.rymbek.platform.common.core.player.ui.base.Constants
 
 @Composable
 fun AppSeekBackButton(
-    player: Player,
+    player: Player?,
     modifier: Modifier = Modifier,
+    colors: IconButtonColors = IconButtonDefaults.iconButtonColors(),
     tint: Color = Constants.primary,
     onClick: SeekBackButtonState.() -> Unit = SeekBackButtonState::onClick,
 ) {
     SeekBackButton(
         player = player,
         modifier = modifier,
+        colors = colors,
         tint = tint,
         onClick = onClick
     )
@@ -26,9 +30,10 @@ fun AppSeekBackButton(
 
 @Composable
 fun AppSeekBackButton(
-    player: Player,
+    player: Player?,
     modifier: Modifier = Modifier,
     imageVector: SeekBackButtonState.() -> ImageVector,
+    colors: IconButtonColors = IconButtonDefaults.iconButtonColors(),
     tint: Color = Constants.primary,
     onClick: SeekBackButtonState.() -> Unit = SeekBackButtonState::onClick,
 ) {
@@ -36,6 +41,7 @@ fun AppSeekBackButton(
         player = player,
         modifier = modifier,
         imageVector = imageVector,
+        colors = colors,
         tint = tint,
         onClick = onClick
     )
