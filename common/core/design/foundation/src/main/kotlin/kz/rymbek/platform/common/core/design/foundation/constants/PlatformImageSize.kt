@@ -15,4 +15,7 @@ object PlatformImageSize {
 
     /** 128dp — постеры */
     val xl = PlatformSpacing.space_32x
+
+    /** 256dp — большой превью */
+    val xxl = PlatformSpacing.space_64x
 }
