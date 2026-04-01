@@ -18,4 +18,6 @@ object ListStateExtensions {
     fun <T> Set<T>.toggle(value: T): Set<T> = if (contains(value)) this - value else this + value
 
     fun <T> T?.toggle(newValue: T): T? = if (this == newValue) null else newValue
+
+    fun <T> List<T>.toggle(value: T): List<T> = if (contains(value)) this - value else this + value
 }
