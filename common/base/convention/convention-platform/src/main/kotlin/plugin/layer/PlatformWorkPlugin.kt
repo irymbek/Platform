@@ -1,4 +1,4 @@
-package plugin.platform
+package plugin.layer
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.implementation
@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.dependencies
 class PlatformWorkPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            applyPlugin(platformLibs.plugins.convention.library)
+            applyPlugin(platformLibs.plugins.build.library)
             applyPlugin(platformLibs.plugins.dependency.koin)
 
             dependencies {

@@ -149,27 +149,29 @@ spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 
 # Plugins defined by this project
 # Application
-convention-application = { id = "convention.application" }
-convention-application-compose = { id = "convention.application.compose" }
-convention-library = { id = "convention.library" }
-convention-library-compose = { id = "convention.library.compose" }
-convention-jvm = { id = "convention.jvm" }
+build-application = { id = "build.application" }
+build-application-compose = { id = "build.application.compose" }
+build-library = { id = "build.library" }
+build-library-compose = { id = "build.library.compose" }
+build-jvm = { id = "build.jvm" }
 
 # Dependency
 dependency-koin = { id = "dependency.koin" }
 dependency-room = { id = "dependency.room" }
 dependency-serialization = { id = "dependency.serialization" }
 
-# Module Platform
-module-platform-converter = { id = "module.platform.converter" }
-module-platform-database = { id = "module.platform.database" }
-module-platform-data = { id = "module.platform.data" }
-module-platform-datastore = { id = "module.platform.datastore" }
-module-platform-domain = { id = "module.platform.domain" }
-module-platform-feature = { id = "module.platform.feature" }
-module-platform-model-base = { id = "module.platform.model.base" }
-module-platform-model-cache = { id = "module.platform.model.cache" }
-module-platform-model-remote = { id = "module.platform.model.remote" }
-module-platform-model-ui = { id = "module.platform.model.ui" }
-module-platform-network = { id = "module.platform.network" }
-module-platform-work = { id = "module.platform.work" }
+# Layer Platform
+layer-platform-data-api = { id = "layer.platform.data.api" }
+layer-platform-data-impl = { id = "layer.platform.data.impl" }
+layer-platform-feature-api = { id = "layer.platform.feature.api" }
+layer-platform-feature-impl = { id = "layer.platform.feature.impl" }
+layer-platform-model-base = { id = "layer.platform.model.base" }
+layer-platform-model-cache = { id = "layer.platform.model.cache" }
+layer-platform-model-remote = { id = "layer.platform.model.remote" }
+layer-platform-model-ui = { id = "layer.platform.model.ui" }
+layer-platform-converter = { id = "layer.platform.converter" }
+layer-platform-database = { id = "layer.platform.database" }
+layer-platform-datastore = { id = "layer.platform.datastore" }
+layer-platform-domain = { id = "layer.platform.domain" }
+layer-platform-network = { id = "layer.platform.network" }
+layer-platform-work = { id = "layer.platform.work" }

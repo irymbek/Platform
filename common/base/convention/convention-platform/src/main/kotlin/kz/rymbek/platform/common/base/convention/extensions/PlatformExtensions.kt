@@ -16,7 +16,7 @@ val Project.projectJavaVersion: JavaVersion
 val Project.projectJvmTarget: JvmTarget
     get() = JvmTarget.fromTarget(platformLibs.versions.java.get())
 
-fun Project.applyPlugin(plugin: LibrariesForPlatformLibs.ConventionLibraryPluginAccessors) {
+fun Project.applyPlugin(plugin: LibrariesForPlatformLibs.BuildLibraryPluginAccessors) {
     pluginManager.apply(plugin.asProvider().get().pluginId)
 }
 

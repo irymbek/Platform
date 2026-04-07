@@ -1,4 +1,4 @@
-package plugin.convention.jvm
+package plugin.build.jvm
 
 import kz.rymbek.platform.common.base.convention.configureKotlinJvm
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin

@@ -44,32 +44,30 @@ tasks {
 
 gradlePlugin {
     plugins {
-        /*conventionPlugin(
-
-        )*/
+        /** Build ===============================================================================**/
         register("JvmPlugin") {
-            id = platformLibs.plugins.convention.jvm.get().pluginId
-            implementationClass = "plugin.convention.jvm.JvmPlugin"
+            id = platformLibs.plugins.build.jvm.get().pluginId
+            implementationClass = "plugin.build.jvm.JvmPlugin"
         }
         /*========================================================================================*/
         register("ApplicationPlugin") {
-            id = platformLibs.plugins.convention.application.asProvider().get().pluginId
-            implementationClass = "plugin.convention.application.ApplicationPlugin"
+            id = platformLibs.plugins.build.application.asProvider().get().pluginId
+            implementationClass = "plugin.build.application.ApplicationPlugin"
         }
         register("ApplicationComposePlugin") {
-            id = platformLibs.plugins.convention.application.compose.get().pluginId
-            implementationClass = "plugin.convention.application.ApplicationComposePlugin"
+            id = platformLibs.plugins.build.application.compose.get().pluginId
+            implementationClass = "plugin.build.application.ApplicationComposePlugin"
         }
         /*========================================================================================*/
         register("LibraryPlugin") {
-            id = platformLibs.plugins.convention.library.asProvider().get().pluginId
-            implementationClass = "plugin.convention.library.LibraryPlugin"
+            id = platformLibs.plugins.build.library.asProvider().get().pluginId
+            implementationClass = "plugin.build.library.LibraryPlugin"
         }
         register("LibraryComposePlugin") {
-            id = platformLibs.plugins.convention.library.compose.get().pluginId
-            implementationClass = "plugin.convention.library.LibraryComposePlugin"
+            id = platformLibs.plugins.build.library.compose.get().pluginId
+            implementationClass = "plugin.build.library.LibraryComposePlugin"
         }
-        /**======================================================================================**/
+        /** Dependency ==========================================================================**/
         register("DependencyKoinPlugin") {
             id = platformLibs.plugins.dependency.koin.get().pluginId
             implementationClass = "plugin.dependency.DependencyKoinPlugin"
@@ -82,57 +80,66 @@ gradlePlugin {
             id = platformLibs.plugins.dependency.serialization.get().pluginId
             implementationClass = "plugin.dependency.DependencySerialization"
         }
-        /**======================================================================================**/
-        register("PlatformConverterPlugin") {
-            id = platformLibs.plugins.module.platform.converter.get().pluginId
-            implementationClass = "plugin.platform.PlatformConverterPlugin"
+        /** Layer ===============================================================================**/
+        register("PlatformDataApiPlugin") {
+            id = platformLibs.plugins.layer.platform.data.api.get().pluginId
+            implementationClass = "plugin.layer.data.PlatformDataApiPlugin"
         }
-        register("PlatformDatabasePlugin") {
-            id = platformLibs.plugins.module.platform.database.get().pluginId
-            implementationClass = "plugin.platform.PlatformDatabasePlugin"
+        register("PlatformDataImplPlugin") {
+            id = platformLibs.plugins.layer.platform.data.impl.get().pluginId
+            implementationClass = "plugin.layer.data.PlatformDataImplPlugin"
         }
-        register("PlatformDataPlugin") {
-            id = platformLibs.plugins.module.platform.data.get().pluginId
-            implementationClass = "plugin.platform.PlatformDataPlugin"
+        /*========================================================================================*/
+        register("PlatformFeatureApiPlugin") {
+            id = platformLibs.plugins.layer.platform.feature.api.get().pluginId
+            implementationClass = "plugin.layer.feature.PlatformFeatureApiPlugin"
         }
-        register("PlatformDataStorePlugin") {
-            id = platformLibs.plugins.module.platform.datastore.get().pluginId
-            implementationClass = "plugin.platform.PlatformDataStorePlugin"
+        register("PlatformFeatureImplPlugin") {
+            id = platformLibs.plugins.layer.platform.feature.impl.get().pluginId
+            implementationClass = "plugin.layer.feature.PlatformFeatureImplPlugin"
         }
-        register("PlatformDomainPlugin") {
-            id = platformLibs.plugins.module.platform.domain.get().pluginId
-            implementationClass = "plugin.platform.PlatformDomainPlugin"
-        }
-        register("PlatformFeaturePlugin") {
-            id = platformLibs.plugins.module.platform.feature.get().pluginId
-            implementationClass = "plugin.platform.PlatformFeaturePlugin"
-        }
-
-        /** Model **/
+        /*========================================================================================*/
         register("PlatformModelBasePlugin") {
-            id = platformLibs.plugins.module.platform.model.base.get().pluginId
-            implementationClass = "plugin.platform.model.PlatformModelBasePlugin"
+            id = platformLibs.plugins.layer.platform.model.base.get().pluginId
+            implementationClass = "plugin.layer.model.PlatformModelBasePlugin"
         }
         register("PlatformModelCachePlugin") {
-            id = platformLibs.plugins.module.platform.model.cache.get().pluginId
-            implementationClass = "plugin.platform.model.PlatformModelCachePlugin"
+            id = platformLibs.plugins.layer.platform.model.cache.get().pluginId
+            implementationClass = "plugin.layer.model.PlatformModelCachePlugin"
         }
         register("PlatformModelRemotePlugin") {
-            id = platformLibs.plugins.module.platform.model.remote.get().pluginId
-            implementationClass = "plugin.platform.model.PlatformModelRemotePlugin"
+            id = platformLibs.plugins.layer.platform.model.remote.get().pluginId
+            implementationClass = "plugin.layer.model.PlatformModelRemotePlugin"
         }
         register("PlatformModelUiPlugin") {
-            id = platformLibs.plugins.module.platform.model.ui.get().pluginId
-            implementationClass = "plugin.platform.model.PlatformModelUiPlugin"
+            id = platformLibs.plugins.layer.platform.model.ui.get().pluginId
+            implementationClass = "plugin.layer.model.PlatformModelUiPlugin"
+        }
+        /*========================================================================================*/
+        register("PlatformConverterPlugin") {
+            id = platformLibs.plugins.layer.platform.converter.get().pluginId
+            implementationClass = "plugin.layer.PlatformConverterPlugin"
+        }
+        register("PlatformDatabasePlugin") {
+            id = platformLibs.plugins.layer.platform.database.get().pluginId
+            implementationClass = "plugin.layer.PlatformDatabasePlugin"
+        }
+        register("PlatformDataStorePlugin") {
+            id = platformLibs.plugins.layer.platform.datastore.get().pluginId
+            implementationClass = "plugin.layer.PlatformDataStorePlugin"
+        }
+        register("PlatformDomainPlugin") {
+            id = platformLibs.plugins.layer.platform.domain.get().pluginId
+            implementationClass = "plugin.layer.PlatformDomainPlugin"
         }
 
         register("PlatformNetworkPlugin") {
-            id = platformLibs.plugins.module.platform.network.get().pluginId
-            implementationClass = "plugin.platform.PlatformNetworkPlugin"
+            id = platformLibs.plugins.layer.platform.network.get().pluginId
+            implementationClass = "plugin.layer.PlatformNetworkPlugin"
         }
         register("PlatformWorkPlugin") {
-            id = platformLibs.plugins.module.platform.work.get().pluginId
-            implementationClass = "plugin.platform.PlatformWorkPlugin"
+            id = platformLibs.plugins.layer.platform.work.get().pluginId
+            implementationClass = "plugin.layer.PlatformWorkPlugin"
         }
     }
 }

@@ -1,25 +1,23 @@
-package plugin.platform
+package plugin.layer
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
+import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
 import kz.rymbek.platform.common.base.convention.extensions.implementation
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class PlatformDomainPlugin : Plugin<Project> {
-    override fun apply(target: Project) {
-        with(target) {
-            applyPlugin(platformLibs.plugins.convention.library)
-            applyPlugin(platformLibs.plugins.dependency.koin)
+class PlatformConverterPlugin : Plugin<Project> {
+    override fun apply(project: Project) {
+        with(project) {
+            applyPlugin(platformLibs.plugins.build.library)
+            applyPlugin(platformLibs.plugins.dependency.serialization)
 
             dependencies {
-                implementation(":platform:common:base:model")
-
-                implementation(":platform:common:core:architecture")
+                implementation(contextPrefix(":common:base:converter"))
                 /**==============================================================================**/
                 implementation(platformLibs.kotlinx.datetime)
-                implementation(platformLibs.androidx.paging.common)
             }
         }
     }
