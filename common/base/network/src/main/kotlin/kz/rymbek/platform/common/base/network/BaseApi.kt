@@ -19,7 +19,7 @@ import io.ktor.resources.href
 import io.ktor.resources.serialization.ResourcesFormat
 import io.ktor.utils.io.streams.asInput
 import kotlinx.coroutines.flow.Flow
-import kz.rymbek.platform.common.core.architecture.ResultFlow
+import kz.rymbek.platform.common.core.architecture.NetworkResult
 import java.io.File
 
 open class BaseApi : BaseApiHelper() {
@@ -31,14 +31,14 @@ open class BaseApi : BaseApiHelper() {
     suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.getSafe(
         resource: Resource,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
-    ): ResultFlow<Response> = requestSafe {
+    ): NetworkResult<Response> = requestSafe {
         get(resource = resource, builder = httpRequestBuilder).body()
     }
 
     inline fun <reified Resource : Any, reified Response : Any> HttpClient.getSafeFlow(
         resource: Resource,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
-    ): Flow<ResultFlow<Response>> = requestFlowSafe {
+    ): Flow<NetworkResult<Response>> = requestFlowSafe {
         get(resource = resource, builder = httpRequestBuilder).body()
     }
 
@@ -55,7 +55,7 @@ open class BaseApi : BaseApiHelper() {
         resource: Resource,
         data: Any? = null,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
-    ): ResultFlow<Response> = requestSafe {
+    ): NetworkResult<Response> = requestSafe {
         post(resource = resource) {
             httpRequestBuilder()
             setBody(data)
@@ -66,7 +66,7 @@ open class BaseApi : BaseApiHelper() {
         resource: Resource,
         data: Any? = null,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
-    ): Flow<ResultFlow<Response>> = requestFlowSafe {
+    ): Flow<NetworkResult<Response>> = requestFlowSafe {
         post(resource = resource) {
             httpRequestBuilder()
             setBody(data)
@@ -86,7 +86,7 @@ open class BaseApi : BaseApiHelper() {
         resource: Resource,
         data: Any? = null,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
-    ): ResultFlow<Response> = requestSafe {
+    ): NetworkResult<Response> = requestSafe {
         put(resource = resource) {
             httpRequestBuilder()
             setBody(data)
@@ -97,7 +97,7 @@ open class BaseApi : BaseApiHelper() {
         resource: Resource,
         data: Any,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
-    ): Flow<ResultFlow<Response>> = requestFlowSafe {
+    ): Flow<NetworkResult<Response>> = requestFlowSafe {
         put(resource = resource) {
             httpRequestBuilder()
             setBody(data)
@@ -113,7 +113,7 @@ open class BaseApi : BaseApiHelper() {
     suspend inline fun <reified Resource : Any, reified Response : Any> HttpClient.submitFormSafe(
         resource: Resource,
         formParameters: Parameters
-    ): ResultFlow<Response> = requestSafe {
+    ): NetworkResult<Response> = requestSafe {
         val url = href(ResourcesFormat(), resource)
         submitForm(url = url, formParameters = formParameters).body()
     }
@@ -121,7 +121,7 @@ open class BaseApi : BaseApiHelper() {
     inline fun <reified Resource : Any, reified Response : Any> HttpClient.submitFormSafeFlow(
         resource: Resource,
         formParameters: Parameters
-    ): Flow<ResultFlow<Response>> = requestFlowSafe {
+    ): Flow<NetworkResult<Response>> = requestFlowSafe {
         val url = href(ResourcesFormat(), resource)
         submitForm(url = url, formParameters = formParameters).body()
     }
@@ -132,7 +132,7 @@ open class BaseApi : BaseApiHelper() {
         key: String,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
         noinline progressCallback: ((bytesSent: Long, contentLength: Long?) -> Unit)? = null
-    ): ResultFlow<Response> = requestSafe {
+    ): NetworkResult<Response> = requestSafe {
         post(resource = resource) {
             httpRequestBuilder()
             setBody(
@@ -161,7 +161,7 @@ open class BaseApi : BaseApiHelper() {
         file: File,
         key: String,
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {}
-    ): Flow<ResultFlow<Response>> = requestFlowSafe {
+    ): Flow<NetworkResult<Response>> = requestFlowSafe {
         post(resource = resource) {
             httpRequestBuilder()
             setBody(
