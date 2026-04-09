@@ -31,12 +31,12 @@ inline fun <T, R> NetworkResult<T>.mapResult(transform: (T) -> R): NetworkResult
  */
 fun <T, R> Flow<NetworkResult<T>>.mapFlow(
     transform: suspend (T) -> R
-): Flow<NetworkResult<R>> = map { result ->
+): Flow<ResultFlow<R>> = map { result ->
     when (result) {
         is NetworkResult.Success -> NetworkResult.Success(transform(result.data))
         is NetworkResult.Error -> NetworkResult.Error(result.exception)
         NetworkResult.Loading -> NetworkResult.Loading
-    }
+    }.toResultFlow()
 }
 
 /**
@@ -58,7 +58,7 @@ fun <T> Flow<NetworkResult<T>>.onSuccess(
  */
 fun <Model> Flow<NetworkResult<Model>>.onSuccessUnit(
     action: suspend (Model) -> Unit
-): Flow<NetworkResult<Unit>> = map { result ->
+): Flow<ResultFlow<Unit>> = map { result ->
     when (result) {
         is NetworkResult.Success -> {
             action(result.data)
@@ -66,7 +66,7 @@ fun <Model> Flow<NetworkResult<Model>>.onSuccessUnit(
         }
         is NetworkResult.Error -> NetworkResult.Error(result.exception)
         NetworkResult.Loading -> NetworkResult.Loading
-    }
+    }.toResultFlow()
 }
 
 fun <T> NetworkResult<T>.toDataResult(): DataResult<T> = when (this) {

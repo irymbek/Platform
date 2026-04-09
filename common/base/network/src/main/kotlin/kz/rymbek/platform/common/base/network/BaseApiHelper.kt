@@ -9,29 +9,29 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.io.IOException
 import kotlinx.serialization.SerializationException
-import kz.rymbek.platform.common.core.architecture.NetworkResult
+import kz.rymbek.platform.common.core.architecture.ResultFlow
 import kotlin.coroutines.cancellation.CancellationException
 
 open class BaseApiHelper {
     protected open fun log(msg: String) = println("[BaseApi] $msg")
 
-    suspend fun <T> safeCall(block: suspend () -> T): NetworkResult<T> {
+    suspend fun <T> safeCall(block: suspend () -> T): ResultFlow<T> {
         return try {
-            NetworkResult.Success(block())
+            ResultFlow.Success(block())
         } catch (e: CancellationException) {
             throw e
         } catch (e: ResponseException) {
             val errorMsg = parseError(e.response)
             log("API Error: ${e.response.status} -> $errorMsg")
-            NetworkResult.Error(Throwable(errorMsg))
+            ResultFlow.Error(Throwable(errorMsg))
         } catch (e: SerializationException) {
             log("Serialization Error: ${e.message}")
-            NetworkResult.Error(Throwable("Ошибка обработки данных"))
+            ResultFlow.Error(Throwable("Ошибка обработки данных"))
         } catch (_: IOException) {
-            NetworkResult.Error(Throwable("Нет подключения к интернету"))
+            ResultFlow.Error(Throwable("Нет подключения к интернету"))
         } catch (e: Exception) {
             log("Unknown Error: ${e.message}")
-            NetworkResult.Error(Throwable("Неизвестная ошибка"))
+            ResultFlow.Error(Throwable("Неизвестная ошибка"))
         }
     }
 
@@ -60,12 +60,12 @@ open class BaseApiHelper {
 
     inline fun <reified T> requestFlowSafe(
         noinline apiCall: suspend () -> T
-    ): Flow<NetworkResult<T>> = flow {
-        emit(NetworkResult.Loading)
+    ): Flow<ResultFlow<T>> = flow {
+        emit(ResultFlow.Loading)
         emit(safeCall(apiCall))
     }
 
     suspend inline fun <reified T> requestSafe(
         noinline apiCall: suspend () -> T,
-    ): NetworkResult<T> = safeCall(apiCall)
+    ): ResultFlow<T> = safeCall(apiCall)
 }

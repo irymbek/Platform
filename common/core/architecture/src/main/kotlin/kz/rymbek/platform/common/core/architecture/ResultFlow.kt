@@ -232,11 +232,11 @@ fun <Model> Flow<Model?>.asResult(
  * Используй это, если твой Screen/Scaffold еще не переехал на новую архитектуру.
  */
 fun <T> DataResult<T>.asResultFlow(): ResultFlow<T> = when (this) {
-    is DataResult.Success -> ResultFlow.Success(data)
-    is DataResult.Loading -> ResultFlow.Loading
-    is DataResult.Error -> ResultFlow.Error(exception)
-    DataResult.Initial -> ResultFlow.Initial
-    DataResult.Empty -> ResultFlow.Empty
+    is DataResult.Success -> Success(data)
+    is DataResult.Loading -> Loading
+    is DataResult.Error -> Error(exception)
+    DataResult.Initial -> Initial
+    DataResult.Empty -> Empty
 }
 
 /**
