@@ -1,5 +1,5 @@
 plugins {
-    alias(platformLibs.plugins.convention.library)
+    alias(platformLibs.plugins.build.library)
     alias(platformLibs.plugins.dependency.serialization)
 }
 

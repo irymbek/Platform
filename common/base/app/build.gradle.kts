@@ -1,7 +1,7 @@
 plugins {
-    alias(platformLibs.plugins.convention.library)
+    alias(platformLibs.plugins.build.library)
     //image vector
-    alias(platformLibs.plugins.convention.library.compose)
+    alias(platformLibs.plugins.build.library.compose)
 }
 
 android {

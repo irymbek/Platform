@@ -1,5 +1,5 @@
 plugins {
-    alias(platformLibs.plugins.module.platform.converter)
+    alias(platformLibs.plugins.layer.platform.converter)
 }
 
 android {

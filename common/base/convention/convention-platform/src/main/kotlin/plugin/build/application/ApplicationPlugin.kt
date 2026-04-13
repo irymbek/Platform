@@ -1,10 +1,9 @@
-package plugin.convention.application
+package plugin.build.application
 
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import kz.rymbek.platform.common.base.convention.AppBuildType
 import kz.rymbek.platform.common.base.convention.configureKotlinAndroid
-import kz.rymbek.platform.common.base.convention.configureSpotlessForAndroid
 import kz.rymbek.platform.common.base.convention.disableAllTests
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.implementation
@@ -18,7 +17,7 @@ class ApplicationPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             applyPlugin(platformLibs.plugins.android.application)
-            applyPlugin(platformLibs.plugins.convention.application.compose)
+            applyPlugin(platformLibs.plugins.build.application.compose)
             applyPlugin(platformLibs.plugins.dependency.koin)
 
             extensions.configure<ApplicationExtension> {
@@ -62,7 +61,7 @@ class ApplicationPlugin : Plugin<Project> {
                 disableAllTests()
             }
 
-            configureSpotlessForAndroid()
+            //configureSpotlessForAndroid()
 
             dependencies {
                 implementation(":platform:common:base:app")

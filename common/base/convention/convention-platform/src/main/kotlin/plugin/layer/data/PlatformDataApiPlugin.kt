@@ -1,4 +1,4 @@
-package plugin.platform
+package plugin.layer.data
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
@@ -9,16 +9,22 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class PlatformDataStorePlugin : Plugin<Project> {
-    override fun apply(project: Project) {
-        with(project) {
-            applyPlugin(platformLibs.plugins.convention.library)
+class PlatformDataApiPlugin : Plugin<Project> {
+    override fun apply(target: Project) {
+        with(target) {
+            applyPlugin(platformLibs.plugins.build.library)
             applyPlugin(platformLibs.plugins.dependency.koin)
 
             val modules = setOf(
-                "common:base:datastore",
+                "common:base:database",
+                "common:base:data",
                 "common:base:model",
+                "common:base:pagination",
+                "common:core:architecture",
+                "common:core:date",
                 "common:business:model:ui",
+                "common:business:model:cache",
+                "common:business:database",
             )
             val paths = contextPrefix(
                 modules
@@ -29,7 +35,8 @@ class PlatformDataStorePlugin : Plugin<Project> {
                     paths
                 )
                 /**==============================================================================**/
-                implementation(platformLibs.androidx.dataStore.preferences)
+                implementation(platformLibs.androidx.paging.common)
+                implementation(platformLibs.androidx.room.ktx)
             }
         }
     }

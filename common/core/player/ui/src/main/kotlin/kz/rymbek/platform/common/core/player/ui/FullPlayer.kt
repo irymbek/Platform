@@ -81,12 +81,12 @@ fun FullPlayer(
         modifier = modifier
             .background(Color.Black)
             .clickable(
-            interactionSource = remember { MutableInteractionSource() },
-            indication = null
-        ) {
-            showControls = !showControls
-            onInteraction()
-        },
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null
+            ) {
+                showControls = !showControls
+                onInteraction()
+            },
         surfaceType = surfaceType,
         contentScale = contentScale,
         keepContentOnReset = keepContentOnReset,

@@ -1,4 +1,4 @@
-package plugin.platform.model
+package plugin.layer.model
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.implementation
@@ -7,13 +7,13 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class PlatformModelUiPlugin : Plugin<Project> {
+class PlatformModelCachePlugin : Plugin<Project> {
     override fun apply(project: Project) {
         with(project) {
-            applyPlugin(platformLibs.plugins.module.platform.model.base)
+            applyPlugin(platformLibs.plugins.layer.platform.model.base)
 
             dependencies {
-                implementation(platformLibs.konform.jvm)
+                implementation(platformLibs.androidx.room.runtime)
             }
         }
     }

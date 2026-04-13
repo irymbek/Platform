@@ -1,4 +1,4 @@
-package plugin.platform
+package plugin.layer.feature
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.implementation
@@ -7,11 +7,11 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class PlatformFeaturePlugin : Plugin<Project> {
+class PlatformFeatureImplPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            applyPlugin(platformLibs.plugins.convention.library)
-            applyPlugin(platformLibs.plugins.convention.library.compose)
+            applyPlugin(platformLibs.plugins.build.library)
+            applyPlugin(platformLibs.plugins.build.library.compose)
             applyPlugin(platformLibs.plugins.dependency.koin)
             applyPlugin(platformLibs.plugins.dependency.serialization)
 

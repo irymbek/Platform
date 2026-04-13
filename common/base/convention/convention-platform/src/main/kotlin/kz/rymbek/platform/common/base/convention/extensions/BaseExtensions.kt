@@ -29,9 +29,9 @@ inline fun <reified T : Plugin<Project>> Project.applyPlugin() {
     pluginManager.apply(T::class.java)
 }
 
-fun Project.applyPlugins(plugins: Iterable<Provider<PluginDependency>>) {
+/*fun Project.applyPlugins(plugins: Iterable<Provider<PluginDependency>>) {
     plugins.forEach { applyPlugin(plugin = it) }
-}
+}*/
 
 fun DependencyHandlerScope.implementation(
     dependency: Provider<MinimalExternalModuleDependency>

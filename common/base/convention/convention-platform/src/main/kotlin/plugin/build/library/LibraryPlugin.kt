@@ -1,9 +1,8 @@
-package plugin.convention.library
+package plugin.build.library
 
 import com.android.build.api.dsl.LibraryExtension
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import kz.rymbek.platform.common.base.convention.configureKotlinAndroid
-import kz.rymbek.platform.common.base.convention.configureSpotlessForAndroid
 import kz.rymbek.platform.common.base.convention.disableAllTests
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
@@ -30,7 +29,7 @@ class LibraryPlugin : Plugin<Project> {
                 disableAllTests()
             }
 
-            configureSpotlessForAndroid()
+            //configureSpotlessForAndroid()
         }
     }
 }

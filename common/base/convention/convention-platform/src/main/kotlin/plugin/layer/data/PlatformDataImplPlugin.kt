@@ -1,36 +1,42 @@
-package plugin.platform.model
+package plugin.layer.data
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
 import kz.rymbek.platform.common.base.convention.extensions.implementation
 import kz.rymbek.platform.common.base.convention.extensions.implementations
-import kz.rymbek.platform.common.base.convention.extensions.ksp
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class PlatformModelBasePlugin : Plugin<Project> {
+class PlatformDataImplPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            applyPlugin(platformLibs.plugins.convention.library)
-            applyPlugin(platformLibs.plugins.ksp)
+            applyPlugin(platformLibs.plugins.build.library)
+            applyPlugin(platformLibs.plugins.dependency.koin)
 
             val modules = setOf(
+                "common:base:database",
+                "common:base:data",
                 "common:base:model",
+                "common:base:pagination",
                 "common:core:architecture",
                 "common:core:date",
+                "common:business:model:ui",
+                "common:business:model:cache",
+                "common:business:database",
             )
             val paths = contextPrefix(
                 modules
             )
 
             dependencies {
-                implementations(paths)
-
-                implementation(platformLibs.komm.annotations)
-                ksp(platformLibs.komm.processor)
-                ksp(platformLibs.komm.plugins.enum)
+                implementations(
+                    paths
+                )
+                /**==============================================================================**/
+                implementation(platformLibs.androidx.paging.common)
+                implementation(platformLibs.androidx.room.ktx)
             }
         }
     }

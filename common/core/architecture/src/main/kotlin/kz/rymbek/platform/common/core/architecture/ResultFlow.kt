@@ -226,3 +226,21 @@ fun <Model> Flow<Model?>.asResult(
             emit(Error(throwable))
         }
 }
+
+/**
+ * Преобразует новый DataResult в старый ResultFlow.
+ * Используй это, если твой Screen/Scaffold еще не переехал на новую архитектуру.
+ */
+fun <T> DataResult<T>.asResultFlow(): ResultFlow<T> = when (this) {
+    is DataResult.Success -> Success(data)
+    is DataResult.Loading -> Loading
+    is DataResult.Error -> Error(exception)
+    DataResult.Initial -> Initial
+    DataResult.Empty -> Empty
+}
+
+/**
+ * Расширение для Flow
+ */
+fun <T> Flow<DataResult<T>>.asResultFlowBridge(): Flow<ResultFlow<T>> =
+    this.map { it.asResultFlow() }
