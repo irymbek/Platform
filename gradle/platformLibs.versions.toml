@@ -1,6 +1,6 @@
 [versions]
 activityCompose = "1.13.0"
-androidGradlePlugin = "9.1.0"
+androidGradlePlugin = "9.1.1"
 androidxCamera = "1.6.0"
 androidxCoreKtx = "1.18.0"
 androidxCoreSplashscreen = "1.2.0"
@@ -31,8 +31,8 @@ okio = "3.17.0"
 orbit = "11.0.0"
 spotless = "8.4.0"
 
-compileSdk = "36"
-targetSdk = "36"
+compileSdk = "37"
+targetSdk = "37"
 minSdk = "26"
 java = "17"
 
