@@ -13,6 +13,7 @@ class DependencyKoinPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.koin.compiler)
 
             dependencies {
+                implementation(platform(platformLibs.koin.bom))
                 implementation(platformLibs.koin.annotations)
                 implementation(platformLibs.koin.core)
             }

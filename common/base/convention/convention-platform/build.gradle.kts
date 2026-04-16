@@ -90,6 +90,15 @@ gradlePlugin {
             implementationClass = "plugin.layer.data.PlatformDataImplPlugin"
         }
         /*========================================================================================*/
+        register("PlatformDomainApiPlugin") {
+            id = platformLibs.plugins.layer.platform.domain.api.get().pluginId
+            implementationClass = "plugin.layer.domain.PlatformDomainApiPlugin"
+        }
+        register("PlatformDomainImplPlugin") {
+            id = platformLibs.plugins.layer.platform.domain.impl.get().pluginId
+            implementationClass = "plugin.layer.domain.PlatformDomainImplPlugin"
+        }
+        /*========================================================================================*/
         register("PlatformFeatureApiPlugin") {
             id = platformLibs.plugins.layer.platform.feature.api.get().pluginId
             implementationClass = "plugin.layer.feature.PlatformFeatureApiPlugin"
@@ -128,11 +137,6 @@ gradlePlugin {
             id = platformLibs.plugins.layer.platform.datastore.get().pluginId
             implementationClass = "plugin.layer.PlatformDataStorePlugin"
         }
-        register("PlatformDomainPlugin") {
-            id = platformLibs.plugins.layer.platform.domain.get().pluginId
-            implementationClass = "plugin.layer.PlatformDomainPlugin"
-        }
-
         register("PlatformNetworkPlugin") {
             id = platformLibs.plugins.layer.platform.network.get().pluginId
             implementationClass = "plugin.layer.PlatformNetworkPlugin"

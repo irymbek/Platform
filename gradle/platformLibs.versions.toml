@@ -17,7 +17,7 @@ googleAccompanist = "0.37.3"
 googleMlkit = "17.3.0"
 googleServicesLocation = "21.3.0"
 koin = "4.2.1"
-koinPlugin = "0.6.2"
+koinPlugin = "1.0.0-RC1"
 komm = "0.25.0"
 kotlin = "2.3.20"
 kotlinxDatetime = "0.7.1"
@@ -97,11 +97,9 @@ koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
 koin-compose-navigation3 = { group = "io.insert-koin", name = "koin-compose-navigation3", version.ref = "koin" }
-koin-androidx-startup = { group = "io.insert-koin", name = "koin-androidx-startup", version.ref = "koin" }
 koin-androidx-workmanager = { group = "io.insert-koin", name = "koin-androidx-workmanager", version.ref = "koin" }
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 koin-annotations = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koin" }
-koin-ksp-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koin" }
 
 komm-annotations = { group = "com.ucasoft.komm", name = "komm-annotations", version.ref = "komm" }
 komm-processor = { group = "com.ucasoft.komm", name = "komm-processor", version.ref = "komm" }
@@ -173,6 +171,7 @@ layer-platform-model-ui = { id = "layer.platform.model.ui" }
 layer-platform-converter = { id = "layer.platform.converter" }
 layer-platform-database = { id = "layer.platform.database" }
 layer-platform-datastore = { id = "layer.platform.datastore" }
-layer-platform-domain = { id = "layer.platform.domain" }
+layer-platform-domain-api = { id = "layer.platform.domain" }
+layer-platform-domain-impl = { id = "layer.platform.domain" }
 layer-platform-network = { id = "layer.platform.network" }
 layer-platform-work = { id = "layer.platform.work" }
