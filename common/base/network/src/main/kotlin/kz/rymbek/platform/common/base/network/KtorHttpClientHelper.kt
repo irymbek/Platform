@@ -36,7 +36,7 @@ internal val json = Json {
 
 object KtorHttpClientHelper {
     fun HttpClientConfig<*>.installHttpTimeout(
-        timeoutDuration: Long = 20_000L,
+        timeoutDuration: Long = 60_000L,
     ) {
         install(HttpTimeout) {
             requestTimeoutMillis = timeoutDuration
