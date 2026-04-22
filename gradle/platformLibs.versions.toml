@@ -160,18 +160,18 @@ dependency-room = { id = "dependency.room" }
 dependency-serialization = { id = "dependency.serialization" }
 
 # Layer Platform
-layer-platform-data-api = { id = "layer.platform.data.api" }
-layer-platform-data-impl = { id = "layer.platform.data.impl" }
-layer-platform-feature-api = { id = "layer.platform.feature.api" }
-layer-platform-feature-impl = { id = "layer.platform.feature.impl" }
-layer-platform-model-base = { id = "layer.platform.model.base" }
-layer-platform-model-cache = { id = "layer.platform.model.cache" }
-layer-platform-model-remote = { id = "layer.platform.model.remote" }
-layer-platform-model-ui = { id = "layer.platform.model.ui" }
-layer-platform-converter = { id = "layer.platform.converter" }
-layer-platform-database = { id = "layer.platform.database" }
-layer-platform-datastore = { id = "layer.platform.datastore" }
-layer-platform-domain-api = { id = "layer.platform.domain" }
-layer-platform-domain-impl = { id = "layer.platform.domain" }
-layer-platform-network = { id = "layer.platform.network" }
-layer-platform-work = { id = "layer.platform.work" }
+layer-data-api = { id = "layer.data.api" }
+layer-data-impl = { id = "layer.data.impl" }
+layer-feature-api = { id = "layer.feature.api" }
+layer-feature-impl = { id = "layer.feature.impl" }
+layer-model-base = { id = "layer.model.base" }
+layer-model-cache = { id = "layer.model.cache" }
+layer-model-remote = { id = "layer.model.remote" }
+layer-model-ui = { id = "layer.model.ui" }
+layer-converter = { id = "layer.converter" }
+layer-database = { id = "layer.database" }
+layer-datastore = { id = "layer.datastore" }
+layer-domain-api = { id = "layer.domain" }
+layer-domain-impl = { id = "layer.domain" }
+layer-network = { id = "layer.network" }
+layer-work = { id = "layer.work" }

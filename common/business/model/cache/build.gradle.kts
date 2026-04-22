@@ -1,5 +1,5 @@
 plugins {
-    alias(platformLibs.plugins.layer.platform.model.cache)
+    alias(platformLibs.plugins.layer.model.cache)
 }
 
 android {

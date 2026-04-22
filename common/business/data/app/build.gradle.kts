@@ -1,5 +1,5 @@
 plugins {
-    alias(platformLibs.plugins.layer.platform.data.impl)
+    alias(platformLibs.plugins.layer.data.impl)
 }
 
 android {

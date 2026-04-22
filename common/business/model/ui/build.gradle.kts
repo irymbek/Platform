@@ -1,5 +1,5 @@
 plugins {
-    alias(platformLibs.plugins.layer.platform.model.ui)
+    alias(platformLibs.plugins.layer.model.ui)
     alias(platformLibs.plugins.build.library.compose)
 }
 

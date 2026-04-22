@@ -1,5 +1,5 @@
 plugins {
-    alias(platformLibs.plugins.layer.platform.datastore)
+    alias(platformLibs.plugins.layer.datastore)
 }
 
 android {

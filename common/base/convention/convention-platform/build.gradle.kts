@@ -82,67 +82,67 @@ gradlePlugin {
         }
         /** Layer ===============================================================================**/
         register("PlatformDataApiPlugin") {
-            id = platformLibs.plugins.layer.platform.data.api.get().pluginId
+            id = platformLibs.plugins.layer.data.api.get().pluginId
             implementationClass = "plugin.layer.data.PlatformDataApiPlugin"
         }
         register("PlatformDataImplPlugin") {
-            id = platformLibs.plugins.layer.platform.data.impl.get().pluginId
+            id = platformLibs.plugins.layer.data.impl.get().pluginId
             implementationClass = "plugin.layer.data.PlatformDataImplPlugin"
         }
         /*========================================================================================*/
         register("PlatformDomainApiPlugin") {
-            id = platformLibs.plugins.layer.platform.domain.api.get().pluginId
+            id = platformLibs.plugins.layer.domain.api.get().pluginId
             implementationClass = "plugin.layer.domain.PlatformDomainApiPlugin"
         }
         register("PlatformDomainImplPlugin") {
-            id = platformLibs.plugins.layer.platform.domain.impl.get().pluginId
+            id = platformLibs.plugins.layer.domain.impl.get().pluginId
             implementationClass = "plugin.layer.domain.PlatformDomainImplPlugin"
         }
         /*========================================================================================*/
         register("PlatformFeatureApiPlugin") {
-            id = platformLibs.plugins.layer.platform.feature.api.get().pluginId
+            id = platformLibs.plugins.layer.feature.api.get().pluginId
             implementationClass = "plugin.layer.feature.PlatformFeatureApiPlugin"
         }
         register("PlatformFeatureImplPlugin") {
-            id = platformLibs.plugins.layer.platform.feature.impl.get().pluginId
+            id = platformLibs.plugins.layer.feature.impl.get().pluginId
             implementationClass = "plugin.layer.feature.PlatformFeatureImplPlugin"
         }
         /*========================================================================================*/
         register("PlatformModelBasePlugin") {
-            id = platformLibs.plugins.layer.platform.model.base.get().pluginId
+            id = platformLibs.plugins.layer.model.base.get().pluginId
             implementationClass = "plugin.layer.model.PlatformModelBasePlugin"
         }
         register("PlatformModelCachePlugin") {
-            id = platformLibs.plugins.layer.platform.model.cache.get().pluginId
+            id = platformLibs.plugins.layer.model.cache.get().pluginId
             implementationClass = "plugin.layer.model.PlatformModelCachePlugin"
         }
         register("PlatformModelRemotePlugin") {
-            id = platformLibs.plugins.layer.platform.model.remote.get().pluginId
+            id = platformLibs.plugins.layer.model.remote.get().pluginId
             implementationClass = "plugin.layer.model.PlatformModelRemotePlugin"
         }
         register("PlatformModelUiPlugin") {
-            id = platformLibs.plugins.layer.platform.model.ui.get().pluginId
+            id = platformLibs.plugins.layer.model.ui.get().pluginId
             implementationClass = "plugin.layer.model.PlatformModelUiPlugin"
         }
         /*========================================================================================*/
         register("PlatformConverterPlugin") {
-            id = platformLibs.plugins.layer.platform.converter.get().pluginId
+            id = platformLibs.plugins.layer.converter.get().pluginId
             implementationClass = "plugin.layer.PlatformConverterPlugin"
         }
         register("PlatformDatabasePlugin") {
-            id = platformLibs.plugins.layer.platform.database.get().pluginId
+            id = platformLibs.plugins.layer.database.get().pluginId
             implementationClass = "plugin.layer.PlatformDatabasePlugin"
         }
         register("PlatformDataStorePlugin") {
-            id = platformLibs.plugins.layer.platform.datastore.get().pluginId
+            id = platformLibs.plugins.layer.datastore.get().pluginId
             implementationClass = "plugin.layer.PlatformDataStorePlugin"
         }
         register("PlatformNetworkPlugin") {
-            id = platformLibs.plugins.layer.platform.network.get().pluginId
+            id = platformLibs.plugins.layer.network.get().pluginId
             implementationClass = "plugin.layer.PlatformNetworkPlugin"
         }
         register("PlatformWorkPlugin") {
-            id = platformLibs.plugins.layer.platform.work.get().pluginId
+            id = platformLibs.plugins.layer.work.get().pluginId
             implementationClass = "plugin.layer.PlatformWorkPlugin"
         }
     }

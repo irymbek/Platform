@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.dependencies
 class PlatformModelRemotePlugin : Plugin<Project> {
     override fun apply(project: Project) {
         with(project) {
-            applyPlugin(platformLibs.plugins.layer.platform.model.base)
+            applyPlugin(platformLibs.plugins.layer.model.base)
             applyPlugin(platformLibs.plugins.dependency.serialization)
 
             dependencies {
