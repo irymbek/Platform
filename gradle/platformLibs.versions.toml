@@ -160,18 +160,18 @@ dependency-room = { id = "dependency.room" }
 dependency-serialization = { id = "dependency.serialization" }
 
 # Layer Platform
+layer-converter = { id = "layer.converter" }
 layer-data-api = { id = "layer.data.api" }
 layer-data-impl = { id = "layer.data.impl" }
-layer-feature-api = { id = "layer.feature.api" }
-layer-feature-impl = { id = "layer.feature.impl" }
+layer-database = { id = "layer.database" }
+layer-datastore = { id = "layer.datastore" }
+layer-domain-api = { id = "layer.domain.api" }
+layer-domain-impl = { id = "layer.domain.impl" }
 layer-model-base = { id = "layer.model.base" }
 layer-model-cache = { id = "layer.model.cache" }
 layer-model-remote = { id = "layer.model.remote" }
 layer-model-ui = { id = "layer.model.ui" }
-layer-converter = { id = "layer.converter" }
-layer-database = { id = "layer.database" }
-layer-datastore = { id = "layer.datastore" }
-layer-domain-api = { id = "layer.domain" }
-layer-domain-impl = { id = "layer.domain" }
 layer-network = { id = "layer.network" }
+layer-presentation-api = { id = "layer.presentation.api" }
+layer-presentation-impl = { id = "layer.presentation.impl" }
 layer-work = { id = "layer.work" }

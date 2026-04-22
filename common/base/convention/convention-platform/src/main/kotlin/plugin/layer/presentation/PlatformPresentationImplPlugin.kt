@@ -1,4 +1,4 @@
-package plugin.layer.feature
+package plugin.layer.presentation
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.implementation
@@ -7,7 +7,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class PlatformFeatureImplPlugin : Plugin<Project> {
+class PlatformPresentationImplPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             applyPlugin(platformLibs.plugins.build.library)

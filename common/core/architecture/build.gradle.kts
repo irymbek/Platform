@@ -1,10 +1,10 @@
 plugins {
-    alias(platformLibs.plugins.build.library)
+    alias(platformLibs.plugins.build.jvm)
 }
 
-android {
+/*android {
     namespace = "kz.rymbek.platform.common.core.architecture"
-}
+}*/
 
 dependencies {
     implementation(platformLibs.kotlinx.coroutines.core)

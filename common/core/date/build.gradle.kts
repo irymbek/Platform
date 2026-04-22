@@ -1,9 +1,5 @@
 plugins {
-    alias(platformLibs.plugins.build.library)
-}
-
-android {
-    namespace = "kz.rymbek.platform.common.core.date"
+    alias(platformLibs.plugins.build.jvm)
 }
 
 dependencies {

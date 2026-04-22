@@ -2,9 +2,7 @@ package plugin.layer.model
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
-import kz.rymbek.platform.common.base.convention.extensions.implementation
 import kz.rymbek.platform.common.base.convention.extensions.implementations
-import kz.rymbek.platform.common.base.convention.extensions.ksp
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -14,7 +12,6 @@ class PlatformModelBasePlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             applyPlugin(platformLibs.plugins.build.library)
-            applyPlugin(platformLibs.plugins.ksp)
 
             val modules = setOf(
                 "common:base:model",
@@ -27,10 +24,6 @@ class PlatformModelBasePlugin : Plugin<Project> {
 
             dependencies {
                 implementations(paths)
-
-                implementation(platformLibs.komm.annotations)
-                ksp(platformLibs.komm.processor)
-                ksp(platformLibs.komm.plugins.enum)
             }
         }
     }

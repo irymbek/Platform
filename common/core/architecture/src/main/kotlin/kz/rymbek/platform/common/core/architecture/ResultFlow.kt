@@ -1,6 +1,5 @@
 package kz.rymbek.platform.common.core.architecture
 
-import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
@@ -222,7 +221,6 @@ fun <Model> Flow<Model?>.asResult(
         }
         .onStart { emit(Loading) }
         .catch { throwable ->
-            Log.e("ResultFlow", throwable.message.orEmpty())
             emit(Error(throwable))
         }
 }

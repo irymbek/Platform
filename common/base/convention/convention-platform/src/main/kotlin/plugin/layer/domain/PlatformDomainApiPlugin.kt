@@ -10,12 +10,13 @@ import org.gradle.kotlin.dsl.dependencies
 class PlatformDomainApiPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            applyPlugin(platformLibs.plugins.build.jvm)
+            applyPlugin(platformLibs.plugins.build.library)
 
             dependencies {
                 //implementation(":platform:common:base:model")
-
                 implementation(":platform:common:core:architecture")
+                /**==============================================================================**/
+                implementation(platformLibs.androidx.paging.common)
             }
         }
     }

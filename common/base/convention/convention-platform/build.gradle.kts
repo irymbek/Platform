@@ -99,15 +99,6 @@ gradlePlugin {
             implementationClass = "plugin.layer.domain.PlatformDomainImplPlugin"
         }
         /*========================================================================================*/
-        register("PlatformFeatureApiPlugin") {
-            id = platformLibs.plugins.layer.feature.api.get().pluginId
-            implementationClass = "plugin.layer.feature.PlatformFeatureApiPlugin"
-        }
-        register("PlatformFeatureImplPlugin") {
-            id = platformLibs.plugins.layer.feature.impl.get().pluginId
-            implementationClass = "plugin.layer.feature.PlatformFeatureImplPlugin"
-        }
-        /*========================================================================================*/
         register("PlatformModelBasePlugin") {
             id = platformLibs.plugins.layer.model.base.get().pluginId
             implementationClass = "plugin.layer.model.PlatformModelBasePlugin"
@@ -123,6 +114,15 @@ gradlePlugin {
         register("PlatformModelUiPlugin") {
             id = platformLibs.plugins.layer.model.ui.get().pluginId
             implementationClass = "plugin.layer.model.PlatformModelUiPlugin"
+        }
+        /*========================================================================================*/
+        register("PlatformPresentationApiPlugin") {
+            id = platformLibs.plugins.layer.presentation.api.get().pluginId
+            implementationClass = "plugin.layer.presentation.PlatformPresentationApiPlugin"
+        }
+        register("PlatformPresentationImplPlugin") {
+            id = platformLibs.plugins.layer.presentation.impl.get().pluginId
+            implementationClass = "plugin.layer.presentation.PlatformPresentationImplPlugin"
         }
         /*========================================================================================*/
         register("PlatformConverterPlugin") {
