@@ -3,13 +3,13 @@ package kz.rymbek.platform.common.feature.settings.theme.navigation
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
-import kz.rymbek.platform.common.base.navigation.NavigationInterface
+import kz.rymbek.platform.common.base.navigation.Navigator
 import kz.rymbek.platform.common.feature.settings.theme.ui.SettingsThemeRoute
 
 @Serializable
 object SettingsThemeKey : NavKey
 
-fun NavigationInterface.navigateToSettingsTheme() {
+fun Navigator.navigateToSettingsTheme() {
     navigate(SettingsThemeKey)
 }
 

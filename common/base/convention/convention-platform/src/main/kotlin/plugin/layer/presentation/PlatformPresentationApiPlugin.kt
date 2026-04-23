@@ -15,6 +15,7 @@ class PlatformPresentationApiPlugin : Plugin<Project> {
 
             dependencies {
                 implementation(":platform:common:base:navigation")
+                implementation(platformLibs.androidx.navigation3.runtime)
             }
         }
     }
