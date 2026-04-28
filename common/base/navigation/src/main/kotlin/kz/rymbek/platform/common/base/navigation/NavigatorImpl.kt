@@ -90,7 +90,7 @@ internal class NavigatorImpl(
 }
 
 @Composable
-fun rememberNavigationInterface(
+fun rememberNavigator(
     navigationState: NavigationState,
     isLoggedIn: () -> Boolean,
     onRequireGlobalAuth: (NavKey) -> Unit,
@@ -103,7 +103,7 @@ fun rememberNavigationInterface(
 }
 
 @Composable
-fun rememberNavigationInterface(
+fun rememberNavigator(
     navigationState: NavigationState,
 ): Navigator = remember(navigationState) {
     NavigatorImpl(
