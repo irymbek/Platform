@@ -23,7 +23,18 @@ object DateUtils {
         )
     )
 
-    private val currentTimeZone: TimeZone = TimeZone.currentSystemDefault()
+    private val FORMATTED_DATE_TIME = LocalDateTime.Format {
+        year(); char('-'); monthNumber(Padding.ZERO); char('-'); day(Padding.ZERO)
+        char('/')
+        hour(); char(':'); minute(); char(':'); second()
+    }
+
+    private val FORMATTED_MONTH = LocalDateTime.Format {
+        day(Padding.NONE); char(' '); monthName(RUSSIAN_ABBREVIATED); char(' '); year()
+    }
+
+    private val currentTimeZone: TimeZone
+        get() = TimeZone.currentSystemDefault()
 
     val instant: Instant
         get() = Clock.System.now()
@@ -60,39 +71,13 @@ object DateUtils {
         return this.toInstantOrDefault().toLocalDateTime(currentTimeZone).date
     }
 
-    fun LocalDateTime?.toFormattedString(): String =
-        this?.format(
-            LocalDateTime.Format {
-                year()
-                char('-')
-                monthNumber()
-                char('-')
-                day(padding = Padding.ZERO)
-
-                char('/')
-
-                hour()
-                char(':')
-                minute()
-                char(':')
-                second()
-            }
-        ).orEmpty()
+    fun LocalDateTime?.toFormattedString(): String = this?.format(FORMATTED_DATE_TIME).orEmpty()
 
     fun Instant?.toFormattedString(): String =
         this?.toLocalDateTime(currentTimeZone).toFormattedString()
 
-    fun Instant?.toFormattedMonth(): String = this
-        ?.toLocalDateTime(currentTimeZone)
-        ?.format(
-            LocalDateTime.Format {
-                day(padding = Padding.NONE)
-                char(' ')
-                monthName(RUSSIAN_ABBREVIATED)
-                char(' ')
-                year()
-            }
-        ).orEmpty()
+    fun Instant?.toFormattedMonth(): String =
+        this?.toLocalDateTime(currentTimeZone)?.format(FORMATTED_MONTH).orEmpty()
 
     /*fun Instant?.toRelativeString(): String {
         if (this == null) return ""
@@ -112,9 +97,7 @@ object DateUtils {
             "%02d:%02d".format(minutes, seconds)
         }
 
-    fun Long?.toFormattedString(): String {
-        return this.toInstantOrDefault().toFormattedString()
-    }
+    fun Long?.toFormattedString(): String = toInstantOrDefault().toFormattedString()
 
     fun String.toDuration(): Duration =
         toLongOrNull()?.toDuration(DurationUnit.SECONDS) ?: Duration.ZERO
