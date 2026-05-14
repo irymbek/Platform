@@ -14,5 +14,5 @@ interface PaginationKeyDao : BaseDao<PaginationKeyEntity> {
     suspend fun getCreationTime(type: String): Long?
 
     @Query("DELETE FROM pagination_keys WHERE type = :type")
-    suspend fun clearAll(type: String)
+    suspend fun deleteByType(type: String)
 }
