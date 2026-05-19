@@ -16,6 +16,7 @@ class PlatformDataImplPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.koin)
 
             val modules = setOf(
+                "common:base:network",
                 "common:base:database",
                 "common:base:data",
                 "common:base:model",
@@ -37,6 +38,8 @@ class PlatformDataImplPlugin : Plugin<Project> {
                 /**==============================================================================**/
                 implementation(platformLibs.androidx.paging.common)
                 implementation(platformLibs.androidx.room.ktx)
+
+                implementation(platformLibs.ktor.client.core)
             }
         }
     }
