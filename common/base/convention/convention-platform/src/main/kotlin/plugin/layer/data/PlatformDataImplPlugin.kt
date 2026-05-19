@@ -14,6 +14,7 @@ class PlatformDataImplPlugin : Plugin<Project> {
         with(target) {
             applyPlugin(platformLibs.plugins.build.library)
             applyPlugin(platformLibs.plugins.dependency.koin)
+            applyPlugin(platformLibs.plugins.dependency.serialization)
 
             val modules = setOf(
                 "common:base:network",
@@ -40,6 +41,8 @@ class PlatformDataImplPlugin : Plugin<Project> {
                 implementation(platformLibs.androidx.room.ktx)
 
                 implementation(platformLibs.ktor.client.core)
+
+                implementation(platformLibs.ktor.client.resources)
             }
         }
     }
