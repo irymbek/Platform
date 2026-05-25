@@ -2,6 +2,7 @@ package kz.rymbek.platform.common.core.design.foundation.components.textfield.se
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.KeyboardActionHandler
 import androidx.compose.foundation.text.input.TextFieldState
@@ -18,6 +19,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Density
+import kz.rymbek.platform.common.core.design.foundation.components.textfield.base.SecureTextFieldKeyboardOptions
 import kz.rymbek.platform.common.core.design.foundation.components.textfield.base.TextFieldPlaceholder
 
 @Composable
@@ -37,6 +39,7 @@ fun AppSecureTextField(
     isError: Boolean = false,
     inputTransformation: InputTransformation? = null,
     textObfuscationMode: TextObfuscationMode = TextObfuscationMode.RevealLastTyped,
+    keyboardOptions: KeyboardOptions = SecureTextFieldKeyboardOptions,
     onKeyboardAction: KeyboardActionHandler? = null,
     onTextLayout: (Density.(getResult: () -> TextLayoutResult?) -> Unit)? = null,
     shape: Shape = TextFieldDefaults.shape,
@@ -69,6 +72,7 @@ fun AppSecureTextField(
         isError = isError,
         inputTransformation = inputTransformation,
         textObfuscationMode = textObfuscationMode,
+        keyboardOptions = keyboardOptions,
         onKeyboardAction = onKeyboardAction,
         onTextLayout = onTextLayout,
         shape = shape,
