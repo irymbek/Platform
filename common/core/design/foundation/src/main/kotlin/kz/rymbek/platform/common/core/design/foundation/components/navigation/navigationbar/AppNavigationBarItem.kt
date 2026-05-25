@@ -9,6 +9,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import kz.rymbek.platform.common.core.design.foundation.components.badge.AppBadge
 import kz.rymbek.platform.common.core.design.foundation.components.badge.AppBadgedBox
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
@@ -32,7 +33,11 @@ fun RowScope.AppNavigationBarItem(
         onClick = onClick,
         icon = {
             AppBadgedBox(
-                text = badgeText,
+                badge = {
+                    badgeText?.let {
+                        AppBadge(content = { AppText(it) })
+                    }
+                },
                 content = {
                     AppIcon(
                         imageVector = if (selected) selectedImage else image,

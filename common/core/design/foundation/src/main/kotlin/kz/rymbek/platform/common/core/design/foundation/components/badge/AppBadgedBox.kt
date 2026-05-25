@@ -7,18 +7,12 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun AppBadgedBox(
-    text: String?,
+    badge: @Composable (BoxScope.() -> Unit),
     modifier: Modifier = Modifier,
     content: @Composable BoxScope.() -> Unit,
 ) {
     BadgedBox(
-        badge = {
-            text?.let {
-                AppBadge(
-                    text = it,
-                )
-            }
-        },
+        badge = badge,
         modifier = modifier,
         content = content,
     )

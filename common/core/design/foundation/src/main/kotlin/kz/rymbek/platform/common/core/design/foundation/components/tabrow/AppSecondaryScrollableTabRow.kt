@@ -1,5 +1,6 @@
 package kz.rymbek.platform.common.core.design.foundation.components.tabrow
 
+import AppTab
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.SecondaryScrollableTabRow
@@ -17,6 +18,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.tabrow.base.T
 fun <T : ITabItem> AppSecondaryScrollableTabRow(
     tabItems: List<T>,
     modifier: Modifier = Modifier,
+    badge: ((T) -> Int?)? = null,
     scrollState: ScrollState = rememberScrollState(),
     containerColor: Color = TabRowDefaults.secondaryContainerColor,
     contentColor: Color = TabRowDefaults.secondaryContentColor,
@@ -43,6 +45,7 @@ fun <T : ITabItem> AppSecondaryScrollableTabRow(
                             selected = selectedTabIndex == index,
                             onClick = { onClick(index) },
                             title = item.title,
+                            badgeCount = badge?.invoke(item),
                         )
                     }
                 }
@@ -51,3 +54,4 @@ fun <T : ITabItem> AppSecondaryScrollableTabRow(
         content = content
     )
 }
+

@@ -1,5 +1,6 @@
 package kz.rymbek.platform.common.core.design.foundation.components.tabrow
 
+import AppTab
 import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.runtime.Composable

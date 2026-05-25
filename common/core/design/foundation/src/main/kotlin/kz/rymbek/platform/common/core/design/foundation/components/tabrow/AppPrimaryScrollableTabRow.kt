@@ -1,5 +1,6 @@
 package kz.rymbek.platform.common.core.design.foundation.components.tabrow
 
+import AppTab
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.PrimaryScrollableTabRow
