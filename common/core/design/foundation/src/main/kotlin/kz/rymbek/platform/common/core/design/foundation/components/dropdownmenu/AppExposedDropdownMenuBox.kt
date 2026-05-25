@@ -70,8 +70,6 @@ fun <T : Any, KEY : Any> AppExposedDropdownMenuBox(
 ) {
     val expanded = rememberSaveable { mutableStateOf(false) }
 
-    Log.d("AppExposedDropdownMenuBox", "items: $items")
-
     val selectedItem = remember(items, selectedKey) {
         items.firstOrNull { key?.invoke(it) == selectedKey }
     }
