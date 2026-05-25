@@ -25,7 +25,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Density
-import kz.rymbek.platform.common.core.design.foundation.components.textfield.base.TextFieldPlaceholder
 
 @Composable
 fun AppTextField(
@@ -98,7 +97,7 @@ fun AppTextField(
     readOnly: Boolean = false,
     textStyle: TextStyle = LocalTextStyle.current,
     label: @Composable (() -> Unit)? = null,
-    placeholder: String = "",
+    placeholder: @Composable (() -> Unit)? = null,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
     prefix: @Composable (() -> Unit)? = null,
@@ -123,11 +122,7 @@ fun AppTextField(
         readOnly = readOnly,
         textStyle = textStyle,
         label = label,
-        placeholder = {
-            TextFieldPlaceholder(
-                placeholder = placeholder,
-            )
-        },
+        placeholder = placeholder,
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
         prefix = prefix,
@@ -155,7 +150,7 @@ fun AppTextField(
     readOnly: Boolean = false,
     textStyle: TextStyle = LocalTextStyle.current,
     label: @Composable (() -> Unit)? = null,
-    placeholder: String = "",
+    placeholder: @Composable (() -> Unit)? = null,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
     prefix: @Composable (() -> Unit)? = null,
@@ -180,11 +175,7 @@ fun AppTextField(
         readOnly = readOnly,
         textStyle = textStyle,
         label = label,
-        placeholder = {
-            TextFieldPlaceholder(
-                placeholder = placeholder,
-            )
-        },
+        placeholder = placeholder,
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
         prefix = prefix,

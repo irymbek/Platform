@@ -22,6 +22,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.divider.AppHo
 import kz.rymbek.platform.common.core.design.foundation.components.dropdownmenu.exposed.AppDropdownMenuItem
 import kz.rymbek.platform.common.core.design.foundation.components.icon.AppIcon
 import kz.rymbek.platform.common.core.design.foundation.components.list.lazy.column.AppLazyColumn
+import kz.rymbek.platform.common.core.design.foundation.components.textfield.base.TextFieldPlaceholder
 import kz.rymbek.platform.common.core.design.foundation.components.textfield.regular.AppTextField
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
@@ -68,7 +69,11 @@ fun <T : Any> LargeDropDownMenuDialog(
                         leadingIcon = {
                             AppIcon(imageVector = PlatformIcons.OutlinedSearch)
                         },
-                        placeholder = "Поиск",
+                        placeholder = {
+                            TextFieldPlaceholder(
+                                placeholder = "Поиск",
+                            )
+                        },
                     )
 
                     AppLazyColumn(
