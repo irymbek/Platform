@@ -4,8 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.paging.map
 import io.konform.validation.ValidationError
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
 import kz.rymbek.platform.common.base.model.interfaces.HasValidator
 import org.orbitmvi.orbit.ContainerHost
@@ -58,6 +60,18 @@ abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : IEvent.Navigation>(
     protected inline fun <T : Any, R> Flow<PagingData<T>>.cachedInVm(
         action: (Flow<PagingData<T>>) -> R,
     ): R = action(this.cachedIn(viewModelScope))
+
+    protected inline fun <T : Any, M : Any, R> Flow<PagingData<T>>.cachedInVm(
+        noinline mapper: (T) -> M,
+        action: (Flow<PagingData<M>>) -> R,
+    ): R = action(
+        this.map { it.map(mapper) }
+            .cachedIn(viewModelScope)
+    )
+
+    fun <T : Any, R : Any> Flow<PagingData<T>>.mapPaging(
+        transform: (T) -> R
+    ): Flow<PagingData<R>> = map { it.map(transform) }
 
     /* Простейшие обёртки для reduce */
 

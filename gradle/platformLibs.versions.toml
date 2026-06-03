@@ -29,7 +29,7 @@ ktor = "3.5.0"
 konform = "0.11.1"
 okio = "3.17.0"
 orbit = "11.0.0"
-spotless = "8.5.1"
+spotless = "8.6.0"
 
 compileSdk = "37"
 targetSdk = "37"
