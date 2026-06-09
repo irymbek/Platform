@@ -89,6 +89,10 @@ gradlePlugin {
             id = platformLibs.plugins.layer.data.impl.get().pluginId
             implementationClass = "plugin.layer.data.PlatformDataImplPlugin"
         }
+        register("PlatformDataNetworkPlugin") {
+            id = platformLibs.plugins.layer.data.impl.get().pluginId
+            implementationClass = "plugin.layer.data.PlatformDataNetworkPlugin"
+        }
         /*========================================================================================*/
         register("PlatformDomainApiPlugin") {
             id = platformLibs.plugins.layer.domain.api.get().pluginId
