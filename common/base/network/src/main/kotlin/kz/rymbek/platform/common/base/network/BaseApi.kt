@@ -130,6 +130,7 @@ open class BaseApi : BaseApiHelper() {
         resource: Resource,
         file: File,
         key: String,
+        fields: Map<String, String> = emptyMap(),
         crossinline httpRequestBuilder: HttpRequestBuilder.() -> Unit = {},
         noinline progressCallback: ((bytesSent: Long, contentLength: Long?) -> Unit)? = null
     ): ResultFlow<Response> = requestSafe {
@@ -145,6 +146,10 @@ open class BaseApi : BaseApiHelper() {
                                 append(HttpHeaders.ContentDisposition, "filename=\"${file.name}\"")
                             }
                         )
+
+                        fields.forEach { (name, value) ->
+                            append(name, value)
+                        }
                     }
                 )
             )
