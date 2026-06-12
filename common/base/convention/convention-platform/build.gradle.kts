@@ -90,7 +90,7 @@ gradlePlugin {
             implementationClass = "plugin.layer.data.PlatformDataImplPlugin"
         }
         register("PlatformDataNetworkPlugin") {
-            id = platformLibs.plugins.layer.data.impl.get().pluginId
+            id = platformLibs.plugins.layer.data.network.get().pluginId
             implementationClass = "plugin.layer.data.PlatformDataNetworkPlugin"
         }
         /*========================================================================================*/
