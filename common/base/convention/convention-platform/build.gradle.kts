@@ -1,4 +1,3 @@
-//import kz.rymbek.platform.common.base.convention.extensions.conventionPlugin
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -44,12 +43,17 @@ tasks {
 
 gradlePlugin {
     plugins {
-        /** Build ===============================================================================**/
+        /** =====================================================================================
+         * BUILD
+         * =================================================================================== **/
+
+        /** Jvm **/
         register("JvmPlugin") {
             id = platformLibs.plugins.build.jvm.get().pluginId
             implementationClass = "plugin.build.jvm.JvmPlugin"
         }
-        /*========================================================================================*/
+
+        /** Application **/
         register("ApplicationPlugin") {
             id = platformLibs.plugins.build.application.asProvider().get().pluginId
             implementationClass = "plugin.build.application.ApplicationPlugin"
@@ -58,7 +62,8 @@ gradlePlugin {
             id = platformLibs.plugins.build.application.compose.get().pluginId
             implementationClass = "plugin.build.application.ApplicationComposePlugin"
         }
-        /*========================================================================================*/
+
+        /** Library **/
         register("LibraryPlugin") {
             id = platformLibs.plugins.build.library.asProvider().get().pluginId
             implementationClass = "plugin.build.library.LibraryPlugin"
@@ -67,7 +72,11 @@ gradlePlugin {
             id = platformLibs.plugins.build.library.compose.get().pluginId
             implementationClass = "plugin.build.library.LibraryComposePlugin"
         }
-        /** Dependency ==========================================================================**/
+
+        /** =====================================================================================
+         * DEPENDENCY
+         * =================================================================================== **/
+
         register("DependencyKoinPlugin") {
             id = platformLibs.plugins.dependency.koin.get().pluginId
             implementationClass = "plugin.dependency.DependencyKoinPlugin"
@@ -80,20 +89,34 @@ gradlePlugin {
             id = platformLibs.plugins.dependency.serialization.get().pluginId
             implementationClass = "plugin.dependency.DependencySerialization"
         }
-        /** Layer ===============================================================================**/
+
+        /** =====================================================================================
+         * LAYER
+         * =================================================================================== **/
+
+        /** Data **/
         register("PlatformDataApiPlugin") {
             id = platformLibs.plugins.layer.data.api.get().pluginId
             implementationClass = "plugin.layer.data.PlatformDataApiPlugin"
+        }
+        register("PlatformDataDatabasePlugin") {
+            id = platformLibs.plugins.layer.data.database.get().pluginId
+            implementationClass = "plugin.layer.data.PlatformDataDatabasePlugin"
         }
         register("PlatformDataImplPlugin") {
             id = platformLibs.plugins.layer.data.impl.get().pluginId
             implementationClass = "plugin.layer.data.PlatformDataImplPlugin"
         }
+        register("PlatformDataModelPlugin") {
+            id = platformLibs.plugins.layer.data.model.get().pluginId
+            implementationClass = "plugin.layer.data.PlatformDataModelPlugin"
+        }
         register("PlatformDataNetworkPlugin") {
             id = platformLibs.plugins.layer.data.network.get().pluginId
             implementationClass = "plugin.layer.data.PlatformDataNetworkPlugin"
         }
-        /*========================================================================================*/
+
+        /** Domain **/
         register("PlatformDomainApiPlugin") {
             id = platformLibs.plugins.layer.domain.api.get().pluginId
             implementationClass = "plugin.layer.domain.PlatformDomainApiPlugin"
@@ -102,7 +125,8 @@ gradlePlugin {
             id = platformLibs.plugins.layer.domain.impl.get().pluginId
             implementationClass = "plugin.layer.domain.PlatformDomainImplPlugin"
         }
-        /*========================================================================================*/
+
+        /** Model **/
         register("PlatformModelBasePlugin") {
             id = platformLibs.plugins.layer.model.base.get().pluginId
             implementationClass = "plugin.layer.model.PlatformModelBasePlugin"
@@ -119,7 +143,8 @@ gradlePlugin {
             id = platformLibs.plugins.layer.model.ui.get().pluginId
             implementationClass = "plugin.layer.model.PlatformModelUiPlugin"
         }
-        /*========================================================================================*/
+
+        /** Presentation **/
         register("PlatformPresentationApiPlugin") {
             id = platformLibs.plugins.layer.presentation.api.get().pluginId
             implementationClass = "plugin.layer.presentation.PlatformPresentationApiPlugin"
@@ -128,7 +153,9 @@ gradlePlugin {
             id = platformLibs.plugins.layer.presentation.impl.get().pluginId
             implementationClass = "plugin.layer.presentation.PlatformPresentationImplPlugin"
         }
-        /*========================================================================================*/
+
+
+        /** Infrastructure **/
         register("PlatformConverterPlugin") {
             id = platformLibs.plugins.layer.converter.get().pluginId
             implementationClass = "plugin.layer.PlatformConverterPlugin"

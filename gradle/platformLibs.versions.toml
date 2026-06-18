@@ -161,9 +161,13 @@ dependency-serialization = { id = "dependency.serialization" }
 
 # Layer Platform
 layer-converter = { id = "layer.converter" }
+
 layer-data-api = { id = "layer.data.api" }
+layer-data-database = { id = "layer.data.database" }
 layer-data-impl = { id = "layer.data.impl" }
+layer-data-model = { id = "layer.data.model" }
 layer-data-network = { id = "layer.data.network" }
+
 layer-database = { id = "layer.database" }
 layer-datastore = { id = "layer.datastore" }
 layer-domain-api = { id = "layer.domain.api" }
