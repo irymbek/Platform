@@ -14,20 +14,3 @@ internal fun AndroidComponentsExtension<*, *, *>.disableAllTests() = beforeVaria
         it.deviceTests[DeviceTestBuilder.ANDROID_TEST_TYPE]?.enable = false
     }
 }
-
-
-/*internal fun LibraryAndroidComponentsExtension.disableAllTests() {
-    return beforeVariants {
-        it.androidTest.enable = false
-        //it.unitTestEnabled = false
-    }
-}
-
-internal fun ApplicationAndroidComponentsExtension.disableAllTests() {
-    return beforeVariants {
-        it.androidTest.enable = false
-        //(it as? com.android.build.api.variant.HasUnitTestBuilder)?.enableUnitTest = false
-        //(it as? com.android.build.api.variant.HasAndroidTestBuilder)?.androidTest?.enable = false
-        //it.unitTestEnabled = false
-    }
-}*/

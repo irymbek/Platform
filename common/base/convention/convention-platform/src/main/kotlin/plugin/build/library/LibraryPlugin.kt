@@ -1,9 +1,7 @@
 package plugin.build.library
 
 import com.android.build.api.dsl.LibraryExtension
-import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import kz.rymbek.platform.common.base.convention.configureKotlinAndroid
-import kz.rymbek.platform.common.base.convention.disableAllTests
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
@@ -23,10 +21,6 @@ class LibraryPlugin : Plugin<Project> {
                 resourcePrefix =
                     path.split("""\W""".toRegex()).drop(1).distinct().joinToString(separator = "_")
                         .lowercase() + "_"
-            }
-
-            extensions.configure<LibraryAndroidComponentsExtension> {
-                disableAllTests()
             }
 
             //configureSpotlessForAndroid()

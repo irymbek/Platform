@@ -1,10 +1,8 @@
 package plugin.build.application
 
 import com.android.build.api.dsl.ApplicationExtension
-import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import kz.rymbek.platform.common.base.convention.AppBuildType
 import kz.rymbek.platform.common.base.convention.configureKotlinAndroid
-import kz.rymbek.platform.common.base.convention.disableAllTests
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.implementation
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
@@ -55,10 +53,6 @@ class ApplicationPlugin : Plugin<Project> {
                         excludes.add("/META-INF/{AL2.0,LGPL2.1}")
                     }
                 }
-            }
-
-            extensions.configure<ApplicationAndroidComponentsExtension> {
-                disableAllTests()
             }
 
             //configureSpotlessForAndroid()
