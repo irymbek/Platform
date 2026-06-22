@@ -6,9 +6,9 @@ import kz.rymbek.platform.common.business.datastore.AppDataStoreInterface
 import kz.rymbek.platform.common.business.model.ui.enums.design.AppThemeBrand
 import kz.rymbek.platform.common.business.model.ui.enums.design.ModeConfig
 import kz.rymbek.platform.common.business.model.ui.models.AppData
-import org.koin.core.annotation.Single
+import org.koin.core.annotation.Singleton
 
-@Single
+@Singleton
 internal class AppRepository(
     private val appDataStoreInterface: AppDataStoreInterface,
 ) : AppRepositoryInterface {

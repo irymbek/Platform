@@ -17,9 +17,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.util.Consumer
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import org.koin.core.annotation.Single
+import org.koin.core.annotation.Singleton
 
-@Single
+@Singleton
 class ActivityUtils(
     private val context: Context,
 ) {
@@ -95,7 +95,8 @@ class ActivityUtils(
     }
 
     fun toggleOrientation() {
-        val isLandscape = activity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+        val isLandscape =
+            activity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
         if (isLandscape) {
             setOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         } else {

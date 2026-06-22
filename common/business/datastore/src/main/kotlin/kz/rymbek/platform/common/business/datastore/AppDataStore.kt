@@ -7,9 +7,9 @@ import kz.rymbek.platform.common.base.datastore.BaseDataStore
 import kz.rymbek.platform.common.business.model.ui.enums.design.AppThemeBrand
 import kz.rymbek.platform.common.business.model.ui.enums.design.ModeConfig
 import kz.rymbek.platform.common.business.model.ui.models.AppData
-import org.koin.core.annotation.Single
+import org.koin.core.annotation.Singleton
 
-@Single
+@Singleton
 internal class AppDataStore(
     context: Context,
 ) : BaseDataStore(context, DataStoreConstants.APP_DATA_STORE_NAME),

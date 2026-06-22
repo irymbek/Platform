@@ -5,10 +5,10 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
-import org.koin.core.annotation.Single
+import org.koin.core.annotation.Singleton
 
 @UnstableApi
-@Single
+@Singleton
 class AppMediaSessionService : MediaSessionService() {
     private val player: ExoPlayer by lazy {
         ExoPlayer.Builder(this)

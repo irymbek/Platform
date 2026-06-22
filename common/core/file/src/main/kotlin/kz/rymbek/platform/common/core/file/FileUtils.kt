@@ -4,11 +4,11 @@ import android.content.Context
 import android.net.Uri
 import androidx.core.content.FileProvider
 import kz.rymbek.platform.common.core.file.Base64Kotlin.decodeToBytes
-import org.koin.core.annotation.Single
+import org.koin.core.annotation.Singleton
 import java.io.File
 import kotlin.uuid.Uuid
 
-@Single
+@Singleton
 class FileUtils(
     private val context: Context,
 ) {
