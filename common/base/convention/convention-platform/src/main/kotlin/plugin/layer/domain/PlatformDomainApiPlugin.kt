@@ -1,6 +1,7 @@
 package plugin.layer.domain
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
+import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
 import kz.rymbek.platform.common.base.convention.extensions.implementation
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
@@ -13,8 +14,7 @@ class PlatformDomainApiPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.build.library)
 
             dependencies {
-                //implementation(":platform:common:base:model")
-                implementation(":platform:common:core:architecture")
+                implementation(contextPrefix(":common:core:architecture"))
                 /**==============================================================================**/
                 implementation(platformLibs.androidx.paging.common)
             }

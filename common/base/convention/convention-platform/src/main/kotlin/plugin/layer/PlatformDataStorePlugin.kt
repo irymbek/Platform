@@ -3,7 +3,6 @@ package plugin.layer
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
 import kz.rymbek.platform.common.base.convention.extensions.implementation
-import kz.rymbek.platform.common.base.convention.extensions.implementations
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -20,14 +19,9 @@ class PlatformDataStorePlugin : Plugin<Project> {
                 "common:base:model",
                 "common:business:model:ui",
             )
-            val paths = contextPrefix(
-                modules
-            )
 
             dependencies {
-                implementations(
-                    paths
-                )
+                implementation(contextPrefix(modules))
                 /**==============================================================================**/
                 implementation(platformLibs.androidx.dataStore.preferences)
             }

@@ -3,7 +3,6 @@ package plugin.layer.data
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
 import kz.rymbek.platform.common.base.convention.extensions.implementation
-import kz.rymbek.platform.common.base.convention.extensions.implementations
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -20,14 +19,9 @@ class PlatformDataNetworkPlugin : Plugin<Project> {
                 "common:base:network",
                 "common:core:architecture",
             )
-            val paths = contextPrefix(
-                modules
-            )
 
             dependencies {
-                implementations(
-                    paths
-                )
+                implementation(contextPrefix(modules))
                 /**==============================================================================**/
                 implementation(platformLibs.ktor.client.core)
                 implementation(platformLibs.ktor.client.resources)

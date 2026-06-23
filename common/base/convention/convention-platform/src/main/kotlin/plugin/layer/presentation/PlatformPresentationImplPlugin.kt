@@ -1,6 +1,7 @@
 package plugin.layer.presentation
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
+import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
 import kz.rymbek.platform.common.base.convention.extensions.implementation
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
@@ -15,16 +16,18 @@ class PlatformPresentationImplPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.koin)
             applyPlugin(platformLibs.plugins.dependency.serialization)
 
+            val modules = setOf(
+                ":common:base:feature",
+                ":common:base:model",
+                ":common:base:navigation",
+                ":common:core:architecture",
+                ":common:core:date",
+                ":common:core:design:compound",
+                ":common:business:model:ui",
+            )
+
             dependencies {
-                implementation(":platform:common:base:feature")
-                implementation(":platform:common:base:model")
-                implementation(":platform:common:base:navigation")
-
-                implementation(":platform:common:core:architecture")
-                implementation(":platform:common:core:date")
-                implementation(":platform:common:core:design:compound")
-
-                implementation(":platform:common:business:model:ui")
+                implementation(contextPrefix(modules))
                 /**==============================================================================**/
                 // koinViewModel
                 implementation(platformLibs.koin.androidx.compose)

@@ -1,6 +1,7 @@
 package plugin.layer
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
+import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
 import kz.rymbek.platform.common.base.convention.extensions.implementation
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
@@ -14,15 +15,17 @@ class PlatformDatabasePlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.room)
             applyPlugin(platformLibs.plugins.dependency.koin)
 
+            val modules = setOf(
+                "common:base:database",
+                "common:base:converter",
+                "common:base:model",
+                "common:core:architecture",
+                "common:business:converter",
+                "common:business:model:cache",
+            )
+
             dependencies {
-                implementation(":platform:common:base:database")
-                implementation(":platform:common:base:converter")
-                implementation(":platform:common:base:model")
-
-                implementation(":platform:common:core:architecture")
-
-                implementation(":platform:common:business:converter")
-                implementation(":platform:common:business:model:cache")
+                implementation(contextPrefix(modules))
                 /**==============================================================================**/
                 implementation(platformLibs.kotlinx.datetime)
             }

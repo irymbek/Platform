@@ -1,6 +1,7 @@
 package plugin.layer.model
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
+import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
 import kz.rymbek.platform.common.base.convention.extensions.implementation
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
@@ -14,7 +15,7 @@ class PlatformModelRemotePlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.serialization)
 
             dependencies {
-                implementation(":platform:common:business:converter")
+                implementation(contextPrefix(":platform:common:business:converter"))
             }
         }
     }

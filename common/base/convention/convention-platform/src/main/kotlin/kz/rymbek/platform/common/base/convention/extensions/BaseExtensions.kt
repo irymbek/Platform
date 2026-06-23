@@ -7,7 +7,6 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.DependencyHandlerScope
-import org.gradle.kotlin.dsl.project
 import org.gradle.plugin.devel.PluginDeclaration
 import org.gradle.plugin.use.PluginDependency
 
@@ -39,7 +38,7 @@ fun DependencyHandlerScope.implementation(
     add("implementation", dependency)
 }
 
-fun DependencyHandlerScope.implementations(
+fun DependencyHandlerScope.implementation(
     paths: List<String>,
 ) {
     paths.forEach { path ->

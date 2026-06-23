@@ -1,6 +1,7 @@
 package plugin.layer
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
+import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
 import kz.rymbek.platform.common.base.convention.extensions.implementation
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
@@ -14,12 +15,14 @@ class PlatformNetworkPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.koin)
             applyPlugin(platformLibs.plugins.dependency.serialization)
 
+            val modules = setOf(
+                ":common:base:network",
+                ":common:core:architecture",
+                ":common:business:model:ui",
+            )
+
             dependencies {
-                implementation(":platform:common:base:network")
-
-                implementation(":platform:common:core:architecture")
-
-                implementation(":platform:common:business:model:ui")
+                implementation(contextPrefix(modules))
                 /**==============================================================================**/
                 implementation(platformLibs.kotlinx.datetime)
 

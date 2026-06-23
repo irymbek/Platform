@@ -3,7 +3,6 @@ package plugin.layer.data
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
 import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
 import kz.rymbek.platform.common.base.convention.extensions.implementation
-import kz.rymbek.platform.common.base.convention.extensions.implementations
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -27,14 +26,9 @@ class PlatformDataApiPlugin : Plugin<Project> {
                 "common:business:model:cache",
                 "common:business:database",
             )
-            val paths = contextPrefix(
-                modules
-            )
 
             dependencies {
-                implementations(
-                    paths
-                )
+                implementation(contextPrefix(modules))
                 /**==============================================================================**/
                 implementation(platformLibs.androidx.paging.common)
                 implementation(platformLibs.androidx.room.ktx)

@@ -14,12 +14,13 @@ class PlatformDataModelPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.build.library)
             applyPlugin(platformLibs.plugins.dependency.serialization)
 
-            val path = contextPrefix(
+            val modules = setOf(
                 "common:base:database",
+                "common:core:date",
             )
 
             dependencies {
-                implementation(path)
+                implementation(contextPrefix(modules))
                 /**==============================================================================**/
                 implementation(platformLibs.androidx.room.ktx)
                 implementation(platformLibs.androidx.paging.common)

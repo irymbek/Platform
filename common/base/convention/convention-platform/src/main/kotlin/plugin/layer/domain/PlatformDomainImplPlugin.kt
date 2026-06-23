@@ -1,6 +1,7 @@
 package plugin.layer.domain
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
+import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
 import kz.rymbek.platform.common.base.convention.extensions.implementation
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
@@ -13,10 +14,13 @@ class PlatformDomainImplPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.build.library)
             applyPlugin(platformLibs.plugins.dependency.koin)
 
-            dependencies {
-                implementation(":platform:common:base:model")
+            val modules = setOf(
+                "common:base:database",
+                "common:core:date",
+            )
 
-                implementation(":platform:common:core:architecture")
+            dependencies {
+                implementation(contextPrefix(modules))
                 /**==============================================================================**/
                 implementation(platformLibs.kotlinx.datetime)
                 implementation(platformLibs.androidx.paging.common)

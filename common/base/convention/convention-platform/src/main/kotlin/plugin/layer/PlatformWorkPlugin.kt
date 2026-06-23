@@ -1,6 +1,7 @@
 package plugin.layer
 
 import kz.rymbek.platform.common.base.convention.extensions.applyPlugin
+import kz.rymbek.platform.common.base.convention.extensions.contextPrefix
 import kz.rymbek.platform.common.base.convention.extensions.implementation
 import kz.rymbek.platform.common.base.convention.extensions.platformLibs
 import org.gradle.api.Plugin
@@ -13,13 +14,15 @@ class PlatformWorkPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.build.library)
             applyPlugin(platformLibs.plugins.dependency.koin)
 
+            val modules = setOf(
+                ":common:base:database",
+                ":common:base:model", //Identifiable
+                ":common:base:work",
+                ":common:core:architecture",
+            )
+
             dependencies {
-                implementation(":platform:common:base:database")
-                implementation(":platform:common:base:model") //Identifiable
-                implementation(":platform:common:base:work")
-
-                implementation(":platform:common:core:architecture")
-
+                implementation(contextPrefix(modules))
                 /**==============================================================================**/
                 //WorkManager
                 implementation(platformLibs.androidx.work.runtime)

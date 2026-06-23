@@ -14,12 +14,8 @@ class PlatformDataDatabasePlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.build.library)
             applyPlugin(platformLibs.plugins.dependency.koin)
 
-            val path = contextPrefix(
-                "common:base:database",
-            )
-
             dependencies {
-                implementation(path)
+                implementation(contextPrefix("common:base:database"))
                 /**==============================================================================**/
                 implementation(platformLibs.androidx.room.ktx)
                 implementation(platformLibs.androidx.paging.common)
