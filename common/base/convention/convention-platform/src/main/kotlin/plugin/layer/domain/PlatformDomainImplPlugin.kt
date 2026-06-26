@@ -15,8 +15,8 @@ class PlatformDomainImplPlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.koin)
 
             val modules = setOf(
-                "common:base:database",
-                "common:core:date",
+                "common:base:model",
+                "common:core:architecture",
             )
 
             dependencies {

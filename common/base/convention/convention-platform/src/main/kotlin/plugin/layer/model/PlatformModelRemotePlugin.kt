@@ -15,7 +15,7 @@ class PlatformModelRemotePlugin : Plugin<Project> {
             applyPlugin(platformLibs.plugins.dependency.serialization)
 
             dependencies {
-                implementation(contextPrefix(":platform:common:business:converter"))
+                implementation(contextPrefix(":common:business:converter"))
             }
         }
     }
