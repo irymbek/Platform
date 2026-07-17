@@ -1,6 +1,5 @@
 package kz.rymbek.platform.common.core.design.foundation.components.dropdownmenu
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExposedDropdownMenuAnchorType
 import androidx.compose.material3.ExposedDropdownMenuBox

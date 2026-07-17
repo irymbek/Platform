@@ -26,6 +26,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.textfield.bas
 import kz.rymbek.platform.common.core.design.foundation.components.textfield.regular.AppTextField
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
 import kz.rymbek.platform.common.core.design.foundation.icons.PlatformIcons
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun <T : Any> LargeDropDownMenuDialog(
@@ -44,7 +45,7 @@ fun <T : Any> LargeDropDownMenuDialog(
     var filteredItems by remember(items) { mutableStateOf(items) }
 
     LaunchedEffect(searchQuery) {
-        delay(300)
+        delay(300.milliseconds)
         filteredItems = items.filter {
             selectedItemToString(it).contains(searchQuery, ignoreCase = true)
         }
