@@ -10,9 +10,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kz.rymbek.platform.common.base.feature.architecture.IEvent
 import kz.rymbek.platform.common.base.model.interfaces.HasValidator
-import org.orbitmvi.orbit.ContainerHost
+import org.orbitmvi.orbit.OrbitContainerHost
 import org.orbitmvi.orbit.blockingIntent
-import org.orbitmvi.orbit.container
+import org.orbitmvi.orbit.orbitContainer
 import org.orbitmvi.orbit.syntax.Syntax
 
 /**
@@ -27,8 +27,8 @@ import org.orbitmvi.orbit.syntax.Syntax
 abstract class OrbitViewModel<STATE : Any, SIDE_EFFECT : IEvent.Navigation>(
     initialState: STATE,
 ) : ViewModel(),
-    ContainerHost<STATE, SIDE_EFFECT> {
-    override val container = viewModelScope.container<STATE, SIDE_EFFECT>(initialState)
+    OrbitContainerHost<STATE, STATE, SIDE_EFFECT> {
+    override val container = viewModelScope.orbitContainer<STATE, SIDE_EFFECT>(initialState)
 
     /**
      * Унифицированный обработчик событий.
