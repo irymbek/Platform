@@ -24,6 +24,7 @@ import androidx.media3.ui.compose.material3.Player
 import kotlinx.coroutines.delay
 import kz.rymbek.platform.common.core.activity.ActivityUtils
 import kz.rymbek.platform.common.core.activity.rememberActivityUtils
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun FullPlayer(
@@ -67,7 +68,7 @@ fun FullPlayer(
 
     LaunchedEffect(lastInteraction, isPlaying) {
         if (isPlaying) {
-            delay(3000L)
+            delay(3000L.milliseconds)
             showControls = false
         }
     }
