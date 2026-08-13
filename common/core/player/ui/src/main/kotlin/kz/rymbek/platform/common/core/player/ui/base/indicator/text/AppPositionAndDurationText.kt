@@ -1,4 +1,4 @@
-package kz.rymbek.platform.common.core.player.ui.base.indicator
+package kz.rymbek.platform.common.core.player.ui.base.indicator.text
 
 import androidx.annotation.OptIn
 import androidx.compose.runtime.Composable
@@ -7,25 +7,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
-import androidx.media3.ui.compose.material3.indicator.TimeFormat
-import androidx.media3.ui.compose.material3.indicator.TimeText
+import androidx.media3.ui.compose.material3.indicator.PositionAndDurationText
 import kotlinx.coroutines.CoroutineScope
 import kz.rymbek.platform.common.core.player.ui.base.Constants
 
 @OptIn(UnstableApi::class)
 @Composable
-fun AppTimeText(
+fun AppPositionAndDurationText(
     player: Player?,
     modifier: Modifier = Modifier,
+    separator: String = " / ",
     color: Color = Constants.primary,
-    timeFormat: TimeFormat,
     scope: CoroutineScope = rememberCoroutineScope(),
 ) {
-    TimeText(
+    PositionAndDurationText(
         player = player,
         modifier = modifier,
+        separator = separator,
         color = color,
-        timeFormat = timeFormat,
         scope = scope
     )
 }

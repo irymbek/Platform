@@ -46,7 +46,7 @@ import kz.rymbek.platform.common.core.player.ui.base.button.AppRepeatButton
 import kz.rymbek.platform.common.core.player.ui.base.button.AppSeekBackButton
 import kz.rymbek.platform.common.core.player.ui.base.button.AppSeekForwardButton
 import kz.rymbek.platform.common.core.player.ui.base.button.AppShuffleButton
-import kz.rymbek.platform.common.core.player.ui.base.indicator.AppPositionAndDurationText
+import kz.rymbek.platform.common.core.player.ui.base.indicator.text.AppPositionAndDurationText
 
 @Composable
 private fun PlayerControlAnimation(
