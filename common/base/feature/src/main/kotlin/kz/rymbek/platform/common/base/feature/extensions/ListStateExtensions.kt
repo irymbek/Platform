@@ -1,7 +1,7 @@
 package kz.rymbek.platform.common.base.feature.extensions
 
 object ListStateExtensions {
-    fun <T> List<T>.addItem(path: T, maxItems: Int = 30): List<T> = if (size < maxItems) this + path else this
+    fun <T> List<T>.addItem(path: T, maxItems: Int = 50): List<T> = if (size < maxItems) this + path else this
 
     fun <T> List<T>.editItem(index: Int, path: T): List<T> = if (index in indices) {
         toMutableList().apply { this[index] = path }
