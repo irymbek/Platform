@@ -49,7 +49,11 @@ fun DependencyHandlerScope.implementation(
 fun DependencyHandlerScope.implementation(
     path: String,
 ) {
-    add("implementation", project(path))
+    add(
+        "implementation", project(
+            path
+        )
+    )
 }
 
 fun DependencyHandlerScope.ksp(
