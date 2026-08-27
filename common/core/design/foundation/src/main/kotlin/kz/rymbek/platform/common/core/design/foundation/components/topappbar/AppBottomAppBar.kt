@@ -36,3 +36,72 @@ fun AppBottomAppBar(
         scrollBehavior = scrollBehavior,
     )
 }
+
+@Composable
+fun AppBottomAppBar(
+    actions: @Composable RowScope.() -> Unit,
+    modifier: Modifier = Modifier,
+    floatingActionButton: @Composable (() -> Unit)? = null,
+    containerColor: Color = BottomAppBarDefaults.containerColor,
+    contentColor: Color = contentColorFor(containerColor),
+    tonalElevation: Dp = BottomAppBarDefaults.ContainerElevation,
+    contentPadding: PaddingValues = BottomAppBarDefaults.ContentPadding,
+    windowInsets: WindowInsets = BottomAppBarDefaults.windowInsets,
+) {
+    BottomAppBar(
+        actions = actions,
+        modifier = modifier,
+        floatingActionButton = floatingActionButton,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        tonalElevation = tonalElevation,
+        contentPadding = contentPadding,
+        windowInsets = windowInsets,
+    )
+}
+
+@Composable
+fun AppBottomAppBar(
+    modifier: Modifier = Modifier,
+    containerColor: Color = BottomAppBarDefaults.containerColor,
+    contentColor: Color = contentColorFor(containerColor),
+    tonalElevation: Dp = BottomAppBarDefaults.ContainerElevation,
+    contentPadding: PaddingValues = BottomAppBarDefaults.ContentPadding,
+    windowInsets: WindowInsets = BottomAppBarDefaults.windowInsets,
+    content: @Composable RowScope.() -> Unit,
+) {
+    BottomAppBar(
+        modifier = modifier,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        tonalElevation = tonalElevation,
+        contentPadding = contentPadding,
+        windowInsets = windowInsets,
+        content = content,
+    )
+}
+
+@Composable
+fun AppBottomAppBar(
+    modifier: Modifier = Modifier,
+    containerColor: Color = BottomAppBarDefaults.containerColor,
+    contentColor: Color = contentColorFor(containerColor),
+    tonalElevation: Dp = BottomAppBarDefaults.ContainerElevation,
+    contentPadding: PaddingValues = BottomAppBarDefaults.ContentPadding,
+    windowInsets: WindowInsets = BottomAppBarDefaults.windowInsets,
+    scrollBehavior: BottomAppBarScrollBehavior? = null,
+    content: @Composable RowScope.() -> Unit,
+) {
+    BottomAppBar(
+        modifier = modifier,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        tonalElevation = tonalElevation,
+        contentPadding = contentPadding,
+        windowInsets = windowInsets,
+        scrollBehavior = scrollBehavior,
+        content = content,
+    )
+}
+
+
