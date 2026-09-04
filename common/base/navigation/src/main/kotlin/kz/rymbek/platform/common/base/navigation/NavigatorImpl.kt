@@ -20,18 +20,27 @@ internal class NavigatorImpl(
      * @param key - the navigation key to navigate to.
      */
     override fun navigate(key: NavKey) {
-        // 1. ПЕРЕХВАТЧИК: Если экран требует авторизации, а токена нет
         if (key is RequiresAuth && !isLoggedIn()) {
-            // Передаем целевой ключ в глобальный скоуп, чтобы открыть логин
             onRequireGlobalAuth(key)
             return
         }
 
-        // 2. СТАНДАРТНАЯ ЛОГИКА (ваш текущий код)
         when (key) {
             navigationState.currentTopLevelKey -> clearSubStack()
             in navigationState.topLevelKeys -> goToTopLevel(key)
             else -> goToKey(key)
+        }
+    }
+
+    override fun replace(key: NavKey) {
+        if (key is RequiresAuth && !isLoggedIn()) {
+            onRequireGlobalAuth(key)
+            return
+        }
+
+        navigationState.currentSubStack.apply {
+            removeLastOrNull()
+            add(key)
         }
     }
 

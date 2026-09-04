@@ -1,6 +1,7 @@
 package kz.rymbek.platform.common.core.design.foundation.icons
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForwardIos
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.CheckCircle
@@ -27,6 +28,8 @@ object PlatformIcons {
     val OutlinedPalette = Icons.Outlined.Palette
 
     val FilledArrowBackIosNew = Icons.Filled.ArrowBackIosNew
+
+    val FilledArrowForwardIos = Icons.AutoMirrored.Filled.ArrowForwardIos
 
     val FilledSettings = Icons.Filled.Settings
     val OutlinedSettings = Icons.Outlined.Settings

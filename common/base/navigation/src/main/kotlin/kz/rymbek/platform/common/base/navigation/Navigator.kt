@@ -6,4 +6,6 @@ interface Navigator {
     fun navigate(key: NavKey)
 
     fun navigateBack()
+
+    fun replace(key: NavKey)
 }
