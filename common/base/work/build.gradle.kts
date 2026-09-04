@@ -8,5 +8,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.platform.common.core.architecture)
+    
     implementation(platformLibs.androidx.work.runtime)
 }
