@@ -17,36 +17,36 @@ import kz.rymbek.platform.common.core.architecture.DataResult
 import kz.rymbek.platform.common.core.architecture.NetworkResult
 
 abstract class BaseRepository {
-    protected fun <Remote : Any, Ui : Any> getPagedRemote(
+    protected fun <Remote : Any, Domain : Any> getPagedRemote(
         fetchFromNetwork: suspend (page: Int, pageSize: Int) -> List<Remote>,
-        mapToUi: suspend (Remote) -> Ui,
-    ): Flow<PagingData<Ui>> = Pager(
+        mapToDomain: suspend (Remote) -> Domain,
+    ): Flow<PagingData<Domain>> = Pager(
         config = createPagingConfig(),
         pagingSourceFactory = {
             BaseNetworkPagingSource(fetchFromNetwork)
         },
     ).flow.map { pagingData ->
-        pagingData.map { mapToUi(it) }
+        pagingData.map { mapToDomain(it) }
     }
 
-    protected fun <Entity : Any, Ui : Any> getPagedData(
+    protected fun <Entity : Any, Domain : Any> getPagedData(
         pagingSourceFactory: () -> PagingSource<Int, Entity>,
-        mapToUi: suspend (Entity) -> Ui,
-    ): Flow<PagingData<Ui>> = Pager(
+        mapToDomain: suspend (Entity) -> Domain,
+    ): Flow<PagingData<Domain>> = Pager(
         config = createPagingConfig(),
         pagingSourceFactory = pagingSourceFactory,
-    ).flow.map { it.map(mapToUi) }
+    ).flow.map { it.map(mapToDomain) }
 
-    protected fun <Entity : Any, Remote : Any, Ui : Any> getPagedCombined(
+    protected fun <Entity : Any, Remote : Any, Domain : Any> getPagedCombined(
         paginationType: String,
         fetchFromNetwork: suspend (Int, Int) -> List<Remote>,
         pagingSourceFactory: () -> PagingSource<Int, Entity>,
         keyStorage: PaginationKeyStorage,
-        mapToUi: suspend (Entity) -> Ui,
+        mapToDomain: suspend (Entity) -> Domain,
         saveData: suspend (List<Remote>) -> Unit,
         deleteData: suspend () -> Unit,
         forceRefresh: Boolean = false,
-    ): Flow<PagingData<Ui>> = Pager(
+    ): Flow<PagingData<Domain>> = Pager(
         config = createPagingConfig(),
         remoteMediator = BaseRemoteMediator(
             paginationType = paginationType,
@@ -57,7 +57,7 @@ abstract class BaseRepository {
             forceRefresh = forceRefresh,
         ),
         pagingSourceFactory = pagingSourceFactory,
-    ).flow.map { it.map(mapToUi) }
+    ).flow.map { it.map(mapToDomain) }
 
     /*protected fun <Local, Remote> syncFlow(
         localFlow: Flow<Local>,

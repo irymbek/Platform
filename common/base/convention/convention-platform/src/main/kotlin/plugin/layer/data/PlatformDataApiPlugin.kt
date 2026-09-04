@@ -12,26 +12,10 @@ class PlatformDataApiPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             applyPlugin(platformLibs.plugins.build.library)
-            applyPlugin(platformLibs.plugins.dependency.koin)
-            applyPlugin(platformLibs.plugins.dependency.serialization)
-
-            val modules = setOf(
-                "common:base:database",
-                "common:base:data",
-                "common:base:model",
-                "common:base:pagination",
-                "common:core:architecture",
-                "common:core:date",
-                "common:business:model:ui",
-                "common:business:model:cache",
-                "common:business:database",
-            )
-
             dependencies {
-                implementation(contextPrefix(modules))
+                implementation(contextPrefix("common:core:architecture"))
                 /**==============================================================================**/
                 implementation(platformLibs.androidx.paging.common)
-                implementation(platformLibs.androidx.room.ktx)
             }
         }
     }
