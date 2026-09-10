@@ -36,6 +36,7 @@ class PlatformPresentationImplPlugin : Plugin<Project> {
                 implementation(platformLibs.koin.compose.navigation3)
 
                 //coil
+                implementation(platform(platformLibs.coil.bom))
                 implementation(platformLibs.coil.compose.core)
 
                 implementation(platformLibs.androidx.lifecycle.viewmodel.navigation3)

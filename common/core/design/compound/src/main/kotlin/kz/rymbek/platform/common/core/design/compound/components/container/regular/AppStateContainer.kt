@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import kz.rymbek.platform.common.core.architecture.ResultFlow
@@ -87,7 +87,7 @@ fun RemoteErrorEffect(
     appSnackbarState: AppSnackbarState,
     onRetry: () -> Unit
 ) {
-    LaunchedEffect(error) {
+    SideEffect(error) {
         error?.let {
             appSnackbarState.showSnackbar(
                 message = "Ошибка обновления: ${it.localizedMessage}",

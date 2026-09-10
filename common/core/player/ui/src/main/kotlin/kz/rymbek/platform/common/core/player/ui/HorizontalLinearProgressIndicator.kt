@@ -31,6 +31,7 @@ import androidx.media3.common.Player
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kz.rymbek.platform.common.core.design.foundation.components.slider.AppSlider
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun PlayerProgressSlider(
@@ -60,7 +61,7 @@ fun PlayerProgressSlider(
             if (!isDragging) {
                 sliderValue = player?.currentPosition?.toFloat() ?: 0f
             }
-            delay(if (player?.isPlaying == true) 100 else 500)
+            delay((if (player?.isPlaying == true) 100 else 500).milliseconds)
         }
     }
 
@@ -120,7 +121,8 @@ fun PlayerProgressSlider(
                         )
 
                         // 3. Прогресс
-                        val sliderFraction = (sliderState.value / duration.toFloat()).coerceIn(0f, 1f)
+                        val sliderFraction =
+                            (sliderState.value / duration.toFloat()).coerceIn(0f, 1f)
                         val progressWidth = sliderFraction * width
                         drawRoundRect(
                             color = playedColor,

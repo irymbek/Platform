@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -53,7 +53,7 @@ fun <T> AppDataScaffold(
         content = { paddingValues ->
             DataResultHandler(
                 result = result,
-                loading = {  },
+                loading = { },
                 error = { exception ->
                     HandleError(
                         exception = exception,
@@ -70,12 +70,12 @@ fun <T> AppDataScaffold(
 private fun HandleError(
     exception: Throwable,
     appSnackbarState: AppSnackbarState,
-    onActionClick: () -> Unit ={}
+    onActionClick: () -> Unit = {}
 ) {
     val message = exception.message
     var shown by rememberSaveable(message) { mutableStateOf(false) }
 
-    LaunchedEffect(message) {
+    SideEffect(message) {
         if (!shown) {
             shown = true
             appSnackbarState.showSnackbar(
