@@ -55,63 +55,43 @@ fun <T : Any> LargeDropDownMenuDialog(
         filteredItems.mapIndexed { idx, it -> it to (idx == filteredItems.lastIndex) }
     }
 
-    AppDialog(
-        isDialogOpen = expanded,
-        content = {
-            AppFilledCard(
-                content = {
-                    AppTextField(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        value = searchQuery,
-                        onValueChange = {
-                            searchQuery = it
-                        },
-                        leadingIcon = {
-                            AppIcon(imageVector = PlatformIcons.OutlinedSearch)
-                        },
-                        placeholder = {
-                            TextFieldPlaceholder(
-                                placeholder = "Поиск",
-                            )
-                        },
-                    )
-
-                    AppLazyColumn(
-                        modifier = Modifier.fillMaxWidth(),
-                        contentPadding = PaddingValues(0.dp),
-                        verticalArrangement = Arrangement.Center,
-                    ) {
-                        if (allowEmptySelection && searchQuery.isBlank()) {
-                            item("empty_item") {
-                                AppDropdownMenuItem(
-                                    text = emptyLabel,
-                                    onClick = {
-                                        expanded.value = false
-                                        onSelectItem(null)
-                                    }
-                                )
-                                AppHorizontalDivider(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(horizontal = PlatformPaddings.default)
-                                )
-                            }
-                        }
-
-                        items(
-                            items = shown,
-                            key = { (item, _) ->
-                                key?.invoke(item) ?: System.identityHashCode(item)
+    if (expanded.value) {
+        AppDialog(
+            onDismissRequest = { expanded.value = false },
+            content = {
+                AppFilledCard(
+                    content = {
+                        AppTextField(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            value = searchQuery,
+                            onValueChange = {
+                                searchQuery = it
                             },
-                            itemContent = { (item, isLast) ->
-                                AppDropdownMenuItem(
-                                    text = selectedItemToString(item),
-                                    trailingImageData = selectedItemToImage(item),
-                                    onClick = { onSelectItem(item) }
+                            leadingIcon = {
+                                AppIcon(imageVector = PlatformIcons.OutlinedSearch)
+                            },
+                            placeholder = {
+                                TextFieldPlaceholder(
+                                    placeholder = "Поиск",
                                 )
+                            },
+                        )
 
-                                if (!isLast) {
+                        AppLazyColumn(
+                            modifier = Modifier.fillMaxWidth(),
+                            contentPadding = PaddingValues(0.dp),
+                            verticalArrangement = Arrangement.Center,
+                        ) {
+                            if (allowEmptySelection && searchQuery.isBlank()) {
+                                item("empty_item") {
+                                    AppDropdownMenuItem(
+                                        text = emptyLabel,
+                                        onClick = {
+                                            expanded.value = false
+                                            onSelectItem(null)
+                                        }
+                                    )
                                     AppHorizontalDivider(
                                         modifier = Modifier
                                             .fillMaxWidth()
@@ -119,10 +99,32 @@ fun <T : Any> LargeDropDownMenuDialog(
                                     )
                                 }
                             }
-                        )
+
+                            items(
+                                items = shown,
+                                key = { (item, _) ->
+                                    key?.invoke(item) ?: System.identityHashCode(item)
+                                },
+                                itemContent = { (item, isLast) ->
+                                    AppDropdownMenuItem(
+                                        text = selectedItemToString(item),
+                                        trailingImageData = selectedItemToImage(item),
+                                        onClick = { onSelectItem(item) }
+                                    )
+
+                                    if (!isLast) {
+                                        AppHorizontalDivider(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(horizontal = PlatformPaddings.default)
+                                        )
+                                    }
+                                }
+                            )
+                        }
                     }
-                }
-            )
-        }
-    )
+                )
+            }
+        )
+    }
 }

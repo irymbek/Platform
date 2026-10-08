@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,30 +31,35 @@ fun LoadingDialogPreview() {
 fun LoadingDialog(
     message: String? = null
 ) {
-    val isDialogOpen = remember { mutableStateOf(true) }
+    var isDialogOpen by remember { mutableStateOf(true) }
 
-    AppDialog(
-        isDialogOpen = isDialogOpen,
-        properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false),
-        content = {
-            AppFilledCard(
-                content = {
-                    Column(
-                        modifier = Modifier
-                            .padding(PlatformPaddings.content),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        AppCircularProgressIndicator()
-                        if (!message.isNullOrBlank()) {
-                            Spacer(modifier = Modifier.height(12.dp))
-                            AppText(
-                                text = message,
-                                style = MaterialTheme.typography.bodyMedium,
-                            )
+    if (isDialogOpen) {
+        AppDialog(
+            onDismissRequest = { isDialogOpen = false },
+            properties = DialogProperties(
+                dismissOnBackPress = false,
+                dismissOnClickOutside = false
+            ),
+            content = {
+                AppFilledCard(
+                    content = {
+                        Column(
+                            modifier = Modifier
+                                .padding(PlatformPaddings.content),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            AppCircularProgressIndicator()
+                            if (!message.isNullOrBlank()) {
+                                Spacer(modifier = Modifier.height(12.dp))
+                                AppText(
+                                    text = message,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                )
+                            }
                         }
                     }
-                }
-            )
-        }
-    )
+                )
+            }
+        )
+    }
 }
